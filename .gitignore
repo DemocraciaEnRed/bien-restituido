@@ -34,3 +34,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+tmb/
+
+# tmp files
+tmp/
+
+#bun
+bun.lockb

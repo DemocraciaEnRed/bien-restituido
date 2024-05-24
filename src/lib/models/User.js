@@ -4,22 +4,10 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
 
-const Token = require("../models/token");
+import Token from "@/lib/models/Token";
 
-interface User {
-  email: string;
-  password: string;
-  name: string;
-  bio: string;
-  role: string;
-  isVerified: boolean;
-  resetPasswordToken: string;
-  resetPasswordExpires: Date;
-  lastLogin: Date;
-  deletedAt: Date;
-}
 
-const UserSchema = new mongoose.Schema<User>(
+const UserSchema = new mongoose.Schema(
   {
     email: {
       type: String,
@@ -86,7 +74,7 @@ UserSchema.pre("save", async function (next) {
     user.password = hash;
     return next();
   } catch (err) {
-    return next(err as CallbackError);
+    return next(err);
   }
 });
 
@@ -95,7 +83,7 @@ UserSchema.pre("save", async function (next) {
  * @param {String} password
  * @returns {Boolean} True if the password matches the user's password
  */
-UserSchema.methods.comparePassword = function (password: string) {
+UserSchema.methods.comparePassword = function (password) {
   return bcrypt.compareSync(password, this.password);
 };
 
@@ -117,7 +105,7 @@ UserSchema.methods.generateJWT = async function () {
     lang: this.lang,
   };
 
-  return jwt.sign(payload, process.env.JWT_SECRET!, {
+  return jwt.sign(payload, process.env.JWT_SECRET, {
     expiresIn: expiresIn,
   });
 };
@@ -147,4 +135,4 @@ UserSchema.methods.generateVerificationToken = function () {
 // Add secondary index for email
 UserSchema.index({ email: 1 });
 
-module.exports = mongoose.model("User", UserSchema);
+export default mongoose.models.User || mongoose.model("User", UserSchema);
