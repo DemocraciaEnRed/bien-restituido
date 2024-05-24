@@ -2,7 +2,7 @@ import NextApiRouter from "@billyen2012/next-api-router";
 import dbConnect from "@/lib/db/dbConnect";
 
 import authRoutes from '@/app/api/[...]/auth'
-//import userRoutes from '@/app/api/[...]/user'
+import userRoutes from '@/app/api/[...]/user'
 
 import authenticate from "@/lib/middlewares/authenticate";
 import { renderHtml } from "@/lib/services/mailer";
@@ -17,12 +17,6 @@ const app = NextApiRouter({
 
 app.use(app.bodyParser.json());
 
-const sleep = (ms) => {
-  return new Promise((resolve) => {
-    setTimeout(() => resolve(), ms);
-  });
-};
-
 //=== 2 - SET UP DATABASE & MIGRATIONS
 app.use(async (req, res, next) => {
   await dbConnect()
@@ -33,7 +27,7 @@ app.use(async (req, res, next) => {
 
 app.use(authenticate)
 app.use("/auth", authRoutes);
-//app.use("/user", userRoutes)
+app.use("/user", userRoutes)
 
 
 

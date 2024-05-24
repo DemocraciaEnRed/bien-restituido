@@ -16,7 +16,6 @@ export default async (req, res, next) => {
         }
         const user = verify(token, process.env.JWT_SECRET)
 
-
         req.user = await User.findById(user._id);
         // set up locale
         return next();

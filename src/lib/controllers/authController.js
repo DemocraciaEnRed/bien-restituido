@@ -148,7 +148,7 @@ export const resendToken = async (req, res) => {
         // TODO: mailer template
         // send email
 
-        await sendNow(email, 'Confirmá tu registro', `${renderHtml(verifyTemplate, { url: url })}`);
+        await sendNow(email, 'Verifica tu email', `${renderHtml(verifyTemplate, { url: url })}`);
 
 
         return res.status(200).json({ message: formatString(messages.auth.success.verificationMailResent, user.email) });
