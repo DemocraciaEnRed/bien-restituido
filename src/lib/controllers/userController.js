@@ -1,3 +1,4 @@
+import { listUsers } from "../helpers/userHelper";
 import User from "../models/User";
 import { renderHtml, sendNow } from "../services/mailer";
 import { messages } from "../utils/messages";
@@ -156,8 +157,7 @@ export const changeEmail = async function (req, res) {
 
 
 
-// TODO ADMIN
-/* export const list = async function (req, res) {
+export const list = async function (req, res) {
     try {
         const user = req.user;
         const page = parseInt(req.query.page) || 1;
@@ -187,7 +187,7 @@ export const changeEmail = async function (req, res) {
         }
 
         // get the users
-        const output = await UserHelper.listUsers(page, limit, extraQuery, ispublic, includeDeleted);
+        const output = await listUsers(page, limit, extraQuery, ispublic, includeDeleted);
         return res.json(output);
 
     } catch (error) {
@@ -196,33 +196,8 @@ export const changeEmail = async function (req, res) {
     }
 }
 
-export const listAuthors = async function (req, res) {
-    try {
-        const user = req.user;
-        const page = parseInt(req.query.page) || 1;
-        const limit = parseInt(req.query.limit) || 10;
-        let includeDeleted = false;
-        let ispublic = true;
-        let extraQuery = { role: { $in: ['author', 'admin'] } }; // only authors and admins
-        // if it is an admin
-        if (user && user.role === 'admin') {
-            ispublic = false;
-            // check req.query.includeDeleted
-            if (req.query.includeDeleted && req.query.includeDeleted === 'true') {
-                includeDeleted = true;
-            }
-        }
-
-        // get the users
-        const output = await UserHelper.listUsers(page, limit, extraQuery, ispublic, includeDeleted);
-        return res.json(output);
-    } catch (error) {
-        console.error(error);
-        return res.status(500).json({ message: messages.error.default });
-    }
-} */
-
-/* export const setRole = async (req, res) => {
+// TODO ADMIN
+export const setRole = async (req, res) => {
     try {
         const userId = req.params.userId;
         const role = req.data.role;
@@ -288,7 +263,6 @@ export const changeEmailByAdmin = async (req, res) => {
         if (!user) return res.status(404).json({ message: messages.user.error.notFound });
 
         user.email = email;
-
         if (forceVerified && req.user.role == 'admin') {
             user.isVerified = true;
             await user.save();
@@ -306,7 +280,7 @@ export const changeEmailByAdmin = async (req, res) => {
         // make the url
         const url = `${process.env.APP_URL}/auth/verify/${token.token}`;
         // send email
-        await AuthHelper.sendVerificationEmail(user, url);
+        await sendNow(email, 'Verifica tu email', `${renderHtml(verifyTemplate, { url: url })}`);
 
         return res.status(200).json({
             message: messages.user.success.emailChanged
@@ -317,23 +291,3 @@ export const changeEmailByAdmin = async (req, res) => {
         return res.status(500).json({ message: messages.error.default })
     }
 }
-
-export const setParticipationInAssembly = async (req, res) => {
-    try {
-        const userId = req.params.userId;
-        const participation = req.data.participatedInAssembly;
-        const user = await User.findById(userId)
-
-        if (!user) return res.status(404).json({ message: messages.user.error.notFound });
-
-        user.participatedInAssembly = participation;
-
-        await user.save();
-
-        return res.status(200).json({ message: messages.user.success.updated });
-    } catch (error) {
-        console.error(error)
-        return res.status(500).json({ message: messages.error.default })
-    }
-}
- */

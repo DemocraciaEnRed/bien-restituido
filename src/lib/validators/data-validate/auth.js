@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { messages } from "../utils/messages";
+import { messages } from "../../utils/messages";
 
 
 const registerSchema = z.object({
@@ -65,7 +65,7 @@ export async function tokenValidator(
   return next();
 }
 
-const emailSchema = z.object({
+export const emailSchema = z.object({
   email: z.string().email({ message: messages.validationError.email }),
 });
 

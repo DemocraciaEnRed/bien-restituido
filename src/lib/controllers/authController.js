@@ -10,7 +10,7 @@ import reset from "../services/templates/reset";
 
 export const register = async (req, res) => {
     try {
-        const { email, password, name, lang } = req.data;
+        const { email, password, name } = req.data;
 
         // Make sure this account doesn't already exist
         const user = await User.findOne({ email });
@@ -23,7 +23,6 @@ export const register = async (req, res) => {
             email: email,
             password: password,
             name: name,
-            lang: lang,
         });
 
         await newUser.save();
@@ -179,7 +178,6 @@ export const forgot = async (req, res) => {
         const host = req.headers.get('host');
         const baseUrl = `${protocol}://${host}`;
         const url = `${baseUrl}/auth/verify/${user.resetPasswordToken}`;
-        console.log(url);
 
         await sendNow(email, 'Restablecer tu contraseña', `${renderHtml(reset, { url: url })}`);;
 

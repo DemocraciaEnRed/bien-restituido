@@ -2,7 +2,7 @@ import { verify } from "jsonwebtoken";
 import User from "../models/User";
 
 
-export default async (req, res, next) => {
+const authorize = async (req, res, next) => {
     // if there is no token, continue
     // if (!req.headers.authorization) return next();
     // console.log('optionalAuthenticate')
@@ -24,3 +24,5 @@ export default async (req, res, next) => {
     }
 
 };
+
+export default authorize

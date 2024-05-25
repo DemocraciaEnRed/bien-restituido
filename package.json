@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@billyen2012/next-api-router": "^1.11.3",
+    "@json2csv/node": "^7.0.6",
     "@types/bcrypt": "^5.0.2",
     "bcrypt": "^5.1.1",
     "express-validator": "^7.1.0",

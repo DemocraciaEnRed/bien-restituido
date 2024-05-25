@@ -7,7 +7,7 @@ import crypto from "crypto";
 import Token from "@/lib/models/Token";
 
 
-const UserSchema = new mongoose.Schema(
+export const UserSchema = new mongoose.Schema(
   {
     email: {
       type: String,
@@ -102,7 +102,6 @@ UserSchema.methods.generateJWT = async function () {
     email: this.email,
     name: this.name,
     role: this.role,
-    lang: this.lang,
   };
 
   return jwt.sign(payload, process.env.JWT_SECRET, {

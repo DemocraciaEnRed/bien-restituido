@@ -1,8 +1,11 @@
 import { z } from "zod";
-import { messages } from "../utils/messages";
+import { messages } from "../../utils/messages";
+import { UserSchema } from "@/lib/models/User";
+import constants from "@/lib/services/constants";
 
 
-const updateUserSchema = z.object({
+
+export const updateUserSchema = z.object({
     name: z.string().min(1, { message: messages.validationError.name }),
     bio: z.string({ message: messages.validationError.string })
 });
@@ -47,3 +50,25 @@ export async function changePasswordValidator(
     }
     return next();
 }
+
+
+export const userIdSchema = z.object({
+    userId: z.union([z.any(), UserSchema])
+})
+
+export const roleSchema = z.object({
+    role: z.string().refine(value => constants.ROLES.ALL.includes(value), {
+        message: messages.validationError.role,
+    })
+})
+
+export const singlePasswordSchema = z.object({
+    password: z.string().min(6, {
+        message: messages.validationError.password,
+    }),
+});
+
+export const forceVerifiedSchema = z.object({
+    forceVerified: z.boolean({ message: messages.validationError.boolean }).optional(),
+
+})

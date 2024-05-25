@@ -3,6 +3,8 @@ import dbConnect from "@/lib/db/dbConnect";
 
 import authRoutes from '@/app/api/[...]/auth'
 import userRoutes from '@/app/api/[...]/user'
+import adminRoutes from '@/app/api/[...]/admin'
+
 
 import authenticate from "@/lib/middlewares/authenticate";
 import { renderHtml } from "@/lib/services/mailer";
@@ -28,6 +30,7 @@ app.use(async (req, res, next) => {
 app.use(authenticate)
 app.use("/auth", authRoutes);
 app.use("/user", userRoutes)
+app.use("/admin", adminRoutes)
 
 
 

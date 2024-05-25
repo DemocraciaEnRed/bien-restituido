@@ -54,7 +54,6 @@ export const messages = {
     "name": "El nombre no es valido",
     "date": "La fecha no es válida, debe ser ISO 8601, o sea, YYYY-MM-DD",
     "role": "El rol no es válido",
-    "lang": "Debe elegir un lenguaje válido (es, pt)",
     "integer": "El valor debe ser un número entero",
     "boolean": "El valor debe ser true o false",
     "string": "El valor debe ser una cadena de caracteres",

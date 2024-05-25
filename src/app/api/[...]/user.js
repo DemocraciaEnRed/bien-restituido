@@ -1,7 +1,7 @@
 import { changeEmail, changePassword, get, me, update } from "@/lib/controllers/userController";
 import { authorize } from "@/lib/middlewares/authorize";
-import { loginValidator } from "@/lib/validators/auth";
-import { changePasswordValidator, updateUserValidator } from "@/lib/validators/user";
+import { loginValidator } from "@/lib/validators/data-validate/auth";
+import { changePasswordValidator, updateUserValidator } from "@/lib/validators/data-validate/user";
 import validate from "@/lib/validators/validate";
 import NextApiRouter from "@billyen2012/next-api-router";
 
