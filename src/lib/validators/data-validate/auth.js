@@ -7,7 +7,7 @@ export const registerSchema = z.object({
   password: z.string().min(6, {
     message: messages.validationError.password,
   }),
-  name: z.string().optional().min(1, { message: messages.validationError.name }),
+  name: z.string().min(1, { message: messages.validationError.name }).optional(),
 });
 
 

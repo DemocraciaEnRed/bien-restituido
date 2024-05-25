@@ -1,4 +1,4 @@
-import mongoose, { CallbackError } from "mongoose";
+import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 
 import jwt from "jsonwebtoken";
@@ -22,7 +22,6 @@ export const UserSchema = new mongoose.Schema(
     },
     name: {
       type: String,
-      required: true,
       max: 255,
     },
     bio: {
