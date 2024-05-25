@@ -1,7 +1,8 @@
 import { changeEmail, changePassword, get, me, update } from "@/lib/controllers/userController";
 import { authorize } from "@/lib/middlewares/authorize";
-import { loginValidator } from "@/lib/validators/data-validate/auth";
-import { changePasswordValidator, updateUserValidator } from "@/lib/validators/data-validate/user";
+import { dataValidate } from "@/lib/validators/data-validate";
+import { loginSchema, } from "@/lib/validators/data-validate/auth";
+import { changePasswordSchema, updateUserSchema } from "@/lib/validators/data-validate/user";
 import validate from "@/lib/validators/validate";
 import NextApiRouter from "@billyen2012/next-api-router";
 
@@ -27,7 +28,7 @@ router.get('/me',
 // PUT 	  /users/me
 router.put('/me',
     authorize(),
-    updateUserValidator,
+    dataValidate(updateUserSchema),
     validate,
     update
 );
@@ -35,7 +36,7 @@ router.put('/me',
 // PUT 	  /users/me/password
 router.put('/me/password',
     authorize(),
-    changePasswordValidator,
+    dataValidate(changePasswordSchema),
     validate,
     changePassword
 );
@@ -43,7 +44,7 @@ router.put('/me/password',
 // PUT 	  /users/me/email
 router.put('/me/email',
     authorize(),
-    loginValidator,
+    dataValidate(loginSchema),
     validate,
     changeEmail
 );
