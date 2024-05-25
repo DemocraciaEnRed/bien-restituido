@@ -10,22 +10,10 @@ export const updateUserSchema = z.object({
     bio: z.string({ message: messages.validationError.string })
 });
 
-export async function updateUserValidator(
-    req,
-    res,
-    next,
-) {
-    const data = req.data;
-
-    const validation = updateUserSchema.safeParse(data);
-    if (!validation.success) {
-        return res.status(400).send(validation.error.format());
-    }
-    return next();
-}
 
 
-const changePasswordSchema = z.object({
+
+export const changePasswordSchema = z.object({
     currentPassword: z.string().min(6, {
         message: messages.validationError.password,
     }),
@@ -37,19 +25,7 @@ const changePasswordSchema = z.object({
     path: ["confirmPassword"], // path of error
 });;
 
-export async function changePasswordValidator(
-    req,
-    res,
-    next,
-) {
-    const data = req.data;
 
-    const validation = changePasswordSchema.safeParse(data);
-    if (!validation.success) {
-        return res.status(400).send(validation.error.format());
-    }
-    return next();
-}
 
 
 export const userIdSchema = z.object({
