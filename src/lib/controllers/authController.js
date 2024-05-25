@@ -5,6 +5,7 @@ import { formatString } from "../utils/format-string";
 import { renderHtml, sendNow } from "../services/mailer";
 import verifyTemplate from "@/lib/services/templates/verify";
 import reset from "../services/templates/reset";
+import singUp from "../services/templates/singUp";
 
 
 
@@ -34,9 +35,8 @@ export const register = async (req, res) => {
         // make the url
         const url = `${process.env.APP_URL}/auth/verify/${token.token}`;
 
-        // TODO: mailer template
         // send email
-        //await AuthHelper.sendSignupEmail(newUser, url);
+        await sendNow(email, 'Confirmá tu registro', `${renderHtml(singUp, { url: url })}`);
 
         return res.status(201).json({ message: formatString(messages.auth.success.verificationMailSent, newUser.email) });
     } catch (error) {
@@ -144,7 +144,6 @@ export const resendToken = async (req, res) => {
         const baseUrl = `${protocol}://${host}`;
         const url = `${baseUrl}/auth/verify/${token.token}`;
 
-        // TODO: mailer template
         // send email
 
         await sendNow(email, 'Verifica tu email', `${renderHtml(verifyTemplate, { url: url })}`);

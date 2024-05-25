@@ -9,16 +9,6 @@ import { forceVerifiedSchema, roleSchema, singlePasswordSchema, updateUserSchema
 import validate from "@/lib/validators/validate";
 import NextApiRouter from "@billyen2012/next-api-router";
 
-/* 
-const constants = require('../../services/constants');
-const exists = require('../../middlewares/exists');
-const { default: validate } = require('@/lib/validators/validate');
-
-
-const UserController = require('../../controllers/userController');
-const AdminController = require('../../controllers/adminController');
- */
-
 // initialize router
 const router = NextApiRouter()
 

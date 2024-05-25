@@ -1,5 +1,5 @@
 import nodemailer from "nodemailer"
-import Handlebars from "handlebars";
+import * as Handlebars from "handlebars";
 import path from 'path';
 import base from "./templates/base";
 import logo from "./templates/logo";

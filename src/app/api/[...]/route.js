@@ -7,8 +7,6 @@ import adminRoutes from '@/app/api/[...]/admin'
 
 
 import authenticate from "@/lib/middlewares/authenticate";
-import { renderHtml } from "@/lib/services/mailer";
-import verify from "@/lib/services/templates/verify";
 //=== 1 - CREATE APP
 const app = NextApiRouter({
   timeout: 20 * 1000, // you can set this to false to completely disabled the timeout mechanism, however, this is not reocmmanded.
@@ -31,32 +29,10 @@ app.use(authenticate)
 app.use("/auth", authRoutes);
 app.use("/user", userRoutes)
 app.use("/admin", adminRoutes)
-
-
-
-
 app.get("/hello", (req, res, next) => {
+  res.send("world")
+})
 
-  res.json(req.user);
-});
-
-
-/* const te = renderHtml(verify, { url: 'holi' })
-
-res.writeLine(`${te}`); */
-app.get("/writeline",
-  /**
-   * This callback must not be an async proces.
-   * Instead, put everything into a async function locally
-   * and call it at the end (just see example below)
-   **/
-  (req, res, next) => {
-    res.writeHead(200, { "content-type": "text/html" });
-    const te = renderHtml(verify, { url: 'esta.es.una.url' })
-    res.writeLine(`${te}`);
-    res.end("");
-
-  });
 
 const handler = app.handler();
 export const dynamic = "force-dynamic";

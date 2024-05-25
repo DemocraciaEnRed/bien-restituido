@@ -196,7 +196,6 @@ export const list = async function (req, res) {
     }
 }
 
-// TODO ADMIN
 export const setRole = async (req, res) => {
     try {
         const userId = req.params.userId;
