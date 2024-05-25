@@ -1,5 +1,5 @@
 import requiresAnon from "@/lib/middlewares/requiresAnon";
-import { doblePasswordSchema, loginSchema, registerSchema, } from "@/lib/validators/data-validate/auth";
+import { doblePasswordSchema, loginSchema, registerSchema, tokenSchema, } from "@/lib/validators/data-validate/auth";
 import validate from "@/lib/validators/validate";
 import NextApiRouter from "@billyen2012/next-api-router";
 import { forgot, loggedIn, login, refreshToken, register, resendToken, resetPassword, verify } from '@/lib/controllers/authController'
