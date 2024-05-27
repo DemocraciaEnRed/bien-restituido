@@ -31,7 +31,7 @@ export const register = async (req, res) => {
         // save the verification token
         await token.save()
         // make the url
-        const url = `${process.env.NEXT_PUBLIC_URL_APP}/auth/verify/${token.token}`;
+        const url = `${process.env.NEXT_PUBLIC_URL_APP}/autenticacion/verificacion/${token.token}`;
 
         // send email
         await sendNow(email, 'Confirmá tu registro', `${renderHtml(singUp, { url: url })}`);
@@ -137,7 +137,7 @@ export const resendToken = async (req, res) => {
         // Save the verification token
         await token.save();
         // make the url
-        const url = `${process.env.NEXT_PUBLIC_URL_APP}/auth/verify/${token.token}`;
+        const url = `${process.env.NEXT_PUBLIC_URL_APP}/autenticacion/verificacion/${token.token}`;
 
         // send email
 
@@ -168,7 +168,8 @@ export const forgot = async (req, res) => {
         // now send the password change request email
 
         // make the url
-        const url = `${process.env.NEXT_PUBLIC_URL_APP}/auth/verify/${user.resetPasswordToken}`;
+        const protocol = req.headers.get('x-forwarded-proto') || 'http';
+        const url = `${process.env.NEXT_PUBLIC_URL_APP}/autenticacion/verificacion/${user.resetPasswordToken}`;
 
         await sendNow(email, 'Restablecer tu contraseña', `${renderHtml(reset, { url: url })}`);;
 
