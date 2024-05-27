@@ -12,10 +12,8 @@ import singUp from "../services/templates/singUp";
 export const register = async (req, res) => {
     try {
         const { email, password, name } = req.data;
-
         // Make sure this account doesn't already exist
         const user = await User.findOne({ email });
-
         if (user) {
             return res.status(401).json({ message: messages.auth.error.emailAssociated });
         }

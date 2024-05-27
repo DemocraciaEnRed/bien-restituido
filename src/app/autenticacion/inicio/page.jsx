@@ -1,12 +1,16 @@
-import { Form } from "@/components/auth/form";
-import { Button } from "@/components/ui/button";
+"use client";
+import { useFormState } from "react-dom";
+
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+
+import { Form } from "@/components/auth/form";
+import { login } from "@/lib/server-actions/auth-actions";
+import { SubmitButton } from "@/components/ui/submit-button";
 
 export default function Login() {
-  async function login(params) {
-    "use server";
-    console.log("login");
-  }
+  const [errorMessage, submitAction] = useFormState(login, "");
+
   return (
     <div className="flex h-screen w-screen items-center justify-center bg-gray-50">
       <div className="z-10 w-full max-w-md overflow-hidden rounded-2xl border border-gray-100 shadow-xl">
@@ -16,11 +20,17 @@ export default function Login() {
             Utilice su correo electrónico y contraseña para iniciar sesión
           </p>
         </div>
-        <Form action={login}>
-          <Button>iniciar sesión</Button>
+        <Form action={submitAction}>
+          <div className="text-red-500">
+            {errorMessage && <p>{errorMessage}</p>}
+          </div>
+          <SubmitButton text="iniciar sesión" />
           <p className="text-center text-sm text-gray-600">
             ¿No tienes una cuenta?{" "}
-            <Link href="/auth/registro" className="font-semibold text-gray-800">
+            <Link
+              href="/autenticacion/registro"
+              className="font-semibold text-gray-800"
+            >
               Registrate.
             </Link>
           </p>
