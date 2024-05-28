@@ -1,3 +1,5 @@
+import { ZodError } from "zod";
+
 export const dataValidate = (schema) => (
     req,
     res,
@@ -6,7 +8,8 @@ export const dataValidate = (schema) => (
     const data = req.data;
     const validation = schema.safeParse(data);
     if (!validation.success) {
-        return res.status(400).send(validation.error.format());
+        const error = formatErrors(validation.error)
+        return res.status(400).send({ message: error });
     }
     return next();
 }
@@ -19,7 +22,8 @@ export const paramsValidate = (schema) => (
     const data = req.params;
     const validation = schema.safeParse(data);
     if (!validation.success) {
-        return res.status(400).send(validation.error.format());
+        const error = formatErrors(validation.error)
+        return res.status(400).send({ message: error });
     }
     return next();
 }
@@ -32,7 +36,15 @@ export const queryValidate = (schema) => (
     const data = req.query;
     const validation = schema.safeParse(data);
     if (!validation.success) {
-        return res.status(400).send(validation.error.format());
+        const error = formatErrors(validation.error)
+        return res.status(400).send({ message: error });
     }
     return next();
 }
+
+const formatErrors = (errors) => {
+    return errors.errors.map(error => {
+        const path = error.path.join(".");
+        return `${path}: ${error.message}`;
+    }).join("\n");
+};

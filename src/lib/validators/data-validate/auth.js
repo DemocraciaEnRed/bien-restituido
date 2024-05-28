@@ -36,7 +36,7 @@ export const doblePasswordSchema = z.object({
     message: messages.validationError.password,
   }),
 }).refine((data) => data.password === data.confirmPassword, {
-  message: "Passwords don't match",
-  path: ["confirmPassword"], // path of error
+  message: "las contraseñas no coinciden",
+  path: ["password"],
 });;
 
