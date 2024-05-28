@@ -19,11 +19,13 @@ export const login = async (_currentState, formData) => {
                 password,
             }),
         });
-        const user = await res.json();
+        const data = await res.json();
         if (res.status !== 200) {
-            throw new Error(user.message)
+            const error = new Error(data.message);
+            error.status = res.status
+            throw error
         }
-        cookies().set(authTokenKey, user.token)
+        cookies().set(authTokenKey, data.token)
     } catch (error) {
         console.log(error);
         return error.message
@@ -45,9 +47,61 @@ export const register = async (_currentState, formData) => {
                 password,
             }),
         });
-        const user = await res.json();
+        const data = await res.json();
         if (res.status !== 201) {
-            throw new Error(user.message);
+            const error = new Error(data.message);
+            error.status = res.status
+            throw error
+        }
+        return res.status
+    } catch (error) {
+        return error.message
+    }
+
+}; 
+
+
+export const verifyToken = async (token) => {
+    try {
+        let res = await fetch(`${baseUrl}/api/auth/verify/${token}`, {
+            method: "GET",
+            cache: 'no-store',
+            headers: {
+                "Content-Type": "application/json",
+            },
+
+        });
+        const data = await res.json();
+        if (res.status !== 200) {
+            const error = new Error(data.message);
+            error.status = res.status
+            throw error
+        }
+        return res
+    } catch (error) {
+        return error
+    }
+}
+
+
+
+export const forgotPassword = async (_currentState, formData) => {
+    try {
+        let email = formData.get('email');
+        let res = await fetch(`${baseUrl}/api/auth/forgot`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                email,
+            }),
+        });
+        const data = await res.json();
+        if (res.status !== 201) {
+            const error = new Error(data.message);
+            error.status = res.status
+            throw error
         }
         return res.status
     } catch (error) {
