@@ -27,8 +27,8 @@ app.use(async (req, res, next) => {
 
 app.use(authenticate)
 app.use("/auth", authRoutes);
-app.use("/user", userRoutes)
 app.use("/admin", adminRoutes)
+app.use("/user", userRoutes)
 app.get("/hello", (req, res, next) => {
   res.send("world")
 })

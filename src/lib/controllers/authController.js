@@ -170,8 +170,7 @@ export const forgot = async (req, res) => {
         // now send the password change request email
 
         // make the url
-        const protocol = req.headers.get('x-forwarded-proto') || 'http';
-        const url = `${process.env.NEXT_PUBLIC_URL_APP}/autenticacion/verificacion/${user.resetPasswordToken}`;
+        const url = `${process.env.NEXT_PUBLIC_URL_APP}/autenticacion/restaurar/${user.resetPasswordToken}`;
 
         await sendNow(email, 'Restablecer tu contraseña', `${renderHtml(reset, { url: url })}`);;
 
