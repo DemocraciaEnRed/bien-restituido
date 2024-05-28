@@ -6,7 +6,6 @@ import { forgot, loggedIn, login, refreshToken, register, resendToken, resetPass
 import { authorize } from "@/lib/middlewares/authorize";
 import { dataValidate, paramsValidate } from "@/lib/validators/data-validate";
 import { emailSchema } from "@/lib/validators/data-validate/auth";
-dataValidate(emailSchema)
 
 
 // initialize router
