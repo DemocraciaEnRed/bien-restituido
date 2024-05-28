@@ -15,14 +15,14 @@ export default function Register() {
   const [errorMessage, submitAction] = useFormState(register, "");
 
   useEffect(() => {
-    if (errorMessage === 201) {
+    if (errorMessage.status === 201) {
       router.push("/autenticacion/inicio");
     }
   }, [errorMessage]);
 
   return (
     <div className="flex h-screen w-screen items-center justify-center bg-gray-50">
-      <div className="z-10 w-full max-w-md overflow-hidden rounded-2xl border border-gray-100 shadow-xl">
+      <div className="z-10 w-full max-w-lg overflow-hidden rounded-2xl border border-gray-100 shadow-xl">
         <div className="flex flex-col items-center justify-center space-y-3 border-b border-gray-200 bg-white px-4 py-6 pt-8 text-center sm:px-16">
           <h3 className="text-xl font-semibold">Registro</h3>
           <p className="text-sm text-gray-500">
@@ -30,9 +30,11 @@ export default function Register() {
           </p>
         </div>
         <Form action={submitAction}>
-          <div className="text-red-500">
-            {errorMessage && <p>{errorMessage}</p>}
-          </div>
+          {errorMessage && errorMessage.status !== 201 && (
+            <div className="text-red-500">
+              <p>{errorMessage}</p>
+            </div>
+          )}
           <SubmitButton text="Registrar" />
           <p className="text-center text-sm text-gray-600">
             ¿Ya tienes una cuenta?{" "}

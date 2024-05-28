@@ -2,6 +2,8 @@
 
 import { cookies } from "next/headers";
 import { authTokenKey } from "../utils/constants";
+import { redirect } from "next/navigation";
+import { ZodError } from "zod";
 
 const baseUrl = process.env.NEXT_PUBLIC_URL_APP
 
@@ -27,10 +29,9 @@ export const login = async (_currentState, formData) => {
         }
         cookies().set(authTokenKey, data.token)
     } catch (error) {
-        console.log(error);
         return error.message
     }
-    /* */
+    redirect('/')
 };
 
 export const register = async (_currentState, formData) => {
@@ -53,12 +54,13 @@ export const register = async (_currentState, formData) => {
             error.status = res.status
             throw error
         }
-        return res.status
+        data.status = res.status
+        return data
     } catch (error) {
         return error.message
     }
 
-}; 
+};
 
 
 export const verifyToken = async (token) => {
@@ -77,7 +79,8 @@ export const verifyToken = async (token) => {
             error.status = res.status
             throw error
         }
-        return res
+        data.status = res.status
+        return data
     } catch (error) {
         return error
     }
@@ -98,14 +101,48 @@ export const forgotPassword = async (_currentState, formData) => {
             }),
         });
         const data = await res.json();
-        if (res.status !== 201) {
+        if (res.status !== 200) {
             const error = new Error(data.message);
             error.status = res.status
             throw error
         }
-        return res.status
+        data.status = res.status
+        return data
     } catch (error) {
         return error.message
+    }
+
+};
+
+export const restorePassword = async (_currentState, formData) => {
+    try {
+        let password = formData.get('password');
+        let confirmPassword = formData.get('confirmPassword');
+        let token = formData.get('token');
+        let res = await fetch(`${baseUrl}/api/auth/reset/${token}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                password,
+                confirmPassword
+            }),
+        });
+
+        const data = await res.json();
+        if (res.status !== 200) {
+            const error = new Error(data.message);
+            error.status = res.status
+            throw error
+        }
+        data.status = res.status
+        return data
+    } catch (error) {
+        return {
+            status: error.status,
+            message: error.message
+        }
     }
 
 }; 

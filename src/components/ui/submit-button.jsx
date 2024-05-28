@@ -12,7 +12,12 @@ export function SubmitButton({ text }) {
     }
   };
   return (
-    <Button disabled={status.pending} type="submit" onClick={handleClick}>
+    <Button
+      disabled={status.pending}
+      type="submit"
+      className="mt-4"
+      onClick={handleClick}
+    >
       {status.pending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
       {text}
     </Button>
