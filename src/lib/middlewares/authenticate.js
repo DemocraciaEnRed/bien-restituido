@@ -7,7 +7,7 @@ const authorize = async (req, res, next) => {
     // if (!req.headers.authorization) return next();
     // console.log('optionalAuthenticate')
     try {
-        const authHeader = req.headers.get('authorization')
+        const authHeader = req.headers.get('Authorization')
         let token
         if (authHeader && authHeader.startsWith("Bearer ")) {
             token = authHeader.substring(7, authHeader.length);
