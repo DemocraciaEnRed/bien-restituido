@@ -1,5 +1,5 @@
-import { changeEmail, changePassword, get, me, update } from "@/lib/controllers/userController";
-import { authorize } from "@/lib/middlewares/authorize";
+import { changeEmail, changePassword, get, me, update } from "@/app/api/_lib/controllers/userController";
+import { authorize } from "@/app/api/_lib/middlewares/authorize";
 import { dataValidate } from "@/lib/validators/data-validate";
 import { loginSchema, } from "@/lib/validators/data-validate/auth";
 import { changePasswordSchema, updateUserSchema } from "@/lib/validators/data-validate/user";

@@ -4,7 +4,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
 
-import Token from "@/lib/models/Token";
+import Token from "@/app/api/_lib/models/Token";
 
 
 export const UserSchema = new mongoose.Schema(

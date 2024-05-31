@@ -1,12 +1,12 @@
 import NextApiRouter from "@billyen2012/next-api-router";
-import dbConnect from "@/lib/db/dbConnect";
+import dbConnect from "@/app/api/_lib/db/dbConnect";
 
 import authRoutes from '@/app/api/[...]/auth'
 import userRoutes from '@/app/api/[...]/user'
 import adminRoutes from '@/app/api/[...]/admin'
 
 
-import authenticate from "@/lib/middlewares/authenticate";
+import authenticate from "@/app/api/_lib/middlewares/authenticate";
 //=== 1 - CREATE APP
 const app = NextApiRouter({
   timeout: 20 * 1000, // you can set this to false to completely disabled the timeout mechanism, however, this is not reocmmanded.
