@@ -3,7 +3,6 @@
 import { cookies } from "next/headers";
 import { authTokenKey } from "../utils/constants";
 import { redirect } from "next/navigation";
-import { ZodError } from "zod";
 
 const baseUrl = process.env.NEXT_PUBLIC_URL_APP
 
@@ -146,3 +145,35 @@ export const restorePassword = async (_currentState, formData) => {
     }
 
 }; 
+
+export const signOut = async () => {
+    cookies().delete(authTokenKey)
+    redirect('/')
+}
+
+export const userMe = async (token) => {
+    try {
+        const token = cookies().get(authTokenKey)
+        if (token) {
+            let res = await fetch(`${baseUrl}/api/user/me`, {
+                method: "GET",
+                cache: 'no-store',
+                headers: {
+                    "Content-Type": "application/json",
+                    'Authorization': `Bearer ${token.value}`
+                },
+
+            });
+            const data = await res.json();
+            if (res.status !== 200) {
+                const error = new Error(data.message);
+                error.status = res.status
+                throw error
+            }
+            return data.user
+        }
+        return null
+    } catch (error) {
+        return error
+    }
+}
