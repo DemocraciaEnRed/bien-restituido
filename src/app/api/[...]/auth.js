@@ -1,9 +1,9 @@
-import requiresAnon from "@/lib/middlewares/requiresAnon";
+import requiresAnon from "@/app/api/_lib/middlewares/requiresAnon";
 import { doblePasswordSchema, loginSchema, registerSchema, tokenSchema, } from "@/lib/validators/data-validate/auth";
 import validate from "@/lib/validators/validate";
 import NextApiRouter from "@billyen2012/next-api-router";
-import { forgot, loggedIn, login, refreshToken, register, resendToken, resetPassword, verify } from '@/lib/controllers/authController'
-import { authorize } from "@/lib/middlewares/authorize";
+import { forgot, loggedIn, login, refreshToken, register, resendToken, resetPassword, verify } from '@/app/api/_lib/controllers/authController'
+import { authorize } from "@/app/api/_lib/middlewares/authorize";
 import { dataValidate, paramsValidate } from "@/lib/validators/data-validate";
 import { emailSchema } from "@/lib/validators/data-validate/auth";
 

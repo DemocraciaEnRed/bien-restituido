@@ -1,5 +1,5 @@
 import { check, validationResult } from 'express-validator'
-import { messages } from '../utils/messages';
+import { messages } from '../../app/api/_lib/utils/messages';
 
 export default (req, res, next) => {
     const results = validationResult(req);

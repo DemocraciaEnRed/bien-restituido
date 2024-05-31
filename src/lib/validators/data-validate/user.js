@@ -1,7 +1,7 @@
 import { z } from "zod";
-import { messages } from "../../utils/messages";
-import { UserSchema } from "@/lib/models/User";
-import constants from "@/lib/services/constants";
+import { messages } from "../../../app/api/_lib/utils/messages";
+import { UserSchema } from "@/app/api/_lib/models/User";
+import constants from "@/app/api/_lib/services/constants";
 
 
 

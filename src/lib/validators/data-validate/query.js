@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { messages } from "../../utils/messages";
+import { messages } from "../../../app/api/_lib/utils/messages";
 
 
 export const queryUserListSchema = z.object({

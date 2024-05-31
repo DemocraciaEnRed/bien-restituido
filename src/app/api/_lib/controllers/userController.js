@@ -2,7 +2,7 @@ import { listUsers } from "../helpers/userHelper";
 import User from "../models/User";
 import { renderHtml, sendNow } from "../services/mailer";
 import { messages } from "../utils/messages";
-import verifyTemplate from "@/lib/services/templates/verify";
+import verifyTemplate from "@/app/api/_lib/services/templates/verify";
 
 
 export const me = async function (req, res) {
