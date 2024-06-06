@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+markdown
+Copiar código
+# Bien Restituido
 
-## Getting Started
+Bien Restituido es un proyecto desarrollado por DemocraciaEnRed utilizando Next.js.
 
-First, run the development server:
+## Tabla de Contenidos
+
+- [Instalación](#instalación)
+- [Uso](#uso)
+- [Estructura del Proyecto](#estructura-del-proyecto)
+- [Recursos](#recursos)
+- [Contribuciones](#contribuciones)
+- [Licencia](#licencia)
+
+## Instalación
+
+Para comenzar, clona este repositorio y navega hasta el directorio del proyecto:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/DemocraciaEnRed/bien-restituido.git
+cd bien-restituido
+```
+Instala las dependencias utilizando npm, yarn, pnpm, o bun:
+
+```bash
+npm install
+# o
+yarn install
+# o
+pnpm install
+# o
+bun install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Uso
+Para iniciar el servidor de desarrollo:
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```bash
+Copiar código
+npm run dev
+# o
+yarn dev
+# o
+pnpm dev
+# o
+bun dev
+```
+Abre http://localhost:3000 en tu navegador para ver la aplicación en funcionamiento.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Estructura del Proyecto
 
-## Learn More
+```ruby
+bien-restituido/
+│
+├── public/             # Archivos estáticos
+├── src/                # Código fuente
+│   ├── components/     # Componentes React
+│   ├── utils/          # Utilidades y helpers
+│   ├── middleware      # middleware Next.js
+│   └── app/            # Páginas Next.js
+│       └──api/         # api del proyecto
+├── .eslintrc.json      # Configuración de ESLint
+├── .gitignore          # Archivos y carpetas a ignorar por Git
+├── next.config.mjs     # Configuración de Next.js
+├── package.json        # Dependencias y scripts
+├── README.md           # Documentación del proyecto
+└── tailwind.config.js  # Configuración de Tailwind CSS
+```
+## Recursos
+Documentación de Next.js
+Tutorial Interactivo de Next.js
+Repositorio de Next.js en GitHub
 
-To learn more about Next.js, take a look at the following resources:
+## Contribuciones
+Las contribuciones son bienvenidas. Por favor, abre un issue o envía un pull request para contribuir al proyecto.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Licencia
+Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo LICENSE para más detalles.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```bash
+Puedes personalizar y agregar más detalles específicos al proyecto según sea necesario.
+```
