@@ -30,11 +30,14 @@ export const login = async (_currentState, formData) => {
     } catch (error) {
         return error.message
     }
-    redirect('/')
+    const nextRoute = formData.get('next')
+    if (nextRoute) redirect(nextRoute)
+    else redirect('/')
 };
 
 export const register = async (_currentState, formData) => {
     try {
+        let username = formData.get('username')
         let email = formData.get('email');
         let password = formData.get('password');
         let res = await fetch(`${baseUrl}/api/auth/register`, {
@@ -43,6 +46,7 @@ export const register = async (_currentState, formData) => {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
+                username,
                 email,
                 password,
             }),
@@ -144,7 +148,7 @@ export const restorePassword = async (_currentState, formData) => {
         }
     }
 
-}; 
+};
 
 export const signOut = async () => {
     cookies().delete(authTokenKey)
@@ -157,7 +161,7 @@ export const userMe = async (token) => {
         if (token) {
             let res = await fetch(`${baseUrl}/api/user/me`, {
                 method: "GET",
-                cache: 'no-store',
+                cache: 'force-cache',
                 headers: {
                     "Content-Type": "application/json",
                     'Authorization': `Bearer ${token.value}`

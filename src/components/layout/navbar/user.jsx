@@ -29,6 +29,13 @@ export function User({ user }) {
       <DropdownMenuContent>
         <DropdownMenuLabel>Mi cuenta</DropdownMenuLabel>
         <DropdownMenuSeparator />
+        {user.role === "admin" && (
+          <DropdownMenuItem>
+            <Link href="/admin">
+              <Button variant="link">admin</Button>
+            </Link>
+          </DropdownMenuItem>
+        )}
         <DropdownMenuItem>
           <Link href="/perfil">
             <Button variant="link">perfil</Button>

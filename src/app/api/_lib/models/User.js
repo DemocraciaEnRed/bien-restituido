@@ -5,6 +5,7 @@ import jwt from "jsonwebtoken";
 import crypto from "crypto";
 
 import Token from "@/app/api/_lib/models/Token";
+import { userRoles } from "@/lib/utils/constants";
 
 
 export const UserSchema = new mongoose.Schema(
@@ -20,9 +21,10 @@ export const UserSchema = new mongoose.Schema(
       required: [true, "Your password is required"],
       max: 100,
     },
-    name: {
+    username: {
       type: String,
       max: 255,
+      required: [true, "Your username is required"],
     },
     bio: {
       type: String,
@@ -31,7 +33,7 @@ export const UserSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ["user", "moderator", "author", "admin"],
+      enum: userRoles,
       required: true,
       default: "user",
     },
@@ -99,7 +101,7 @@ UserSchema.methods.generateJWT = async function () {
   let payload = {
     _id: this._id,
     email: this.email,
-    name: this.name,
+    username: this.username,
     role: this.role,
   };
 

@@ -5,7 +5,7 @@ import { useFormState } from "react-dom";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-import { Form } from "@/components/auth/form";
+import { RegisterForm } from "@/app/autenticacion/_component/register-form";
 import { SubmitButton } from "@/components/ui/submit-button";
 import { register } from "@/lib/server-actions/auth-actions";
 import { redirectHard } from "@/lib/server-actions/general";
@@ -29,7 +29,7 @@ export default function Register() {
             Crea una cuenta con tu correo electrónico y contraseña{" "}
           </p>
         </div>
-        <Form action={submitAction}>
+        <RegisterForm action={submitAction}>
           {errorMessage && errorMessage.status !== 201 && (
             <div className="text-red-500">
               <p>{errorMessage}</p>
@@ -45,7 +45,7 @@ export default function Register() {
               inicia sesion
             </button>
           </p>
-        </Form>
+        </RegisterForm>
       </div>
     </div>
   );

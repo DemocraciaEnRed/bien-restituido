@@ -6,7 +6,7 @@ import constants from "@/app/api/_lib/services/constants";
 
 
 export const updateUserSchema = z.object({
-    name: z.string().min(1, { message: messages.validationError.name }),
+    username: z.string().min(1, { message: messages.validationError.name }),
     bio: z.string({ message: messages.validationError.string })
 });
 

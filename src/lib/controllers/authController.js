@@ -11,7 +11,7 @@ import singUp from "../services/templates/singUp";
 
 export const register = async (req, res) => {
     try {
-        const { email, password, name } = req.data;
+        const { email, password, username } = req.data;
         // Make sure this account doesn't already exist
         const user = await User.findOne({ email });
         if (user) {
@@ -21,7 +21,7 @@ export const register = async (req, res) => {
         const newUser = new User({
             email: email,
             password: password,
-            name: name,
+            username: username,
         });
 
         await newUser.save();
@@ -66,7 +66,7 @@ export const login = async (req, res) => {
         const outputUser = {
             _id: user._id,
             email: user.email,
-            name: user.name,
+            username: user.username,
             role: user.role,
         }
         // Login successful, write token, and send back user

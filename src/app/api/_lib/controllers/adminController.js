@@ -12,7 +12,7 @@ export const exportUsers = async (req, res) => {
             const userOutput = {
                 _id: user._id,
                 email: user.email,
-                name: user.name,
+                username: user.username,
                 role: user.role,
                 isVerified: user.isVerified,
                 lastLogin: user.lastLogin,

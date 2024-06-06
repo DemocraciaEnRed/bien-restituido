@@ -156,7 +156,7 @@ export const changeEmail = async function (req, res) {
 
 
 
-
+//Admin functions
 export const list = async function (req, res) {
     try {
         const user = req.user;
@@ -177,10 +177,10 @@ export const list = async function (req, res) {
 
         // if there is a query
         if (query) {
-            // query can be a string that is for the name or the email
+            // query can be a string that is for the username or the email
             extraQuery = {
                 $or: [
-                    { name: { $regex: query, $options: 'i' } },
+                    { username: { $regex: query, $options: 'i' } },
                     { email: { $regex: query, $options: 'i' } }
                 ]
             }
@@ -211,7 +211,7 @@ export const setRole = async (req, res) => {
         user.role = role;
         await user.save();
 
-        return res.status(200).send()
+        return res.status(200).send({ message: `User role has been modified to ${role}` })
     } catch (error) {
         console.error(error);
         return res.status(500).json({ message: messages.error.default });
@@ -224,7 +224,7 @@ export const forceVerifyByAdmin = async (req, res) => {
         const user = await User.findById(userId)
         if (!user) return res.status(404).json({ message: messages.user.error.notFound });
 
-        user.isVerified = true;
+        user.isVerified = !user.isVerified;
         await user.save();
 
         return res.status(200).json({ message: 'User has been verified' });

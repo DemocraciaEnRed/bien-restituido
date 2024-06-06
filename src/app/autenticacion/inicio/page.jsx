@@ -2,13 +2,12 @@
 import { useFormState } from "react-dom";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
-import { Form } from "@/components/auth/form";
+import { LoginForm } from "@/app/autenticacion/_component/login-form";
 import { login } from "@/lib/server-actions/auth-actions";
 import { SubmitButton } from "@/components/ui/submit-button";
 
-export default function Login() {
+export default function Login({ searchParams }) {
   const [errorMessage, submitAction] = useFormState(login, "");
 
   return (
@@ -20,7 +19,7 @@ export default function Login() {
             Utilice su correo electrónico y contraseña para iniciar sesión
           </p>
         </div>
-        <Form action={submitAction}>
+        <LoginForm action={submitAction}>
           <Link href="/autenticacion/restaurar" className="text-right">
             ¿Olvidaste tu contraseña?
           </Link>
@@ -39,7 +38,14 @@ export default function Login() {
               Registrate.
             </Link>
           </p>
-        </Form>
+          <input
+            type="text"
+            hidden
+            name="next"
+            readOnly
+            value={searchParams.next}
+          />
+        </LoginForm>
       </div>
     </div>
   );
