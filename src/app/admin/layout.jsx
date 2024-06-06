@@ -1,4 +1,4 @@
-import Drawer from "@/app/admin/_components/drawer";
+import Drawer from "@/components/admin/layout/drawer";
 
 export default function AdminLayout({ children }) {
   return (

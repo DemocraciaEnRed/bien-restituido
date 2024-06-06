@@ -64,7 +64,7 @@ function UserRole({ user }) {
                     <SelectValue placeholder={user.role} />
                   </SelectTrigger>
                   <SelectContent>
-                    {userRoles.map((rol) => (
+                    {Object.values(userRoles).map((rol) => (
                       <SelectItem key={rol} value={rol}>
                         {rol}
                       </SelectItem>

@@ -1,3 +1,4 @@
+import { userRoles } from "@/lib/utils/constants";
 import User from "../models/User";
 
 
@@ -20,7 +21,7 @@ export const getAppStats = async () => {
 
         // get the users
         const totalUsers = await User.countDocuments();
-        const totalAdmins = await User.countDocuments({ role: 'admin' });
+        const totalAdmins = await User.countDocuments({ role: userRoles.ADMIN });
         const totalVerified = await User.countDocuments({ isVerified: true });
         const totalUnverified = await User.countDocuments({ isVerified: false });
         const totalDeleted = await User.countDocuments({ deletedAt: { $ne: null } });

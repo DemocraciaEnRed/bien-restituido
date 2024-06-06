@@ -5,7 +5,7 @@ import { useFormState } from "react-dom";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-import { RegisterForm } from "@/app/autenticacion/_component/register-form";
+import { RegisterForm } from "@/components/auth/register-form";
 import { SubmitButton } from "@/components/ui/submit-button";
 import { register } from "@/lib/server-actions/auth-actions";
 import { redirectHard } from "@/lib/server-actions/general";

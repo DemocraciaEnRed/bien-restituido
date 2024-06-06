@@ -33,9 +33,9 @@ export const UserSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      enum: userRoles,
+      enum: Object.values(userRoles),
       required: true,
-      default: "user",
+      default: userRoles.USER,
     },
     isVerified: {
       type: Boolean,

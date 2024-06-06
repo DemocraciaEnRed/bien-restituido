@@ -1,7 +1,7 @@
 "use client";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
-import { Form } from "@/app/autenticacion/_component/login-form";
+import { Form } from "@/components/auth/login-form";
 import { SubmitButton } from "@/components/ui/submit-button";
 import { restorePassword } from "@/lib/server-actions/auth-actions";
 import { Label } from "@/components/ui/label";

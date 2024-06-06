@@ -1,4 +1,4 @@
-import EditUserForm from "@/app/admin/_components/users/edit-user-form";
+import EditUserForm from "@/components/admin/users/edit-user-form";
 import React from "react";
 
 function UserData({ user }) {

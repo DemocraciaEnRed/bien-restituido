@@ -2,6 +2,7 @@ import { z } from "zod";
 import { messages } from "../../../app/api/_lib/utils/messages";
 import { UserSchema } from "@/app/api/_lib/models/User";
 import constants from "@/app/api/_lib/services/constants";
+import { userRoles } from "@/lib/utils/constants";
 
 
 
@@ -33,7 +34,7 @@ export const userIdSchema = z.object({
 })
 
 export const roleSchema = z.object({
-    role: z.string().refine(value => constants.ROLES.ALL.includes(value), {
+    role: z.string().refine(value => Object.values(userRoles).includes(value), {
         message: messages.validationError.role,
     })
 })

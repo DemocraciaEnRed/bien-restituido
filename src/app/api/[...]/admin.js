@@ -2,6 +2,7 @@ import { exportUsers } from "@/app/api/_lib/controllers/adminController";
 import { changeEmailByAdmin, changePasswordByAdmin, forceVerifyByAdmin, get, list, setRole, update } from "@/app/api/_lib/controllers/userController";
 import { authorize } from "@/app/api/_lib/middlewares/authorize";
 import constants from "@/app/api/_lib/services/constants";
+import { userRoles } from "@/lib/utils/constants";
 import { dataValidate, paramsValidate, queryValidate } from "@/lib/validators/data-validate";
 import { emailSchema } from "@/lib/validators/data-validate/auth";
 import { queryUserListSchema } from "@/lib/validators/data-validate/query";
@@ -25,14 +26,14 @@ const router = NextApiRouter()
 
 // GET 		/admin/users
 router.get('/users',
-  authorize(constants.ROLES.ADMINISTRATOR),
+  authorize(userRoles.ADMIN),
   queryValidate(queryUserListSchema),
   validate,
   list
 )
 
 router.get('/users/csv',
-  authorize(constants.ROLES.ADMINISTRATOR),
+  authorize(userRoles.ADMIN),
   exportUsers
 )
 
@@ -40,7 +41,7 @@ router.get('/users/csv',
 
 // GET 		/admin/users/:userId
 router.get('/users/:userId',
-  authorize(constants.ROLES.ADMINISTRATOR),
+  authorize(userRoles.ADMIN),
   paramsValidate(userIdSchema),
   validate,
   get
@@ -48,7 +49,7 @@ router.get('/users/:userId',
 
 // PUT    /admin/users/:userId
 router.put('/users/:userId',
-  authorize(constants.ROLES.ADMINISTRATOR),
+  authorize(userRoles.ADMIN),
   paramsValidate(userIdSchema),
   dataValidate(updateUserSchema),
   validate,
@@ -56,7 +57,7 @@ router.put('/users/:userId',
 )
 
 router.put('/users/:userId/role',
-  authorize(constants.ROLES.ADMINISTRATOR),
+  authorize(userRoles.ADMIN),
   paramsValidate(userIdSchema),
   dataValidate(roleSchema),
   validate,
@@ -66,14 +67,14 @@ router.put('/users/:userId/role',
 
 
 router.post('/users/:userId/force-verify',
-  authorize(constants.ROLES.ADMINISTRATOR),
+  authorize(userRoles.ADMIN),
   paramsValidate(userIdSchema),
   validate,
   forceVerifyByAdmin
 )
 
 router.put('/users/:userId/password',
-  authorize(constants.ROLES.ADMINISTRATOR),
+  authorize(userRoles.ADMIN),
   paramsValidate(userIdSchema),
   dataValidate(singlePasswordSchema),
   validate,
@@ -81,7 +82,7 @@ router.put('/users/:userId/password',
 )
 
 router.put('/users/:userId/email',
-  authorize(constants.ROLES.ADMINISTRATOR),
+  authorize(userRoles.ADMIN),
   paramsValidate(userIdSchema),
   dataValidate(emailSchema),
   dataValidate(forceVerifiedSchema),

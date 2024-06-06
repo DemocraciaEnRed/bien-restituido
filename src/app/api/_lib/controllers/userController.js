@@ -1,3 +1,4 @@
+import { userRoles } from "@/lib/utils/constants";
 import { listUsers } from "../helpers/userHelper";
 import User from "../models/User";
 import { renderHtml, sendNow } from "../services/mailer";
@@ -56,7 +57,7 @@ export const get = async function (req, res) {
 
         let queryProjection = querySelect;
 
-        if (userLogged && userLogged.role == 'admin') {
+        if (userLogged && userLogged.role == userRoles.ADMIN) {
             queryProjection = querySelectForAdmins;
         }
 
@@ -77,7 +78,7 @@ export const update = async function (req, res) {
         const userId = req.params.userId || req.user.id;
         const loggedUser = req.user;
 
-        if (loggedUser.role != 'admin') {
+        if (loggedUser.role != userRoles.ADMIN) {
             // Make sure the passed id is that of the logged in user
             if (userId !== loggedUser._id.toString()) {
                 return res.status(401).json({ message: messages.auth.error.forbidden });
@@ -167,7 +168,7 @@ export const list = async function (req, res) {
         let ispublic = true;
         let extraQuery = null;
         // if it is an admin
-        if (user && user.role === 'admin') {
+        if (user && user.role === userRoles.ADMIN) {
             ispublic = false;
             // check req.query.includeDeleted
             if (req.query.includeDeleted && req.query.includeDeleted === 'true') {
@@ -262,7 +263,7 @@ export const changeEmailByAdmin = async (req, res) => {
         if (!user) return res.status(404).json({ message: messages.user.error.notFound });
 
         user.email = email;
-        if (forceVerified && req.user.role == 'admin') {
+        if (forceVerified && req.user.role == userRoles.ADMIN) {
             user.isVerified = true;
             await user.save();
             return res.status(200).json({ message: messages.user.success.emailAndUserVerified });

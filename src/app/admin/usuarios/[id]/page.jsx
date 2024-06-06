@@ -1,6 +1,6 @@
 import React from "react";
 import { fetchUserById } from "@/lib/server-actions/admin/user/fetch-data";
-import UserInfo from "../_components/user/user-info";
+import UserInfo from "../../../../components/admin/users/user-info";
 
 async function User({ params: { id } }) {
   const user = await fetchUserById(id);
