@@ -68,16 +68,14 @@ bien-restituido/
 └── tailwind.config.js  # Configuración de Tailwind CSS
 ```
 ## Recursos
-Documentación de Next.js
-Tutorial Interactivo de Next.js
-Repositorio de Next.js en GitHub
+[Documentación de Next.js](https://nextjs.org/docs/app/building-your-application)
 
 ## Contribuciones
 Las contribuciones son bienvenidas. Por favor, abre un issue o envía un pull request para contribuir al proyecto.
 
-## Licencia
+<!-- ## Licencia
 Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo LICENSE para más detalles.
 
 ```bash
 Puedes personalizar y agregar más detalles específicos al proyecto según sea necesario.
-```
+``` -->
