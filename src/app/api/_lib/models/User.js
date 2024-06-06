@@ -1,25 +1,14 @@
-import mongoose, { CallbackError } from "mongoose";
+import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
 
-const Token = require("../models/token");
+import Token from "@/app/api/_lib/models/Token";
+import { userRoles } from "@/lib/utils/constants";
 
-interface User {
-  email: string;
-  password: string;
-  name: string;
-  bio: string;
-  role: string;
-  isVerified: boolean;
-  resetPasswordToken: string;
-  resetPasswordExpires: Date;
-  lastLogin: Date;
-  deletedAt: Date;
-}
 
-const UserSchema = new mongoose.Schema<User>(
+export const UserSchema = new mongoose.Schema(
   {
     email: {
       type: String,
@@ -32,10 +21,10 @@ const UserSchema = new mongoose.Schema<User>(
       required: [true, "Your password is required"],
       max: 100,
     },
-    name: {
+    username: {
       type: String,
-      required: true,
       max: 255,
+      required: [true, "Your username is required"],
     },
     bio: {
       type: String,
@@ -44,9 +33,9 @@ const UserSchema = new mongoose.Schema<User>(
     },
     role: {
       type: String,
-      enum: ["user", "moderator", "author", "admin"],
+      enum: Object.values(userRoles),
       required: true,
-      default: "user",
+      default: userRoles.USER,
     },
     isVerified: {
       type: Boolean,
@@ -86,7 +75,7 @@ UserSchema.pre("save", async function (next) {
     user.password = hash;
     return next();
   } catch (err) {
-    return next(err as CallbackError);
+    return next(err);
   }
 });
 
@@ -95,7 +84,7 @@ UserSchema.pre("save", async function (next) {
  * @param {String} password
  * @returns {Boolean} True if the password matches the user's password
  */
-UserSchema.methods.comparePassword = function (password: string) {
+UserSchema.methods.comparePassword = function (password) {
   return bcrypt.compareSync(password, this.password);
 };
 
@@ -112,12 +101,11 @@ UserSchema.methods.generateJWT = async function () {
   let payload = {
     _id: this._id,
     email: this.email,
-    name: this.name,
+    username: this.username,
     role: this.role,
-    lang: this.lang,
   };
 
-  return jwt.sign(payload, process.env.JWT_SECRET!, {
+  return jwt.sign(payload, process.env.JWT_SECRET, {
     expiresIn: expiresIn,
   });
 };
@@ -147,4 +135,4 @@ UserSchema.methods.generateVerificationToken = function () {
 // Add secondary index for email
 UserSchema.index({ email: 1 });
 
-module.exports = mongoose.model("User", UserSchema);
+export default mongoose.models.User || mongoose.model("User", UserSchema);

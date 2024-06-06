@@ -1,6 +1,6 @@
 import mongoose, { CallbackError } from "mongoose";
 
-const tokenSchema = new mongoose.Schema(
+const TokenSchema = new mongoose.Schema(
   {
     userId: {
       type: mongoose.Schema.Types.ObjectId,
@@ -25,4 +25,4 @@ const tokenSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Tokens", tokenSchema);
+export default mongoose.models.Token || mongoose.model("Token", TokenSchema);
