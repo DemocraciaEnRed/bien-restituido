@@ -1,5 +1,5 @@
 import NextApiRouter from "@billyen2012/next-api-router";
-import dbConnect from "@/app/api/_lib/db/dbConnect";
+import dbConnect from "@/lib/db/dbConnect";
 
 import authRoutes from '@/app/api/[...]/auth'
 import userRoutes from '@/app/api/[...]/user'

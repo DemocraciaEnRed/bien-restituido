@@ -1,4 +1,4 @@
-export default `
+const logo =  `
 {{#> layout }}
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg id="Capa_2" data-name="Capa 2" viewBox="0 0 101.48 30.07" version="1.1" sodipodi:docname="logoCompuesto-dark.svg"
@@ -116,3 +116,5 @@ export default `
     </g>
 </svg>
 {{/layout }}`
+
+export default logo

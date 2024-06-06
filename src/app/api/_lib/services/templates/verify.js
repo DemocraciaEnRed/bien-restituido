@@ -1,4 +1,4 @@
-export default `
+const verifyTemplate =`
 {{> macroPreHeader text="Confirmá tu cuenta de correo para participar"}}
 {{> macroText text="¡Hola! 👋"}}
 {{> macroText text="Si recibiste este mensaje es porque se ha modificado el correo electrónico de tu cuenta"}}
@@ -10,3 +10,5 @@ export default `
 {{> macroText text="Equipo de Resurgentes"}}
 
 `
+
+export default verifyTemplate
