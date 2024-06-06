@@ -6,7 +6,7 @@
 
 import { messages } from "../utils/messages";
 
-export default (req, res, next) => {
+const requireAnon = (req, res, next) => {
   if (req.user) {
     console.error('requiresAnon - User is already logged in');
     return res.status(403).json({ message: messages.auth.error.alreadyLoggedIn });
@@ -15,3 +15,5 @@ export default (req, res, next) => {
   // No user, continue
   next();
 }
+
+export default requireAnon

@@ -1,7 +1,7 @@
 import { check, validationResult } from 'express-validator'
 import { messages } from '../../app/api/_lib/utils/messages';
 
-export default (req, res, next) => {
+const validate = (req, res, next) => {
     const results = validationResult(req);
     // console.dir(results)
     if (!results.isEmpty()) {
@@ -18,3 +18,5 @@ export default (req, res, next) => {
 
     next();
 };
+
+export default validate

@@ -1,4 +1,4 @@
-export default `
+const base = `
 <!DOCTYPE html>
 <html>
 
@@ -35,3 +35,5 @@ export default `
 </body>
 
 </html>`
+
+export default base

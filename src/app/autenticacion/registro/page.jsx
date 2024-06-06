@@ -18,6 +18,7 @@ export default function Register() {
     if (errorMessage.status === 201) {
       router.push("/autenticacion/inicio");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [errorMessage]);
 
   return (

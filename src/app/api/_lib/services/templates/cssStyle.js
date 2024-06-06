@@ -1,4 +1,4 @@
-export default `
+const cssStyles =`
 <style>
   /* -------------------------------------
       GLOBAL RESETS
@@ -351,3 +351,5 @@ export default `
   }
 
 </style>`
+
+export default cssStyles
