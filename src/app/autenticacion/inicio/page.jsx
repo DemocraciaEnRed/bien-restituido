@@ -6,9 +6,20 @@ import Link from "next/link";
 import { LoginForm } from "@/components/auth/login-form";
 import { login } from "@/lib/server-actions/auth-actions";
 import { SubmitButton } from "@/components/ui/submit-button";
+import { useAuthContext } from "@/context/auth-contet";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Login({ searchParams }) {
-  const [errorMessage, submitAction] = useFormState(login, "");
+  const router = useRouter();
+  const { loginContext } = useAuthContext();
+  const [formStatus, submitAction] = useFormState(login, "");
+  useEffect(() => {
+    if (formStatus && formStatus.status === 200) {
+      loginContext(formStatus);
+      router.push(searchParams ? searchParams.next : "/");
+    }
+  }, [formStatus]);
 
   return (
     <div className="flex h-screen w-screen items-center justify-center bg-gray-50">
@@ -23,9 +34,9 @@ export default function Login({ searchParams }) {
           <Link href="/autenticacion/restaurar" className="text-right">
             ¿Olvidaste tu contraseña?
           </Link>
-          {errorMessage && (
+          {formStatus && formStatus.status !== 200 && (
             <div className="text-red-500">
-              <p>{errorMessage}</p>
+              <p>{formStatus.message}</p>
             </div>
           )}
           <SubmitButton text="iniciar sesión" />
@@ -38,13 +49,6 @@ export default function Login({ searchParams }) {
               Registrate.
             </Link>
           </p>
-          <input
-            type="text"
-            hidden
-            name="next"
-            readOnly
-            value={searchParams.next}
-          />
         </LoginForm>
       </div>
     </div>
