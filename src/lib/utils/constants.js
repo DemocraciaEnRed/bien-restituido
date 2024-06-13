@@ -19,3 +19,17 @@ export const userRoles = {
     ADMIN: "admin"
 }
 
+export const drawerList = [
+    { url: "/bien", icon: <HandCoins />, text: "Bienes" },
+    { url: "/tipo-bien", icon: <LayoutPanelLeft />, text: "Tipos de bien" },
+    { url: "/subasta", icon: <SquareKanban />, text: "Subasta" },
+    { url: "/reitilización", icon: <Recycle />, text: "Reitilización" },
+    { url: "/archivados", icon: <ArchiveRestore />, text: "Archivados" },
+
+    /* { url: "/usuarios", text: "Usuario" },
+      */
+];
+export const settingDrawerList = [
+    { url: "/perfil", icon: <User />, text: "Perfil" },
+    { url: "/configuracion", icon: <Settings />, text: "Configuración" },
+]

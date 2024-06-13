@@ -17,7 +17,7 @@ export default function Login({ searchParams }) {
   useEffect(() => {
     if (formStatus && formStatus.status === 200) {
       loginContext(formStatus);
-      router.push(searchParams ? searchParams.next : "/");
+      router.push(searchParams.next ? searchParams.next : "/");
     }
   }, [formStatus]);
 
