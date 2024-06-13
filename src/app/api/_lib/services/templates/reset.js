@@ -7,4 +7,4 @@ const resetTemplate = `
   {{> macroText text="Equipo de Resurgentes"}}
   `
 
-export default resettemplate
+export default resetTemplate

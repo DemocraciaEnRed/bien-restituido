@@ -178,6 +178,6 @@ export const userMe = async (token) => {
         }
         return null
     } catch (error) {
-        return error
+        return JSON.parse(JSON.stringify(error))
     }
 }
