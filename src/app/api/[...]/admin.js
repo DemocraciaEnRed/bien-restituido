@@ -1,7 +1,6 @@
 import { exportUsers } from "@/app/api/_lib/controllers/adminController";
 import { changeEmailByAdmin, changePasswordByAdmin, forceVerifyByAdmin, get, list, setRole, update } from "@/app/api/_lib/controllers/userController";
 import { authorize } from "@/app/api/_lib/middlewares/authorize";
-import constants from "@/app/api/_lib/services/constants";
 import { userRoles } from "@/lib/utils/constants";
 import { dataValidate, paramsValidate, queryValidate } from "@/lib/validators/data-validate";
 import { emailSchema } from "@/lib/validators/data-validate/auth";

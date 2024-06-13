@@ -11,20 +11,24 @@ export async function middleware(request) {
 
     if (token) {
         try {
-            if (request.nextUrl.pathname.startsWith('/autenticacion')) {
-                return NextResponse.redirect(new URL('/', request.url));
-            }
-            if (request.nextUrl.pathname.startsWith('/admin')) {
-                const userRole = await verifyToken(token);
-                if (userRole !== userRoles.ADMIN) return NextResponse.redirect(new URL(`/autenticacion/inicio?next=${request.nextUrl.pathname}`, request.url));
-            }
-            const userExist = await verifyUserExists(token)
-            if (!userExist) {
-                const response = NextResponse.redirect(new URL('/', request.url));
-                response.cookies.delete(authTokenKey)
-                return response
+					if (request.nextUrl.pathname.startsWith('/autenticacion')) {
+						return NextResponse.redirect(new URL('/', request.url));
+					}
+					if (request.nextUrl.pathname.startsWith('/admin')) {
+						const userRole = await verifyToken(token);
+						if (userRole !== userRoles.ADMIN) return NextResponse.redirect(new URL(`/autenticacion/inicio?next=${request.nextUrl.pathname}`, request.url));
+					} else {
+						if (!request.nextUrl.pathname.startsWith('/favicon')) {
 
-            }
+							const userExist = await verifyUserExists(token)
+							if (!userExist) {
+								const response = NextResponse.redirect(new URL('/', request.url));
+								response.cookies.delete(authTokenKey)
+								return response
+
+							}
+						}
+					}
         } catch (error) {
             return NextResponse.redirect(new URL(`/autenticacion/inicio?next=${request.nextUrl.pathname}`, request.url));
         }
@@ -35,11 +39,11 @@ export async function middleware(request) {
 async function verifyToken(token) {
     try {
         const response = await fetch(`${baseUrl}/api/user/me`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                'Authorization': `Bearer ${token}`
-            },
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+						'Authorization': `Bearer ${token}`
+					},
         });
         if (!response.ok) {
             throw new Error('Failed to fetch user data');
@@ -54,17 +58,21 @@ async function verifyToken(token) {
 }
 
 async function verifyUserExists(token) {
-    const response = await fetch(`${baseUrl}/api/user/me`, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-            'Authorization': `Bearer ${token}`
-        },
-    });
+	try {
+		const response = await fetch(`${baseUrl}/api/user/me`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				'Authorization': `Bearer ${token}`
+			},
+		});
 
 
-    const data = await response.json();
-    return data.user
+		const data = await response.json();
+		return data.user
+	} catch (error) {
+		console.log(error);
+	}
 
 }
 
