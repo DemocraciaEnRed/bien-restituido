@@ -26,13 +26,12 @@ export const login = async (_currentState, formData) => {
             error.status = res.status
             throw error
         }
-        cookies().set(authTokenKey, data.token)
+        data.status = res.status
+        return data
     } catch (error) {
-        return error.message
+        return error
     }
-    const nextRoute = formData.get('next')
-    if (nextRoute) redirect(nextRoute)
-    else redirect('/')
+
 };
 
 export const register = async (_currentState, formData) => {
@@ -155,7 +154,7 @@ export const signOut = async () => {
     redirect('/')
 }
 
-export const userMe = async (token) => {
+export const userMe = async () => {
     try {
         const token = cookies().get(authTokenKey)
         if (token) {
@@ -180,4 +179,23 @@ export const userMe = async (token) => {
     } catch (error) {
         return JSON.parse(JSON.stringify(error))
     }
+}
+
+export const refreshToken = async () => {
+    try {
+        const token = cookies().get(authTokenKey)
+        let res = await fetch(`${baseUrl}/api/auth/refresh-token`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                'Authorization': `Bearer ${token.value}`
+            },
+
+        });
+        const data = await res.json();
+        return data
+    } catch (err) {
+        console.error(err);
+    }
+
 }

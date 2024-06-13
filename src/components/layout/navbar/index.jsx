@@ -1,21 +1,22 @@
-// components/Navbar.js
+"use client";
+import { useAuthContext } from "@/context/auth-contet";
+import { userRoles } from "@/lib/utils/constants";
 import Link from "next/link";
-import { userMe } from "@/lib/server-actions/auth-actions";
-import { User } from "./user";
 
-const Navbar = async () => {
-  const user = await userMe();
-
+const Navbar = () => {
+  const { user } = useAuthContext();
   return (
-    <nav className="hidden border-r bg-gray-100/40 lg:block dark:bg-gray-800/40">
+    <nav className="border-r bg-stone-800 block">
       <div className="flex h-full max-h-screen flex-col gap-2">
-        <div
-          className={`flex h-nav items-center border-b px-5 justify-between`}
-        >
-          <Link className="flex items-center gap-2 font-semibold" href="/">
-            <span className="">BIEN-RESTITUIDO</span>
+        <div className="flex md:h-nav h-navMobile items-center border-b px-5 justify-between ">
+          <Link className="flex items-center gap-2 font-semibold " href="/">
+            <img src="/logo.png" alt="logo bien restituido" />
           </Link>
-          <User user={user} />
+          {user && user.role === userRoles.ADMIN && (
+            <Link className="text-white" href="/admin">
+              Admin
+            </Link>
+          )}
         </div>
       </div>
     </nav>
