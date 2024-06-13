@@ -3,6 +3,7 @@
 import { cookies } from "next/headers";
 import { authTokenKey } from "../utils/constants";
 import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
 
 const baseUrl = process.env.NEXT_PUBLIC_URL_APP
 
@@ -149,10 +150,7 @@ export const restorePassword = async (_currentState, formData) => {
 
 };
 
-export const signOut = async () => {
-    cookies().delete(authTokenKey)
-    redirect('/')
-}
+
 
 export const userMe = async () => {
     try {

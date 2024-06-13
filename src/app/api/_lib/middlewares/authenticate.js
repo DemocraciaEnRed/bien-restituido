@@ -4,8 +4,8 @@ import User from "../models/User";
 
 const authorize = async (req, res, next) => {
     // if there is no token, continue
-    // if (!req.headers.authorization) return next();
-    // console.log('optionalAuthenticate')
+    if (!req.headers.get('Authorization')) return next();
+    //console.log('optionalAuthenticate')
     try {
         const authHeader = req.headers.get('Authorization')
         let token
