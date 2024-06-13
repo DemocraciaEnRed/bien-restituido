@@ -98,7 +98,7 @@ export const changeRoleUser = async (_currentState, formData) => {
         data.status = res.status
         return data
     } catch (error) {
-        console.log(error);
+        console.error(error);
         return JSON.stringify({
             status: error.status,
             message: error.message
@@ -136,7 +136,7 @@ export const changeEmailUser = async (_currentState, formData) => {
         data.status = res.status
         return data
     } catch (error) {
-        console.log(error);
+        console.error(error);
         return JSON.stringify({
             status: error.status,
             message: error.message
@@ -174,7 +174,7 @@ export const changePasswordUser = async (_currentState, formData) => {
         data.status = res.status
         return data
     } catch (error) {
-        console.log(error);
+        console.error(error);
         return JSON.stringify({
             status: error.status,
             message: error.message

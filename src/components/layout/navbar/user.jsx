@@ -17,7 +17,7 @@ import { useAuthContext } from "@/context/auth-contet";
 import { useEffect, useState } from "react";
 
 export function User() {
-  const { user } = useAuthContext();
+  const { user, logoutContext } = useAuthContext();
   const [isClient, setIsClient] = useState(false);
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -26,7 +26,11 @@ export function User() {
   }, []);
   if (isClient) {
     if (!user) {
-      return <Link href="/autenticacion/inicio">Iniciar sesion</Link>;
+      return (
+        <Link className="text-white" href="/autenticacion/inicio">
+          Iniciar sesion
+        </Link>
+      );
     }
     return (
       <DropdownMenu>
@@ -35,7 +39,6 @@ export function User() {
             <AvatarImage src="https://github.com/shadcn.png" />
             <AvatarFallback>{user.username[0].toUpperCase()}</AvatarFallback>
           </Avatar>
-          <span className="font-semibold">{user.username}</span>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuLabel>Mi cuenta</DropdownMenuLabel>
@@ -53,7 +56,7 @@ export function User() {
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <form action={signOut}>
+            <form action={logoutContext}>
               <Button variant="link">Cerrar sesion</Button>
             </form>
           </DropdownMenuItem>

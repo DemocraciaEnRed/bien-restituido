@@ -11,6 +11,7 @@ import {
 import Cookies from "js-cookie";
 import { userMe, refreshToken } from "@/lib/server-actions/auth-actions";
 import { authTokenKey, authTokenUser } from "@/lib/utils/constants";
+import { useRouter } from "next/navigation";
 
 export const AuthContext = createContext({
   loginContext: (authTokens) => {},
@@ -29,6 +30,7 @@ export default function AuthContextProvider({ children }) {
       ? null
       : JSON.parse(userInLocalStorage)
   );
+  const router = useRouter();
 
   useEffect(() => {
     if (authTokensInCookies) {
@@ -74,6 +76,7 @@ export default function AuthContextProvider({ children }) {
     Cookies.remove(authTokenKey);
     window.localStorage.removeItem(authTokenUser);
     setUser(null);
+    router.push("/");
   }, []);
 
   const value = useMemo(
