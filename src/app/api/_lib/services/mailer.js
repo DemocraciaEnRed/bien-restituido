@@ -26,7 +26,7 @@ export const sendNow = async (to, subject, html) => {
         });
         console.log('Message sent: %s', info.messageId);
     } catch (error) {
-        console.log(error);
+        console.error(error);
     }
 }
 
