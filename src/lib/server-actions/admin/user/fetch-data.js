@@ -27,7 +27,7 @@ export const fetchUsers = async () => {
         }
         return null
     } catch (error) {
-        return error
+        console.error(error);
     }
 }
 

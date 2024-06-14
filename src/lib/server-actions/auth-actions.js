@@ -1,11 +1,23 @@
 'use server'
 
 import { cookies } from "next/headers";
-import { authTokenKey } from "../utils/constants";
+import { authTokenKey, oneDay } from "../utils/constants";
 import { redirect } from "next/navigation";
-import { revalidatePath } from "next/cache";
+import { SignJWT, jwtVerify } from "jose";
 
 const baseUrl = process.env.NEXT_PUBLIC_URL_APP
+const secret = process.env.JWT_SECRET
+
+
+export const decrypt = async (input) => {
+    try {
+        const { payload } = await jwtVerify(input, new TextEncoder().encode(secret), { algorithms: ['HS256'] })
+        return payload
+    } catch (err) {
+        signOut()
+        console.error(err);
+    }
+}
 
 export const login = async (_currentState, formData) => {
     try {
@@ -27,12 +39,21 @@ export const login = async (_currentState, formData) => {
             error.status = res.status
             throw error
         }
-        data.status = res.status
-        return data
+        const expires = new Date(Date.now() + oneDay * 2)
+        cookies().set(authTokenKey, data.token, {
+            expires,
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+        })
     } catch (error) {
-        return error
+        return {
+            status: error.status,
+            message: error.message
+        }
     }
-
+    const nextRoute = formData.get('next')
+    if (nextRoute) redirect(nextRoute)
+    else redirect('/')
 };
 
 export const register = async (_currentState, formData) => {
@@ -193,7 +214,19 @@ export const refreshToken = async () => {
         const data = await res.json();
         return data
     } catch (err) {
-        console.error(err);
+        signOut()
     }
 
+}
+
+export const signOut = async () => {
+    cookies().set(authTokenKey, '', { maxAge: 0 })
+}
+
+
+export async function getSession() {
+    const session = cookies().get(authTokenKey)?.value;
+    if (!session) return null
+    const session1 = await decrypt(session)
+    return session1
 }

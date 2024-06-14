@@ -6,20 +6,10 @@ import Link from "next/link";
 import { LoginForm } from "@/components/auth/login-form";
 import { login } from "@/lib/server-actions/auth-actions";
 import { SubmitButton } from "@/components/ui/submit-button";
-import { useAuthContext } from "@/context/auth-contet";
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+
 
 export default function Login({ searchParams }) {
-  const router = useRouter();
-  const { loginContext } = useAuthContext();
   const [formStatus, submitAction] = useFormState(login, "");
-  useEffect(() => {
-    if (formStatus && formStatus.status === 200) {
-      loginContext(formStatus);
-      router.push(searchParams ? searchParams.next : "/");
-    }
-  }, [formStatus]);
 
   return (
     <div className="flex h-screen w-screen items-center justify-center bg-gray-50">
@@ -39,6 +29,13 @@ export default function Login({ searchParams }) {
               <p>{formStatus.message}</p>
             </div>
           )}
+          <input
+            type="text"
+            hidden
+            name="next"
+            readOnly
+            value={searchParams.next}
+          />
           <SubmitButton text="iniciar sesión" />
           <p className="text-center text-sm text-gray-600">
             ¿No tienes una cuenta?{" "}

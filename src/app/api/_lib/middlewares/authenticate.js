@@ -14,12 +14,15 @@ const authorize = async (req, res, next) => {
         } else {
             return next();
         }
-        const user = verify(token, process.env.JWT_SECRET)
 
-        req.user = await User.findById(user._id);
+        const userToken = verify(token, process.env.JWT_SECRET)
+
+        const user = await User.findById(userToken._id);
+        req.user = user
         // set up locale
         return next();
     } catch (err) {
+        console.log(err);
         return res.status(401).json({ message: err.message });
     }
 
