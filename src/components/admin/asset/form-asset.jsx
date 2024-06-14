@@ -15,14 +15,14 @@ import {
 } from "@/components/ui/select";
 import { useRouter } from "next/navigation";
 
-const FormAsset = ({ assetTypes }) => {
+const FormAsset = ({ assetCategories }) => {
   const router = useRouter();
   const [formState, setFormState] = useState({
     name: "",
     type: "",
     extras: {},
   });
-  const [assetType, setAssetType] = useState(null);
+  const [assetCategory, setAssetCategory] = useState(null);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -42,8 +42,8 @@ const FormAsset = ({ assetTypes }) => {
     }));
   };
 
-  const handleAssetTypeChange = (type) => {
-    setAssetType(type);
+  const handleAssetCategoryChange = (type) => {
+    setAssetCategory(type);
     setFormState((prevState) => ({
       ...prevState,
       type: type._id,
@@ -69,16 +69,18 @@ const FormAsset = ({ assetTypes }) => {
   return (
     <>
       <div className="flex flex-col w-full space-y-4 bg-gray-50 px-4 py-8 sm:px-16">
-        <Label htmlFor="assetType">Tipo de Activo</Label>
+        <Label htmlFor="assetCategory">Tipo de Activo</Label>
         <Select
-          name="assetType"
-          onValueChange={(value) => handleAssetTypeChange(JSON.parse(value))}
+          name="assetCategory"
+          onValueChange={(value) =>
+            handleAssetCategoryChange(JSON.parse(value))
+          }
         >
           <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Tipo" />
+            <SelectValue placeholder="Categoria" />
           </SelectTrigger>
           <SelectContent>
-            {assetTypes.map((type) => (
+            {assetCategories.map((type) => (
               <SelectItem key={type._id} value={JSON.stringify(type)}>
                 {type.name}
               </SelectItem>
@@ -90,7 +92,9 @@ const FormAsset = ({ assetTypes }) => {
         onSubmit={handleSubmit}
         className="flex flex-col w-full space-y-4 bg-gray-50 px-4 py-8 sm:px-16"
       >
-        {assetType && <Input type="hidden" name="type" value={assetType._id} />}
+        {assetCategory && (
+          <Input type="hidden" name="type" value={assetCategory._id} />
+        )}
         <div className="grid w-full max-w-sm items-center gap-1.5">
           <Label htmlFor="name">Nombre</Label>
           <Input
@@ -104,8 +108,8 @@ const FormAsset = ({ assetTypes }) => {
         </div>
         <fieldset>
           <legend>Atributos</legend>
-          {assetType &&
-            assetType.extras.map((input) => (
+          {assetCategory &&
+            assetCategory.extras.map((input) => (
               <div
                 key={input.slug}
                 className="grid w-full max-w-sm items-center gap-1.5"

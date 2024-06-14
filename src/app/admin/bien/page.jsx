@@ -12,7 +12,7 @@ import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import AssetSerch from "@/components/admin/asset/asset-serch";
 import AssetList from "@/components/admin/asset/asset-list";
-const AssetType = () => {
+const AssetCategory = () => {
   return (
     <div>
       <AssetSerch />
@@ -28,4 +28,4 @@ const AssetType = () => {
   );
 };
 
-export default AssetType;
+export default AssetCategory;

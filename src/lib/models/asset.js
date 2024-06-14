@@ -9,7 +9,7 @@ export const AssetSchema = new mongoose.Schema(
             max: 255,
             required: [true, "Asset name is required"],
         },
-        type: { type: mongoose.Types.ObjectId, ref: 'AssetType' },
+        type: { type: mongoose.Types.ObjectId, ref: 'AssetCategory' },
         extras: Schema.Types.Mixed,
         deletedAt: {
             type: Date,

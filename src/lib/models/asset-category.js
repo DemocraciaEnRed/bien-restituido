@@ -2,12 +2,12 @@ import mongoose from "mongoose";
 import { createSlug } from "../utils";
 const Schema = mongoose.Schema
 
-export const AssetTypeSchema = new mongoose.Schema(
+export const AssetCategorySchema = new mongoose.Schema(
     {
         name: {
             type: String,
             max: 255,
-            required: [true, "asset type name is required"],
+            required: [true, "asset category name is required"],
         },
         slug: {
             type: String,
@@ -24,7 +24,7 @@ export const AssetTypeSchema = new mongoose.Schema(
 );
 
 // Middleware pre-save para generar el slug
-AssetTypeSchema.pre('save', function (next) {
+AssetCategorySchema.pre('save', function (next) {
     if (this.isModified('name')) {
         this.slug = createSlug(this.name)
     }
@@ -32,4 +32,4 @@ AssetTypeSchema.pre('save', function (next) {
 });
 
 
-export default mongoose.models.AssetType || mongoose.model("AssetType", AssetTypeSchema);
+export default mongoose.models.AssetCategory || mongoose.model("AssetCategory", AssetCategorySchema);

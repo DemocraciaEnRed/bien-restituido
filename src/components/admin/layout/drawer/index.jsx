@@ -1,8 +1,6 @@
 import React from "react";
 import DrawerItem from "./drawerItem";
 import { drawerList, settingDrawerList } from "@/lib/utils/constants";
-import { User } from "@/components/layout/navbar/user";
-import { userMe } from "@/lib/server-actions/auth-actions";
 
 async function Drawer() {
   return (

@@ -3,18 +3,18 @@ import { createSlug } from "../utils";
 const Schema = mongoose.Schema
 
 
-export const AssetSubTypeSchema = new mongoose.Schema(
+export const AssetSubCategorySchema = new mongoose.Schema(
   {
     name: {
       type: String,
       max: 255,
-      required: [true, "AssetSubType name is required"],
+      required: [true, "AssetSubCategory name is required"],
     },
     slug: {
       type: String,
       unique: true,
     },
-    type: { type: mongoose.Types.ObjectId, ref: 'AssetType' },
+    type: { type: mongoose.Types.ObjectId, ref: 'AssetCategory' },
     extras: Schema.Types.Mixed,
     deletedAt: {
       type: Date,
@@ -26,11 +26,11 @@ export const AssetSubTypeSchema = new mongoose.Schema(
 );
 
 
-AssetSubTypeSchema.pre('save', function (next) {
+AssetSubCategorySchema.pre('save', function (next) {
   if (this.isModified('name')) {
     this.slug = createSlug(this.name)
   }
   next();
 });
 
-export default mongoose.models.AssetSubType || mongoose.model("AssetSubType", AssetSubTypeSchema);
+export default mongoose.models.AssetSubCategory || mongoose.model("AssetSubCategory", AssetSubCategorySchema);
