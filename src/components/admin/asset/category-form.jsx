@@ -18,10 +18,27 @@ import { createSlug } from "@/lib/utils";
 import { saveAssetCategory } from "@/lib/server-actions/asset-actions/asset-category";
 import { fieldsInputTypes, initialNewFieldState } from "@/lib/utils/constants";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  FaCar,
+  FaGears,
+  FaMotorcycle,
+  FaShop,
+  FaTractor,
+} from "react-icons/fa6";
+
+const fontAwesomeIcons = [
+  { name: "car", icon: <FaCar size={40} /> },
+  { name: "tractor", icon: <FaTractor size={40} /> },
+  { name: "gear", icon: <FaGears size={40} /> },
+  { name: "motorcycle", icon: <FaMotorcycle size={40} /> },
+  { name: "shop", icon: <FaShop size={40} /> },
+];
 
 const CategoryForm = () => {
   const [extras, setExtras] = useState([]);
+  const [subCategoriesQuantity, setSubCategoriesQuantity] = useState(1);
   const [formState, formAction] = useFormState(saveAssetCategory, "");
+  const [icon, setIcon] = useState("FaUsers");
 
   const [newAttr, setNewAttr] = useState(initialNewFieldState);
 
@@ -41,8 +58,46 @@ const CategoryForm = () => {
         slug: createSlug(newAttr.nameNewAttr),
       },
     ]);
-    setNewAttr(initialNewState);
+    setNewAttr(initialNewFieldState);
   };
+
+  const renderSubCategories = () => {
+    let subCategories = [];
+    for (let idx = 1; idx <= subCategoriesQuantity; idx++) {
+      subCategories.push(
+        <div key={idx} className="flex gap-4">
+          <div className="grid w-full max-w-sm items-center gap-1.5 my-3">
+            <Label htmlFor="name">Nombre del subtipo</Label>
+            <Input
+              type="text"
+              name="name"
+              id="name"
+              placeholder="Nombre del subtipo ej: Motovehiculo"
+              required
+            />
+          </div>
+          <div className="w-full max-w-sm items-center gap-1.5 my-3 flex">
+            {fontAwesomeIcons.map((iconfa) => (
+              <div className="flex flex-col">
+                <label htmlFor={"iconSubCategory" + idx + iconfa.name}>
+                  {iconfa.icon}
+                </label>
+                <input
+                  key={iconfa.name}
+                  type="radio"
+                  name={"iconSubCategory" + idx}
+                  id={"iconSubCategory" + idx + iconfa.name}
+                  value={iconfa.name}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    }
+    return subCategories;
+  };
+
   return (
     <Card>
       <CardHeader>
@@ -61,6 +116,13 @@ const CategoryForm = () => {
               required
             />
           </div>
+          {renderSubCategories()}
+          <Button
+            type="button"
+            onClick={() => setSubCategoriesQuantity(subCategoriesQuantity + 1)}
+          >
+            Agregar otro subtipo +
+          </Button>
         </form>
       </CardContent>
     </Card>
