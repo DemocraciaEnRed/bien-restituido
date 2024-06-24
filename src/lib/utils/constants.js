@@ -16,11 +16,13 @@ export const authTokenKey = process.env.NEXT_PUBLIC_AUTH_TOKENS_KEY
 
 export const oneDay = 24 * 60 * 60 * 1000
 
+
 export const userRoles = {
     USER: "user",
     MODERATOR: "moderator",
     ADMIN: "admin"
 }
+
 
 export const drawerList = [
     { url: "/bien", icon: <HandCoins />, text: "Bienes" },
