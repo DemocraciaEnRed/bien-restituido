@@ -1,3 +1,4 @@
+import React from 'react';
 import {
     ArchiveRestore,
     HandCoins,
@@ -9,7 +10,6 @@ import {
     User,
 } from "lucide-react";
 
-import crypto from 'crypto'
 
 export const authTokenKey = process.env.NEXT_PUBLIC_AUTH_TOKENS_KEY
 
