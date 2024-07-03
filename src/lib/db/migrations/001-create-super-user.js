@@ -1,6 +1,7 @@
 // migrations/001-create-users.js
 
 const { default: User } = require("@/app/api/_lib/models/User");
+const { userRoles } = require("@/lib/utils/constants");
 
 
 
@@ -11,7 +12,8 @@ module.exports = async () => {
       email: 'it@democracyos.org',
       password: '123123',
       username: 'admin',
-      isVerified: true
+      isVerified: true,
+      role: userRoles.ADMIN
     }
 
     const user = await User.create(data)
