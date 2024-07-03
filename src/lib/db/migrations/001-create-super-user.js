@@ -8,7 +8,7 @@ module.exports = async () => {
   try {
 
     let data = {
-      email: 'asd@asd.com',
+      email: 'it@democracyos.org',
       password: '123123',
       username: 'admin'
     }
