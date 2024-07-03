@@ -10,7 +10,8 @@ module.exports = async () => {
     let data = {
       email: 'it@democracyos.org',
       password: '123123',
-      username: 'admin'
+      username: 'admin',
+      isVerified: true
     }
 
     const user = await User.create(data)
