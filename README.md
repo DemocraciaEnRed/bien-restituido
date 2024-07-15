@@ -35,14 +35,55 @@ bun install
 
 ## Uso
 Para iniciar el servidor de desarrollo:
+markdown
+Copiar código
+# Bien Restituido
+
+Bien Restituido es un proyecto desarrollado por DemocraciaEnRed utilizando Next.js.
+
+## Tabla de Contenidos
+
+- [Instalación](#instalación)
+- [Uso](#uso)
+- [Estructura del Proyecto](#estructura-del-proyecto)
+- [Recursos](#recursos)
+- [Contribuciones](#contribuciones)
+- [Licencia](#licencia)
+
+## Instalación
+
+Para comenzar, clona este repositorio y navega hasta el directorio del proyecto:
+
+```bash
+git clone https://github.com/DemocraciaEnRed/bien-restituido.git
+cd bien-restituido
+```
+Instala las dependencias utilizando npm, yarn, pnpm, o bun:
+
+```bash
+npm install
+# o
+yarn install
+# o
+pnpm install
+# o
+bun install
+```
+
+## Uso
+Para iniciar el servidor de desarrollo:
 
 ```bash
 Copiar código
+Copiar código
 npm run dev
+# o
 # o
 yarn dev
 # o
+# o
 pnpm dev
+# o
 # o
 bun dev
 ```
