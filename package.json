@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "migrate": "./node_modules/.bin/migrate-mongo",
     "dev": "NODE_ENV=development next dev",
     "build": "next build",
     "start": "NODE_ENV=production next start",
@@ -35,6 +36,7 @@
     "js-cookie": "^3.0.5",
     "jsonwebtoken": "^9.0.2",
     "lucide-react": "^0.379.0",
+    "migrate-mongo": "^11.0.0",
     "mongoose": "^8.4.0",
     "next": "14.2.3",
     "nodemailer": "^6.9.13",
