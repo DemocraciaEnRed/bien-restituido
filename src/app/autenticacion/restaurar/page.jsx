@@ -4,7 +4,10 @@ import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
 
 import { SubmitButton } from "@/components/ui/submit-button";
-import { forgotPassword, register } from "@/lib/server-actions/auth-actions";
+import {
+  forgotPassword,
+  register,
+} from "@/lib/server-actions/admin/user/auth-actions";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";

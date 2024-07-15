@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import { createSlug } from "../utils";
 const Schema = mongoose.Schema
 
-export const AssetCategorySchema = new mongoose.Schema(
+export const CategorySchema = new mongoose.Schema(
     {
         name: {
             type: String,
@@ -13,7 +13,6 @@ export const AssetCategorySchema = new mongoose.Schema(
             type: String,
             unique: true,
         },
-        extras: Schema.Types.Mixed,
         deletedAt: {
             type: Date,
             required: false,
@@ -24,7 +23,7 @@ export const AssetCategorySchema = new mongoose.Schema(
 );
 
 // Middleware pre-save para generar el slug
-AssetCategorySchema.pre('save', function (next) {
+CategorySchema.pre('save', function (next) {
     if (this.isModified('name')) {
         this.slug = createSlug(this.name)
     }
@@ -32,4 +31,6 @@ AssetCategorySchema.pre('save', function (next) {
 });
 
 
-export default mongoose.models.AssetCategory || mongoose.model("AssetCategory", AssetCategorySchema);
+const Category = mongoose.models.Category || mongoose.model("Category", CategorySchema);
+
+export default Category

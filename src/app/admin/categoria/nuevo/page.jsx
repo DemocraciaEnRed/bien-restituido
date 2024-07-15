@@ -1,9 +1,8 @@
-"use client";
-import React, { useState } from "react";
+import React from "react";
 
-import CategoryForm from "@/components/admin/asset/category-form";
+import CategoryForm from "@/components/admin/category/category-form";
 
-const NewAssetCategory = () => {
+const NewCategory = () => {
   return (
     <div>
       <h1 className="text-xl font-semibold uppercase">Nuevo tipo de bien</h1>
@@ -20,4 +19,4 @@ const NewAssetCategory = () => {
   );
 };
 
-export default NewAssetCategory;
+export default NewCategory;

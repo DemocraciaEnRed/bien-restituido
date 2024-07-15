@@ -10,7 +10,10 @@ import {
 
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { getSession, signOut } from "@/lib/server-actions/auth-actions";
+import {
+  getSession,
+  signOut,
+} from "@/lib/server-actions/admin/user/auth-actions";
 
 export async function User() {
   const user = await getSession();

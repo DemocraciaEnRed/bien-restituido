@@ -10,11 +10,11 @@ import {
 } from "@/components/ui/table";
 import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
-import { getAssetCategory } from "@/lib/server-actions/asset-actions/asset-category";
-import CategoryList from "@/components/admin/asset/category-list";
+import { getCategories } from "@/lib/server-actions/admin/asset-actions/category";
+import CategoryList from "@/components/admin/category/category-list";
 
 const Asset = async () => {
-  const assetCategories = await getAssetCategory();
+  const Categories = await getCategories();
   return (
     <div>
       <h1 className="text-xl font-semibold uppercase">Categorias de bienes</h1>
@@ -25,17 +25,17 @@ const Asset = async () => {
           nuevas categorías, editar.
         </span>
         <Link
-          className={buttonVariants({
-            variant: "outline",
-            className: "bg-indigo-300",
-          })}
+          className={
+            buttonVariants({ variant: "outline" }) +
+            "border-primary text-primary hover:bg-primary hover:text-white"
+          }
           href="/admin/categoria/nuevo"
         >
           Crear Nueva categoría +
         </Link>
       </div>
 
-      <CategoryList categories={assetCategories} />
+      <CategoryList categories={Categories} />
     </div>
   );
 };

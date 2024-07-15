@@ -1,7 +1,7 @@
 'use server'
 
 import { cookies } from "next/headers";
-import { authTokenKey, oneDay } from "../utils/constants";
+import { authTokenKey, oneDay } from "../../../utils/constants";
 import { redirect } from "next/navigation";
 import { SignJWT, jwtVerify } from "jose";
 

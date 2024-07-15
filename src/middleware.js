@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { authTokenKey, userRoles } from './lib/utils/constants';
 import { rejectUser, updateSession } from './lib/utils';
-import { decrypt } from './lib/server-actions/auth-actions';
+import { decrypt } from './lib/server-actions/admin/user/auth-actions';
 
 const baseUrl = process.env.NEXT_PUBLIC_URL_APP;
 

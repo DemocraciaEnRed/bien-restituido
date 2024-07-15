@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 
 import { RegisterForm } from "@/components/auth/register-form";
 import { SubmitButton } from "@/components/ui/submit-button";
-import { register } from "@/lib/server-actions/auth-actions";
+import { register } from "@/lib/server-actions/admin/user/auth-actions";
 import { redirectHard } from "@/lib/server-actions/general";
 
 export default function Register() {

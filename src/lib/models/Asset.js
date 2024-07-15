@@ -9,7 +9,8 @@ export const AssetSchema = new mongoose.Schema(
             max: 255,
             required: [true, "Asset name is required"],
         },
-        type: { type: mongoose.Types.ObjectId, ref: 'AssetCategory' },
+        category: { type: mongoose.Types.ObjectId, ref: 'Category' },
+        subCategory: { type: mongoose.Types.ObjectId, ref: 'SubCategory' },
         extras: Schema.Types.Mixed,
         deletedAt: {
             type: Date,
@@ -20,4 +21,6 @@ export const AssetSchema = new mongoose.Schema(
     { timestamps: true }
 );
 
-export default mongoose.models.Asset || mongoose.model("Asset", AssetSchema);
+const Asset = mongoose.models.Asset || mongoose.model("Asset", AssetSchema);
+
+export default Asset

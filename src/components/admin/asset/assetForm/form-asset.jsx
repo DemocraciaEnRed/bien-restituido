@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { useFormState } from "react-dom";
 
-import { saveAsset } from "@/lib/server-actions/asset-actions/asset";
+import { saveAsset } from "@/lib/server-actions/admin/asset-actions/asset";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { SubmitButton } from "@/components/ui/submit-button";
@@ -14,15 +14,21 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useRouter } from "next/navigation";
+import { getExtraFieldsByCategory } from "@/lib/server-actions/admin/asset-actions/extra-fields";
+import { getSubCategoriesByCategory } from "@/lib/server-actions/admin/asset-actions/sub-category";
+import { fontAwesomeIcons } from "@/lib/utils/constants";
 
-const FormAsset = ({ assetCategories }) => {
+const AssetCategoryInfo = ({ categories }) => {
   const router = useRouter();
   const [formState, setFormState] = useState({
     name: "",
-    type: "",
+    category: "",
+    subCategory: "",
     extras: {},
   });
-  const [assetCategory, setAssetCategory] = useState(null);
+  const [category, setCategory] = useState(null);
+  const [subCategories, setSubCategories] = useState(null);
+  const [extraFields, setExtraFields] = useState(null);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -42,12 +48,16 @@ const FormAsset = ({ assetCategories }) => {
     }));
   };
 
-  const handleAssetCategoryChange = (type) => {
-    setAssetCategory(type);
+  const handleCategory = async (category) => {
+    setCategory(category);
+    const extraFields = await getExtraFieldsByCategory(category);
+    const subCategories = await getSubCategoriesByCategory(category);
+    setExtraFields(extraFields);
+    setSubCategories(subCategories);
     setFormState((prevState) => ({
       ...prevState,
-      type: type._id,
-      extras: type.extras.reduce((acc, attr) => {
+      category: category,
+      extras: extraFields.reduce((acc, attr) => {
         acc[attr.slug] = "";
         return acc;
       }, {}),
@@ -61,7 +71,7 @@ const FormAsset = ({ assetCategories }) => {
       router.push("/admin/bien/");
       // Reset form if necessary
     } catch (error) {
-      console.log(error);
+      console.error(error);
       console.error("Error saving asset:", error);
     }
   };
@@ -69,20 +79,18 @@ const FormAsset = ({ assetCategories }) => {
   return (
     <>
       <div className="flex flex-col w-full space-y-4 bg-gray-50 px-4 py-8 sm:px-16">
-        <Label htmlFor="assetCategory">Tipo de Activo</Label>
+        <Label htmlFor="category">Tipo de Activo</Label>
         <Select
-          name="assetCategory"
-          onValueChange={(value) =>
-            handleAssetCategoryChange(JSON.parse(value))
-          }
+          name="category"
+          onValueChange={(value) => handleCategory(value)}
         >
-          <SelectTrigger className="w-[180px]">
+          <SelectTrigger className="w-[200px]">
             <SelectValue placeholder="Categoria" />
           </SelectTrigger>
           <SelectContent>
-            {assetCategories.map((type) => (
-              <SelectItem key={type._id} value={JSON.stringify(type)}>
-                {type.name}
+            {categories.map((category) => (
+              <SelectItem key={category._id} value={category._id}>
+                {category.name}
               </SelectItem>
             ))}
           </SelectContent>
@@ -92,8 +100,35 @@ const FormAsset = ({ assetCategories }) => {
         onSubmit={handleSubmit}
         className="flex flex-col w-full space-y-4 bg-gray-50 px-4 py-8 sm:px-16"
       >
-        {assetCategory && (
-          <Input type="hidden" name="type" value={assetCategory._id} />
+        {category && <Input type="hidden" name="type" value={category._id} />}
+        {subCategories && (
+          <>
+            <Label htmlFor="subcategory">Sub-categoria</Label>
+            <Select
+              name="subcategory"
+              onValueChange={(value) =>
+                handleChange({ target: { name: "subCategory", value } })
+              }
+            >
+              <SelectTrigger className="w-[200px]">
+                <SelectValue placeholder="Sub-categoria" />
+              </SelectTrigger>
+              <SelectContent>
+                {subCategories.map((subCategory) => (
+                  <SelectItem key={subCategory._id} value={subCategory._id}>
+                    {
+                      fontAwesomeIcons.find(
+                        (icon) => icon.name == subCategory.icon
+                      ).icon
+                    }
+                    <span className="ml-3 inline-block">
+                      {subCategory.name}
+                    </span>
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </>
         )}
         <div className="grid w-full max-w-sm items-center gap-1.5">
           <Label htmlFor="name">Nombre</Label>
@@ -108,11 +143,11 @@ const FormAsset = ({ assetCategories }) => {
         </div>
         <fieldset>
           <legend>Atributos</legend>
-          {assetCategory &&
-            assetCategory.extras.map((input) => (
+          {extraFields &&
+            extraFields.map((input) => (
               <div
                 key={input.slug}
-                className="grid w-full max-w-sm items-center gap-1.5"
+                className="grid w-full max-w-sm items-center gap-1.5 my-2"
               >
                 <Label htmlFor={`extras.${input.slug}`}>{input.name}</Label>
                 <Input
@@ -132,4 +167,4 @@ const FormAsset = ({ assetCategories }) => {
   );
 };
 
-export default FormAsset;
+export default AssetCategoryInfo;

@@ -1,7 +1,7 @@
 import { clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
 import { authTokenKey, oneDay } from "./utils/constants";
-import { refreshToken } from "./server-actions/auth-actions";
+import { refreshToken } from "./server-actions/admin/user/auth-actions";
 import { NextResponse } from "next/server";
 
 //shadcdn
@@ -27,7 +27,7 @@ export async function updateSession(request) {
     })
     return res
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 }
 
