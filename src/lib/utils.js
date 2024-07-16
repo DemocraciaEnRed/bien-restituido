@@ -41,7 +41,21 @@ export async function rejectUser(request) {
 export function createSlug(text) {
   const prepositions = ['a', 'ante', 'bajo', 'cabe', 'con', 'contra', 'de', 'desde', 'durante', 'en', 'entre', 'hacia', 'hasta', 'mediante', 'para', 'por', 'según', 'sin', 'so', 'sobre', 'tras', 'versus', 'via', 'de', 'del', 'la', 'el', 'en', 'y', 'a'];
 
-  return text
+  const accentsMap = {
+    'á': 'a',
+    'é': 'e',
+    'í': 'i',
+    'ó': 'o',
+    'ú': 'u',
+    'ñ': 'n',
+    'ü': 'u'
+  };
+
+  const removeAccents = (str) => {
+    return str.split('').map(char => accentsMap[char] || char).join('');
+  };
+
+  return removeAccents(text)
     .toLowerCase() // Convertir a minúsculas
     .trim() // Eliminar espacios en blanco al inicio y al final
     .split(' ') // Dividir el texto en palabras
