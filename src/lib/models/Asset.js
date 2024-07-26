@@ -4,11 +4,6 @@ const Schema = mongoose.Schema
 
 export const AssetSchema = new mongoose.Schema(
     {
-        name: {
-            type: String,
-            max: 255,
-            required: [true, "Asset name is required"],
-        },
         category: { type: mongoose.Types.ObjectId, ref: 'Category' },
         subCategory: { type: mongoose.Types.ObjectId, ref: 'SubCategory' },
         extras: Schema.Types.Mixed,
