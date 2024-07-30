@@ -45,8 +45,7 @@ const GeneralInfo = ({ setGeneralData }) => {
       setData(inputData);
     }
     setGeneralData(data);
-    if (event.target.name === "asset-province")
-      handleProvince(event.target.value);
+    if (event.target.name === "province") handleProvince(event.target.value);
   };
 
   useEffect(() => {
@@ -62,7 +61,7 @@ const GeneralInfo = ({ setGeneralData }) => {
         <Input
           id="name"
           type="text"
-          name="owner-name"
+          name="ownerName"
           onChange={handleChangeInput}
         />
         <Label className="pt-3" htmlFor="last-name">
@@ -70,7 +69,7 @@ const GeneralInfo = ({ setGeneralData }) => {
         </Label>
         <Input
           id="last-name"
-          name="owner-last-name"
+          name="ownerLastName"
           type="text"
           onChange={handleChangeInput}
         />
@@ -79,10 +78,10 @@ const GeneralInfo = ({ setGeneralData }) => {
           Tipo de identificación
         </Label>
         <Select
-          name="owner-id-type"
+          name="ownerIdType"
           id="id-type"
           onValueChange={(value) =>
-            handleChangeInput({ target: { name: "owner-id-type", value } })
+            handleChangeInput({ target: { name: "ownerIdType", value } })
           }
         >
           <SelectTrigger>
@@ -99,7 +98,7 @@ const GeneralInfo = ({ setGeneralData }) => {
         </Label>
         <Input
           id="dni"
-          name="owner-dni"
+          name="ownerDni"
           type="text"
           onChange={handleChangeInput}
         />
@@ -109,7 +108,7 @@ const GeneralInfo = ({ setGeneralData }) => {
         <Input
           id="owner-address"
           type="text"
-          name="owner-address"
+          name="ownerAddress"
           onChange={handleChangeInput}
         />
 
@@ -120,10 +119,10 @@ const GeneralInfo = ({ setGeneralData }) => {
           Provincia
         </Label>
         <Select
-          name="asset-province"
+          name="province"
           id="asset-province"
           onValueChange={(value) =>
-            handleChangeInput({ target: { name: "asset-province", value } })
+            handleChangeInput({ target: { name: "province", value } })
           }
         >
           <SelectTrigger>
@@ -143,11 +142,11 @@ const GeneralInfo = ({ setGeneralData }) => {
           Localidad
         </Label>
         <Select
-          name="asset-location"
+          name="location"
           id="asset-location"
           disabled={!locations}
           onValueChange={(value) =>
-            handleChangeInput({ target: { name: "asset-location", value } })
+            handleChangeInput({ target: { name: "location", value } })
           }
         >
           <SelectTrigger>
@@ -168,7 +167,7 @@ const GeneralInfo = ({ setGeneralData }) => {
         </Label>
         <Input
           id="asset-address"
-          name="asset-address"
+          name="address"
           type="text"
           onChange={handleChangeInput}
         />

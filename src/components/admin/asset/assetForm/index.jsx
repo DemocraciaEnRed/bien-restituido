@@ -13,8 +13,10 @@ import JudicialProcess from "./judicial-process";
 import DestinationInfo from "./destination-info";
 import { Button } from "@/components/ui/button";
 import { saveAsset } from "@/lib/server-actions/admin/asset-actions/asset";
+import { redirect, useRouter } from "next/navigation";
 
 const FormAsset = () => {
+  const router = useRouter();
   const [generalData, setGeneralData] = useState({});
   const [assetData, setAssetData] = useState({});
   const [judicialData, setJudicialData] = useState({});
@@ -47,8 +49,15 @@ const FormAsset = () => {
     },
   ];
 
-  const submit = () => {
-    saveAsset({ ...generalData, ...assetData });
+  const submit = async () => {
+    // console.log(judicialData);
+    const asset = await saveAsset({
+      ...generalData,
+      ...assetData,
+      ...judicialData,
+      ...destinationData,
+    });
+    if (asset === "ok") router.push("/admin/bien");
   };
 
   const [tab, setActiveTab] = useState(assetFormSteps[0].slug);
@@ -82,9 +91,9 @@ const FormAsset = () => {
             </AccordionItem>
           ))}
         </Accordion>
-        <Button onClick={submit}>enviar</Button>
+        <Button onClick={submit}>Enviar</Button>
       </div>
-      <div className="w-1/4 border-l-2 border-l-slate-500 p-3">
+      {/* <div className="w-1/4 border-l-2 border-l-slate-500 p-3">
         {assetFormSteps.map((step, idx) => (
           <div key={idx}>
             <p>{step.title}</p>
@@ -94,7 +103,7 @@ const FormAsset = () => {
               ))}
           </div>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 };

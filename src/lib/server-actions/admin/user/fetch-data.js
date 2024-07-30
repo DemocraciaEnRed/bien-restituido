@@ -5,8 +5,8 @@ import { cookies } from "next/headers";
 const baseUrl = process.env.NEXT_PUBLIC_URL_APP
 
 export const fetchUsers = async () => {
+    const token = cookies().get(authTokenKey)
     try {
-        const token = cookies().get(authTokenKey)
         if (token) {
             let res = await fetch(`${baseUrl}/api/admin/users`, {
                 method: "GET",
@@ -33,8 +33,8 @@ export const fetchUsers = async () => {
 
 
 export const fetchUserById = async (id) => {
+    const token = cookies().get(authTokenKey)
     try {
-        const token = cookies().get(authTokenKey)
         if (token) {
             let res = await fetch(`${baseUrl}/api/admin/users/${id}`, {
                 method: "GET",

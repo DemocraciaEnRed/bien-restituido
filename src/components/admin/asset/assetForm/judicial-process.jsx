@@ -31,7 +31,6 @@ const JudicialInfo = ({ setJudicialData }) => {
       };
       setData(inputData);
     }
-    console.log(event);
     setJudicialData(data);
   };
 
@@ -39,21 +38,21 @@ const JudicialInfo = ({ setJudicialData }) => {
     <div>
       <h2 className="text-xl">Cautela</h2>
       <div className="grid items-center gap-1.5 px-1">
-        <Label className="pt-3" htmlFor="cautela-date">
+        <Label className="pt-3" htmlFor="cautetaDate">
           Fecha de cautela
         </Label>
         <Input
-          id="cautela-date"
+          id="cautetaDate"
           type="date"
-          name="cautela-date"
+          name="cautetaDate"
           onChange={handleChangeInput}
         />
-        <Label className="pt-3" htmlFor="cautela-resolution">
+        <Label className="pt-3" htmlFor="cautelaResolution">
           Resolución de cautela
         </Label>
         <Input
-          id="cautela-resolution"
-          name="cautela-resolution"
+          id="cautelaResolution"
+          name="cautelaResolution"
           type="file"
           onChange={handleChangeInput}
         />
@@ -62,35 +61,35 @@ const JudicialInfo = ({ setJudicialData }) => {
         <h2 className="text-xl">Decomiso</h2>
         <div className="flex items-center space-x-2 pt-3 ">
           <Checkbox
-            name="asset-confiscated"
-            id="asset-confiscated"
+            name="confiscated"
+            id="confiscated"
             onCheckedChange={(value) =>
               handleChangeInput({
-                target: { name: "asset-confiscated", value },
+                target: { name: "confiscated", value },
               })
             }
           />
-          <Label className="" htmlFor="asset-confiscated">
+          <Label className="" htmlFor="confiscated">
             ¿El bien fue decomisado?
           </Label>
         </div>
 
-        <Label className="pt-3" htmlFor="confiscated-date">
+        <Label className="pt-3" htmlFor="confiscatedDate">
           Fecha de decomiso
         </Label>
         <Input
-          id="confiscated-date"
-          name="confiscated-date"
+          id="confiscatedDate"
+          name="confiscatedDate"
           type="date"
           onChange={handleChangeInput}
         />
-        <Label className="pt-3" htmlFor="confiscated-resolution">
+        <Label className="pt-3" htmlFor="confiscatedResolution">
           Resolución de decomiso
         </Label>
         <Input
-          id="confiscated-resolution"
+          id="confiscatedResolution"
           type="file"
-          name="confiscated-resolution"
+          name="confiscatedResolution"
           onChange={handleChangeInput}
         />
 
@@ -157,8 +156,8 @@ const JudicialInfo = ({ setJudicialData }) => {
           </SelectContent>
         </Select>
 
-        <Label className="pt-3" htmlFor="cause-number">
-          Dirección
+        <Label className="pt-3" htmlFor="causeNumber">
+          Numero de la causa
         </Label>
         <Input
           id="cause-number"
@@ -167,24 +166,24 @@ const JudicialInfo = ({ setJudicialData }) => {
           onChange={handleChangeInput}
         />
 
-        <Label className="pt-3" htmlFor="cause-car">
-          Dirección
+        <Label className="pt-3" htmlFor="causeCoverSheet">
+          Autos de la causa
         </Label>
         <Input
-          id="cause-car"
-          name="cause-car"
+          id="causeCoverSheet"
+          name="causeCoverSheet"
           type="text"
           onChange={handleChangeInput}
         />
         <div className="flex items-center space-x-2 pt-3">
           <Checkbox
-            name="third-parties"
-            id="third-parties"
+            name="thirdParties"
+            id="thirdParties"
             onCheckedChange={(value) =>
-              handleChangeInput({ target: { name: "third-parties", value } })
+              handleChangeInput({ target: { name: "thirdParties", value } })
             }
           />
-          <Label className="" htmlFor="third-parties">
+          <Label className="" htmlFor="thirdParties">
             ¿Hay terceros involucrados?
           </Label>
         </div>

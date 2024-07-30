@@ -105,3 +105,9 @@ export const fieldsInputTypes = [
             "Campo que no es visible para el usuario pero que se envía con el formulario.",
     },
 ];
+
+export const assetDestination = [
+    { value: 'auction', name: 'Subasta' },
+    { value: 'reuse', name: 'Reutilización' },
+    { value: 'Testing', name: 'Objeto de prueba' }
+]
