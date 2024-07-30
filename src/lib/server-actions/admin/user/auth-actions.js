@@ -174,8 +174,8 @@ export const restorePassword = async (_currentState, formData) => {
 
 
 export const userMe = async () => {
+    const token = cookies().get(authTokenKey)
     try {
-        const token = cookies().get(authTokenKey)
         if (token) {
             let res = await fetch(`${baseUrl}/api/user/me`, {
                 method: "GET",
@@ -201,8 +201,8 @@ export const userMe = async () => {
 }
 
 export const refreshToken = async () => {
+    const token = cookies().get(authTokenKey)
     try {
-        const token = cookies().get(authTokenKey)
         let res = await fetch(`${baseUrl}/api/auth/refresh-token`, {
             method: "POST",
             headers: {

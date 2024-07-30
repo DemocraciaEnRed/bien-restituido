@@ -1,15 +1,4 @@
 import {
-    ArchiveRestore,
-    HandCoins,
-    LayoutPanelLeft,
-    Recycle,
-    Settings,
-    SquareKanban,
-    SquarePlus,
-    User,
-} from "lucide-react";
-
-import {
     FaCar,
     FaGears,
     FaMotorcycle,
@@ -17,17 +6,9 @@ import {
     FaTractor,
 } from "react-icons/fa6";
 
-import crypto from 'crypto'
-import GeneralInfo from "@/components/admin/asset/assetForm/general-info";
-import AssetInfo from "@/components/admin/asset/assetForm/asset-info";
-import JudicialProcess from "@/components/admin/asset/assetForm/judicial-process";
-import DestinationInfo from "@/components/admin/asset/assetForm/destination-info";
-
 export const authTokenKey = process.env.NEXT_PUBLIC_AUTH_TOKENS_KEY
 
-
 export const oneDay = 24 * 60 * 60 * 1000
-
 
 export const userRoles = {
     USER: "user",
@@ -41,19 +22,6 @@ export const showCardOptions = {
     NO: 'no'
 }
 
-export const drawerList = [
-    { url: "/bien", icon: <HandCoins />, text: "Bienes" },
-    { url: "/subasta", icon: <SquareKanban />, text: "Subasta" },
-    { url: "/reitilización", icon: <Recycle />, text: "Reitilización" },
-    { url: "/archivados", icon: <ArchiveRestore />, text: "Archivados" },
-];
-
-export const settingDrawerList = [
-    { url: "/categoria", icon: <SquarePlus />, text: "Categorias" },
-    { url: "/perfil", icon: <User />, text: "Perfil" },
-    { url: "/configuracion", icon: <Settings />, text: "Configuración" },
-]
-
 export const fontAwesomeIcons = [
     { name: "car", icon: <FaCar className="inline-block" size={20} /> },
     { name: "tractor", icon: <FaTractor className="inline-block" size={20} /> },
@@ -61,29 +29,6 @@ export const fontAwesomeIcons = [
     { name: "motorcycle", icon: <FaMotorcycle className="inline-block" size={20} /> },
     { name: "shop", icon: <FaShop className="inline-block" size={20} /> },
 ];
-
-export const assetFormSteps = [
-    {
-        title: 'Información general',
-        slug: 'informacion-general',
-        component: <GeneralInfo />
-    },
-    {
-        title: 'Información del bien',
-        slug: 'informacion-bien',
-        component: <AssetInfo />
-    },
-    {
-        title: 'Proceso Judicial',
-        slug: 'proceso-judicial',
-        component: <JudicialProcess />
-    },
-    {
-        title: 'Información destino',
-        slug: 'informacion-destino',
-        component: <DestinationInfo />
-    }
-]
 
 export const fieldsInputTypes = [
     {
@@ -160,3 +105,9 @@ export const fieldsInputTypes = [
             "Campo que no es visible para el usuario pero que se envía con el formulario.",
     },
 ];
+
+export const assetDestination = [
+    { value: 'auction', name: 'Subasta' },
+    { value: 'reuse', name: 'Reutilización' },
+    { value: 'Testing', name: 'Objeto de prueba' }
+]

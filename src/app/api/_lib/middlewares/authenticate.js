@@ -5,7 +5,6 @@ import User from "../models/User";
 const authorize = async (req, res, next) => {
     // if there is no token, continue
     if (!req.headers.get('Authorization')) return next();
-    //console.log('optionalAuthenticate')
     try {
         const authHeader = req.headers.get('Authorization')
         let token
@@ -22,7 +21,7 @@ const authorize = async (req, res, next) => {
         // set up locale
         return next();
     } catch (err) {
-        console.log(err);
+        console.error(err);
         return res.status(401).json({ message: err.message });
     }
 

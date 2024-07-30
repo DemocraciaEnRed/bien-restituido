@@ -8,8 +8,8 @@ const baseUrl = process.env.NEXT_PUBLIC_URL_APP
 export const editUser = async (_currentState, formData) => {
     revalidatePath(`/admin/usuarios/[id]`)
 
+    const token = cookies().get(authTokenKey)
     try {
-        const token = cookies().get(authTokenKey)
 
         let username = formData.get('username');
         let bio = formData.get('bio');
@@ -42,8 +42,8 @@ export const editUser = async (_currentState, formData) => {
 };
 
 export async function verifiedUser(userId) {
+    const token = cookies().get(authTokenKey)
     try {
-        const token = cookies().get(authTokenKey)
         let res = await fetch(`${baseUrl}/api/admin/users/${userId}/force-verify`, {
             method: "POST",
             headers: {
@@ -74,8 +74,8 @@ export async function verifiedUser(userId) {
 export const changeRoleUser = async (_currentState, formData) => {
     revalidatePath(`/admin/usuarios/[id]`)
 
+    const token = cookies().get(authTokenKey)
     try {
-        const token = cookies().get(authTokenKey)
         let role = formData.get('role');
         let userId = formData.get('userId');
         let res = await fetch(`${baseUrl}/api/admin/users/${userId}/role`, {
@@ -110,8 +110,8 @@ export const changeRoleUser = async (_currentState, formData) => {
 export const changeEmailUser = async (_currentState, formData) => {
     revalidatePath(`/admin/usuarios`, 'page')
 
+    const token = cookies().get(authTokenKey)
     try {
-        const token = cookies().get(authTokenKey)
         let userId = formData.get('userId');
         let email = formData.get('email');
         let forceVerified = formData.get('forceVerified') == 'on'
@@ -148,8 +148,8 @@ export const changeEmailUser = async (_currentState, formData) => {
 export const changePasswordUser = async (_currentState, formData) => {
     revalidatePath(`/admin/usuarios`, 'page')
 
+    const token = cookies().get(authTokenKey)
     try {
-        const token = cookies().get(authTokenKey)
         let userId = formData.get('userId');
         let password = formData.get('password');
         let forceVerified = formData.get('forceVerified') == 'on'

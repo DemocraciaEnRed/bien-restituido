@@ -1,6 +1,27 @@
 import React from "react";
 import DrawerItem from "./drawerItem";
-import { drawerList, settingDrawerList } from "@/lib/utils/constants";
+import {
+  ArchiveRestore,
+  HandCoins,
+  Recycle,
+  Settings,
+  SquareKanban,
+  SquarePlus,
+  User,
+} from "lucide-react";
+
+const drawerList = [
+  { url: "/bien", icon: <HandCoins />, text: "Bienes" },
+  { url: "/subasta", icon: <SquareKanban />, text: "Subasta" },
+  { url: "/reitilización", icon: <Recycle />, text: "Reitilización" },
+  { url: "/archivados", icon: <ArchiveRestore />, text: "Archivados" },
+];
+
+const settingDrawerList = [
+  { url: "/categoria", icon: <SquarePlus />, text: "Categorias" },
+  { url: "/perfil", icon: <User />, text: "Perfil" },
+  { url: "/configuracion", icon: <Settings />, text: "Configuración" },
+];
 
 async function Drawer() {
   return (

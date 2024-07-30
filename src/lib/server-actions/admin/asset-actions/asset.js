@@ -5,7 +5,11 @@ import { userMe } from "../user/auth-actions";
 
 export const saveAsset = async (formData) => {
     try {
+        const { role } = await userMe()
+        console.log(role);
+        if (role !== 'admin') throw new Error('no estas autorizado')
         const asset = await Asset.create(formData);
+        return 'ok'
     } catch (error) {
         throw new Error('Failed to create task' + error)
     }
