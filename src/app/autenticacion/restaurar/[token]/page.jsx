@@ -3,7 +3,7 @@ import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
 import { Form } from "@/components/auth/login-form";
 import { SubmitButton } from "@/components/ui/submit-button";
-import { restorePassword } from "@/lib/server-actions/admin/user/auth-actions";
+import { restorePassword } from "@/lib/server-actions/authentication/auth-actions";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";

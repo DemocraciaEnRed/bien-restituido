@@ -2,17 +2,21 @@
 import { redirect } from "next/navigation"
 import { saveSubCategories } from "./sub-category";
 import { saveExtraFields } from "./extra-fields";
-import { Category } from "@/lib/models";
+import { Category, ExtraField, SubCategory } from "@/lib/models";
+import { revalidatePath } from "next/cache";
 
 export const saveCompleteCategory = async (category, subCategories, fields) => {
+    let success = false
     try {
         const categoryDoc = category._id ? await editCategory(category) : await saveCategory(category);
         await saveSubCategories(subCategories, categoryDoc)
         await saveExtraFields(fields, categoryDoc)
+        success = true
     } catch (error) {
-        console.error(error);
+        await deleteCategoryByName(category)
+        throw new Error(error)
     }
-    redirect('/admin/categoria')
+    if (success) redirect('/admin/categorias')
 }
 
 export const editCategory = async (category) => {
@@ -26,7 +30,25 @@ export const saveCategory = async (category) => {
     return await Category.create(category)
 }
 
+export const deleteCategoryByName = async (categoryId) => {
+    if (!categoryId._id) {
+        const category = await Category.findOne(categoryId)
+        if (category) deleteCategoryById(category._id)
+    }
+}
 
+export const deleteCategoryById = async (categoryId) => {
+    try {
+        await Category.findByIdAndDelete(categoryId);
+        await SubCategory.deleteMany({ category: categoryId })
+        await ExtraField.deleteMany({ category: categoryId })
+
+    } catch (err) {
+        console.log(err);
+    }
+    revalidatePath(`/admin/categorias`)
+
+}
 
 export const getCategories = async () => {
     try {
@@ -68,3 +90,4 @@ export const getCategoryByName = async (name) => {
         console.error(err);
     }
 }
+

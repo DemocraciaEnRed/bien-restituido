@@ -7,19 +7,19 @@ import { useRouter } from "next/navigation";
 
 import { RegisterForm } from "@/components/auth/register-form";
 import { SubmitButton } from "@/components/ui/submit-button";
-import { register } from "@/lib/server-actions/admin/user/auth-actions";
+import { register } from "@/lib/server-actions/authentication/auth-actions";
 import { redirectHard } from "@/lib/server-actions/general";
 
 export default function Register() {
   const router = useRouter();
-  const [errorMessage, submitAction] = useFormState(register, "");
+  const [status, action] = useFormState(register, "");
 
   useEffect(() => {
-    if (errorMessage.status === 201) {
+    if (status.status === 201) {
       router.push("/autenticacion/inicio");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [errorMessage]);
+  }, [status]);
 
   return (
     <div className="flex h-screen w-screen items-center justify-center bg-gray-50">
@@ -30,12 +30,14 @@ export default function Register() {
             Crea una cuenta con tu correo electrónico y contraseña{" "}
           </p>
         </div>
-        <RegisterForm action={submitAction}>
-          {errorMessage && errorMessage.status !== 201 && (
-            <div className="text-red-500">
-              <p>{errorMessage}</p>
-            </div>
-          )}
+        <RegisterForm status={status} action={action}>
+          {status &&
+            status.status !== 201 &&
+            typeof status.errors === "string" && (
+              <div className="text-red-500">
+                <p>{status.errors}</p>
+              </div>
+            )}
           <SubmitButton text="Registrar" />
           <p className="text-center text-sm text-gray-600">
             ¿Ya tienes una cuenta?{" "}

@@ -17,7 +17,7 @@ const AssetCard = async ({ asset }) => {
     return (
       <>
         {extraFields.map((field) => {
-          if (field.showCard === showCardOptions.ALLWAYS) {
+          if (field.showCard === showCardOptions.ALLWAYS.value) {
             return (
               <span key={field._id}>
                 <span className="font-bold">{field.name}</span>:

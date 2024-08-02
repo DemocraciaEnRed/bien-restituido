@@ -1,7 +1,6 @@
 import { clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
 import { authTokenKey, oneDay } from "./utils/constants";
-import { refreshToken } from "./server-actions/admin/user/auth-actions";
 import { NextResponse } from "next/server";
 
 //shadcdn
@@ -10,26 +9,6 @@ export function cn(...inputs) {
 }
 
 
-export async function updateSession(request) {
-  try {
-    const token = request.cookies.get(authTokenKey)?.value;
-    if (!token) return
-
-    const newToken = await refreshToken()
-    const res = NextResponse.next()
-    const expires = new Date(Date.now() + oneDay * 2)
-    res.cookies.set({
-      name: authTokenKey,
-      value: newToken.token,
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      expires
-    })
-    return res
-  } catch (err) {
-    console.error(err);
-  }
-}
 
 
 export async function rejectUser(request) {

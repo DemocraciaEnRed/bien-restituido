@@ -9,7 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { fieldsInputTypes } from "@/lib/utils/constants";
+import { fieldsInputTypes, showCardOptions } from "@/lib/utils/constants";
 import { Button } from "@/components/ui/button";
 import { Trash } from "lucide-react";
 
@@ -171,14 +171,16 @@ const CategoryFieldForm = ({ setExtras, extraFieldsEdit, errors }) => {
                     "border-red-500"
                   }
                 >
-                  {el.showCard || (
+                  {showCardOptions[el.showCard]?.name || (
                     <SelectValue placeholder="Siempre/Ampliado/No" />
                   )}
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="allways">Siempre</SelectItem>
-                  <SelectItem value="expanded">Ampliado</SelectItem>
-                  <SelectItem value="no">No</SelectItem>
+                  {Object.values(showCardOptions).map((option) => (
+                    <SelectItem key={option.value} value={option.value}>
+                      {option.name}
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
             </div>

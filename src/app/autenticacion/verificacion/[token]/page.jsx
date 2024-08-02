@@ -1,4 +1,4 @@
-import { verifyToken } from "@/lib/server-actions/admin/user/auth-actions";
+import { verifyToken } from "@/lib/server-actions/authentication/auth-actions";
 import Link from "next/link";
 
 export default async function Verification({ params: { token } }) {

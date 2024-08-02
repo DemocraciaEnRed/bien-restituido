@@ -29,7 +29,7 @@ const Asset = async () => {
             buttonVariants({ variant: "outline" }) +
             "border-primary text-primary hover:bg-primary hover:text-white"
           }
-          href="/admin/categoria/nuevo"
+          href="/admin/categorias/nuevo"
         >
           Crear Nueva categoría +
         </Link>

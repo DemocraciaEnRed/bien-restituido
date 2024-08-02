@@ -14,9 +14,11 @@ import DestinationInfo from "./destination-info";
 import { Button } from "@/components/ui/button";
 import { saveAsset } from "@/lib/server-actions/admin/asset-actions/asset";
 import { redirect, useRouter } from "next/navigation";
+import { useS3Upload } from "next-s3-upload";
 
 const FormAsset = () => {
   const router = useRouter();
+  let { uploadToS3 } = useS3Upload();
   const [generalData, setGeneralData] = useState({});
   const [assetData, setAssetData] = useState({});
   const [judicialData, setJudicialData] = useState({});
@@ -51,12 +53,19 @@ const FormAsset = () => {
 
   const submit = async () => {
     // console.log(judicialData);
-    const asset = await saveAsset({
+    const assetBigData = {
       ...generalData,
       ...assetData,
       ...judicialData,
       ...destinationData,
+    };
+    Object.keys(assetBigData).forEach((key) => {
+      if (assetBigData[key] instanceof File) {
+        // const { url } = uploadToS3(assetBigData[key]);
+        assetBigData[key] = assetBigData[key].name;
+      }
     });
+    const asset = await saveAsset(assetBigData);
     if (asset === "ok") router.push("/admin/bien");
   };
 

@@ -1,7 +1,7 @@
-import { getSession } from "@/lib/server-actions/admin/user/auth-actions";
+import { verifySession } from "@/lib/utils/sessions";
 
 const page = async () => {
-  const session = await getSession();
+  const session = await verifySession();
   /* 
   return <div>{session.username}</div>; */
 };

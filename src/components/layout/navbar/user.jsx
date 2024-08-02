@@ -10,13 +10,17 @@ import {
 
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import {
-  getSession,
-  signOut,
-} from "@/lib/server-actions/admin/user/auth-actions";
+import { verifySession, deleteSession } from "@/lib/utils/sessions";
+import { redirect } from "next/navigation";
 
 export async function User() {
-  const user = await getSession();
+  const user = await verifySession();
+
+  const logout = async () => {
+    "use server";
+    await deleteSession();
+    redirect("/");
+  };
 
   if (!user) {
     return (
@@ -29,7 +33,7 @@ export async function User() {
     <DropdownMenu>
       <DropdownMenuTrigger className="flex justify-center items-center gap-2">
         <Avatar>
-          <AvatarImage src="https://github.com/shadcn.png" />
+          {/* <AvatarImage src="https://github.com/shadcn.png" /> */}
           <AvatarFallback>{user.username[0].toUpperCase()}</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
@@ -49,7 +53,7 @@ export async function User() {
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem>
-          <form action={signOut}>
+          <form action={logout}>
             <Button variant="link">Cerrar sesion</Button>
           </form>
         </DropdownMenuItem>

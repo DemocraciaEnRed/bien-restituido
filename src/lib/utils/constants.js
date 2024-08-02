@@ -17,9 +17,9 @@ export const userRoles = {
 }
 
 export const showCardOptions = {
-    ALLWAYS: 'allways',
-    EXPANDED: 'expanded',
-    NO: 'no'
+    ALLWAYS: { value: 'ALLWAYS', name: 'Siempre' },
+    EXPANDED: { value: 'EXPANDED', name: 'Ampliado' },
+    NO: { value: 'NO', name: 'No' },
 }
 
 export const fontAwesomeIcons = [

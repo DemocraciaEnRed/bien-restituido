@@ -1,37 +1,28 @@
 'use server'
 
 import { cookies } from "next/headers";
-import { authTokenKey, oneDay } from "../../../utils/constants";
+import { authTokenKey, oneDay } from "../../utils/constants";
 import { redirect } from "next/navigation";
-import { SignJWT, jwtVerify } from "jose";
+import { formDataValidate } from "@/lib/validators/data-validate";
+import { loginSchema, registerSchema } from "@/lib/validators/data-validate/auth";
+import { createSession, deleteSession } from "@/lib/utils/sessions";
 
 const baseUrl = process.env.NEXT_PUBLIC_URL_APP
-const secret = process.env.JWT_SECRET
-
-
-export const decrypt = async (input) => {
-    try {
-        const { payload } = await jwtVerify(input, new TextEncoder().encode(secret), { algorithms: ['HS256'] })
-        return payload
-    } catch (err) {
-        signOut()
-        console.error(err);
-    }
-}
 
 export const login = async (_currentState, formData) => {
+    let success = false
     try {
-        let email = formData.get('email');
-        let password = formData.get('password');
+        const dataForm = {
+            email: formData.get('email'),
+            password: formData.get('password')
+        }
+        await formDataValidate(dataForm, loginSchema)
         let res = await fetch(`${baseUrl}/api/auth/login`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({
-                email,
-                password,
-            }),
+            body: JSON.stringify(dataForm),
         });
         const data = await res.json();
         if (res.status !== 200) {
@@ -39,38 +30,39 @@ export const login = async (_currentState, formData) => {
             error.status = res.status
             throw error
         }
-        const expires = new Date(Date.now() + oneDay * 2)
-        cookies().set(authTokenKey, data.token, {
-            expires,
-            httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-        })
+        await createSession(data.token)
+        success = true
     } catch (error) {
+        console.log(error);
         return {
             status: error.status,
-            message: error.message
+            errors: error.message
+        }
+    } finally {
+        if (success) {
+            const nextRoute = formData.get('next')
+            if (nextRoute) redirect(nextRoute)
+            else redirect('/')
+
         }
     }
-    const nextRoute = formData.get('next')
-    if (nextRoute) redirect(nextRoute)
-    else redirect('/')
 };
 
 export const register = async (_currentState, formData) => {
     try {
-        let username = formData.get('username')
-        let email = formData.get('email');
-        let password = formData.get('password');
+        const dataForm = {
+            username: formData.get('username'),
+            email: formData.get('email'),
+            password: formData.get('password'),
+
+        }
+        await formDataValidate(dataForm, registerSchema)
         let res = await fetch(`${baseUrl}/api/auth/register`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({
-                username,
-                email,
-                password,
-            }),
+            body: JSON.stringify(dataForm),
         });
         const data = await res.json();
         if (res.status !== 201) {
@@ -81,7 +73,10 @@ export const register = async (_currentState, formData) => {
         data.status = res.status
         return data
     } catch (error) {
-        return error.message
+        return {
+            status: error.status,
+            errors: error.message
+        }
     }
 
 };
@@ -214,19 +209,9 @@ export const refreshToken = async () => {
         const data = await res.json();
         return data
     } catch (err) {
-        signOut()
+        deleteSession()
     }
 
 }
 
-export const signOut = async () => {
-    cookies().set(authTokenKey, '', { maxAge: 0 })
-}
 
-
-export async function getSession() {
-    const session = cookies().get(authTokenKey)?.value;
-    if (!session) return null
-    const session1 = await decrypt(session)
-    return session1
-}

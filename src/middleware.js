@@ -1,7 +1,6 @@
-import { NextResponse } from 'next/server';
 import { authTokenKey, userRoles } from './lib/utils/constants';
-import { rejectUser, updateSession } from './lib/utils';
-import { decrypt } from './lib/server-actions/admin/user/auth-actions';
+import { rejectUser } from './lib/utils';
+import { decrypt, updateSession } from './lib/utils/sessions';
 
 const baseUrl = process.env.NEXT_PUBLIC_URL_APP;
 
@@ -37,7 +36,6 @@ export const config = {
 		* - _next/image (image optimization files)
 		* - favicon.ico (favicon file)
 		*/
-		//'/((?!api|_next/static|_next/image|favicon.ico|.*\\.png$).*)',
 		'/((?!api|_next/static|_next/image|favicon.ico).*)',
 	],
 };

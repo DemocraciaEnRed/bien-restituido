@@ -1,4 +1,5 @@
-import { buttonVariants } from "@/components/ui/button";
+"use client";
+import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -16,10 +17,17 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { ToastAction } from "@/components/ui/toast";
+import { useToast } from "@/components/ui/use-toast";
+import {
+  deleteCategory,
+  deleteCategoryById,
+} from "@/lib/server-actions/admin/asset-actions/category";
 import { Eye, Pencil, Trash } from "lucide-react";
 import Link from "next/link";
 
 const CategoryList = ({ categories }) => {
+  const { toast } = useToast();
   return (
     <Card>
       <CardHeader>
@@ -39,15 +47,39 @@ const CategoryList = ({ categories }) => {
                 <TableRow key={category._id}>
                   <TableCell className="font-medium">{category.name}</TableCell>
                   <TableCell className="flex justify-end gap-6">
-                    <Link href={`/admin/categoria/${category.slug}`}>
+                    <Link
+                      href={`/admin/categorias/${category.slug}`}
+                      className={buttonVariants({ variant: "ghost" })}
+                    >
                       <Eye />
                     </Link>
-                    <Link href={`/admin/categoria/${category.slug}/editar`}>
+                    <Link
+                      href={`/admin/categorias/${category.slug}/editar`}
+                      className={buttonVariants({ variant: "ghost" })}
+                    >
                       <Pencil />
                     </Link>
-                    <Link href="">
+                    <Button
+                      variant="ghost"
+                      onClick={() =>
+                        toast({
+                          description: "Confirmar para eliminar la categoria",
+                          variant: "destructive",
+                          action: (
+                            <ToastAction
+                              onClick={() => {
+                                deleteCategoryById(category._id);
+                              }}
+                              altText="Confirmar"
+                            >
+                              Confirmar
+                            </ToastAction>
+                          ),
+                        })
+                      }
+                    >
                       <Trash />
-                    </Link>
+                    </Button>
                   </TableCell>
                 </TableRow>
               ))}

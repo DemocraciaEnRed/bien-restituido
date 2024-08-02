@@ -48,3 +48,11 @@ const formatErrors = (errors) => {
         return `${path}: ${error.message}`;
     }).join("\n");
 };
+
+
+export const formDataValidate = (data, schema) => {
+    const validation = schema.safeParse(data);
+    if (!validation.success) {
+        throw { message: validation.error.flatten().fieldErrors }
+    }
+}

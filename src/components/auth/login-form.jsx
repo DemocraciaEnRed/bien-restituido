@@ -1,7 +1,7 @@
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 
-export function LoginForm({ action, children }) {
+export function LoginForm({ status, action, children }) {
   return (
     <form
       action={action}
@@ -16,10 +16,16 @@ export function LoginForm({ action, children }) {
           autoComplete="email"
           required
         />
+        {status?.errors?.email && (
+          <p className="text-red-500 text-xs">{status.errors.email}</p>
+        )}
       </div>
       <div>
         <Label htmlFor="password">Contraseña</Label>
         <Input id="password" name="password" type="password" required />
+        {status?.errors?.password && (
+          <p className="text-red-500 text-xs">{status.errors.password}</p>
+        )}
       </div>
       {children}
     </form>

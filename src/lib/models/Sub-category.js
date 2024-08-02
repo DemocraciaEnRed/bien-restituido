@@ -35,7 +35,8 @@ export const SubCategorySchema = new mongoose.Schema(
 
 SubCategorySchema.pre('save', function (next) {
   if (this.isModified('name')) {
-    this.slug = createSlug(this.name)
+    let toSlug = this.category.name + " " + this.name
+    this.slug = createSlug(toSlug)
   }
   next();
 });

@@ -8,6 +8,7 @@ import {
   SquareKanban,
   SquarePlus,
   User,
+  Users,
 } from "lucide-react";
 
 const drawerList = [
@@ -18,8 +19,9 @@ const drawerList = [
 ];
 
 const settingDrawerList = [
-  { url: "/categoria", icon: <SquarePlus />, text: "Categorias" },
+  { url: "/categorias", icon: <SquarePlus />, text: "Categorias" },
   { url: "/perfil", icon: <User />, text: "Perfil" },
+  { url: "/usuarios", icon: <Users />, text: "Usuarios" },
   { url: "/configuracion", icon: <Settings />, text: "Configuración" },
 ];
 

@@ -18,6 +18,7 @@ import {
 import SubCategoryForm from "./sub-category-form";
 import CategoryFieldForm from "./category-field-form";
 import { saveCompleteCategory } from "@/lib/server-actions/admin/asset-actions/category";
+import { useToast } from "@/components/ui/use-toast";
 
 const requiredFields = {
   category: ["name"],
@@ -42,6 +43,7 @@ const CategoryForm = ({ categoryEdit, subCategoriesEdit, extraFields }) => {
   );
   const [subCategories, setSubCategories] = useState(subCategoriesEdit || []);
   const [errorsState, setErrorsState] = useState(null);
+  const { toast } = useToast();
 
   const hasError = () => {
     const state = {
@@ -80,8 +82,16 @@ const CategoryForm = ({ categoryEdit, subCategoriesEdit, extraFields }) => {
     return complete;
   };
 
-  const handleSubmit = () => {
-    if (!hasError()) saveCompleteCategory(category, subCategories, extras);
+  const handleSubmit = async () => {
+    try {
+      if (!hasError())
+        await saveCompleteCategory(category, subCategories, extras);
+    } catch (error) {
+      toast({
+        description: error.message,
+        variant: "destructive",
+      });
+    }
   };
 
   return (

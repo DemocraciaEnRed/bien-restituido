@@ -1,7 +1,7 @@
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 
-export function RegisterForm({ action, children }) {
+export function RegisterForm({ status, action, children }) {
   return (
     <form
       action={action}
@@ -10,6 +10,9 @@ export function RegisterForm({ action, children }) {
       <div>
         <Label htmlFor="username">Nombre de usuario</Label>
         <Input id="username" name="username" type="text" required />
+        {status?.errors?.username && (
+          <p className="text-red-500 text-xs">{status.errors.username}</p>
+        )}
       </div>
       <div>
         <Label htmlFor="email">Email</Label>
@@ -20,10 +23,16 @@ export function RegisterForm({ action, children }) {
           autoComplete="email"
           required
         />
+        {status?.errors?.email && (
+          <p className="text-red-500 text-xs">{status.errors.email}</p>
+        )}
       </div>
       <div>
         <Label htmlFor="password">Contraseña</Label>
         <Input id="password" name="password" type="password" required />
+        {status?.errors?.password && (
+          <p className="text-red-500 text-xs">{status.errors.password}</p>
+        )}
       </div>
       {children}
     </form>

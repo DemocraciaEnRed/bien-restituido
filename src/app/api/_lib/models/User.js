@@ -100,7 +100,6 @@ UserSchema.methods.generateJWT = async function () {
 
   let payload = {
     _id: this._id,
-    email: this.email,
     username: this.username,
     role: this.role,
   };

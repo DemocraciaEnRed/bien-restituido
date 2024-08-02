@@ -4,13 +4,11 @@ import { useFormState } from "react-dom";
 import Link from "next/link";
 
 import { LoginForm } from "@/components/auth/login-form";
-import { login } from "@/lib/server-actions/admin/user/auth-actions";
+import { login } from "@/lib/server-actions/authentication/auth-actions";
 import { SubmitButton } from "@/components/ui/submit-button";
 
-
 export default function Login({ searchParams }) {
-  const [formStatus, submitAction] = useFormState(login, "");
-
+  const [status, action] = useFormState(login);
   return (
     <div className="flex h-screen w-screen items-center justify-center bg-gray-50">
       <div className="z-10 w-full max-w-lg overflow-hidden rounded-2xl border border-gray-100 shadow-xl">
@@ -20,13 +18,13 @@ export default function Login({ searchParams }) {
             Utilice su correo electrónico y contraseña para iniciar sesión
           </p>
         </div>
-        <LoginForm action={submitAction}>
+        <LoginForm status={status} action={action}>
           <Link href="/autenticacion/restaurar" className="text-right">
             ¿Olvidaste tu contraseña?
           </Link>
-          {formStatus && formStatus.status !== 200 && (
+          {status && status.status !== 200 && (
             <div className="text-red-500">
-              <p>{formStatus.message}</p>
+              <p>{status.errors}</p>
             </div>
           )}
           <input

@@ -7,7 +7,7 @@ import { SubmitButton } from "@/components/ui/submit-button";
 import {
   forgotPassword,
   register,
-} from "@/lib/server-actions/admin/user/auth-actions";
+} from "@/lib/server-actions/authentication/auth-actions";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";

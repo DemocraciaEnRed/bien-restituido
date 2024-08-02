@@ -24,8 +24,8 @@ export const ExtraFieldSchema = new mongoose.Schema(
     },
     showCard: {
       type: String,
-      enum: Object.values(showCardOptions),
-      default: showCardOptions.ALLWAYS
+      enum: Object.values(showCardOptions).map(option => option.value),
+      default: showCardOptions.ALLWAYS.value
     },
     hiddenDownload: {
       type: Boolean,
