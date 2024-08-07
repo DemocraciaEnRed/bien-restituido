@@ -63,9 +63,12 @@ const AssetInfo = ({ setAssetData }) => {
       <div className="flex flex-col w-full space-y-4 bg-gray-50">
         {categories && (
           <div className="pt-3">
-            <Label htmlFor="category">Tipo de Activo</Label>
+            <Label htmlFor="category">
+              Tipo de Activo <span className="text-red-600">*</span>
+            </Label>
             <Select
               name="category"
+              required
               onValueChange={(value) =>
                 handleChangeInput({ target: { name: "category", value } })
               }
@@ -86,9 +89,12 @@ const AssetInfo = ({ setAssetData }) => {
       </div>
       {subCategories && (
         <div className="pt-3">
-          <Label htmlFor="subcategory">Sub-categoria</Label>
+          <Label htmlFor="subcategory">
+            Sub-categoria <span className="text-red-600">*</span>
+          </Label>
           <Select
             name="subcategory"
+            required
             onValueChange={(value) =>
               handleChangeInput({ target: { name: "subCategory", value } })
             }
@@ -119,8 +125,12 @@ const AssetInfo = ({ setAssetData }) => {
             <div
               key={input.slug}
               className="grid w-full  items-center gap-1.5 my-2 pt-2"
+              id={`extras.${input.slug}`}
             >
-              <Label htmlFor={`extras.${input.slug}`}>{input.name}</Label>
+              <Label htmlFor={`extras.${input.slug}`}>
+                {input.name}{" "}
+                {input.required && <span className="text-red-600">*</span>}
+              </Label>
               <Input
                 type={input.type}
                 name={`extras.${input.slug}`}

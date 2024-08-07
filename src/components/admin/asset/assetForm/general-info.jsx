@@ -55,122 +55,139 @@ const GeneralInfo = ({ setGeneralData }) => {
     <div>
       <h2 className="text-xl">Titular</h2>
       <div className="grid items-center gap-1.5 px-1">
-        <Label className="pt-3" htmlFor="name">
-          Nombre del titular
-        </Label>
-        <Input
-          id="name"
-          type="text"
-          name="ownerName"
-          onChange={handleChangeInput}
-        />
-        <Label className="pt-3" htmlFor="last-name">
-          Apellido del titular
-        </Label>
-        <Input
-          id="last-name"
-          name="ownerLastName"
-          type="text"
-          onChange={handleChangeInput}
-        />
-
-        <Label className="pt-3" htmlFor="id-type">
-          Tipo de identificación
-        </Label>
-        <Select
-          name="ownerIdType"
-          id="id-type"
-          onValueChange={(value) =>
-            handleChangeInput({ target: { name: "ownerIdType", value } })
-          }
-        >
-          <SelectTrigger>
-            <SelectValue placeholder="Seleccionar tipo " />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="dni">DNI</SelectItem>
-            <SelectItem value="libreta">Libreta</SelectItem>
-          </SelectContent>
-        </Select>
-
-        <Label className="pt-3" htmlFor="dni">
-          Numero de identificación
-        </Label>
-        <Input
-          id="dni"
-          name="ownerDni"
-          type="text"
-          onChange={handleChangeInput}
-        />
-        <Label className="pt-3" htmlFor="owner-address">
-          Dirección
-        </Label>
-        <Input
-          id="owner-address"
-          type="text"
-          name="ownerAddress"
-          onChange={handleChangeInput}
-        />
-
+        <div>
+          <Label className="pt-3" htmlFor="name">
+            Nombre del titular <span className="text-red-600">*</span>
+          </Label>
+          <Input
+            id="name"
+            type="text"
+            name="ownerName"
+            required
+            onChange={handleChangeInput}
+          />
+        </div>
+        <div>
+          <Label className="pt-3" htmlFor="last-name">
+            Apellido del titular <span className="text-red-600">*</span>
+          </Label>
+          <Input
+            id="last-name"
+            name="ownerLastName"
+            type="text"
+            required
+            onChange={handleChangeInput}
+          />
+        </div>
+        <div>
+          <Label className="pt-3" htmlFor="id-type">
+            Tipo de identificación <span className="text-red-600">*</span>
+          </Label>
+          <Select
+            name="ownerIdType"
+            id="id-type"
+            required
+            onValueChange={(value) =>
+              handleChangeInput({ target: { name: "ownerIdType", value } })
+            }
+          >
+            <SelectTrigger>
+              <SelectValue placeholder="Seleccionar tipo " />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="dni">DNI</SelectItem>
+              <SelectItem value="libreta">Libreta</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+        <div>
+          <Label className="pt-3" htmlFor="dni">
+            Numero de identificación <span className="text-red-600">*</span>
+          </Label>
+          <Input
+            id="dni"
+            name="ownerDni"
+            type="text"
+            required
+            onChange={handleChangeInput}
+          />
+        </div>
+        <div>
+          <Label className="pt-3" htmlFor="owner-address">
+            Dirección <span className="text-red-600">*</span>
+          </Label>
+          <Input
+            id="owner-address"
+            type="text"
+            name="ownerAddress"
+            required
+            onChange={handleChangeInput}
+          />
+        </div>
         <Separator className="w-1/2 my-3 h-1 mx-auto" />
         <h2 className="text-xl">Localización del bien</h2>
-
-        <Label className="pt-3" htmlFor="asset-province">
-          Provincia
-        </Label>
-        <Select
-          name="province"
-          id="asset-province"
-          onValueChange={(value) =>
-            handleChangeInput({ target: { name: "province", value } })
-          }
-        >
-          <SelectTrigger>
-            <SelectValue placeholder="Seleccionar provincia " />
-          </SelectTrigger>
-          <SelectContent>
-            {provinces &&
-              provinces.map((province) => (
-                <SelectItem key={province.id} value={province.nombre}>
-                  {province.nombre}
-                </SelectItem>
-              ))}
-          </SelectContent>
-        </Select>
-
-        <Label className="pt-3" htmlFor="asset-location">
-          Localidad
-        </Label>
-        <Select
-          name="location"
-          id="asset-location"
-          disabled={!locations}
-          onValueChange={(value) =>
-            handleChangeInput({ target: { name: "location", value } })
-          }
-        >
-          <SelectTrigger>
-            <SelectValue placeholder="Seleccionar localidad" />
-          </SelectTrigger>
-          <SelectContent>
-            {locations &&
-              locations.map((location) => (
-                <SelectItem key={location.id} value={location.nombre}>
-                  {location.nombre}
-                </SelectItem>
-              ))}
-          </SelectContent>
-        </Select>
-
-        <Label className="pt-3" htmlFor="asset-address">
-          Dirección
-        </Label>
-        <Input
-          id="asset-address"
-          name="address"
-          type="text"
-          onChange={handleChangeInput}
-        />
+        <div>
+          <Label className="pt-3" htmlFor="asset-province">
+            Provincia<span className="text-red-600">*</span>
+          </Label>
+          <Select
+            name="province"
+            id="asset-province"
+            required
+            onValueChange={(value) =>
+              handleChangeInput({ target: { name: "province", value } })
+            }
+          >
+            <SelectTrigger>
+              <SelectValue placeholder="Seleccionar provincia " />
+            </SelectTrigger>
+            <SelectContent>
+              {provinces &&
+                provinces.map((province) => (
+                  <SelectItem key={province.id} value={province.nombre}>
+                    {province.nombre}
+                  </SelectItem>
+                ))}
+            </SelectContent>
+          </Select>
+        </div>
+        <div>
+          <Label className="pt-3" htmlFor="asset-location">
+            Localidad<span className="text-red-600">*</span>
+          </Label>
+          <Select
+            name="location"
+            id="asset-location"
+            required
+            disabled={!locations}
+            onValueChange={(value) =>
+              handleChangeInput({ target: { name: "location", value } })
+            }
+          >
+            <SelectTrigger>
+              <SelectValue placeholder="Seleccionar localidad" />
+            </SelectTrigger>
+            <SelectContent>
+              {locations &&
+                locations.map((location) => (
+                  <SelectItem key={location.id} value={location.nombre}>
+                    {location.nombre}
+                  </SelectItem>
+                ))}
+            </SelectContent>
+          </Select>
+        </div>
+        <div>
+          <Label className="pt-3" htmlFor="asset-address">
+            Dirección
+          </Label>
+          <Input
+            id="asset-address"
+            name="address"
+            type="text"
+            onChange={handleChangeInput}
+          />
+        </div>
       </div>
     </div>
   );

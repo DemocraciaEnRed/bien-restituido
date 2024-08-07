@@ -48,7 +48,7 @@ export async function deleteSession() {
 
 export async function isAuthotized() {
   const { role } = await verifySession()
-  if (role !== userRoles.ADMIN) throw new Error('no estas autorizado')
+  if (role !== userRoles.ADMIN) throw 'no estas autorizado'
 }
 
 

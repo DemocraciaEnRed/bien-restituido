@@ -1,26 +1,30 @@
 "use server"
 import { Asset } from "@/lib/models";
 import { isAuthotized } from "@/lib/utils/sessions";
+import { getCategoryById } from "./category";
+import { getExtraFieldsByCategory } from "./extra-fields";
 
 export const saveAsset = async (formData) => {
+    await isAuthotized()
     try {
-        await isAuthotized()
+        let errorAsset = {};
+        const extraFields = await getExtraFieldsByCategory(formData.category)
+        extraFields.forEach(field => {
+            if (field.required && !formData[`extras.${field.slug}`]) errorAsset.fieldRequired = `extras.${field.slug}`
+        })
+        if (errorAsset) throw errorAsset
         const asset = await Asset.create(formData);
-        return 'ok'
+        return JSON.parse(JSON.stringify(asset))
     } catch (error) {
-        throw new Error('Failed to create asset' + error)
+
+        throw new Error(JSON.stringify(error))
     }
 
 }
 
 export async function getAssets() {
-    try {
-        await isAuthotized()
+    await isAuthotized()
         const assets = await Asset.find({}).populate('subCategory')
-        return JSON.parse(JSON.stringify(assets))
-    } catch (error) {
-        throw 'Failed to get assets ' + error.message
-
-    }
+    return JSON.parse(JSON.stringify(assets))
 
 }       

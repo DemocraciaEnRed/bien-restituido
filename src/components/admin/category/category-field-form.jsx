@@ -87,7 +87,7 @@ const CategoryFieldForm = ({ setExtras, extraFieldsEdit, errors }) => {
                 >
                   {fieldsInputTypes.find((input) => el.type === input.type)
                     ?.friendlyName || (
-                    <SelectValue placeholder="Elegir categoria" />
+                    <SelectValue placeholder="Elegir tipo de campo" />
                   )}
                 </SelectTrigger>
                 <SelectContent>

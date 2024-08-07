@@ -28,22 +28,23 @@ import Link from "next/link";
 
 const CategoryList = ({ categories }) => {
   const { toast } = useToast();
+
   return (
     <Card>
       <CardHeader>
         <CardTitle>Categorías existentes de bienes </CardTitle>
       </CardHeader>
       <CardContent>
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead></TableHead>
-              <TableHead></TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {categories &&
-              categories.map((category) => (
+        {categories.length > 0 ? (
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead></TableHead>
+                <TableHead></TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {categories.map((category) => (
                 <TableRow key={category._id}>
                   <TableCell className="font-medium">{category.name}</TableCell>
                   <TableCell className="flex justify-end gap-6">
@@ -83,8 +84,11 @@ const CategoryList = ({ categories }) => {
                   </TableCell>
                 </TableRow>
               ))}
-          </TableBody>
-        </Table>
+            </TableBody>
+          </Table>
+        ) : (
+          <p>Todavía no hay categorías creadas</p>
+        )}
       </CardContent>
     </Card>
   );

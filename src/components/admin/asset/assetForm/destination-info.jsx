@@ -21,14 +21,40 @@ function DestinationInfo({ setDestinationtData }) {
   };
   return (
     <div>
-      <h2 className="text-xl">Titular</h2>
+      <h2 className="text-xl">Destino</h2>
+      <div className="flex gap-1">
+        {assetDestination.map((destination) => (
+          <div
+            key={destination.value}
+            className={`border-2 rounded-md p-3 cursor-pointer border-slate-300 text-slate-600 ${
+              data && data["asset-destination"] === destination.value
+                ? "bg-slate-600 text-white"
+                : ""
+            }`}
+          >
+            <input
+              type="radio"
+              name="asset-destination"
+              className="hidden"
+              id={destination.value}
+              value={destination.value}
+              required
+              onChange={handleChangeInput}
+            />
+            <label htmlFor={destination.value} className="cursor-pointer">
+              {destination.name}
+            </label>
+          </div>
+        ))}
+      </div>
 
-      <RadioGroup
+      {/* <RadioGroup
         onValueChange={(value) =>
           handleChangeInput({
             target: { name: "asset-destination", value },
           })
         }
+        name="asset-destination"
         className="flex"
       >
         {assetDestination.map((destination) => (
@@ -50,7 +76,7 @@ function DestinationInfo({ setDestinationtData }) {
             </Label>
           </div>
         ))}
-      </RadioGroup>
+      </RadioGroup> */}
     </div>
   );
 }
