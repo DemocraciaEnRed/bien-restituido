@@ -16,6 +16,7 @@ import {
 } from "@/lib/server-actions/admin/asset-actions/location";
 
 import React from "react";
+import { ChevronDown } from "lucide-react";
 
 const GeneralInfo = ({ setGeneralData }) => {
   const [data, setData] = useState(null);
@@ -126,56 +127,55 @@ const GeneralInfo = ({ setGeneralData }) => {
         </div>
         <Separator className="w-1/2 my-3 h-1 mx-auto" />
         <h2 className="text-xl">Localización del bien</h2>
-        <div>
-          <Label className="pt-3" htmlFor="province">
+        <div className="relative">
+          <label
+            htmlFor="province"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >
             Provincia<span className="text-red-600">*</span>
-          </Label>
-          <Select
-            name="province"
+          </label>
+          <select
             id="province"
+            name="province"
+            disabled={!provinces}
+            onChange={handleChangeInput}
             required
-            onValueChange={(value) =>
-              handleChangeInput({ target: { name: "province", value } })
-            }
+            className="bg-transparent border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 appearance-none after:content-['<'] "
           >
-            <SelectTrigger>
-              <SelectValue placeholder="Seleccionar provincia " />
-            </SelectTrigger>
-            <SelectContent>
-              {provinces &&
-                provinces.map((province) => (
-                  <SelectItem key={province.id} value={province.nombre}>
-                    {province.nombre}
-                  </SelectItem>
-                ))}
-            </SelectContent>
-          </Select>
+            <option value="">Seleccionar localidad</option>
+            {provinces &&
+              provinces.map((province) => (
+                <option key={province.id} value={province.nombre}>
+                  {province.nombre}
+                </option>
+              ))}
+          </select>
+          <ChevronDown className="absolute h-4 w-4 opacity-50 right-4 top-10" />
         </div>
-        <div>
-          <Label className="pt-3" htmlFor="location">
-            Localidad<span className="text-red-600">*</span>
-          </Label>
-          <Select
-            name="location"
-            id="location"
-            required
-            disabled={!locations}
-            onValueChange={(value) =>
-              handleChangeInput({ target: { name: "location", value } })
-            }
+        <div className="relative">
+          <label
+            htmlFor="location"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            <SelectTrigger>
-              <SelectValue placeholder="Seleccionar localidad" />
-            </SelectTrigger>
-            <SelectContent>
-              {locations &&
-                locations.map((location) => (
-                  <SelectItem key={location.id} value={location.nombre}>
-                    {location.nombre}
-                  </SelectItem>
-                ))}
-            </SelectContent>
-          </Select>
+            Localidad<span className="text-red-600 ">*</span>
+          </label>
+          <select
+            id="location"
+            name="location"
+            disabled={!locations}
+            onChange={handleChangeInput}
+            required
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 appearance-none after:content-['<'] "
+          >
+            <option value="">Seleccionar localidad</option>
+            {locations &&
+              locations.map((location) => (
+                <option key={location.id} value={location.nombre}>
+                  {location.nombre}
+                </option>
+              ))}
+          </select>
+          <ChevronDown className="absolute h-4 w-4 opacity-50 right-4 top-10" />
         </div>
         <div>
           <Label className="pt-3" htmlFor="address">

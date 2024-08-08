@@ -11,11 +11,11 @@ const RenderThirdParties = ({ number, deleteThird }) => {
     <div key={number} className="bg-slate-200 p-4 rounded-lg mb-3">
       <div className="flex justify-between">
         <h5>Tercero nº {number}</h5>
-        <Trash
+        {/* <Trash
           onClick={deleteThird}
           data-number={number}
           className="cursor-pointer"
-        />
+        /> */}
       </div>
       <div>
         <p className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 pt-3">

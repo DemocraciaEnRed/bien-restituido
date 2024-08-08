@@ -13,7 +13,6 @@ export const saveAsset = async (formData) => {
         //     if (field.required && !formData[`extras.${field.slug}`]) errorAsset.fieldRequired = `extras.${field.slug}`
         // })
         // if (errorAsset) throw errorAsset
-        // console.log(formData);
 
         const asset = await Asset.create(formData);
         return 'ok'

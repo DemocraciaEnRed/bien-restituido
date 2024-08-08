@@ -24,7 +24,6 @@ const JudicialInfo = ({ setJudicialData }) => {
 
   const handleChangeInput = (event) => {
     if (data) {
-      // console.log(event.target.files);
       data[event.target.name] =
         event.target.type === "file"
           ? event.target.files[0]
@@ -85,33 +84,37 @@ const JudicialInfo = ({ setJudicialData }) => {
             }
           />
           <Label className="" htmlFor="confiscated">
-            ¿El bien fue decomisado?<span className="text-red-600">*</span>
+            ¿El bien fue decomisado?
           </Label>
         </div>
-        <div>
-          <Label className="pt-3" htmlFor="confiscatedDate">
-            Fecha de decomiso<span className="text-red-600">*</span>
-          </Label>
-          <Input
-            id="confiscatedDate"
-            name="confiscatedDate"
-            type="date"
-            required
-            onChange={handleChangeInput}
-          />
-        </div>
-        <div>
-          <Label className="pt-3" htmlFor="confiscatedResolution">
-            Resolución de decomiso<span className="text-red-600">*</span>
-          </Label>
-          <Input
-            id="confiscatedResolution"
-            type="file"
-            required
-            name="confiscatedResolution"
-            onChange={handleChangeInput}
-          />
-        </div>
+        {data && data["confiscated"] && (
+          <>
+            <div>
+              <Label className="pt-3" htmlFor="confiscatedDate">
+                Fecha de decomiso<span className="text-red-600">*</span>
+              </Label>
+              <Input
+                id="confiscatedDate"
+                name="confiscatedDate"
+                type="date"
+                required
+                onChange={handleChangeInput}
+              />
+            </div>
+            <div>
+              <Label className="pt-3" htmlFor="confiscatedResolution">
+                Resolución de decomiso<span className="text-red-600">*</span>
+              </Label>
+              <Input
+                id="confiscatedResolution"
+                type="file"
+                required
+                name="confiscatedResolution"
+                onChange={handleChangeInput}
+              />
+            </div>
+          </>
+        )}
 
         <Separator className="w-1/2 my-3 h-1 mx-auto" />
         <h2 className="text-xl">Proceso judicial</h2>

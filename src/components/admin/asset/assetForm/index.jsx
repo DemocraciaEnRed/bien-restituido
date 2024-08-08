@@ -61,6 +61,7 @@ const FormAsset = () => {
     let form = document.getElementById("assetForm");
     Object.keys(form.elements).forEach((key) => {
       const item = form.elements[key];
+      if (item instanceof RadioNodeList) return;
 
       if (
         item.classList.contains("omittedButton") ||
@@ -75,45 +76,32 @@ const FormAsset = () => {
       if (!item.checkValidity()) {
         tabs.push(item.closest(".accordionItem").dataset.slug);
         label?.classList.add("!text-red-600");
-        input.classList.add("border-red-600");
-        input.classList.add("text-red-600");
+        input.classList.add("!border-red-600");
+        input.classList.add("!text-red-600");
         if (item.type === "radio") label?.classList.add("!border-red-600");
       } else {
         label?.classList.remove("!text-red-600");
-        input.classList.remove("border-red-600");
-        input.classList.remove("text-red-600");
+        input.classList.remove("!border-red-600");
+        input.classList.remove("!text-red-600");
         if (item.type === "radio") label?.classList.remove("!border-red-600");
       }
     });
     setActiveTab([...new Set(tabs)]);
     const data = new FormData(form);
 
-    const value = Object.fromEntries(data.entries());
+    const formData = Object.fromEntries(data.entries());
 
-    Object.keys(value).forEach((key) => {
-      if (value[key] instanceof File) {
-        // const { url } = uploadToS3(value[key]);
-        value[key] = value[key].name;
+    Object.keys(formData).forEach((key) => {
+      if (formData[key] instanceof File) {
+        // const { url } = uploadToS3(formData[key]);
+        formData[key] = formData[key].name;
       }
-      if (value[key] === "on") value[key] = true;
+      if (formData[key] === "on") formData[key] = true;
     });
 
     if (form.checkValidity()) {
       try {
-        // const assetBigData = {
-        //   ...generalData,
-        //   ...assetData,
-        //   ...judicialData,
-        //   ...destinationData,
-        // };
-        // Object.keys(assetBigData).forEach((key) => {
-        //   if (assetBigData[key] instanceof File) {
-        //     // const { url } = uploadToS3(assetBigData[key]);
-        //     assetBigData[key] = assetBigData[key].name;
-        //   }
-        // });
-
-        const asset = await saveAsset(value);
+        const asset = await saveAsset(formData);
         if (asset === "ok") router.push("/admin/bien");
       } catch (err) {
         console.log(err);
