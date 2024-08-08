@@ -63,7 +63,7 @@ const FormAsset = () => {
       const item = form.elements[key];
 
       if (
-        item.classList.contains("button-expanded") ||
+        item.classList.contains("omittedButton") ||
         item.classList.contains("submitButton")
       )
         return;
@@ -74,31 +74,46 @@ const FormAsset = () => {
 
       if (!item.checkValidity()) {
         tabs.push(item.closest(".accordionItem").dataset.slug);
-        label?.classList.add("text-red-600");
+        label?.classList.add("!text-red-600");
         input.classList.add("border-red-600");
         input.classList.add("text-red-600");
+        if (item.type === "radio") label?.classList.add("!border-red-600");
       } else {
-        label?.classList.remove("text-red-600");
+        label?.classList.remove("!text-red-600");
         input.classList.remove("border-red-600");
         input.classList.remove("text-red-600");
+        if (item.type === "radio") label?.classList.remove("!border-red-600");
       }
     });
     setActiveTab([...new Set(tabs)]);
+    const data = new FormData(form);
+
+    const value = Object.fromEntries(data.entries());
+
+    Object.keys(value).forEach((key) => {
+      if (value[key] instanceof File) {
+        // const { url } = uploadToS3(value[key]);
+        value[key] = value[key].name;
+      }
+      if (value[key] === "on") value[key] = true;
+    });
+
     if (form.checkValidity()) {
       try {
-        const assetBigData = {
-          ...generalData,
-          ...assetData,
-          ...judicialData,
-          ...destinationData,
-        };
-        Object.keys(assetBigData).forEach((key) => {
-          if (assetBigData[key] instanceof File) {
-            // const { url } = uploadToS3(assetBigData[key]);
-            assetBigData[key] = assetBigData[key].name;
-          }
-        });
-        const asset = await saveAsset(assetBigData);
+        // const assetBigData = {
+        //   ...generalData,
+        //   ...assetData,
+        //   ...judicialData,
+        //   ...destinationData,
+        // };
+        // Object.keys(assetBigData).forEach((key) => {
+        //   if (assetBigData[key] instanceof File) {
+        //     // const { url } = uploadToS3(assetBigData[key]);
+        //     assetBigData[key] = assetBigData[key].name;
+        //   }
+        // });
+
+        const asset = await saveAsset(value);
         if (asset === "ok") router.push("/admin/bien");
       } catch (err) {
         console.log(err);
@@ -124,7 +139,7 @@ const FormAsset = () => {
                 data-slug={step.slug}
               >
                 <div className="rounded-2xl w-full bg-gray-50 border border-gray-100  px-3">
-                  <AccordionTrigger className="py-2 button-expanded">
+                  <AccordionTrigger className="py-2 omittedButton">
                     {step.title}
                   </AccordionTrigger>
                   <AccordionContent

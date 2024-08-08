@@ -17,6 +17,7 @@ import {
 
 import React from "react";
 import { Checkbox } from "@/components/ui/checkbox";
+import ThirdPartForm from "./third-part-form";
 
 const JudicialInfo = ({ setJudicialData }) => {
   const [data, setData] = useState(null);
@@ -38,6 +39,7 @@ const JudicialInfo = ({ setJudicialData }) => {
       };
       setData(inputData);
     }
+
     setJudicialData(data);
   };
 
@@ -184,8 +186,8 @@ const JudicialInfo = ({ setJudicialData }) => {
             Numero de la causa<span className="text-red-600">*</span>
           </Label>
           <Input
-            id="cause-number"
-            name="cause-number"
+            id="causeNumber"
+            name="causeNumber"
             type="text"
             required
             onChange={handleChangeInput}
@@ -215,6 +217,7 @@ const JudicialInfo = ({ setJudicialData }) => {
             ¿Hay terceros involucrados?
           </Label>
         </div>
+        {data && data.thirdParties && <ThirdPartForm />}
       </div>
     </div>
   );

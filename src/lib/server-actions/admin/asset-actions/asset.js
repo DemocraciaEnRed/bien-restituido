@@ -7,15 +7,18 @@ import { getExtraFieldsByCategory } from "./extra-fields";
 export const saveAsset = async (formData) => {
     await isAuthotized()
     try {
-        let errorAsset = {};
-        const extraFields = await getExtraFieldsByCategory(formData.category)
-        extraFields.forEach(field => {
-            if (field.required && !formData[`extras.${field.slug}`]) errorAsset.fieldRequired = `extras.${field.slug}`
-        })
-        if (errorAsset) throw errorAsset
+        // let errorAsset = {};
+        // const extraFields = await getExtraFieldsByCategory(formData.category)
+        // extraFields.forEach(field => {
+        //     if (field.required && !formData[`extras.${field.slug}`]) errorAsset.fieldRequired = `extras.${field.slug}`
+        // })
+        // if (errorAsset) throw errorAsset
+        // console.log(formData);
+
         const asset = await Asset.create(formData);
-        return JSON.parse(JSON.stringify(asset))
+        return 'ok'
     } catch (error) {
+        // console.log(error);
 
         throw new Error(JSON.stringify(error))
     }

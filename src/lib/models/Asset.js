@@ -16,7 +16,7 @@ export const AssetSchema = new mongoose.Schema(
             type: String,
             max: 255,
         },
-        ownerDni: {
+        ownerNumberId: {
             type: String,
             max: 255,
         },

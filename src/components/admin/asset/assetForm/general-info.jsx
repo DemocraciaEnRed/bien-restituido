@@ -56,11 +56,11 @@ const GeneralInfo = ({ setGeneralData }) => {
       <h2 className="text-xl">Titular</h2>
       <div className="grid items-center gap-1.5 px-1">
         <div>
-          <Label className="pt-3" htmlFor="name">
+          <Label className="pt-3" htmlFor="ownerName">
             Nombre del titular <span className="text-red-600">*</span>
           </Label>
           <Input
-            id="name"
+            id="ownerName"
             type="text"
             name="ownerName"
             required
@@ -68,11 +68,11 @@ const GeneralInfo = ({ setGeneralData }) => {
           />
         </div>
         <div>
-          <Label className="pt-3" htmlFor="last-name">
+          <Label className="pt-3" htmlFor="ownerLastName">
             Apellido del titular <span className="text-red-600">*</span>
           </Label>
           <Input
-            id="last-name"
+            id="ownerLastName"
             name="ownerLastName"
             type="text"
             required
@@ -80,12 +80,12 @@ const GeneralInfo = ({ setGeneralData }) => {
           />
         </div>
         <div>
-          <Label className="pt-3" htmlFor="id-type">
+          <Label className="pt-3" htmlFor="ownerIdType">
             Tipo de identificación <span className="text-red-600">*</span>
           </Label>
           <Select
             name="ownerIdType"
-            id="id-type"
+            id="ownerIdType"
             required
             onValueChange={(value) =>
               handleChangeInput({ target: { name: "ownerIdType", value } })
@@ -101,23 +101,23 @@ const GeneralInfo = ({ setGeneralData }) => {
           </Select>
         </div>
         <div>
-          <Label className="pt-3" htmlFor="dni">
+          <Label className="pt-3" htmlFor="ownerNumberId">
             Numero de identificación <span className="text-red-600">*</span>
           </Label>
           <Input
-            id="dni"
-            name="ownerDni"
+            id="ownerNumberId"
+            name="ownerNumberId"
             type="text"
             required
             onChange={handleChangeInput}
           />
         </div>
         <div>
-          <Label className="pt-3" htmlFor="owner-address">
+          <Label className="pt-3" htmlFor="ownerAddress">
             Dirección <span className="text-red-600">*</span>
           </Label>
           <Input
-            id="owner-address"
+            id="ownerAddress"
             type="text"
             name="ownerAddress"
             required
@@ -127,12 +127,12 @@ const GeneralInfo = ({ setGeneralData }) => {
         <Separator className="w-1/2 my-3 h-1 mx-auto" />
         <h2 className="text-xl">Localización del bien</h2>
         <div>
-          <Label className="pt-3" htmlFor="asset-province">
+          <Label className="pt-3" htmlFor="province">
             Provincia<span className="text-red-600">*</span>
           </Label>
           <Select
             name="province"
-            id="asset-province"
+            id="province"
             required
             onValueChange={(value) =>
               handleChangeInput({ target: { name: "province", value } })
@@ -152,12 +152,12 @@ const GeneralInfo = ({ setGeneralData }) => {
           </Select>
         </div>
         <div>
-          <Label className="pt-3" htmlFor="asset-location">
+          <Label className="pt-3" htmlFor="location">
             Localidad<span className="text-red-600">*</span>
           </Label>
           <Select
             name="location"
-            id="asset-location"
+            id="location"
             required
             disabled={!locations}
             onValueChange={(value) =>
@@ -178,11 +178,11 @@ const GeneralInfo = ({ setGeneralData }) => {
           </Select>
         </div>
         <div>
-          <Label className="pt-3" htmlFor="asset-address">
+          <Label className="pt-3" htmlFor="address">
             Dirección
           </Label>
           <Input
-            id="asset-address"
+            id="address"
             name="address"
             type="text"
             onChange={handleChangeInput}
