@@ -1,6 +1,27 @@
 import mongoose from "mongoose";
+import { actorType } from "../utils/constants";
 const Schema = mongoose.Schema
 
+const thirdSchema = new mongoose.Schema(
+    {
+        type: {
+            type: String,
+            enum: actorType.map(type => type.value)
+        },
+        name: {
+            type: String
+        },
+        lastName: {
+            type: String
+        },
+        typeId: {
+            type: String
+        },
+        numberId: {
+            type: String
+        }
+    }
+)
 
 export const AssetSchema = new mongoose.Schema(
     {
@@ -44,6 +65,7 @@ export const AssetSchema = new mongoose.Schema(
             type: String,
             max: 255
         },
+        destinationInfo: Schema.Types.Mixed,
         category: { type: mongoose.Types.ObjectId, ref: 'Category' },
         subCategory: { type: mongoose.Types.ObjectId, ref: 'SubCategory' },
         extras: Schema.Types.Mixed,
@@ -73,6 +95,10 @@ export const AssetSchema = new mongoose.Schema(
         },
         thirdParties: {
             type: Boolean
+        },
+        third: {
+            type: [thirdSchema],
+            default: undefined
         },
         causeCoverSheet: { type: String },
         deletedAt: {

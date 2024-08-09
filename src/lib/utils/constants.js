@@ -111,3 +111,8 @@ export const assetDestination = [
     { value: 'reuse', name: 'Reutilización' },
     { value: 'Testing', name: 'Objeto de prueba' }
 ]
+
+export const actorType = [
+    { value: 'victim', name: 'Victima' },
+    { value: 'civil-actor', name: 'Actor civil' },
+]

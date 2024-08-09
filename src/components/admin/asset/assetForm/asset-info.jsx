@@ -89,11 +89,11 @@ const AssetInfo = ({ setAssetData }) => {
       </div>
       {subCategories && (
         <div className="pt-3">
-          <Label htmlFor="subcategory">
+          <Label htmlFor="subCategory">
             Sub-categoria <span className="text-red-600">*</span>
           </Label>
           <Select
-            name="subcategory"
+            name="subCategory"
             required
             onValueChange={(value) =>
               handleChangeInput({ target: { name: "subCategory", value } })

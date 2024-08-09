@@ -2,7 +2,9 @@
 import React, { useState } from "react";
 import { useFormState } from "react-dom";
 
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { saveAsset } from "@/lib/server-actions/admin/asset-actions/asset";
+
 import {
   Accordion,
   AccordionContent,
@@ -14,9 +16,7 @@ import AssetInfo from "./asset-info";
 import JudicialProcess from "./judicial-process";
 import DestinationInfo from "./destination-info";
 import { Button } from "@/components/ui/button";
-import { saveAsset } from "@/lib/server-actions/admin/asset-actions/asset";
 // import { useS3Upload } from "next-s3-upload";
-// import { logDOM } from "@testing-library/react";
 
 const FormAsset = () => {
   const router = useRouter();
@@ -55,6 +55,14 @@ const FormAsset = () => {
 
   const [tab, setActiveTab] = useState([assetFormSteps[0].slug]);
 
+  const handleTab = (value) => {
+    let newTabs = Array.from(tab);
+    if (newTabs.includes(value))
+      newTabs = newTabs.filter((tab) => tab !== value);
+    else newTabs.push(value);
+    setActiveTab(newTabs);
+  };
+
   const submit = async (event) => {
     event.preventDefault();
     let tabs = [];
@@ -91,12 +99,24 @@ const FormAsset = () => {
 
     const formData = Object.fromEntries(data.entries());
 
+    const thirdData = {};
     Object.keys(formData).forEach((key) => {
       if (formData[key] instanceof File) {
         // const { url } = uploadToS3(formData[key]);
         formData[key] = formData[key].name;
       }
       if (formData[key] === "on") formData[key] = true;
+      if (key.startsWith("third.")) {
+        const [_, index, name] = key.split(".");
+        if (!thirdData[index]) {
+          thirdData[index] = {};
+        }
+        thirdData[index][name] = formData[key];
+        delete formData[key];
+      }
+      formData["third"] = Object.keys(thirdData)
+        .sort((a, b) => a - b)
+        .map((key) => thirdData[key]);
     });
 
     if (form.checkValidity()) {
@@ -114,11 +134,7 @@ const FormAsset = () => {
     <div className="flex">
       <div className="w-3/4 p-3">
         <form id="assetForm">
-          <Accordion
-            type="multiple"
-            defaultValue={tab}
-            onValueChange={setActiveTab}
-          >
+          <Accordion value={tab}>
             {assetFormSteps.map((step, idx) => (
               <AccordionItem
                 key={step.slug}
@@ -127,7 +143,10 @@ const FormAsset = () => {
                 data-slug={step.slug}
               >
                 <div className="rounded-2xl w-full bg-gray-50 border border-gray-100  px-3">
-                  <AccordionTrigger className="py-2 omittedButton">
+                  <AccordionTrigger
+                    onClick={() => handleTab(step.slug)}
+                    className="py-2 omittedButton"
+                  >
                     {step.title}
                   </AccordionTrigger>
                   <AccordionContent
@@ -162,3 +181,6 @@ const FormAsset = () => {
 };
 
 export default FormAsset;
+
+
+
