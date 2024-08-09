@@ -47,11 +47,9 @@ export const ExtraFieldSchema = new mongoose.Schema(
 
 // Middleware pre-save para generar el slug
 ExtraFieldSchema.pre('save', function (next) {
-  if (this.isModified('name')) {
     let toSlug = this.category.name + " " + this.name
     this.slug = createSlug(toSlug)
 
-  }
   next();
 });
 
