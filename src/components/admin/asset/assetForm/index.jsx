@@ -1,10 +1,11 @@
 "use client";
 import React, { useState } from "react";
 import { useFormState } from "react-dom";
-
 import { useRouter } from "next/navigation";
-import { saveAsset } from "@/lib/server-actions/admin/asset-actions/asset";
 
+import { useToast } from "@/components/ui/use-toast";
+
+import { saveAsset } from "@/lib/server-actions/admin/asset-actions/asset";
 import {
   Accordion,
   AccordionContent,
@@ -16,6 +17,7 @@ import AssetInfo from "./asset-info";
 import JudicialProcess from "./judicial-process";
 import DestinationInfo from "./destination-info";
 import { Button } from "@/components/ui/button";
+
 // import { useS3Upload } from "next-s3-upload";
 
 const FormAsset = () => {
@@ -25,6 +27,7 @@ const FormAsset = () => {
   const [assetData, setAssetData] = useState({});
   const [judicialData, setJudicialData] = useState({});
   const [destinationData, setDestinationtData] = useState({});
+  const { toast } = useToast();
 
   const assetFormSteps = [
     {
@@ -124,12 +127,16 @@ const FormAsset = () => {
         const asset = await saveAsset(formData);
         if (asset === "ok") router.push("/admin/bien");
       } catch (err) {
-        console.log(err);
+        console.log(err.message);
+
+        toast({
+          description: err.message,
+          variant: "destructive",
+        });
       }
     }
   };
 
-  const [errorMessage, dispatch] = useFormState(submit, undefined);
   return (
     <div className="flex">
       <div className="w-3/4 p-3">
