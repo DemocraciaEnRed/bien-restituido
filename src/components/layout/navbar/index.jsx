@@ -1,6 +1,5 @@
 // components/Navbar.js
 import Link from "next/link";
-import { User } from "./user";
 import Image from "next/image";
 
 const Navbar = async () => {
@@ -18,7 +17,6 @@ const Navbar = async () => {
               alt="logo resurgentes"
             />
           </Link>
-          <User />
         </div>
       </div>
     </nav>

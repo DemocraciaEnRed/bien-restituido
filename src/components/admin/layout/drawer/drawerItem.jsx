@@ -6,11 +6,8 @@ function DrawerItem({ url, text, icon }) {
   const pathname = usePathname();
   return (
     <li className="flex">
-      {pathname.startsWith("/admin" + url) && (
-        <span className="p-1 bg-stone-800 rounded-r-md"></span>
-      )}
       <Link
-        className={`flex items-center p-4 text-gray-700 bg-white rounded-md dark:bg-gray-800 dark:text-gray-200 `}
+        className={`py-4 mx-2 pl-4 w-full font-bold flex rounded-lg ${pathname.startsWith("/admin" + url) && "bg-blue-700 text-white shadow-md"}`}
         href={"/admin" + url}
       >
         {icon}

@@ -61,12 +61,12 @@ const FormAsset = () => {
     let form = document.getElementById("assetForm");
     Object.keys(form.elements).forEach((key) => {
       const item = form.elements[key];
-
+      
       if (
         item.classList.contains("omittedButton") ||
         item.classList.contains("submitButton")
       )
-        return;
+      return;
 
       const label = item.parentNode.getElementsByTagName("label")[0];
 

@@ -11,7 +11,7 @@ async function AssetList() {
       {assets.length ? (
         assets.map((asset) => <AssetCard key={asset._id} asset={asset} />)
       ) : (
-        <p>Todavía no hay bienes creados</p>
+        <p>Todavía no hay bienes en esta sección</p>
       )}
     </div>
   );
