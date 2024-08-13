@@ -1,6 +1,7 @@
 "use server"
 import { ExtraField } from "@/lib/models";
 import { createSlug } from "@/lib/utils";
+import { isAuthotized } from "@/lib/utils/sessions";
 
 export const saveExtraFields = async (fields, category) => {
 
@@ -59,6 +60,7 @@ export const saveExtraField = async (field) => {
 }
 
 export const getExtraFieldsByCategory = async (category) => {
+  await isAuthotized()
   try {
     const extraFields = await ExtraField.find({ category });
     return JSON.parse(JSON.stringify(extraFields))
@@ -69,6 +71,7 @@ export const getExtraFieldsByCategory = async (category) => {
 }
 
 export const getExtraFields = async () => {
+  await isAuthotized()
   try {
     const extraFields = await ExtraField.find({});
     return JSON.parse(JSON.stringify(extraFields))

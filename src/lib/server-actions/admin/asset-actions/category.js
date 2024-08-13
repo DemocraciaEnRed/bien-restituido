@@ -4,8 +4,10 @@ import { saveSubCategories } from "./sub-category";
 import { saveExtraFields } from "./extra-fields";
 import { Category, ExtraField, SubCategory } from "@/lib/models";
 import { revalidatePath } from "next/cache";
+import { isAuthotized } from "@/lib/utils/sessions";
 
 export const saveCompleteCategory = async (category, subCategories, fields) => {
+    await isAuthotized()
     let success = false
     try {
         const categoryDoc = category._id ? await editCategory(category) : await saveCategory(category);
@@ -51,6 +53,7 @@ export const deleteCategoryById = async (categoryId) => {
 }
 
 export const getCategories = async () => {
+    await isAuthotized()
     try {
         const categories = await Category.find({});
         return JSON.parse(JSON.stringify(categories))
@@ -61,6 +64,7 @@ export const getCategories = async () => {
 
 
 export const getCategoryBySlug = async (slug) => {
+    await isAuthotized()
     try {
         const category = await Category.findOne({ slug });
         return JSON.parse(JSON.stringify(category))
@@ -72,6 +76,7 @@ export const getCategoryBySlug = async (slug) => {
 }
 
 export const getCategoryById = async (id) => {
+    await isAuthotized()
     try {
         const category = await Category.findOne({ _id: id });
         return JSON.parse(JSON.stringify(category))
@@ -82,6 +87,7 @@ export const getCategoryById = async (id) => {
 }
 
 export const getCategoryByName = async (name) => {
+    await isAuthotized()
     try {
         const category = await Category.findOne({ name });
         return JSON.parse(JSON.stringify(category))
