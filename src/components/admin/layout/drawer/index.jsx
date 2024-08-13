@@ -4,22 +4,27 @@ import {
   Settings,
   User,
   Users,
+  LogOut
 } from "lucide-react";
 import { UserInfo } from "./userInfo";
 import BienesDrawerItem from "./bienesDrawerItem";
 
+import { deleteSession } from "@/lib/utils/sessions";
+import { Button } from "@/components/ui/button";
+import { redirect } from "next/navigation";
 
-const settingDrawerList = [
-  { url: "/configuracion", icon: <Settings />, text: "Configuración" },
-  { url: "/perfil", icon: <User />, text: "Perfil" },
-  { url: "/usuarios", icon: <Users />, text: "Usuarios" },
-];
 
 async function Drawer() {
 
+  const logout = async () => {
+    "use server";
+    await deleteSession();
+    redirect("/");
+  };
+
   return (
     <aside
-      className={`flex flex-col w-64 min-h-[calc(100vh_-_theme(height.nav))] overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700`}
+      className="flex flex-col w-64 min-h-full overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l "
     >
       <div className="flex flex-col flex-1 mt-6 gap-8">
         <ul className="flex flex-col gap-4">
@@ -30,7 +35,11 @@ async function Drawer() {
         </ul>
         <hr />        
         <ul className="flex flex-col gap-4">
-          {settingDrawerList.map((item) => (
+          {[
+              { url: "/configuracion", icon: <Settings />, text: "Configuración" },
+              { url: "/perfil", icon: <User />, text: "Perfil" },
+              { url: "/usuarios", icon: <Users />, text: "Usuarios" },
+            ].map((item) => (
             <DrawerItem
               key={item.url}
               url={item.url}
@@ -38,6 +47,11 @@ async function Drawer() {
               icon={item.icon}
             />
           ))}
+        </ul>
+        <ul className="flex flex-col justify-end h-full pb-3">
+          <form action={logout}>
+            <Button className="w-full gap-1.5 text-muted-foreground" variant="ghost"><LogOut /> Cerrar sesión</Button>
+          </form>          
         </ul>
       </div>
     </aside>
