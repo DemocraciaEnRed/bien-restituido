@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
 
 import { useToast } from "@/components/ui/use-toast";
@@ -109,17 +108,6 @@ const FormAsset = () => {
         formData[key] = formData[key].name;
       }
       if (formData[key] === "on") formData[key] = true;
-      if (key.startsWith("third.")) {
-        const [_, index, name] = key.split(".");
-        if (!thirdData[index]) {
-          thirdData[index] = {};
-        }
-        thirdData[index][name] = formData[key];
-        delete formData[key];
-      }
-      formData["third"] = Object.keys(thirdData)
-        .sort((a, b) => a - b)
-        .map((key) => thirdData[key]);
     });
 
     if (form.checkValidity()) {

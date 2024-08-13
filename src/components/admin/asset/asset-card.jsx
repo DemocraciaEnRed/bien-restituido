@@ -5,7 +5,6 @@ import {
   CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
 import { getExtraFieldsByCategory } from "@/lib/server-actions/admin/asset-actions/extra-fields";
 import { fontAwesomeIcons, showCardOptions } from "@/lib/utils/constants";

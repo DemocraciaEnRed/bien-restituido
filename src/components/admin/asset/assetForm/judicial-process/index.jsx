@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -10,14 +10,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
-import {
-  getLocation,
-  getProvinces,
-} from "@/lib/server-actions/admin/asset-actions/location";
 
-import React from "react";
 import { Checkbox } from "@/components/ui/checkbox";
-import ThirdPartForm from "./third-part-form";
+import ThirdPartForm from "./third-parties-form";
 
 const JudicialInfo = ({ setJudicialData }) => {
   const [data, setData] = useState(null);

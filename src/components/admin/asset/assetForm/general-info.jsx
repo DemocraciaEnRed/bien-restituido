@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -15,7 +15,6 @@ import {
   getProvinces,
 } from "@/lib/server-actions/admin/asset-actions/location";
 
-import React from "react";
 import { ChevronDown } from "lucide-react";
 
 const GeneralInfo = ({ setGeneralData }) => {

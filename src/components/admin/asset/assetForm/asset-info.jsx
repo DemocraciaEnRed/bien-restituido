@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useFormState } from "react-dom";
 
-import { saveAsset } from "@/lib/server-actions/admin/asset-actions/asset";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { SubmitButton } from "@/components/ui/submit-button";
 import {
   Select,
   SelectContent,
@@ -12,7 +9,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useRouter } from "next/navigation";
 import { getExtraFieldsByCategory } from "@/lib/server-actions/admin/asset-actions/extra-fields";
 import { getSubCategoriesByCategory } from "@/lib/server-actions/admin/asset-actions/sub-category";
 import { fontAwesomeIcons } from "@/lib/utils/constants";

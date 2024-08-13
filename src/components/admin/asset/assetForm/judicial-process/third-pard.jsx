@@ -1,22 +1,31 @@
+import React from "react";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { actorType } from "@/lib/utils/constants";
 import { Trash } from "lucide-react";
-import React, { useState } from "react";
 
-const RenderThirdParties = ({ number, deleteThird }) => {
-  const [dataActorType, setDataActorType] = useState(null);
-
+const ThirdPart = ({ values, number, deleteThirdPart, setValues }) => {
   return (
-    <div key={number} className="bg-slate-200 p-4 rounded-lg mb-3">
+    <div className="bg-slate-200 p-4 rounded-lg mb-3">
       <div className="flex justify-between">
-        <h5>Tercero nº {number}</h5>
-        {/* <Trash
-          onClick={deleteThird}
-          data-number={number}
-          className="cursor-pointer"
-        /> */}
+        <h5>Tercero nº {number + 1}</h5>
+        <Button
+          type="button"
+          variant="outline"
+          size="icon"
+          onClick={() => deleteThirdPart(number)}
+        >
+          <Trash className="cursor-pointer" />
+        </Button>
       </div>
       <div>
         <p className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 pt-3">
@@ -32,12 +41,13 @@ const RenderThirdParties = ({ number, deleteThird }) => {
                 id={`${type.value}${number}`}
                 value={type.value}
                 required
-                onChange={(event) => setDataActorType(event.target.value)}
+                onChange={setValues}
+                checked={values.type === type.value}
               />
               <label
                 htmlFor={`${type.value}${number}`}
                 className={`border-2 rounded-md p-3 cursor-pointer border-slate-300   ${
-                  dataActorType && dataActorType === type.value
+                  values.type === type.value
                     ? "bg-slate-600 text-white"
                     : "text-slate-600 bg-white"
                 }`}
@@ -53,9 +63,11 @@ const RenderThirdParties = ({ number, deleteThird }) => {
           Apellido<span className="text-red-600">*</span>
         </Label>
         <Input
+          onChange={setValues}
           id={`third.${number}.lastName`}
           name={`third.${number}.lastName`}
           type="text"
+          value={values.lastName}
           required
         />
       </div>
@@ -64,31 +76,47 @@ const RenderThirdParties = ({ number, deleteThird }) => {
           Nombre<span className="text-red-600">*</span>
         </Label>
         <Input
+          onChange={setValues}
           id={`third.${number}.name`}
           name={`third.${number}.name`}
           type="text"
+          value={values.name}
           required
         />
       </div>
       <div>
         <Label className="pt-3" htmlFor={`third.${number}.typeId`}>
-          Tipo de identificación<span className="text-red-600">*</span>
+          Tipo de identificación <span className="text-red-600">*</span>
         </Label>
-        <Input
+        <Select
           id={`third.${number}.typeId`}
           name={`third.${number}.typeId`}
-          type="text"
           required
-        />
+          onValueChange={(value) =>
+            setValues({
+              target: { name: `third.${number}.typeId`, value },
+            })
+          }
+        >
+          <SelectTrigger>
+            {values.typeId || <SelectValue placeholder="Seleccionar tipo " />}
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="dni">DNI</SelectItem>
+            <SelectItem value="libreta">Libreta</SelectItem>
+          </SelectContent>
+        </Select>
       </div>
       <div>
         <Label className="pt-3" htmlFor={`third.${number}.numberId`}>
           Numero de identificación<span className="text-red-600">*</span>
         </Label>
         <Input
+          onChange={setValues}
           id={`third.${number}.numberId`}
           name={`third.${number}.numberId`}
           type="text"
+          value={values.numberId}
           required
         />
       </div>
@@ -96,37 +124,4 @@ const RenderThirdParties = ({ number, deleteThird }) => {
   );
 };
 
-const ThirdPartForm = () => {
-  const [quantity, setQuantity] = useState(1);
-  const list = Array.from({ length: quantity }, (_, index) => index + 1);
-
-  const addQuantity = () => {
-    setQuantity(quantity + 1);
-  };
-
-  const deleteThird = (event) => {
-    console.log(event.target.dataset);
-  };
-
-  return (
-    <div>
-      {list.map((number) => (
-        <RenderThirdParties
-          key={number}
-          number={number}
-          deleteThird={deleteThird}
-        />
-      ))}
-      <Button
-        type="button"
-        variant="outline"
-        className="border-primary text-primary hover:bg-primary hover:text-white rounded-full omittedButton"
-        onClick={addQuantity}
-      >
-        Agregar nuevo involucrado
-      </Button>
-    </div>
-  );
-};
-
-export default ThirdPartForm;
+export default ThirdPart;
