@@ -101,7 +101,6 @@ const FormAsset = () => {
 
     const formData = Object.fromEntries(data.entries());
 
-    const thirdData = {};
     Object.keys(formData).forEach((key) => {
       if (formData[key] instanceof File) {
         // const { url } = uploadToS3(formData[key]);

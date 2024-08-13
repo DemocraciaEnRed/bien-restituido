@@ -17,7 +17,6 @@ import { getCategories } from "@/lib/server-actions/admin/asset-actions/category
 const AssetInfo = ({ setAssetData }) => {
   const [categories, setCategories] = useState(null);
   const [data, setData] = useState({});
-  const [category, setCategory] = useState(null);
   const [subCategories, setSubCategories] = useState(null);
   const [extraFields, setExtraFields] = useState(null);
 
