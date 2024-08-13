@@ -18,7 +18,7 @@ export const saveCompleteCategory = async (category, subCategories, fields) => {
         await deleteCategoryByName(category)
         throw new Error(error)
     }
-    if (success) redirect('/admin/categorias')
+    if (success) redirect('/admin/configuracion')
 }
 
 export const editCategory = async (category) => {
@@ -48,7 +48,7 @@ export const deleteCategoryById = async (categoryId) => {
     } catch (err) {
         console.log(err);
     }
-    revalidatePath(`/admin/categorias`)
+    revalidatePath(`/admin/configuracion`)
 
 }
 

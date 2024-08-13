@@ -6,9 +6,7 @@ async function Usuarios() {
 
   return (
     <>
-      <div className="text-center">
-        <h1 className="text-4xl">Usuarios</h1>
-      </div>
+      <h1 className="text-3xl font-bold mr-5 mb-5">Usuarios</h1>
       {users && <UserTable users={users} />}
     </>
   );

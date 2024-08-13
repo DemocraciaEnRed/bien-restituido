@@ -6,15 +6,18 @@ import AssetList from "@/components/admin/asset/asset-list";
 const Asset = () => {
   return (
     <div>
+      <div className="flex flex-row mb-5">
+        <h1 className="text-3xl font-bold mr-5">Buscador de bienes</h1>
+        <Link
+          className={buttonVariants({ variant: "default" })}
+          href="/admin/bien/nuevo"
+        >
+          Nuevo bien + 
+        </Link>
+      </div>
       <AssetSerch />
 
       <AssetList />
-      <Link
-        className={buttonVariants({ variant: "outline" })}
-        href="/admin/bien/nuevo"
-      >
-        Nuevo bien
-      </Link>
     </div>
   );
 };

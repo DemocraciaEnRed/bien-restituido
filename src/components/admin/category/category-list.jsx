@@ -49,13 +49,13 @@ const CategoryList = ({ categories }) => {
                   <TableCell className="font-medium">{category.name}</TableCell>
                   <TableCell className="flex justify-end gap-6">
                     <Link
-                      href={`/admin/categorias/${category.slug}`}
+                      href={`/admin/configuracion/categorias/${category.slug}`}
                       className={buttonVariants({ variant: "ghost" })}
                     >
                       <Eye />
                     </Link>
                     <Link
-                      href={`/admin/categorias/${category.slug}/editar`}
+                      href={`/admin/configuracion/categorias/${category.slug}/editar`}
                       className={buttonVariants({ variant: "ghost" })}
                     >
                       <Pencil />
