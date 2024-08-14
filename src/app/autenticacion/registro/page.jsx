@@ -26,7 +26,7 @@ export default function Register() {
         <div className="flex flex-col items-center justify-center space-y-3 border-b border-gray-200 bg-white px-4 py-6 pt-8 text-center sm:px-16">
           <h3 className="text-xl font-semibold">Registro</h3>
           <p className="text-sm text-gray-500">
-            Crea una cuenta con tu correo electrónico y contraseña{" "}
+            Crea una cuenta con tu correo electrónico y contraseña
           </p>
         </div>
         <RegisterForm status={status} action={action}>
@@ -39,7 +39,7 @@ export default function Register() {
             )}
           <SubmitButton text="Registrar" />
           <p className="text-center text-sm text-gray-600">
-            ¿Ya tienes una cuenta?{" "}
+            ¿Ya tienes una cuenta?
             <button
               onClick={() => redirectHard("/autenticacion/inicio")}
               className="font-semibold text-gray-800"
