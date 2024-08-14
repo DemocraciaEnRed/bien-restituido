@@ -17,7 +17,7 @@ export const saveAsset = async (formData) => {
 
 export async function getAssets() {
     await isAuthotized()
-        const assets = await Asset.find({}).populate('subCategory')
+        const assets = await Asset.find({}).populate('category').populate('subCategory')
     return JSON.parse(JSON.stringify(assets))
 
 }       

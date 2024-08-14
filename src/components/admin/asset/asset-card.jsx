@@ -1,4 +1,5 @@
-import React from "react";
+'use client'
+import React, { useState } from "react";
 import {
   Card,
   CardContent,
@@ -11,21 +12,21 @@ import { fontAwesomeIcons, showCardOptions } from "@/lib/utils/constants";
 import { Button } from "@/components/ui/button";
 
 const AssetCard = async ({ asset }) => {
+  const [showMore, setShowMore] = useState(false)
   const extraFields = await getExtraFieldsByCategory(asset.category);
   const renderFieldShowCard = () => {
     return (
-      <>
+      <span>
         {extraFields.map((field) => {
           if (field.showCard === showCardOptions.ALLWAYS.value) {
             return (
-              <span key={field._id}>
-                <span className="font-bold">{field.name}</span>:
-                {asset.extras[field.slug]}
+              <span key={field._id} className="ml-3">
+                <span className="font-bold">{field.name}</span>: {asset.extras[field.slug]}
               </span>
             );
           }
         })}
-      </>
+      </span>
     );
   };
   return (
@@ -44,14 +45,22 @@ const AssetCard = async ({ asset }) => {
       </div>
       <div>
         <CardHeader>
-          <CardDescription>
-            #{asset.subCategory?.name},{renderFieldShowCard()}
-          </CardDescription>
+          <CardContent>
+            <div><span className="font-bold">{asset.category.name}:</span> {asset.subCategory?.name} {renderFieldShowCard()}</div>
+            <div className="mt-2">
+              {asset.confiscated && <span className="bg-gray-200 rounded-lg p-2 font-sm">Decomisado</span>}
+              {asset.destination && <span className="bg-red-300 rounded-lg p-2 font-sm ml-2">{asset.destination}</span>}
+            </div>
+            
+            <div className={`${!showMore && "hidden" }`}>
+              <hr />
+              Hola!
+            </div>
+          </CardContent>
         </CardHeader>
-        <CardContent></CardContent>
-        <CardFooter>
-          <Button variant="link">Ver menos</Button>
-        </CardFooter>
+        {/* <CardFooter>
+          <Button onClick={() => setShowMore(!showMore)} variant="link">{showMore?"Ver menos":"Ver más"}</Button>
+        </CardFooter> */}
       </div>
     </Card>
   );
