@@ -1,4 +1,5 @@
-import React from "react";
+'use client'
+import React, { useEffect, useState } from "react";
 import {
   Card,
   CardContent,
@@ -12,24 +13,36 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { Pencil } from "lucide-react";
 import Link from "next/link";
 
-const AssetCard = async ({ asset }) => {
-  const extraFields = await getExtraFieldsByCategory(asset.category);
+const AssetCard = ({ asset }) => {
+  const [showMore, setShowMore] = useState(false);
+  const [extraFields, setExtraFields] = useState([]);
+  // const extraFields = await getExtraFieldsByCategory(asset.category);
   const renderFieldShowCard = () => {
     return (
-      <>
+      <span>
         {extraFields.map((field) => {
           if (field.showCard === showCardOptions.ALLWAYS.value) {
             return (
-              <span key={field._id}>
-                <span className="font-bold">{field.name}</span>:
+              <span key={field._id} className="ml-3">
+                <span className="font-bold">{field.name}</span>:{" "}
                 {asset.extras[field.slug]}
               </span>
             );
           }
         })}
-      </>
+      </span>
     );
   };
+
+  const getFIelds = async () => {
+    const fields = await getExtraFieldsByCategory(asset.category);
+    setExtraFields(fields);
+  };
+
+  useEffect(() => {
+    getFIelds();
+  }, []);
+
   return (
     <Card
       className="flex border-y-0 border-r-0 border-l-8 my-4"
@@ -46,19 +59,39 @@ const AssetCard = async ({ asset }) => {
       </div>
       <div>
         <CardHeader>
-          <CardDescription>
-            #{asset.subCategory?.name},{renderFieldShowCard()}
-            <Link
-              href={`/admin/bien/editar/${asset._id}`}
-              className={buttonVariants({ variant: "ghost" })}
-            >
-              <Pencil />
-            </Link>
-          </CardDescription>
+          <CardContent>
+            <div>
+              <span className="font-bold">{asset.category.name}:</span>{" "}
+              {asset.subCategory?.name} {renderFieldShowCard()}
+            </div>
+            <div className="mt-2 flex gap-2">
+              {asset.confiscated && (
+                <span className="bg-gray-200 rounded-lg p-2 font-sm">
+                  Decomisado
+                </span>
+              )}
+              {asset.destination && (
+                <span className="bg-red-300 rounded-lg p-2 font-sm">
+                  {asset.destination}
+                </span>
+              )}
+              <Link
+                href={`/admin/bien/editar/${asset._id}`}
+                className={buttonVariants({ variant: "ghost" })}
+              >
+                <Pencil />
+              </Link>
+            </div>
+            <div className={`${!showMore && "hidden"}`}>
+              <hr />
+              Hola!
+            </div>
+          </CardContent>
         </CardHeader>
-        <CardContent></CardContent>
         <CardFooter>
-          <Button variant="link">Ver menos</Button>
+          <Button onClick={() => setShowMore(!showMore)} variant="link">
+            {showMore ? "Ver menos" : "Ver más"}
+          </Button>
         </CardFooter>
       </div>
     </Card>
