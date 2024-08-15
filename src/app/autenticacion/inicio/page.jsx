@@ -36,7 +36,7 @@ export default function Login({ searchParams }) {
           />
           <SubmitButton text="iniciar sesión" />
           <p className="text-center text-sm text-gray-600">
-            ¿No tienes una cuenta?{" "}
+            ¿No tienes una cuenta?
             <Link
               href="/autenticacion/registro"
               className="font-semibold text-gray-800"

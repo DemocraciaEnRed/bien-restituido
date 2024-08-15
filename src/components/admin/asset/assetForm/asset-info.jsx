@@ -123,7 +123,7 @@ const AssetInfo = ({ setAssetData }) => {
               id={`extras.${input.slug}`}
             >
               <Label htmlFor={`extras.${input.slug}`}>
-                {input.name}{" "}
+                {input.name}
                 {input.required && <span className="text-red-600">*</span>}
               </Label>
               <Input

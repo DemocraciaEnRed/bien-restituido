@@ -35,7 +35,7 @@ function UserRole({ user }) {
   return (
     <div className="text-lg text-gray-700 mb-4 flex justify-between">
       <div>
-        <strong>Rol:</strong> {user.role}{" "}
+        <strong>Rol:</strong> {user.role}
       </div>
       <Dialog open={modalOpen} onOpenChange={setModalOpen}>
         <DialogTrigger asChild>

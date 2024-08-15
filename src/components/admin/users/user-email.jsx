@@ -27,7 +27,7 @@ function UserEmail({ user }) {
   return (
     <div className="text-lg text-gray-700 mb-4 flex justify-between">
       <div>
-        <strong>email:</strong> {user.email}{" "}
+        <strong>email:</strong> {user.email}
       </div>
       <Dialog open={modalOpen} onOpenChange={setModalOpen}>
         <DialogTrigger asChild>
