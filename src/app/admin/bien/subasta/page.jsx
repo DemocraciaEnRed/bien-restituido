@@ -7,7 +7,7 @@ const Asset = () => {
     <div>
       <h1 className="text-3xl font-bold mr-5 mb-5">Bienes en proceso de subasta</h1>
       <AssetSerch />
-      <AssetList />
+      <AssetList filter={{destination: 'auction'}} />
     </div>
   );
 };

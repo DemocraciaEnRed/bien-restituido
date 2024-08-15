@@ -59,7 +59,7 @@ const AssetCard = async ({ asset }) => {
           </CardContent>
         </CardHeader>
         {/* <CardFooter>
-          <Button onClick={() => setShowMore(!showMore)} variant="link">{showMore?"Ver menos":"Ver más"}</Button>
+          <Button onClick={() => setShowMore(!showMore)} variant="link">"{showMore?"Ver menos":"Ver más"}"</Button>
         </CardFooter> */}
       </div>
     </Card>
