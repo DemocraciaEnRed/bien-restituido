@@ -44,3 +44,20 @@ export function createSlug(text) {
     .replace(/\s+/g, '-') // Reemplazar espacios con guiones
     .replace(/-+/g, '-'); // Reemplazar múltiples guiones con uno solo
 }
+
+export function formatDate(fecha) {
+  const date = new Date(fecha)
+  let año = date.getFullYear();
+  let mes = (date.getMonth() + 1).toString().padStart(2, '0');
+  let dia = date.getDate().toString().padStart(2, '0');
+  return `${año}-${mes}-${dia}`;
+}
+
+export function formatKeyObject(objeto, prefix) {
+  if (!objeto) return null;
+  const objectFormated = {};
+  Object.keys(objeto).forEach((key) => {
+    objectFormated[prefix + "." + key] = objeto[key];
+  });
+  return objectFormated;
+}

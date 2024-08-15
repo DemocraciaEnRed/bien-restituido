@@ -81,7 +81,7 @@ export const AssetSchema = new mongoose.Schema(
         confiscatedResolution: {
             type: String
         },
-        Juzgado: {
+        juzgado: {
             type: String
         },
         fiscalia: {

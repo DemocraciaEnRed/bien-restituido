@@ -8,7 +8,9 @@ import {
 } from "@/components/ui/card";
 import { getExtraFieldsByCategory } from "@/lib/server-actions/admin/asset-actions/extra-fields";
 import { fontAwesomeIcons, showCardOptions } from "@/lib/utils/constants";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { Pencil } from "lucide-react";
+import Link from "next/link";
 
 const AssetCard = async ({ asset }) => {
   const extraFields = await getExtraFieldsByCategory(asset.category);
@@ -46,6 +48,12 @@ const AssetCard = async ({ asset }) => {
         <CardHeader>
           <CardDescription>
             #{asset.subCategory?.name},{renderFieldShowCard()}
+            <Link
+              href={`/admin/bien/editar/${asset._id}`}
+              className={buttonVariants({ variant: "ghost" })}
+            >
+              <Pencil />
+            </Link>
           </CardDescription>
         </CardHeader>
         <CardContent></CardContent>

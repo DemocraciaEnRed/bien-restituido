@@ -13,9 +13,11 @@ import { Separator } from "@/components/ui/separator";
 
 import { Checkbox } from "@/components/ui/checkbox";
 import ThirdPartForm from "./third-parties-form";
+import { formatDate } from "@/lib/utils";
+import SelectCustom from "@/components/ui/select-custom";
 
-const JudicialInfo = ({ setJudicialData }) => {
-  const [data, setData] = useState(null);
+const JudicialInfo = ({ assetEdit }) => {
+  const [data, setData] = useState(assetEdit || null);
 
   const handleChangeInput = (event) => {
     if (data) {
@@ -33,8 +35,6 @@ const JudicialInfo = ({ setJudicialData }) => {
       };
       setData(inputData);
     }
-
-    setJudicialData(data);
   };
 
   return (
@@ -48,6 +48,7 @@ const JudicialInfo = ({ setJudicialData }) => {
           id="cautelaDate"
           type="date"
           required
+          defaultValue={assetEdit && formatDate(assetEdit.cautelaDate)}
           className="block"
           name="cautelaDate"
           onChange={handleChangeInput}
@@ -72,6 +73,7 @@ const JudicialInfo = ({ setJudicialData }) => {
         <Checkbox
           name="confiscated"
           id="confiscated"
+          checked={data?.confiscated}
           onCheckedChange={(value) =>
             handleChangeInput({
               target: { name: "confiscated", value },
@@ -94,6 +96,7 @@ const JudicialInfo = ({ setJudicialData }) => {
               type="date"
               className="block"
               required
+              defaultValue={assetEdit && formatDate(assetEdit.confiscatedDate)}
               onChange={handleChangeInput}
             />
           </div>
@@ -115,70 +118,61 @@ const JudicialInfo = ({ setJudicialData }) => {
       <Separator className="w-1/2 my-3 h-1 mx-auto" />
       <h2 className="text-xl">Proceso judicial</h2>
       <div>
-        <Label className="pt-3" htmlFor="Juzgado">
+        <Label className="pt-3" htmlFor="juzgado">
           Juzgado <span className="text-red-600">*</span>
         </Label>
-        <Select
-          name="Juzgado"
-          id="Juzgado"
+        <SelectCustom
+          name="juzgado"
+          id="juzgado"
           required
-          onValueChange={(value) =>
-            handleChangeInput({ target: { name: "Juzgado", value } })
-          }
+          defaultValue={(assetEdit && assetEdit.juzgado) || ""}
+          onChange={handleChangeInput}
         >
-          <SelectTrigger>
-            <SelectValue placeholder="Seleccionar provincia " />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="1">1</SelectItem>
-            <SelectItem value="2">2</SelectItem>
-            <SelectItem value="3">3</SelectItem>
-          </SelectContent>
-        </Select>
+          <option value="" disabled>
+            Seleccioná juzgado
+          </option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </SelectCustom>
       </div>
       <div>
         <Label className="pt-3" htmlFor="fiscalia">
           Fiscalia <span className="text-red-600">*</span>
         </Label>
-        <Select
+        <SelectCustom
           name="fiscalia"
           id="fiscalia"
           required
-          onValueChange={(value) =>
-            handleChangeInput({ target: { name: "fiscalia", value } })
-          }
+          defaultValue={(assetEdit && assetEdit.fiscalia) || ""}
+          onChange={handleChangeInput}
         >
-          <SelectTrigger>
-            <SelectValue placeholder="Seleccionar provincia " />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="1">1</SelectItem>
-            <SelectItem value="2">2</SelectItem>
-            <SelectItem value="3">3</SelectItem>
-          </SelectContent>
-        </Select>
+          <option value="" disabled>
+            Seleccioná juzgado
+          </option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </SelectCustom>
       </div>
       <div>
         <Label className="pt-3" htmlFor="tribunal">
           Tribunal<span className="text-red-600">*</span>
         </Label>
-        <Select
+        <SelectCustom
           name="tribunal"
           id="tribunal"
           required
-          onValueChange={(value) =>
-            handleChangeInput({ target: { name: "tribunal", value } })
-          }
+          defaultValue={(assetEdit && assetEdit.tribunal) || ""}
+          onChange={handleChangeInput}
         >
-          <SelectTrigger>
-            <SelectValue placeholder="Seleccionar provincia " />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="1">1</SelectItem>
-            <SelectItem value="2">2</SelectItem>
-            <SelectItem value="3">3</SelectItem>
-          </SelectContent>
-        </Select>
+          <option value="" disabled>
+            Seleccioná tribunal
+          </option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </SelectCustom>
       </div>
       <div>
         <Label className="pt-3" htmlFor="causeNumber">
@@ -189,6 +183,7 @@ const JudicialInfo = ({ setJudicialData }) => {
           name="causeNumber"
           type="text"
           required
+          defaultValue={assetEdit && assetEdit.causeNumber}
           onChange={handleChangeInput}
         />
       </div>
@@ -201,6 +196,7 @@ const JudicialInfo = ({ setJudicialData }) => {
           name="causeCoverSheet"
           type="text"
           required
+          defaultValue={assetEdit && assetEdit.causeCoverSheet}
           onChange={handleChangeInput}
         />
       </div>
@@ -208,6 +204,7 @@ const JudicialInfo = ({ setJudicialData }) => {
         <Checkbox
           name="thirdParties"
           id="thirdParties"
+          checked={assetEdit && assetEdit.thirdParties}
           onCheckedChange={(value) =>
             handleChangeInput({ target: { name: "thirdParties", value } })
           }
@@ -216,7 +213,7 @@ const JudicialInfo = ({ setJudicialData }) => {
           ¿Hay terceros involucrados?
         </Label>
       </div>
-      {data && data.thirdParties && <ThirdPartForm />}
+      {data && data.thirdParties && <ThirdPartForm assetEdit={assetEdit} />}
     </div>
   );
 };

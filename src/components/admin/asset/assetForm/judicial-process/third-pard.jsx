@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/select";
 import { actorType } from "@/lib/utils/constants";
 import { Trash } from "lucide-react";
+import SelectCustom from "@/components/ui/select-custom";
 
 const ThirdPart = ({ values, number, deleteThirdPart, setValues }) => {
   return (
@@ -88,24 +89,20 @@ const ThirdPart = ({ values, number, deleteThirdPart, setValues }) => {
         <Label className="pt-3" htmlFor={`third.${number}.typeId`}>
           Tipo de identificación <span className="text-red-600">*</span>
         </Label>
-        <Select
+        <SelectCustom
           id={`third.${number}.typeId`}
           name={`third.${number}.typeId`}
+          className="bg-white"
           required
-          onValueChange={(value) =>
-            setValues({
-              target: { name: `third.${number}.typeId`, value },
-            })
-          }
+          defaultValue={values.typeId}
+          onChange={setValues}
         >
-          <SelectTrigger>
-            {values.typeId || <SelectValue placeholder="Seleccionar tipo " />}
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="dni">DNI</SelectItem>
-            <SelectItem value="libreta">Libreta</SelectItem>
-          </SelectContent>
-        </Select>
+          <option value="" disabled>
+            Seleccionar tipo
+          </option>
+          <option value="dni">DNI</option>
+          <option value="libreta">libreta</option>
+        </SelectCustom>
       </div>
       <div>
         <Label className="pt-3" htmlFor={`third.${number}.numberId`}>

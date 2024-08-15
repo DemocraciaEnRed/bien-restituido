@@ -6,8 +6,8 @@ import { Input } from "@/components/ui/input";
 import Auction from "./auction";
 import Reuse from "./reuse";
 
-function DestinationInfo({ setDestinationtData }) {
-  const [data, setData] = useState(null);
+function DestinationInfo({ assetEdit }) {
+  const [data, setData] = useState(assetEdit || null);
 
   const handleChangeInput = (event) => {
     if (data) {
@@ -19,12 +19,11 @@ function DestinationInfo({ setDestinationtData }) {
       };
       setData(inputData);
     }
-    setDestinationtData(data);
   };
 
   const formDestinationType = {
-    auction: <Auction />,
-    reuse: <Reuse />,
+    auction: <Auction assetEdit={assetEdit} />,
+    reuse: <Reuse assetEdit={assetEdit} />,
     Testing: null,
   };
 
@@ -41,6 +40,7 @@ function DestinationInfo({ setDestinationtData }) {
               id={destination.value}
               value={destination.value}
               required
+              checked={assetEdit && data.destination === destination.value}
               onChange={handleChangeInput}
             />
             <label

@@ -13,10 +13,12 @@ import { getExtraFieldsByCategory } from "@/lib/server-actions/admin/asset-actio
 import { getSubCategoriesByCategory } from "@/lib/server-actions/admin/asset-actions/sub-category";
 import { fontAwesomeIcons } from "@/lib/utils/constants";
 import { getCategories } from "@/lib/server-actions/admin/asset-actions/category";
+import SelectCustom from "@/components/ui/select-custom";
+import { assert } from "react-resizable-panels";
 
-const AssetInfo = ({ setAssetData }) => {
+const AssetInfo = ({ assetEdit }) => {
   const [categories, setCategories] = useState(null);
-  const [data, setData] = useState({});
+  const [data, setData] = useState(assetEdit || {});
   const [subCategories, setSubCategories] = useState(null);
   const [extraFields, setExtraFields] = useState(null);
 
@@ -33,7 +35,7 @@ const AssetInfo = ({ setAssetData }) => {
   };
 
   const handleChangeInput = (event) => {
-    if (data) {
+    if (Object.keys(data).length === 0 && data.constructor === Object) {
       data[event.target.name] = event.target.value;
       setData({ ...data });
     } else {
@@ -46,11 +48,14 @@ const AssetInfo = ({ setAssetData }) => {
       handleCategory(event.target.value);
       setData({ category: event.target.value });
     }
-    setAssetData(data);
   };
 
   useEffect(() => {
     fetchCategories();
+    if (assetEdit)
+      handleChangeInput({
+        target: { name: "category", value: assetEdit.category },
+      });
   }, []);
 
   return (
@@ -61,55 +66,44 @@ const AssetInfo = ({ setAssetData }) => {
             <Label htmlFor="category">
               Tipo de Activo <span className="text-red-600">*</span>
             </Label>
-            <Select
+            <SelectCustom
               name="category"
               required
-              onValueChange={(value) =>
-                handleChangeInput({ target: { name: "category", value } })
-              }
+              defaultValue={(assetEdit && assetEdit.category) || ""}
+              onChange={handleChangeInput}
             >
-              <SelectTrigger>
-                <SelectValue placeholder="Categoria" />
-              </SelectTrigger>
-              <SelectContent>
-                {categories.map((category) => (
-                  <SelectItem key={category._id} value={category._id}>
-                    {category.name}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+              <option value="" disabled>
+                Categoría
+              </option>
+              {categories.map((category) => (
+                <option key={category._id} value={category._id}>
+                  {category.name}
+                </option>
+              ))}
+            </SelectCustom>
           </div>
         )}
       </div>
       {subCategories && (
-        <div className="pt-3">
+        <div className="pt-3 relative">
           <Label htmlFor="subCategory">
             Sub-categoria <span className="text-red-600">*</span>
           </Label>
-          <Select
+          <SelectCustom
             name="subCategory"
             required
-            onValueChange={(value) =>
-              handleChangeInput({ target: { name: "subCategory", value } })
-            }
+            defaultValue={(assetEdit && assetEdit.subCategory) || ""}
+            onChange={handleChangeInput}
           >
-            <SelectTrigger>
-              <SelectValue placeholder="Sub-categoria" />
-            </SelectTrigger>
-            <SelectContent>
-              {subCategories.map((subCategory) => (
-                <SelectItem key={subCategory._id} value={subCategory._id}>
-                  {
-                    fontAwesomeIcons.find(
-                      (icon) => icon.name == subCategory.icon
-                    ).icon
-                  }
-                  <span className="ml-3 inline-block">{subCategory.name}</span>
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+            <option value="" disabled>
+              Sub-categoría
+            </option>
+            {subCategories.map((subCategory) => (
+              <option key={subCategory._id} value={subCategory._id}>
+                {subCategory.name}
+              </option>
+            ))}
+          </SelectCustom>
         </div>
       )}
 
@@ -130,6 +124,7 @@ const AssetInfo = ({ setAssetData }) => {
                 type={input.type}
                 name={`extras.${input.slug}`}
                 onChange={handleChangeInput}
+                defaultValue={assetEdit && assetEdit.extras[input.slug]}
                 placeholder={input.name}
                 required={input.required}
               />

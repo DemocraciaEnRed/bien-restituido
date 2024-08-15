@@ -1,5 +1,6 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { formatKeyObject } from "@/lib/utils";
 import React, { useState } from "react";
 
 const destinationStatus = [
@@ -7,8 +8,10 @@ const destinationStatus = [
   { value: "completed", name: "Subastado" },
 ];
 
-const Auction = () => {
-  const [data, setData] = useState(null);
+const Auction = ({ assetEdit }) => {
+  const [data, setData] = useState(
+    formatKeyObject(assetEdit?.destinationInfo, "destinationInfo") || null
+  );
 
   const handleChangeInput = (event) => {
     if (data) {
@@ -41,6 +44,9 @@ const Auction = () => {
                 id={status.value}
                 value={status.value}
                 required
+                checked={
+                  assetEdit && data["destinationInfo.status"] === status.value
+                }
                 onChange={handleChangeInput}
               />
               <label
@@ -69,6 +75,7 @@ const Auction = () => {
             disabled={
               !data || (data && data["destinationInfo.status"] === "pending")
             }
+            defaultValue={assetEdit?.destinationInfo.amount}
             required
             onChange={handleChangeInput}
           />
