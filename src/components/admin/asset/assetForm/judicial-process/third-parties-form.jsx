@@ -11,8 +11,10 @@ const initialState = {
   numberId: "",
 };
 
-const ThirdPartForm = () => {
-  const [thirdList, setThirdList] = useState([structuredClone(initialState)]);
+const ThirdPartForm = ({ assetEdit }) => {
+  const [thirdList, setThirdList] = useState(
+    assetEdit?.third || [structuredClone(initialState)]
+  );
 
   const addQuantity = () => {
     setThirdList([...thirdList, structuredClone(initialState)]);

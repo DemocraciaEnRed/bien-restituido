@@ -2,14 +2,17 @@ import React, { useState } from "react";
 
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { formatDate, formatKeyObject } from "@/lib/utils";
 
 const destinationStatus = [
   { value: "pending", name: "A reutilizar" },
   { value: "completed", name: "Reutilizado" },
 ];
 
-const Reuse = () => {
-  const [data, setData] = useState(null);
+const Reuse = ({ assetEdit }) => {
+  const [data, setData] = useState(
+    formatKeyObject(assetEdit?.destinationInfo, "destinationInfo") || null
+  );
 
   const handleChangeInput = (event) => {
     if (data) {
@@ -22,6 +25,7 @@ const Reuse = () => {
       setData(inputData);
     }
   };
+
   return (
     <div>
       <div className="my-3">
@@ -37,17 +41,20 @@ const Reuse = () => {
             <div key={status.value} className="my-3">
               <input
                 type="radio"
-                name="destination.status"
+                name="destinationInfo.status"
                 className="hidden"
                 id={status.value}
                 value={status.value}
                 required
+                checked={
+                  assetEdit && data["destinationInfo.status"] === status.value
+                }
                 onChange={handleChangeInput}
               />
               <label
                 htmlFor={status.value}
                 className={`border-2 rounded-md p-3 cursor-pointer border-slate-300 text-slate-600 ${
-                  data && data["destination.status"] === status.value
+                  data && data["destinationInfo.status"] === status.value
                     ? "bg-slate-600 text-white"
                     : ""
                 }`}
@@ -58,7 +65,7 @@ const Reuse = () => {
           ))}
         </div>
       </div>
-      {data && data["destination.status"] === "completed" && (
+      {data && data["destinationInfo.status"] === "completed" && (
         <div>
           <div>
             <Label className="pt-3" htmlFor="destinationInfo.agency">
@@ -70,6 +77,7 @@ const Reuse = () => {
               type="text"
               placeholder="Nombre del organismo u organización"
               required
+              defaultValue={assetEdit?.destinationInfo.agency}
               onChange={handleChangeInput}
             />
           </div>
@@ -83,6 +91,7 @@ const Reuse = () => {
               type="text"
               placeholder="CUIL"
               required
+              defaultValue={assetEdit?.destinationInfo.agencyCuil}
               onChange={handleChangeInput}
             />
           </div>
@@ -96,6 +105,7 @@ const Reuse = () => {
               type="texto"
               placeholder="Nombre del Proyecto"
               required
+              defaultValue={assetEdit?.destinationInfo.project}
               onChange={handleChangeInput}
             />
           </div>
@@ -109,6 +119,7 @@ const Reuse = () => {
               type="text"
               placeholder="Numero del proyecto"
               required
+              defaultValue={assetEdit?.destinationInfo.assignmentNumber}
               onChange={handleChangeInput}
             />
           </div>
@@ -123,6 +134,9 @@ const Reuse = () => {
                 type="date"
                 required
                 className="block"
+                defaultValue={formatDate(
+                  assetEdit?.destinationInfo.assignmentDate
+                )}
                 onChange={handleChangeInput}
               />
             </div>
@@ -137,6 +151,7 @@ const Reuse = () => {
               type="date"
               required
               className="block"
+              defaultValue={formatDate(assetEdit?.destinationInfo.expiredDate)}
               onChange={handleChangeInput}
             />
           </div>
@@ -151,6 +166,7 @@ const Reuse = () => {
               type="text"
               required
               placeholder="Nombre y apellido del responsable"
+              defaultValue={assetEdit?.destinationInfo.followManager}
               onChange={handleChangeInput}
             />
           </div>
@@ -165,6 +181,7 @@ const Reuse = () => {
               placeholder="Numero de teléfono"
               className="mb-2"
               required
+              defaultValue={assetEdit?.destinationInfo.followContactPhone}
               onChange={handleChangeInput}
             />
             <Input
@@ -173,6 +190,7 @@ const Reuse = () => {
               type="email"
               placeholder="Correo electronico"
               required
+              defaultValue={assetEdit?.destinationInfo.followContactEmail}
               onChange={handleChangeInput}
             />
           </div>

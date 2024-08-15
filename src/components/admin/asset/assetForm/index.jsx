@@ -4,7 +4,10 @@ import { useRouter } from "next/navigation";
 
 import { useToast } from "@/components/ui/use-toast";
 
-import { saveAsset } from "@/lib/server-actions/admin/asset-actions/asset";
+import {
+  editAsset,
+  saveAsset,
+} from "@/lib/server-actions/admin/asset-actions/asset";
 import {
   Accordion,
   AccordionContent,
@@ -19,39 +22,31 @@ import { Button } from "@/components/ui/button";
 
 // import { useS3Upload } from "next-s3-upload";
 
-const FormAsset = () => {
+const FormAsset = ({ assetEdit }) => {
   const router = useRouter();
   // let { uploadToS3 } = useS3Upload();
-  const [generalData, setGeneralData] = useState({});
-  const [assetData, setAssetData] = useState({});
-  const [judicialData, setJudicialData] = useState({});
-  const [destinationData, setDestinationtData] = useState({});
   const { toast } = useToast();
 
   const assetFormSteps = [
     {
       title: "Información general",
       slug: "informacion-general",
-      component: <GeneralInfo setGeneralData={setGeneralData} />,
-      data: generalData,
+      component: <GeneralInfo assetEdit={assetEdit} />,
     },
     {
       title: "Información del bien",
       slug: "informacion-bien",
-      component: <AssetInfo setAssetData={setAssetData} />,
-      data: assetData,
+      component: <AssetInfo assetEdit={assetEdit} />,
     },
     {
       title: "Proceso Judicial",
       slug: "proceso-judicial",
-      component: <JudicialProcess setJudicialData={setJudicialData} />,
-      data: judicialData,
+      component: <JudicialProcess assetEdit={assetEdit} />,
     },
     {
       title: "Información destino",
       slug: "informacion-destino",
-      component: <DestinationInfo setDestinationtData={setDestinationtData} />,
-      data: destinationData,
+      component: <DestinationInfo assetEdit={assetEdit} />,
     },
   ];
 
@@ -77,7 +72,7 @@ const FormAsset = () => {
         item.classList.contains("omittedButton") ||
         item.classList.contains("submitButton")
       )
-      return;
+        return;
 
       const label = item.parentNode.getElementsByTagName("label")[0];
 
@@ -111,7 +106,9 @@ const FormAsset = () => {
 
     if (form.checkValidity()) {
       try {
-        const asset = await saveAsset(formData);
+        let asset;
+        if (assetEdit) asset = await editAsset(assetEdit._id, formData);
+        else asset = await saveAsset(formData);
         if (asset === "ok") router.push("/admin/bien");
       } catch (err) {
         console.log(err.message);
