@@ -19,7 +19,7 @@ async function Drawer() {
   const logout = async () => {
     "use server";
     await deleteSession();
-    redirect("/");
+    redirect("/admin");
   };
 
   return (
