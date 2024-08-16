@@ -1,5 +1,4 @@
-function HomeAdmin() {
-  return <div>HomeAdmin</div>;
+import { redirect } from 'next/navigation';
+export default async function Home() {
+    redirect('/admin/bien');
 }
-
-export default HomeAdmin;
