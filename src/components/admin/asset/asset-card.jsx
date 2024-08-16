@@ -60,31 +60,49 @@ const AssetCard = ({ asset }) => {
       <div>
         <CardHeader>
           <CardContent>
-            <div>
-              <span className="font-bold">{asset.category.name}:</span>{" "}
-              {asset.subCategory?.name} {renderFieldShowCard()}
-            </div>
-            <div className="mt-2 flex gap-2">
-              {asset.confiscated && (
-                <span className="bg-gray-200 rounded-lg p-2 font-sm">
-                  Decomisado
-                </span>
-              )}
-              {asset.destination && (
-                <span className="bg-red-300 rounded-lg p-2 font-sm">
-                  {asset.destination}
-                </span>
-              )}
-              <Link
-                href={`/admin/bien/editar/${asset._id}`}
-                className={buttonVariants({ variant: "ghost" })}
-              >
-                <Pencil />
-              </Link>
-            </div>
-            <div className={`${!showMore && "hidden"}`}>
-              <hr />
-              Hola!
+            <div className="flex justify-between">
+              <div>
+                <div>
+                  <span className="font-bold">{asset.category.name}:</span>{" "}
+                  {asset.subCategory?.name} {renderFieldShowCard()}
+                </div>
+                <div className="mt-2 flex gap-2">
+                  {asset.confiscated && (
+                    <span className="bg-gray-200 rounded-lg p-2 font-sm">
+                      Decomisado
+                    </span>
+                  )}
+                  {asset.destinationInfo && asset.destinationInfo.status && (
+                    <span className="bg-red-300 rounded-lg p-2 font-sm">
+                      {{
+                        auction: {
+                          pending: "A subastar",
+                          completed: "Subastado",
+                        },
+                        reuse: {
+                          pending: "A reutilizar",
+                          completed: "Reutilizado",                          
+                        }
+                      }[asset.destination][asset.destinationInfo.status]}
+                    </span>
+                  )}
+
+                </div>
+                <div className={`${!showMore && "hidden"}`}>
+                  <hr />
+                  Hola!
+                </div>
+
+              </div>
+              <div>
+                  <Link
+                        href={`/admin/bien/editar/${asset._id}`}
+                        className={buttonVariants({ variant: "ghost" })}
+                      >
+                    <Pencil />
+                  </Link>
+              </div>
+
             </div>
           </CardContent>
         </CardHeader>
