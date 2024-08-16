@@ -31,7 +31,7 @@ function UserTable({ users }) {
         {users.map((user) => (
           <TableRow key={user._id}>
             <TableCell className="font-medium">
-              <Link href={`/admin/usuarios/${user._id}`}>{user.username}</Link>
+              <Link href={`/admin/usuarios/${user._id}`} className="underline text-blue-600">{user.username}</Link>
             </TableCell>
             <TableCell>{user.email}</TableCell>
             <TableCell>{user.role}</TableCell>
