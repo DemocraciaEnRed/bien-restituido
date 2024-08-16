@@ -36,11 +36,7 @@ export const fieldsInputTypes = [
         friendlyName: "Texto",
         description: "Permite al usuario ingresar texto libre.",
     },
-    {
-        type: "password",
-        friendlyName: "Contraseña",
-        description: "Oculta el texto ingresado, ideal para contraseñas.",
-    },
+
     {
         type: "email",
         friendlyName: "Email",
@@ -68,42 +64,7 @@ export const fieldsInputTypes = [
         friendlyName: "Fecha",
         description: "Proporciona un selector de fecha.",
     },
-    {
-        type: "time",
-        friendlyName: "Hora",
-        description: "Permite seleccionar una hora.",
-    },
-    {
-        type: "color",
-        friendlyName: "Color",
-        description: "Proporciona un selector de color.",
-    },
-    {
-        type: "search",
-        friendlyName: "Busqueda",
-        description: "Similar al texto, pero con diseño optimizado para búsquedas.",
-    },
-    {
-        type: "file",
-        friendlyName: "Archivo",
-        description: "Permite al usuario seleccionar un archivo para cargar.",
-    },
-    {
-        type: "checkbox",
-        friendlyName: "si/no",
-        description: "Permite seleccionar múltiples opciones.",
-    },
-    {
-        type: "range",
-        friendlyName: "rango",
-        description: "Permite seleccionar un valor dentro de un rango definido.",
-    },
-    {
-        type: "hidden",
-        friendlyName: "oculto",
-        description:
-            "Campo que no es visible para el usuario pero que se envía con el formulario.",
-    },
+
 ];
 
 export const assetDestination = [

@@ -138,7 +138,7 @@ const GeneralInfo = ({ assetEdit }) => {
           disabled={!provinces}
           onChange={handleChangeInput}
           required
-          value={(assetEdit && data.province) || ""}
+          defaultValue={(assetEdit && assetEdit.province) || ""}
         >
           <option value="" disabled>
             Seleccionar localidad
@@ -164,7 +164,7 @@ const GeneralInfo = ({ assetEdit }) => {
           disabled={!locations}
           onChange={handleChangeInput}
           required
-          value={(assetEdit && data.location) || ""}
+          defaultValue={(assetEdit && assetEdit.location) || ""}
         >
           <option value="" disabled>
             Seleccionar localidad

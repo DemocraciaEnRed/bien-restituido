@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -15,9 +15,27 @@ import { Checkbox } from "@/components/ui/checkbox";
 import ThirdPartForm from "./third-parties-form";
 import { formatDate } from "@/lib/utils";
 import SelectCustom from "@/components/ui/select-custom";
+import {
+  getFiscalias,
+  getJuzgados,
+} from "@/lib/server-actions/admin/juzgados-y-fiscalias";
 
 const JudicialInfo = ({ assetEdit }) => {
   const [data, setData] = useState(assetEdit || null);
+  const [juzgados, setJuzgados] = useState(null);
+  const [fiscalias, setFiscalias] = useState(null);
+
+  const fetchJuzgadosYFiscalias = async () => {
+    const juzgadosFetch = await getJuzgados();
+    const fiscaliasFetch = await getFiscalias();
+
+    setFiscalias(JSON.parse(fiscaliasFetch));
+    setJuzgados(JSON.parse(juzgadosFetch));
+  };
+
+  useEffect(() => {
+    fetchJuzgadosYFiscalias();
+  }, []);
 
   const handleChangeInput = (event) => {
     if (data) {
@@ -117,45 +135,126 @@ const JudicialInfo = ({ assetEdit }) => {
 
       <Separator className="w-1/2 my-3 h-1 mx-auto" />
       <h2 className="text-xl">Proceso judicial</h2>
-      <div>
-        <Label className="pt-3" htmlFor="juzgado">
-          Juzgado <span className="text-red-600">*</span>
-        </Label>
-        <SelectCustom
-          name="juzgado"
-          id="juzgado"
-          required
-          defaultValue={(assetEdit && assetEdit.juzgado) || ""}
-          onChange={handleChangeInput}
-        >
-          <option value="" disabled>
-            Seleccioná juzgado
-          </option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-        </SelectCustom>
+      <div className="flex">
+        <div className="w-2/4">
+          <Label className="pt-3" htmlFor="juzgadoJurisdiccion">
+            Juzgado <span className="text-red-600">*</span>
+          </Label>
+          <SelectCustom
+            name="juzgadoJurisdiccion"
+            id="juzgadoJurisdiccion"
+            required
+            defaultValue={(assetEdit && assetEdit.juzgado) || ""}
+            onChange={handleChangeInput}
+          >
+            <option value="" disabled>
+              Seleccioná juzgado
+            </option>
+            {juzgados &&
+              juzgados.map((juzgado, idx) => (
+                <option value={juzgado.jurisdiccion} key={idx}>
+                  {juzgado.jurisdiccion}
+                </option>
+              ))}
+          </SelectCustom>
+        </div>
+        {data && data["juzgadoJurisdiccion"] && (
+          <div className="w-2/4">
+            <Label className="pt-3" htmlFor="juzgado">
+              Juzgado <span className="text-red-600">*</span>
+            </Label>
+            <SelectCustom
+              name="juzgado"
+              id="juzgado"
+              required
+              defaultValue={(assetEdit && assetEdit.juzgado) || ""}
+              onChange={handleChangeInput}
+            >
+              <option value="" disabled>
+                Seleccioná juzgado
+              </option>
+              {juzgados &&
+                juzgados
+                  .find(
+                    (juzgado) =>
+                      juzgado.jurisdiccion === data["juzgadoJurisdiccion"]
+                  )
+                  .juzgados.map((juzgado, idx) => (
+                    <option value={juzgado} key={idx}>
+                      {juzgado}
+                    </option>
+                  ))}
+            </SelectCustom>
+          </div>
+        )}
+      </div>
+      <div className="flex">
+        <div className="w-2/4">
+          <Label className="pt-3" htmlFor="fiscaliaJurisdiccion">
+            Fiscalia <span className="text-red-600">*</span>
+          </Label>
+          <SelectCustom
+            name="fiscaliaJurisdiccion"
+            id="fiscaliaJurisdiccion"
+            required
+            defaultValue={(assetEdit && assetEdit.fiscalia) || ""}
+            onChange={handleChangeInput}
+          >
+            <option value="" disabled>
+              Seleccioná fiscalia
+            </option>
+            {fiscalias &&
+              fiscalias.map((fiscalia, idx) => (
+                <option value={fiscalia.jurisdiccion} key={idx}>
+                  {fiscalia.jurisdiccion}
+                </option>
+              ))}
+          </SelectCustom>
+        </div>
+        {data && data["fiscaliaJurisdiccion"] && (
+          <div className="w-2/4">
+            <Label className="pt-3" htmlFor="fiscalia">
+              Fiscalia <span className="text-red-600">*</span>
+            </Label>
+            <SelectCustom
+              name="fiscalia"
+              id="fiscalia"
+              required
+              defaultValue={(assetEdit && assetEdit.fiscalia) || ""}
+              onChange={handleChangeInput}
+            >
+              <option value="" disabled>
+                Seleccioná fiscalia
+              </option>
+              {fiscalias &&
+                fiscalias
+                  .find(
+                    (fiscalia) =>
+                      fiscalia.jurisdiccion === data["fiscaliaJurisdiccion"]
+                  )
+                  .fiscalias.map((fiscalia, idx) => (
+                    <option value={fiscalia} key={idx}>
+                      {fiscalia}
+                    </option>
+                  ))}
+            </SelectCustom>
+          </div>
+        )}
       </div>
       <div>
-        <Label className="pt-3" htmlFor="fiscalia">
-          Fiscalia <span className="text-red-600">*</span>
+        <Label className="pt-3" htmlFor="tribunal">
+          Tribunal<span className="text-red-600">*</span>
         </Label>
-        <SelectCustom
-          name="fiscalia"
-          id="fiscalia"
+        <Input
+          name="tribunal"
+          id="tribunal"
           required
-          defaultValue={(assetEdit && assetEdit.fiscalia) || ""}
+          type="text"
+          defaultValue={assetEdit && assetEdit.tribunal}
           onChange={handleChangeInput}
-        >
-          <option value="" disabled>
-            Seleccioná juzgado
-          </option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-        </SelectCustom>
+        />
       </div>
-      <div>
+      {/* <div>
         <Label className="pt-3" htmlFor="tribunal">
           Tribunal<span className="text-red-600">*</span>
         </Label>
@@ -173,7 +272,7 @@ const JudicialInfo = ({ assetEdit }) => {
           <option value="2">2</option>
           <option value="3">3</option>
         </SelectCustom>
-      </div>
+      </div> */}
       <div>
         <Label className="pt-3" htmlFor="causeNumber">
           Numero de la causa<span className="text-red-600">*</span>

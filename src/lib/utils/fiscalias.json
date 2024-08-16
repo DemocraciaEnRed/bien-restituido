@@ -1,0 +1,516 @@
+[
+  {
+    "jurisdiccion": "Cámara Nacional de Apelaciones en lo Civil",
+    "fiscalias": [
+      "Fiscalía General ante la Cámara Nacional de Apelaciones en lo Civil"
+    ]
+  },
+  {
+    "jurisdiccion": "Cámara Nacional de Apelaciones en lo Criminal y Correccional",
+    "fiscalias": [
+      "Fiscalía General Nº 1 ante la Cámara Nacional de Apelaciones en lo Criminal y Correccional",
+      "Fiscalía General Nº 2 ante la Cámara Nacional de Apelaciones en lo Criminal y Correccional",
+      "Fiscalía General Nº 3 ante la Cámara Nacional de Apelaciones en lo Criminal y Correccional",
+      "Fiscalía Nº 1 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 2 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 3 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 4 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 5 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 6 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 7 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 8 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 9 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 10 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 11 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 12 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 13 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 14 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 15 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 16 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 17 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 18 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 19 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 20 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 21 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 22 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 23 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 24 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 25 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 26 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 27 en lo Criminal y Correccional de Distrito de los Barrios de Nueva Pompeya y Parque de los Patricios (Ex Fiscalías N° 27 y N° 36 - Instrucción, Correccional y Menores)",
+      "Fiscalía Nº 28 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 29 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 30 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 31 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 32 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía en lo Criminal y Correccional de Distrito de los Barrios de Saavedra y Nuñez (Ex Fiscalía N° 33)",
+      "Fiscalía Nº 34 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 35 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 36 en lo Criminal y Correccional de Distrito de los Barrios de Nueva Pompeya y Parque de los Patricios (Ex Fiscalías N° 27 y N° 36 - Instrucción, Correccional y Menores)",
+      "Fiscalía Nº 37 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 38 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 39 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 40 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 41 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 42 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 43 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 44 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 45 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 46 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 47 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 48 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 49 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Criminal y Correccional de Distrito del Barrio de La Boca",
+      "Fiscalía Nº 50 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 51 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 52 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 53 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 54 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 55 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 56 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 57 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 58 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 59 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Criminal, Correccional y Menores de Distrito de los Barrios de Saavedra y Nuñez (Ex Fiscalía N° 11)",
+      "Fiscalía Nº 60 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 61 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Nº 62 ante los Juzgados Nacionales en lo Criminal y Correccional",
+      "Fiscalía Criminal, Correccional y Menores de Distrito del Barrio de La Boca",
+      "Fiscalía Nº 1 ante los Juzgados Nacionales de Menores",
+      "Fiscalía Nº 2 ante los Juzgados Nacionales de Menores",
+      "Fiscalía Nº 3 ante los Juzgados Nacionales de Menores",
+      "Fiscalía Nº 4 ante los Juzgados Nacionales de Menores",
+      "Fiscalía Nº 5 ante los Juzgados Nacionales de Menores",
+      "Fiscalía Nº 6 ante los Juzgados Nacionales de Menores",
+      "Fiscalía Nº 7 ante los Juzgados Nacionales de Menores"
+    ]
+  },
+  {
+    "jurisdiccion": "Cámara Nacional de Apelaciones en lo Comercial",
+    "fiscalias": [
+      "Fiscalía General ante la Cámara Nacional de Apelaciones en lo Comercial"
+    ]
+  },
+  {
+    "jurisdiccion": "Cámara Nacional de Apelaciones del Trabajo",
+    "fiscalias": [
+      "Fiscalía General ante la Cámara Nacional de Apelaciones del Trabajo",
+      "Fiscalía General Adjunta ante la Cámara Nacional de Apelaciones del Trabajo",
+      "Fiscalía Nº 1 ante los Juzgados Nacionales de Primera Instancia del Trabajo",
+      "Fiscalía Nº 2 ante los Juzgados Nacionales de Primera Instancia del Trabajo",
+      "Fiscalía Nº 3 ante los Juzgados Nacionales de Primera Instancia del Trabajo",
+      "Fiscalía Nº 4 ante los Juzgados Nacionales de Primera Instancia del Trabajo",
+      "Fiscalía Nº 5 ante los Juzgados Nacionales de Primera Instancia del Trabajo",
+      "Fiscalía Nº 6 ante los Juzgados Nacionales de Primera Instancia del Trabajo",
+      "Fiscalía Nº 7 ante los Juzgados Nacionales de Primera Instancia del Trabajo",
+      "Fiscalía Nº 8 ante los Juzgados Nacionales de Primera Instancia del Trabajo"
+    ]
+  },
+  {
+    "jurisdiccion": "Cámara Nacional de Apelaciones en las Relaciones de Consumo",
+    "fiscalias": [
+      "Fiscalía General ante la Cámara Nacional de Apelaciones en las Relaciones de Consumo",
+      "Fiscalía Nº 1 ante los Juzgados Nacionales de Primera Instancia en las Relaciones de Consumo",
+      "Fiscalía Nº 2 ante los Juzgados Nacionales de Primera Instancia en las Relaciones de Consumo",
+      "Fiscalía Nº 3 ante los Juzgados Nacionales de Primera Instancia en las Relaciones de Consumo"
+    ]
+  },
+  {
+    "jurisdiccion": "Cámara Federal de Apelaciones de Bahía Blanca",
+    "fiscalias": [
+      "Fiscalía General ante la Cámara Federal de Apelaciones de Bahía Blanca",
+      "Fiscalía Nº 1 ante los Juzgados Federales de Primera Instancia de Bahía Blanca",
+      "Fiscalía Nº 2 ante los Juzgados Federales de Primera Instancia de Bahía Blanca",
+      "Fiscalía ante el Juzgado Federal de Primera Instancia de Santa Rosa",
+      "Fiscalía ante el Juzgado Federal de Primera Instancia de General Pico",
+      "Fiscalía General ante el Tribunal Oral en lo Criminal Federal de Bahía Blanca",
+      "Fiscalía General ante el Tribunal Oral en lo Criminal Federal de La Pampa"
+    ]
+  },
+  {
+    "jurisdiccion": "Cámara Federal de Apelaciones de Comandante Luis Piedra Buena",
+    "fiscalias": [
+      "Fiscalía General ante la Cámara Federal de Apelaciones de Comandante Luis Piedra Buena"
+    ]
+  },
+  {
+    "jurisdiccion": "Cámara Federal de Apelaciones de Comodoro Rivadavia",
+    "fiscalias": [
+      "Fiscalía General ante la Cámara Federal de Apelaciones de Comodoro Rivadavia",
+      "Fiscalía General ante el Tribunal Oral en lo Criminal Federal de Comodoro Rivadavia",
+      "Fiscalía General ante el Tribunal Oral en lo Criminal Federal de Santa Cruz",
+      "Fiscalía General ante el Tribunal Oral en lo Criminal Federal de Tierra del Fuego, Antárida e Islas de Atlántico Sur",
+      "Fiscalía ante los Juzgados Federales de Primera Instancia de Comodoro Rivadavia",
+      "Fiscalía ante el Juzgado Federal de Primera Instancia de Rawson",
+      "Fiscalía ante el Juzgado Federal de Primera Instancia de Río Gallegos",
+      "Fiscalía ante el Juzgado Federal de Primera Instancia de Caleta Olivia",
+      "Fiscalía ante el Juzgado Federal de Primera Instancia de Esquel",
+      "Fiscalía ante el Juzgado Federal de Primera Instancia de Ushuaia",
+      "Fiscalía ante el Juzgado Federal de Primera Instancia de Río Grande"
+    ]
+  },
+  {
+    "jurisdiccion": "Cámara Federal de Apelaciones de Córdoba",
+    "fiscalias": [
+      "Fiscalía General ante la Cámara Federal de Apelaciones de Córdoba",
+      "Fiscalía General Nº 1 ante los Tribunales Orales en lo Criminal Federal de Córdoba",
+      "Fiscalía General Nº 2 ante los Tribunales Orales en lo Criminal Federal de Córdoba",
+      "Fiscalía General Nº 3 ante los Tribunales Orales en lo Criminal Federal de Córdoba",
+      "Fiscalía General ante el Tribunal Oral en lo Criminal Federal de La Rioja",
+      "Fiscalía Nº 1 ante los Juzgados Federales de Primera Instancia de Córdoba",
+      "Fiscalía Nº 2 ante los Juzgados Federales de Primera Instancia de Córdoba",
+      "Fiscalía Nº 3 ante los Juzgados Federales de Primera Instancia de Córdoba",
+      "Fiscalía ante el Juzgado Federal de Primera Instancia de Bell Ville",
+      "Fiscalía ante el Juzgado Federal de Primera Instancia de Río Cuarto",
+      "Fiscalía ante el Juzgado Federal de Primera Instancia de Villa María",
+      "Fiscalía ante el Juzgado Federal de Primera Instancia de San Francisco",
+      "Fiscalía ante el Juzgado Federal de Primera Instancia de La Rioja"
+    ]
+  },
+  {
+    "jurisdiccion": "Cámara Federal de Apelaciones de Corrientes",
+    "fiscalias": [
+      "Fiscalía General ante la Cámara Federal de Apelaciones de Corrientes",
+      "Fiscalía General ante el Tribunal Oral en lo Criminal Federal de Corrientes",
+      "Fiscalía Nº 1 ante los Juzgados Federales de Primera Instancia de Corrientes",
+      "Fiscalía Nº 2 ante los Juzgados Federales de Primera Instancia de Corrientes",
+      "Fiscalía ante el Juzgado Federal de Primera Instancia de Paso de los Libres",
+      "Fiscalía ante el Juzgado Federal de Primera Instancia de Goya"
+    ]
+  },
+  {
+    "jurisdiccion": "Cámara Federal de Apelaciones de General Roca",
+    "fiscalias": [
+      "Fiscalía General ante la Cámara Federal de Apelaciones de General Roca",
+      "Fiscalía General ante el Tribunal Oral en lo Criminal Federal de General Roca",
+      "Fiscalía General ante el Tribunal Oral en lo Criminal Federal de Neuquen",
+      "Fiscalía ante el Juzgado Federal de Primera Instancia de General Roca",
+      "Fiscalía ante el Juzgado Federal de Primera Instancia de Viedma",
+      "Fiscalía Nº 1 ante los Juzgados Federales de Primera Instancia de Neuquen",
+      "Fiscalía Nº 2 ante los Juzgados Federales de Primera Instancia de Neuquen",
+      "Fiscalía ante el Juzgado Federal de Primera Instancia de San Carlos de Bariloche",
+      "Fiscalía ante el Juzgado Federal de Primera Instancia de Zapala"
+    ]
+  },
+  {
+    "jurisdiccion": "Cámara Federal de Apelaciones de La Plata",
+    "fiscalias": [
+      "Fiscalía General ante la Cámara Federal de Apelaciones de La Plata",
+      "Fiscalía General N° 1 ante los Tribunales Orales en lo Criminal Federal de La Plata",
+      "Fiscalía General N° 2 ante los Tribunales Orales en lo Criminal Federal de La Plata",
+      "Fiscalía General N° 3 ante los Tribunales Orales en lo Criminal Federal de La Plata",
+      "Fiscalía N° 1 ante los Juzgados Federales de Primera Instancia de La Plata",
+      "Fiscalía N° 2 ante los Juzgados Federales de Primera Instancia de La Plata",
+      "Fiscalía N° 3 ante los Juzgados Federales de Primera Instancia de La Plata",
+      "Fiscalía N° 1 ante los Juzgados Federales de Primera Instancia de Lomas de Zamora",
+      "Fiscalía N° 2 ante los Juzgados Federales de Primera Instancia de Lomas de Zamora",
+      "Fiscalía ante el Juzgado Federal de Primera Instancia de Junin",
+      "Fiscalía ante el Juzgado Federal de Primera Instancia de Quilmes",
+      "Fiscalía ante el Juzgado Federal de Primera Instancia de Pehuajó"
+    ]
+  },
+  {
+    "jurisdiccion": "Cámara Federal de Apelaciones de Mar del Plata",
+    "fiscalias": [
+      "Fiscalía General ante la Cámara Federal de Apelaciones de Mar del Plata",
+      "Fiscalía General ante el Tribunal Oral en lo Criminal Federal de Mar del Plata",
+      "Fiscalía N° 1 ante los Juzgados Federales de Primera Instancia de Mar del Plata",
+      "Fiscalía N° 2 ante los Juzgados Federales de Primera Instancia de Mar del Plata",
+      "Fiscalía N° 1 ante los Juzgados Federales de Primera Instancia de Azul",
+      "Fiscalía N° 2 ante los Juzgados Federales de Primera Instancia de Azul (Con asiento en Tandil)",
+      "Fiscalía ante el Juzgado Federal de Primera Instancia de Dolores",
+      "Fiscalía ante el Juzgado Federal de Primera Instancia de Necochea"
+    ]
+  },
+  {
+    "jurisdiccion": "Cámara Federal de Apelaciones de Mendoza",
+    "fiscalias": [
+      "Fiscalía General ante la Cámara Federal de Apelaciones de Mendoza",
+      "Fiscalía General N° 1 ante los Tribunales Orales en lo Criminal Federal de Mendoza",
+      "Fiscalía General N° 2 ante los Tribunales Orales en lo Criminal Federal de Mendoza",
+      "Fiscalía General ante el Tribunal Oral en lo Criminal Federal de San Juan",
+      "Fiscalía General ante el Tribunal Oral en lo Criminal Federal de San Luis",
+      "Fiscalía N° 1 ante los Juzgados Federales de Primera Instancia de Mendoza",
+      "Fiscalía N° 2 ante los Juzgados Federales de Primera Instancia de Mendoza",
+      "Fiscalía ante el Juzgado Federal de Primera Instancia de San Rafael",
+      "Fiscalía ante los Juzgados Federales de Primera Instancia de San Juan",
+      "Fiscalía ante el Juzgado Federal de Primera Instancia de San Luis",
+      "Fiscalía ante el Juzgado Federal de Primera Instancia de Villa Mercedes"
+    ]
+  },
+  {
+    "jurisdiccion": "Cámara Federal de Apelaciones de Paraná",
+    "fiscalias": [
+      "Fiscalía General ante la Cámara Federal de Apelaciones de Paraná",
+      "Fiscalía General ante el Tribunal Oral en lo Criminal Federal de Paraná",
+      "Fiscalía General ante el Tribunal Oral en lo Criminal Federal de Concepción del Uruguay",
+      "Fiscalía ante los Juzgados Federales de Primera Instancia de Paraná",
+      "Fiscalía ante los Juzgados Federales de Primera Instancia de Concepción del Uruguay",
+      "Fiscalía ante el Juzgado Federal de Primera Instancia de Victoria",
+      "Fiscalía ante el Juzgado Federal de Primera Instancia de Concordia",
+      "Fiscalía ante el Juzgado Federal de Primera Instancia de Gualeguaychú"
+    ]
+  },
+  {
+    "jurisdiccion": "Cámara Federal de Apelaciones de Posadas",
+    "fiscalias": [
+      "Fiscalía General ante la Cámara Federal de Apelaciones de Posadas (Penal)",
+      "Fiscalía General ante el Tribunal Oral en lo Criminal Federal de Posadas",
+      "Fiscalía ante el Juzgado Federal de Primera Instancia en lo Criminal y Correccional de Posadas",
+      "Fiscalía ante el Juzgado Federal de Primera Instancia en lo Civil, Comercial y Contencioso Administrativo de Posadas",
+      "Fiscalía ante el Juzgado Federal de Primera Instancia de Eldorado",
+      "Fiscalía ante el Juzgado Federal de Primera Instancia de Oberá",
+      "Fiscalía ante el Juzgado Federal de Primera Instancia de Puerto Iguazú"
+    ]
+  },
+  {
+    "jurisdiccion": "Cámara Federal de Apelaciones de Resistencia",
+    "fiscalias": [
+      "Fiscalía General ante la Cámara Federal de Apelaciones de Resistencia",
+      "Fiscalía General ante el Tribunal Oral en lo Criminal Federal de Resistencia",
+      "Fiscalía General ante el Tribunal Oral en lo Criminal Federal de Formosa",
+      "Fiscalía ante los Juzgados Federales de Primera Instancia de Resistencia",
+      "Fiscalía Nº 1 ante los Juzgados Federales de Primera Instancia de Formosa",
+      "Fiscalía Nº 2 ante los Juzgados Federales de Primera Instancia de Formosa",
+      "Fiscalía ante el Juzgado Federal de Primera Instancia de Reconquista",
+      "Fiscalía ante el Juzgado Federal de Primera Instancia de Roque Saenz Peña",
+      "Fiscalía ante el Juzgado Federal de Primera Instancia de Clorinda"
+    ]
+  },
+  {
+    "jurisdiccion": "Cámara Federal de Apelaciones de Rosario",
+    "fiscalias": [
+      "Fiscalía General ante la Cámara Federal de Apelaciones de Rosario",
+      "Fiscalía General ante el Tribunal Oral en lo Criminal Federal de Santa Fe",
+      "Fiscalía General Nº 1 ante los Tribunales Orales en lo Criminal Federal de Rosario",
+      "Fiscalía General Nº 2 ante los Tribunales Orales en lo Criminal Federal de Rosario",
+      "Fiscalía General Nº 3 ante los Tribunales Orales en lo Criminal Federal de Rosario",
+      "Fiscalía Nº 1 ante los Juzgados Federales de Primera Instancia de Rosario",
+      "Fiscalía Nº 2 ante los Juzgados Federales de Primera Instancia de Rosario",
+      "Fiscalía Nº 3 ante los Juzgados Federales de Primera Instancia de Rosario",
+      "Fiscalía Nº 1 ante los Juzgados Federales de Primera Instancia de Santa Fe",
+      "Fiscalía Nº 2 ante los Juzgados Federales de Primera Instancia de Santa Fe",
+      "Fiscalía ante el Juzgado Federal de Primera Instancia de Rafaela",
+      "Fiscalía ante los Juzgados Federales de Primera Instancia de San Nicolás",
+      "Fiscalía ante el Juzgado Federal de Primera Instancia de Venado Tuerto",
+      "Fiscalía Federal Penal con asiento en la ciudad de Rosario N° 1",
+      "Fiscalía Federal Penal con asiento en la ciudad de Rosario N° 2",
+      "Fiscalía Federal Penal con asiento en la ciudad de Rosario N° 3",
+      "Fiscalía Federal Penal con asiento en la ciudad de Rosario N° 4",
+      "Fiscalía Federal Penal con asiento en la ciudad de Rosario N° 5",
+      "Fiscalía Federal Penal con asiento en la ciudad de Rosario N° 6",
+      "Fiscalía Federal Penal con asiento en la ciudad de Rosario N° 7",
+      "Fiscalía Federal Penal con asiento en la ciudad de Rosario N° 8",
+      "Fiscalía Federal Penal con asiento en la ciudad de Rosario N° 9",
+      "Fiscalía Federal Penal con asiento en la ciudad de Rosario N° 10",
+      "Fiscalía Federal Penal con asiento en la ciudad de Rosario N° 11",
+      "Fiscalía Federal Penal con asiento en la ciudad de Rosario N° 12",
+      "Fiscalía Federal Penal con asiento en la ciudad de Rosario N° 13",
+      "Fiscalía Federal Penal con asiento en la ciudad de Rosario N° 14",
+      "Fiscalía Federal Penal con asiento en la ciudad de Rosario N° 15",
+      "Fiscalía Federal Penal con asiento en la ciudad de Santa Fe N° 1",
+      "Fiscalía Federal Penal con asiento en la ciudad de Santa Fe N° 2",
+      "Fiscalía Federal Penal con asiento en la ciudad de Santa Fe N° 3",
+      "Fiscalía Federal Penal con asiento en la ciudad de Santa Fe N° 4",
+      "Fiscalía Federal Penal con asiento en la ciudad de Santa Fe N° 5",
+      "Fiscalía Federal Penal con asiento en la ciudad de Santa Fe N° 6",
+      "Fiscalía Federal Penal con asiento en la ciudad de Santa Fe N° 7",
+      "Fiscalía Federal Penal con asiento en la ciudad de Rafaela",
+      "Fiscalía Federal Penal con asiento en la ciudad de Reconquista",
+      "Fiscalía Federal Penal con asiento en la ciudad de San Lorenzo",
+      "Fiscalía Federal Penal con asiento en la ciudad de Venado Tuerto",
+      "Fiscalía Federal Penal con asiento en la ciudad de San Nicolás"
+    ]
+  },
+  {
+    "jurisdiccion": "Cámara Federal de Apelaciones de Salta",
+    "fiscalias": [
+      "Fiscalía General ante la Cámara Federal de Apelaciones de Salta",
+      "Fiscalía General Nº 1 ante los Tribunales Orales en lo Criminal Federal de Salta",
+      "Fiscalía General Nº 2 ante los Tribunales Orales en lo Criminal Federal de Salta",
+      "Fiscalía General ante el Tribunal Oral en lo Criminal Federal de Jujuy",
+      "Fiscalía Nº 1 ante los Juzgados Federales de Primera Instancia de Salta",
+      "Fiscalía Nº 2 ante los Juzgados Federales de Primera Instancia de Salta",
+      "Fiscalía Nº 1 ante los Juzgados Federales de Primera Instancia de Jujuy",
+      "Fiscalía Nº 2 ante los Juzgados Federales de Primera Instancia de Jujuy",
+      "Fiscalía ante el Juzgado Federal de Primera Instancia de Libertador General San Martín",
+      "Fiscalía ante el Juzgado Federal de Primera Instancia de Tartagal",
+      "Fiscalía ante el Juzgado Federal de Primera Instancia de San Ramón de la Nueva Orán"
+    ]
+  },
+  {
+    "jurisdiccion": "Cámara Federal de Apelaciones de San Martín",
+    "fiscalias": [
+      "Fiscalía General ante la Cámara Federal de Apelaciones de San Martín",
+      "Fiscalía General Nº 1 ante los Tribunales Orales en lo Criminal Federal de San Martín",
+      "Fiscalía General Nº 2 ante los Tribunales Orales en lo Criminal Federal de San Martín",
+      "Fiscalía General Nº 3 ante los Tribunales Orales en lo Criminal Federal de San Martín",
+      "Fiscalía General Nº 4 ante los Tribunales Orales en lo Criminal Federal de San Martín",
+      "Fiscalía General Nº 5 ante los Tribunales Orales en lo Criminal Federal de San Martín",
+      "Fiscalía ante los Juzgados Federales de Primera Instancia en lo Civil, Comercial y Contencioso Administrativo de San Martín",
+      "Fiscalía ante los Juzgados Federales de Primera Instancia en lo Criminal y Correccional de San Martín",
+      "Fiscalía Nº 1 ante los Juzgados Federales de Primera Instancia en lo Criminal y Correccional de San Isidro",
+      "Fiscalía Nº 2 ante los Juzgados Federales de Primera Instancia en lo Criminal y Correccional de San Isidro",
+      "Fiscalía Nº 1 ante los Juzgados Federales de Primera Instancia en lo Criminal y Correccional de Morón",
+      "Fiscalía Nº 2 ante los Juzgados Federales de Primera Instancia en lo Criminal y Correccional de Morón",
+      "Fiscalía ante el Juzgado Federal de Primera Instancia de Moreno",
+      "Fiscalía ante el Juzgado Federal de Primera Instancia de Hurlingham",
+      "Fiscalía ante el Juzgado Federal de Primera Instancia de Mercedes",
+      "Fiscalía ante el Juzgado Federal de Primera Instancia de Campana",
+      "Fiscalía ante el Juzgado Federal de Primera Instancia en lo Criminal y Correccional de Tres de Febrero"
+    ]
+  },
+  {
+    "jurisdiccion": "Cámara Federal de Apelaciones de Tucumán",
+    "fiscalias": [
+      "Fiscalía General ante la Cámara Federal de Apelaciones de Tucumán",
+      "Fiscalía General ante el Tribunal Oral en lo Criminal Federal de Tucumán",
+      "Fiscalía General ante el Tribunal Oral en lo Criminal Federal de Catamarca",
+      "Fiscalía General ante el Tribunal Oral en lo Criminal Federal de Santiago del Estero",
+      "Fiscalía Nº 1 ante los Juzgados Federales de Primera Instancia de Tucumán",
+      "Fiscalía Nº 2 ante los Juzgados Federales de Primera Instancia de Tucumán",
+      "Fiscalía Nº 3 ante los Juzgados Federales de Primera Instancia de Tucumán",
+      "Fiscalía Nº 1 ante los Juzgados Federales de Primera Instancia de Catamarca",
+      "Fiscalía Nº 2 ante los Juzgados Federales de Primera Instancia de Catamarca",
+      "Fiscalía Nº 1 ante los Juzgados Federales de Primera Instancia de Santiago del Estero",
+      "Fiscalía Nº 2 ante los Juzgados Federales de Primera Instancia de Santiago del Estero"
+    ]
+  },
+  {
+    "jurisdiccion": "Cámara Federal de Apelaciones de San Justo",
+    "fiscalias": [
+      "Fiscalía General ante la Cámara Federal de Apelaciones en lo Civil, Comercial y Contencioso Administrativo de San Justo",
+      "Fiscalía Nº 1 ante los Juzgados Federales de Primera Instancia en lo Civil, Comercial y Contencioso Administrativo de San Justo",
+      "Fiscalía Nº 2 ante los Juzgados Federales de Primera Instancia en lo Civil, Comercial y Contencioso Administrativo de San Justo"
+    ]
+  },
+  {
+    "jurisdiccion": "Cámara Nacional de Apelaciones en lo Criminal y Correccional Federal",
+    "fiscalias": [
+      "Fiscalía General ante la Cámara Nacional de Apelaciones en lo Criminal y Correccional Federal",
+      "Fiscalía General ante la Cámara Nacional de Apelaciones en lo Criminal y Correccional Federal",
+      "Fiscalía General ante la Cámara Nacional de Apelaciones en lo Criminal y Correccional Federal",
+      "Fiscalía General ante la Cámara Nacional de Apelaciones en lo Criminal y Correccional Federal",
+      "Fiscalía General ante la Cámara Nacional de Apelaciones en lo Criminal y Correccional Federal",
+      "Fiscalía General N° 1 ante los Tribunales Orales en lo Criminal Federal",
+      "Fiscalía General N° 2 ante los Tribunales Orales en lo Criminal Federal",
+      "Fiscalía General N° 3 ante los Tribunales Orales en lo Criminal Federal",
+      "Fiscalía General N° 4 ante los Tribunales Orales en lo Criminal Federal",
+      "Fiscalía General N° 5 ante los Tribunales Orales en lo Criminal Federal",
+      "Fiscalía General N° 6 ante los Tribunales Orales en lo Criminal Federal",
+      "Fiscalía General N° 7 ante los Tribunales Orales en lo Criminal Federal",
+      "Fiscalía General N° 8 ante los Tribunales Orales en lo Criminal Federal",
+      "Fiscalía N° 1 ante los Juzgados Nacionales de Primera Instancia en lo Criminal y Correccional Federal (Fiscalía con competencia electoral, actúa también ante la CNE)",
+      "Fiscalía N° 2 ante los Juzgados Nacionales de Primera Instancia en lo Criminal y Correccional Federal",
+      "Fiscalía N° 3 ante los Juzgados Nacionales de Primera Instancia en lo Criminal y Correccional Federal",
+      "Fiscalía N° 4 ante los Juzgados Nacionales de Primera Instancia en lo Criminal y Correccional Federal",
+      "Fiscalía N° 5 ante los Juzgados Nacionales de Primera Instancia en lo Criminal y Correccional Federal",
+      "Fiscalía N° 6 ante los Juzgados Nacionales de Primera Instancia en lo Criminal y Correccional Federal",
+      "Fiscalía N° 7 ante los Juzgados Nacionales de Primera Instancia en lo Criminal y Correccional Federal",
+      "Fiscalía N° 8 ante los Juzgados Nacionales de Primera Instancia en lo Criminal y Correccional Federal",
+      "Fiscalía N° 9 ante los Juzgados Nacionales de Primera Instancia en lo Criminal y Correccional Federal",
+      "Fiscalía N° 10 ante los Juzgados Nacionales de Primera Instancia en lo Criminal y Correccional Federal",
+      "Fiscalía N° 11 ante los Juzgados Nacionales de Primera Instancia en lo Criminal y Correccional Federal",
+      "Fiscalía N° 12 ante los Juzgados Nacionales de Primera Instancia en lo Criminal y Correccional Federal"
+    ]
+  },
+  {
+    "jurisdiccion": "Cámara Federal de la Seguridad Social",
+    "fiscalias": [
+      "Fiscalía General N° 1 ante la Cámara Federal de la Seguridad Social",
+      "Fiscalía General N° 2 ante la Cámara Federal de la Seguridad Social",
+      "Fiscalía N° 1 ante los Juzgados Federales de Primera Instancia de la Seguridad Social",
+      "Fiscalía N° 2 ante los Juzgados Federales de Primera Instancia de la Seguridad Social"
+    ]
+  },
+  {
+    "jurisdiccion": "Cámara Nacional de Apelaciones en lo Penal Económico",
+    "fiscalias": [
+      "Fiscalía General ante la Cámara Nacional de Apelaciones en lo Penal Económico",
+      "Fiscalía General N° 1 ante los Tribunales Orales en lo Penal Económico",
+      "Fiscalía General N° 2 ante los Tribunales Orales en lo Penal Económico",
+      "Fiscalía General N° 3 ante los Tribunales Orales en lo Penal Económico",
+      "Fiscalía General N° 4 ante los Tribunales Orales en lo Penal Económico",
+      "Fiscalía N° 1 ante los Juzgados Nacionales de Primera Instancia en lo Penal Económico",
+      "Fiscalía N° 2 ante los Juzgados Nacionales de Primera Instancia en lo Penal Económico",
+      "Fiscalía N° 3 ante los Juzgados Nacionales de Primera Instancia en lo Penal Económico",
+      "Fiscalía N° 4 ante los Juzgados Nacionales de Primera Instancia en lo Penal Económico",
+      "Fiscalía N° 5 ante los Juzgados Nacionales de Primera Instancia en lo Penal Económico",
+      "Fiscalía N° 6 ante los Juzgados Nacionales de Primera Instancia en lo Penal Económico",
+      "Fiscalía N° 7 ante los Juzgados Nacionales de Primera Instancia en lo Penal Económico",
+      "Fiscalía N° 8 ante los Juzgados Nacionales de Primera Instancia en lo Penal Económico",
+      "Fiscalía N° 9 ante los Juzgados Nacionales de Primera Instancia en lo Penal Económico",
+      "Fiscalía N° 10 ante los Juzgados Nacionales de Primera Instancia en lo Penal Económico",
+      "Fiscalía N° 11 ante los Juzgados Nacionales de Primera Instancia en lo Penal Económico"
+    ]
+  },
+  {
+    "jurisdiccion": "Cámara Federal de Casación Penal",
+    "fiscalias": [
+      "Fiscalía General N° 1 ante la Cámara Federal de Casación Penal",
+      "Fiscalía General N° 2 ante la Cámara Federal de Casación Penal",
+      "Fiscalía General N° 3 ante la Cámara Federal de Casación Penal",
+      "Fiscalía General N° 4 ante la Cámara Federal de Casación Penal",
+      "Fiscalía N° 1 ante los Juzgados Nacionales de Ejecución Penal",
+      "Fiscalía N° 2 ante los Juzgados Nacionales de Ejecución Penal"
+    ]
+  },
+  {
+    "jurisdiccion": "Cámara Nacional de Apelaciones en lo Civil y Comercial Federal y Cámara Nacional de Apelaciones en lo Contencioso Administrativo Federal",
+    "fiscalias": [
+      "Fiscalía General ante las Cámaras Nacionales de Apelaciones en lo Civil y Comercial Federal y en lo Contencioso Administrativo Federal"
+    ]
+  },
+  {
+    "jurisdiccion": "Cámara Nacional de Casación en lo Criminal y Correccional",
+    "fiscalias": [
+      "Fiscalía General N° 1 ante los Tribunales Orales en lo Criminal y Correccional",
+      "Fiscalía General N° 2 ante los Tribunales Orales en lo Criminal y Correccional",
+      "Fiscalía General N° 3 ante los Tribunales Orales en lo Criminal y Correccional",
+      "Fiscalía General N° 4 ante los Tribunales Orales en lo Criminal y Correccional",
+      "Fiscalía General N° 5 ante los Tribunales Orales en lo Criminal y Correccional",
+      "Fiscalía General N° 6 ante los Tribunales Orales en lo Criminal y Correccional",
+      "Fiscalía General N° 7 ante los Tribunales Orales en lo Criminal y Correccional",
+      "Fiscalía General N° 8 ante los Tribunales Orales en lo Criminal y Correccional",
+      "Fiscalía General N° 9 ante los Tribunales Orales en lo Criminal y Correccional",
+      "Fiscalía General N° 10 ante los Tribunales Orales en lo Criminal y Correccional",
+      "Fiscalía General N° 11 ante los Tribunales Orales en lo Criminal y Correccional",
+      "Fiscalía General N° 12 ante los Tribunales Orales en lo Criminal y Correccional",
+      "Fiscalía General N° 13 ante los Tribunales Orales en lo Criminal y Correccional",
+      "Fiscalía General N° 14 ante los Tribunales Orales en lo Criminal y Correccional",
+      "Fiscalía General N° 15 ante los Tribunales Orales en lo Criminal y Correccional",
+      "Fiscalía General N° 16 ante los Tribunales Orales en lo Criminal y Correccional",
+      "Fiscalía General N° 17 ante los Tribunales Orales en lo Criminal y Correccional",
+      "Fiscalía General N° 18 ante los Tribunales Orales en lo Criminal y Correccional",
+      "Fiscalía General N° 19 ante los Tribunales Orales en lo Criminal y Correccional",
+      "Fiscalía General N° 20 ante los Tribunales Orales en lo Criminal y Correccional",
+      "Fiscalía General N° 21 ante los Tribunales Orales en lo Criminal y Correccional",
+      "Fiscalía General N° 22 ante los Tribunales Orales en lo Criminal y Correccional",
+      "Fiscalía General N° 23 ante los Tribunales Orales en lo Criminal y Correccional",
+      "Fiscalía General N° 24 ante los Tribunales Orales en lo Criminal y Correccional",
+      "Fiscalía General N° 25 ante los Tribunales Orales en lo Criminal y Correccional",
+      "Fiscalía General N° 26 ante los Tribunales Orales en lo Criminal y Correccional",
+      "Fiscalía General N° 27 ante los Tribunales Orales en lo Criminal y Correccional",
+      "Fiscalía General N° 28 ante los Tribunales Orales en lo Criminal y Correccional",
+      "Fiscalía General N° 29 ante los Tribunales Orales en lo Criminal y Correccional",
+      "Fiscalía General N° 30 ante los Tribunales Orales en lo Criminal y Correccional",
+      "Fiscalía General N° 1 ante los Tribunales Orales de Menores",
+      "Fiscalía General N° 2 ante los Tribunales Orales de Menores",
+      "Fiscalía General N° 3 ante los Tribunales Orales de Menores"
+    ]
+  },
+  {
+    "jurisdiccion": "Cámara Nacional de Apelaciones en lo Civil y Cámara Nacional de Apelaciones en lo Comercial",
+    "fiscalias": [
+      "Fiscalía Nº 1 ante los Juzgados Nacionales de Primera Instancia en lo Civil y en lo Comercial",
+      "Fiscalía Nº 2 ante los Juzgados Nacionales de Primera Instancia en lo Civil y en lo Comercial",
+      "Fiscalía Nº 3 ante los Juzgados Nacionales de Primera Instancia en lo Civil y en lo Comercial",
+      "Fiscalía Nº 4 ante los Juzgados Nacionales de Primera Instancia en lo Civil y en lo Comercial",
+      "Fiscalía N° 5 ante los Juzgados Nacionales de Primera Instancia en lo Civil y Comercial Federal",
+      "Fiscalía N° 6 ante los Juzgados Nacionales de Primera Instancia en lo Civil y Comercial Federal",
+      "Fiscalía N° 7 ante los Juzgados Nacionales de Primera Instancia en lo Contencioso Administrativo Federal",
+      "Fiscalía N° 8 ante los Juzgados Nacionales de Primera Instancia en lo Contencioso Administrativo Federal",
+      "Fiscalía ante los Juzgados Federales de Ejecuciones Fiscales Tributarias"
+    ]
+  }
+]
