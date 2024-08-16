@@ -198,6 +198,7 @@ const CategoryFieldForm = ({ setExtras, extraFieldsEdit, errors }) => {
               />
             </div>
           </div>
+          <hr className="mt-5" />
         </div>
         <div className="w-1/12 text-center">
           <Button
