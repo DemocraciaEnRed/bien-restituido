@@ -28,7 +28,7 @@ export const editAsset = async (id, formData) => {
 
 }
 
-export async function getAssets() {
+export async function getAssets(_filter) {
     await isAuthotized()
         const assets = await Asset.find(_filter).populate('category').populate('subCategory')
     return JSON.parse(JSON.stringify(assets))
