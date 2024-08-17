@@ -9,7 +9,9 @@ const Navbar = () => {
   const adminPath = pathname.startsWith("/admin");
   return (
     <nav
-      className={`border-r block ${adminPath ? "bg-stone-800" : "bg-white"}`}
+      className={`block ${
+        adminPath ? "bg-stone-800 fixed w-full z-10" : "bg-white"
+      }`}
     >
       <div
         className={`flex h-full max-h-screen flex-col gap-2 ${

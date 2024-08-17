@@ -72,7 +72,7 @@ module.exports = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       height: {
-        nav: "120px",
+        nav: "60px",
         navMobile: "60px"
       },
     },
