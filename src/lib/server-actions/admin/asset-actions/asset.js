@@ -30,11 +30,17 @@ export const editAsset = async (id, formData) => {
 
 export async function getAssets(_filter) {
     await isAuthotized()
-        const assets = await Asset.find(_filter).populate('category').populate('subCategory')
+    const assets = await Asset.find(_filter).populate('category').populate('subCategory')
     return JSON.parse(JSON.stringify(assets))
 
 }       
 
+export const archiveAsset = async (id) => {
+    await isAuthotized()
+    const now = new Date()
+    const assets = await Asset.findByIdAndUpdate(id, { archivedAt: now })
+    return JSON.parse(JSON.stringify(assets))
+}
 
 export const getAssetById = async (id) => {
     await isAuthotized()

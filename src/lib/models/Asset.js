@@ -107,6 +107,11 @@ export const AssetSchema = new mongoose.Schema(
             default: undefined
         },
         causeCoverSheet: { type: String },
+        archivedAt: {
+            type: Date,
+            required: false,
+            default: null,
+        },
         deletedAt: {
             type: Date,
             required: false,
