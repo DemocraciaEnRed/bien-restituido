@@ -15,8 +15,10 @@ import Link from "next/link";
 import { archiveAsset } from "@/lib/server-actions/admin/asset-actions/asset";
 import { useToast } from "@/components/ui/use-toast";
 import { ToastAction } from "@/components/ui/toast";
+import { usePathname } from "next/navigation";
 
 const AssetCard = ({ asset }) => {
+  const pathname = usePathname();
   const [showMore, setShowMore] = useState(false);
   const [extraFields, setExtraFields] = useState([]);
   const { toast } = useToast();
@@ -48,7 +50,7 @@ const AssetCard = ({ asset }) => {
   return (
     <Card
       className="border-y-0 border-r-0 border-l-8 my-4 w-full"
-      style={{ borderColor: asset.subCategory?.color }}
+      style={{ borderColor: pathname.includes("archivados") ? "rgb(229 231 235 / var(--tw-bg-opacity))" : asset.subCategory?.color }}
     >
       <CardHeader className="flex flex-row w-full justify-between">
         <div className="flex items-center">
@@ -80,7 +82,7 @@ const AssetCard = ({ asset }) => {
                   </span>
                 )}
                 {asset.destinationInfo && asset.destinationInfo.status && (
-                  <span className="bg-pink-200 rounded-lg p-2 text-xs">
+                  <span className={`${pathname.includes('archivados') ? "bg-gray-200" : "bg-pink-200"} rounded-lg p-2 text-xs`}>
                     {
                       {
                         auction: {
