@@ -17,7 +17,7 @@ const Asset = () => {
       </div>
       <AssetSerch />
 
-      <AssetList />
+      <AssetList filter={{archivedAt: null}} />
     </div>
   );
 };
