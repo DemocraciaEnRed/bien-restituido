@@ -1,4 +1,5 @@
 import AssetSerch from "@/components/admin/asset/asset-serch";
+import AssetMap from "@/components/asset-map";
 import Image from "next/image";
 
 export default function Home() {
@@ -10,6 +11,7 @@ export default function Home() {
           width={0}
           height={0}
           sizes="100vw"
+          alt="escudo"
           className="absolute h-full w-auto bottom-[-30%]  right-1/4"
         />
         <div className="container py-16 w-full relative z-10 bg-[#034EA29C]">
@@ -23,6 +25,8 @@ export default function Home() {
       <div className="container">
         <h2 className="text-2xl font-bold mr-5 my-5">Buscador de bienes</h2>
         <AssetSerch />
+
+        <AssetMap />
       </div>
     </div>
   );
