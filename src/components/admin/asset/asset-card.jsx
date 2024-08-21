@@ -20,26 +20,15 @@ import { usePathname } from "next/navigation";
 const AssetCard = ({ asset }) => {
   const pathname = usePathname();
   const [showMore, setShowMore] = useState(false);
-  const [extraFields, setExtraFields] = useState([]);
   const { toast } = useToast();
-
-  const getFIelds = async () => {
-    const fields = await getExtraFieldsByCategory(asset.category);
-    setExtraFields(fields);
-  };
-
-  useEffect(() => {
-    getFIelds();
-  }, []);
 
   const renderFieldShowCard = (fields, ordering) => {
     return (
       <span>
-        {fields.map((field) => {
+        {Object.keys(fields).map((key) => {
           return (
-            <span key={field._id} className={`mx-2 ${ordering}`}>
-              <span className="font-bold">{field.name}</span>:
-              {asset.extras[field.slug]}
+            <span key={key} className={`mx-2 ${ordering}`}>
+              <span className="font-bold">{key}</span>:{fields[key]}
             </span>
           );
         })}
@@ -50,7 +39,11 @@ const AssetCard = ({ asset }) => {
   return (
     <Card
       className="border-y-0 border-r-0 border-l-8 my-4 w-full"
-      style={{ borderColor: pathname.includes("archivados") ? "rgb(229 231 235 / var(--tw-bg-opacity))" : asset.subCategory?.color }}
+      style={{
+        borderColor: pathname.includes("archivados")
+          ? "rgb(229 231 235 / var(--tw-bg-opacity))"
+          : asset.subCategory?.color,
+      }}
     >
       <CardHeader className="flex flex-row w-full justify-between">
         <div className="flex items-center">
@@ -68,9 +61,7 @@ const AssetCard = ({ asset }) => {
                 {asset.subCategory?.name}
               </span>
               {renderFieldShowCard(
-                extraFields.filter(
-                  (field) => field.showCard === showCardOptions.ALLWAYS.value
-                ),
+                asset.extras[showCardOptions.ALLWAYS.value],
                 ""
               )}
             </div>
@@ -82,7 +73,13 @@ const AssetCard = ({ asset }) => {
                   </span>
                 )}
                 {asset.destinationInfo && asset.destinationInfo.status && (
-                  <span className={`${pathname.includes('archivados') ? "bg-gray-200" : "bg-pink-200"} rounded-lg p-2 text-xs`}>
+                  <span
+                    className={`${
+                      pathname.includes("archivados")
+                        ? "bg-gray-200"
+                        : "bg-pink-200"
+                    } rounded-lg p-2 text-xs`}
+                  >
                     {
                       {
                         auction: {
@@ -132,9 +129,7 @@ const AssetCard = ({ asset }) => {
         <hr className="mb-5" />
         <p className="uppercase underline font-bold">Información del bien</p>
         {renderFieldShowCard(
-          extraFields.filter(
-            (field) => field.showCard === showCardOptions.EXPANDED.value
-          ),
+          asset.extras[showCardOptions.EXPANDED.value],
           "flex"
         )}
         <p className="uppercase underline font-bold mt-5">

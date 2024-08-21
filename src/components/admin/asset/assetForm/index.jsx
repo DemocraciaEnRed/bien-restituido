@@ -109,7 +109,8 @@ const FormAsset = ({ assetEdit }) => {
         let asset;
         if (assetEdit) asset = await editAsset(assetEdit._id, formData);
         else asset = await saveAsset(formData);
-        if (asset === "ok") router.push("/admin/bien");
+        
+        if (asset.status === "ok") router.push("/admin/bien");
       } catch (err) {
         console.log(err.message);
 
