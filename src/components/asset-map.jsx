@@ -9,7 +9,7 @@ const AssetMap = () => {
   }, []);
 
   return isClient ? (
-    <div className="my-5 [&_.flourish-credit]:hidden">
+    <div className="my-5 ">
       <iframe
         src="https://flo.uri.sh/story/2506935/embed"
         title="Interactive or visual content"
@@ -25,25 +25,7 @@ const AssetMap = () => {
           marginTop: "4px!important",
           textAlign: "right!important",
         }}
-      >
-        <a
-          class="flourish-credit"
-          href="https://public.flourish.studio/story/2506935/?utm_source=embed&utm_campaign=story/2506935"
-          target="_top"
-          style={{ textDecoration: "none!important" }}
-        >
-          <img
-            alt="Made with Flourish"
-            src="https://public.flourish.studio/resources/made_with_flourish.svg"
-            style={{
-              width: "105px!important",
-              height: "16px!important",
-              border: "none!important",
-              margin: "0!important",
-            }}
-          />
-        </a>
-      </div>
+      ></div>
     </div>
   ) : (
     <div></div>
