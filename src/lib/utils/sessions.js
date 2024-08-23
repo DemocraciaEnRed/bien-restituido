@@ -44,29 +44,26 @@ export async function deleteSession() {
   cookies().set(authTokenKey, '', { maxAge: 0 })
 }
 
-
-
-export async function isAuthotized() {
-  const { role } = await verifySession()
-  if (role !== userRoles.ADMIN) throw 'no estas autorizado'
-}
-
-
 export async function updateSession(request) {
   try {
     const token = request.cookies.get(authTokenKey)?.value;
-    if (!token) return
+    const session = await decrypt(token)
+    const currentTime = new Date();
+    const expTime = new Date(session.exp * 1000)
 
-    const newToken = await refreshToken()
+    if (!token) return
     const res = NextResponse.next()
-    const expires = new Date(Date.now() + oneDay * 2)
-    res.cookies.set({
-      name: authTokenKey,
-      value: newToken.token,
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      expires
-    })
+    if (expTime < currentTime) {
+      const newToken = await refreshToken()
+      const expires = new Date(Date.now() + oneDay * 2)
+      res.cookies.set({
+        name: authTokenKey,
+        value: newToken.token,
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        expires
+      })
+    }
     return res
   } catch (err) {
     console.error(err);

@@ -1,14 +1,11 @@
 "use server"
 import { Asset, ExtraField } from "@/lib/models";
-import { isAuthotized } from "@/lib/utils/sessions";
-import { getCategoryById } from "./category";
-import { getExtraFieldsByCategory } from "./extra-fields";
+
 import { revalidatePath } from "next/cache";
 import mongoose from "mongoose";
-import { query } from "express-validator";
 import { showCardOptions } from "@/lib/utils/constants";
-import { jsonToCsv } from "@/lib/utils";
 import dbConnect from "@/lib/db/dbConnect";
+import { isAuthotized } from "@/lib/utils/session-role";
 
 export const saveAsset = async (formData) => {
     await dbConnect()
@@ -47,6 +44,7 @@ export const editAsset = async (id, formData) => {
 export async function getAssets(_filter) {
     await dbConnect()
     await isAuthotized()
+    //await new Promise((resolve) => setTimeout(resolve, 3000))
     let query = _filter
 
     if (_filter.search) {

@@ -4,7 +4,8 @@ import { saveSubCategories } from "./sub-category";
 import { saveExtraFields } from "./extra-fields";
 import { Category, ExtraField, SubCategory } from "@/lib/models";
 import { revalidatePath } from "next/cache";
-import { isAuthotized } from "@/lib/utils/sessions";
+import { isAuthotized } from "@/lib/utils/session-role";
+
 import dbConnect from "@/lib/db/dbConnect";
 
 export const saveCompleteCategory = async (category, subCategories, fields) => {

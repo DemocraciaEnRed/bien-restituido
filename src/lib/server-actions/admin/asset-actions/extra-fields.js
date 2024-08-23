@@ -1,7 +1,8 @@
 "use server"
 import { ExtraField } from "@/lib/models";
 import { createSlug } from "@/lib/utils";
-import { isAuthotized } from "@/lib/utils/sessions";
+import { isAuthotized } from "@/lib/utils/session-role";
+
 
 export const saveExtraFields = async (fields, category) => {
 

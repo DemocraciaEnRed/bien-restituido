@@ -1,6 +1,8 @@
 import AssetSerch from "@/components/admin/asset/asset-serch";
 import AssetMap from "@/components/asset-map";
+import { LoaderCircle } from "lucide-react";
 import Image from "next/image";
+import { Suspense } from "react";
 
 export default function Home() {
   return (
@@ -24,8 +26,15 @@ export default function Home() {
       </header>
       <div className="container">
         <h2 className="text-2xl font-bold mr-5 my-5">Buscador de bienes</h2>
-        <AssetSerch />
-
+        <Suspense
+          fallback={
+            <div>
+              <LoaderCircle className="animate-spin inline" /> Cargando...
+            </div>
+          }
+        >
+          <AssetSerch />
+        </Suspense>
         <AssetMap />
       </div>
     </div>

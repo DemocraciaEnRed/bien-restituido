@@ -1,9 +1,10 @@
-import React from "react";
+import React, { Suspense } from "react";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import AssetSerch from "@/components/admin/asset/asset-serch";
 import AssetList from "@/components/admin/asset/asset-list";
 import DownloadButton from "@/components/admin/asset/download-button";
+import { LoaderCircle } from "lucide-react";
 const Asset = ({ searchParams }) => {
   return (
     <div>
@@ -21,9 +22,16 @@ const Asset = ({ searchParams }) => {
           />
         </div>
       </div>
-      <AssetSerch />
-
-      <AssetList filter={{ archivedAt: null, search: searchParams.search }} />
+      <Suspense
+        fallback={
+          <div>
+            <LoaderCircle className="animate-spin inline" /> Cargando...
+          </div>
+        }
+      >
+        <AssetSerch />
+        <AssetList filter={{ archivedAt: null, search: searchParams.search }} />
+      </Suspense>
     </div>
   );
 };
