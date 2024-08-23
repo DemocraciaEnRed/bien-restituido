@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
@@ -12,24 +12,38 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { FilterIcon } from "lucide-react";
 
-import { getAssetBySearch } from "@/lib/server-actions/admin/asset-actions/asset";
-
 const AssetSerch = () => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const [searchValue, setSearchValue] = useState(
+    searchParams.get("search") || ""
+  );
+  const [debouncedTerm, setDebouncedTerm] = useState("");
 
-  const handleSearch = (event) => {
-    let value = event.target.value.trim();
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedTerm(searchValue);
+    }, 500); // 500ms delay
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [searchValue]);
+
+  useEffect(() => {
+    handleSearch(searchValue);
+  }, [debouncedTerm]);
+
+  const handleSearch = (value) => {
     const params = new URLSearchParams(searchParams.entries());
 
     if (!value) {
       params.delete("search");
     } else {
-      params.set("search", event.target.value);
+      params.set("search", value);
     }
     const search = params.toString();
-    // or const query = `${'?'.repeat(search.length && 1)}${search}`;
     const query = search ? `?${search}` : "";
 
     router.push(`${pathname}${query}`);
@@ -40,8 +54,8 @@ const AssetSerch = () => {
         <Input
           type="search"
           name="search"
-          value={searchParams.get("search") || ""}
-          onChange={handleSearch}
+          value={searchValue}
+          onChange={(e) => setSearchValue(e.target.value)}
           placeholder="Buscar bien por (#ID, Juzgado, autos, nº de serie)"
           className="shadow-md rounded-lg"
         />

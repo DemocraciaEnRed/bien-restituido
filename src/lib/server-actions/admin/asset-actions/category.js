@@ -5,8 +5,10 @@ import { saveExtraFields } from "./extra-fields";
 import { Category, ExtraField, SubCategory } from "@/lib/models";
 import { revalidatePath } from "next/cache";
 import { isAuthotized } from "@/lib/utils/sessions";
+import dbConnect from "@/lib/db/dbConnect";
 
 export const saveCompleteCategory = async (category, subCategories, fields) => {
+    await dbConnect()
     await isAuthotized()
     let success = false
     try {
@@ -33,6 +35,7 @@ export const saveCategory = async (category) => {
 }
 
 export const deleteCategoryByName = async (categoryId) => {
+    await dbConnect()
     if (!categoryId._id) {
         const category = await Category.findOne(categoryId)
         if (category) deleteCategoryById(category._id)
@@ -40,6 +43,7 @@ export const deleteCategoryByName = async (categoryId) => {
 }
 
 export const deleteCategoryById = async (categoryId) => {
+    await dbConnect()
     try {
         await Category.findByIdAndDelete(categoryId);
         await SubCategory.deleteMany({ category: categoryId })
@@ -53,6 +57,7 @@ export const deleteCategoryById = async (categoryId) => {
 }
 
 export const getCategories = async () => {
+    await dbConnect()
     await isAuthotized()
     try {
         const categories = await Category.find({});
@@ -64,6 +69,7 @@ export const getCategories = async () => {
 
 
 export const getCategoryBySlug = async (slug) => {
+    await dbConnect()
     await isAuthotized()
     try {
         const category = await Category.findOne({ slug });
@@ -76,6 +82,7 @@ export const getCategoryBySlug = async (slug) => {
 }
 
 export const getCategoryById = async (id) => {
+    await dbConnect()
     await isAuthotized()
     try {
         const category = await Category.findOne({ _id: id });
@@ -87,6 +94,7 @@ export const getCategoryById = async (id) => {
 }
 
 export const getCategoryByName = async (name) => {
+    await dbConnect()
     await isAuthotized()
     try {
         const category = await Category.findOne({ name });

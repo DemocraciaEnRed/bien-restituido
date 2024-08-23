@@ -112,19 +112,19 @@ const AssetInfo = ({ assetEdit }) => {
           <h2>Atributos</h2>
           {extraFields.map((input) => (
             <div
-              key={input.slug}
+              key={input._id}
               className="grid w-full  items-center gap-1.5 my-2 pt-2"
-              id={`extras.${input.slug}`}
+              id={`extras.${input._id}`}
             >
-              <Label htmlFor={`extras.${input.slug}`}>
+              <Label htmlFor={`extras.${input._id}`}>
                 {input.name}
                 {input.required && <span className="text-red-600">*</span>}
               </Label>
               <Input
                 type={input.type}
-                name={`extras.${input.slug}`}
+                name={`extras.${input._id}`}
                 onChange={handleChangeInput}
-                defaultValue={assetEdit && assetEdit.extras[input.slug]}
+                defaultValue={assetEdit && assetEdit.extras[input._id]}
                 placeholder={input.name}
                 required={input.required}
               />

@@ -61,3 +61,21 @@ export function formatKeyObject(objeto, prefix) {
   });
   return objectFormated;
 }
+
+
+export function jsonToCsv(jsonData) {
+  const data = typeof jsonData === 'string' ? JSON.parse(jsonData) : jsonData;
+  let keys = []
+  data.forEach(element => {
+    Object.keys(element).forEach(key => { if (!keys.includes(key)) keys.push(key) })
+  })
+  const csvHeader = keys.join(',') + '\n';
+  const csvRows = data.map(row => {
+    return keys.map(key => {
+      const value = String(row[key]).replace(/"/g, '""');
+      return `"${value}"`;
+    }).join(',');
+  }).join('\n');
+  const csvContent = csvHeader + csvRows;
+  return csvContent;
+}
