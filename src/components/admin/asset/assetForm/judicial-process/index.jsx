@@ -306,7 +306,7 @@ const JudicialInfo = ({ assetEdit }) => {
         <Checkbox
           name="thirdParties"
           id="thirdParties"
-          checked={assetEdit && assetEdit.thirdParties}
+          checked={data?.thirdParties}
           onCheckedChange={(value) =>
             handleChangeInput({ target: { name: "thirdParties", value } })
           }

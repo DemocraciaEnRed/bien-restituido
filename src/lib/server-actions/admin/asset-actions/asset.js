@@ -60,6 +60,7 @@ export async function getAssets(_filter) {
         }
     }
     delete query.search
+
     const assets = await Asset.find(query).populate('category').populate('subCategory')
     for (const asset of assets) {
         let extras = {
@@ -71,12 +72,11 @@ export async function getAssets(_filter) {
 
             const key = await ExtraField.findById(extraKey);
             const value = asset.extras[extraKey];
-
-            if (key.showCard === showCardOptions.EXPANDED.value) extras[showCardOptions.EXPANDED.value][key.name] = value;
-            else extras[showCardOptions.ALLWAYS.value][key.name] = value;
-
+            if (key) {
+                if (key.showCard === showCardOptions.EXPANDED.value) extras[showCardOptions.EXPANDED.value][key.name] = value;
+                else extras[showCardOptions.ALLWAYS.value][key.name] = value;
+            }
         }
-
         asset.extras = extras;
     }
 

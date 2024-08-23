@@ -92,7 +92,7 @@ const populateDB = async () => {
             { name: 'Extra Field 1A', hiddenDownload: false, type: 'text', description: 'Extra Field 1A Description', required: true, showCard: 'ALLWAYS', category: category1Result.insertedId, slug: 'category-1-extra-field-1A' },
             { name: 'Extra Field 1B', hiddenDownload: false, type: 'number', description: 'Extra Field 1B Description', required: false, showCard: 'EXPANDED', category: category1Result.insertedId, slug: 'category-1-extra-field-1B' },
             { name: 'Extra Field 1C', hiddenDownload: true, type: 'date', description: 'Extra Field 1C Description', required: true, showCard: 'ALLWAYS', category: category1Result.insertedId, slug: 'category-1-extra-field-1C' },
-            { name: 'Extra Field 1D', hiddenDownload: false, type: 'boolean', description: 'Extra Field 1D Description', required: false, showCard: 'NO', category: category1Result.insertedId, slug: 'category-1-extra-field-1D' }
+            { name: 'Extra Field 1D', hiddenDownload: false, type: 'email', description: 'Extra Field 1D Description', required: false, showCard: 'NO', category: category1Result.insertedId, slug: 'category-1-extra-field-1D' }
         ];
         const extraFields1Result = await extraFields.insertMany(extraFields1);
 
@@ -101,7 +101,7 @@ const populateDB = async () => {
             { name: 'Extra Field 2A', hiddenDownload: false, type: 'text', description: 'Extra Field 2A Description', required: true, showCard: 'ALLWAYS', category: category2Result.insertedId, slug: 'category-2-extra-field-2A' },
             { name: 'Extra Field 2B', hiddenDownload: false, type: 'number', description: 'Extra Field 2B Description', required: false, showCard: 'EXPANDED', category: category2Result.insertedId, slug: 'category-2-extra-field-2B' },
             { name: 'Extra Field 2C', hiddenDownload: true, type: 'date', description: 'Extra Field 2C Description', required: true, showCard: 'ALLWAYS', category: category2Result.insertedId, slug: 'category-2-extra-field-2C' },
-            { name: 'Extra Field 2D', hiddenDownload: false, type: 'boolean', description: 'Extra Field 2D Description', required: false, showCard: 'NO', category: category2Result.insertedId, slug: 'category-2-extra-field-2D' }
+            { name: 'Extra Field 2D', hiddenDownload: false, type: 'email', description: 'Extra Field 2D Description', required: false, showCard: 'NO', category: category2Result.insertedId, slug: 'category-2-extra-field-2D' }
         ];
         const extraFields2Result = await extraFields.insertMany(extraFields2);
 
@@ -131,8 +131,8 @@ const populateDB = async () => {
                     case 'date':
                         value = new Date().toISOString().split('T')[0];
                         break;
-                    case 'boolean':
-                        value = Math.random() < 0.5;
+                    case 'email':
+                        value = `SampleEmail${idx}@email.com`;
                         break;
                     default:
                         value = null;
