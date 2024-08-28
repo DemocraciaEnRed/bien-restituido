@@ -1,8 +1,8 @@
 import React from "react";
-import { getAssets } from "@/lib/server-actions/admin/asset-actions/asset";
 import AssetCard from "./asset-card";
+import { getAssets } from "@/lib/server-actions/home/assets";
 
-async function AssetList({filter={}}) {
+async function AssetList({ filter = {} }) {
   const assets = await getAssets(filter);
 
   return (

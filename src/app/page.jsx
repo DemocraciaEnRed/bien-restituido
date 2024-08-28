@@ -1,8 +1,10 @@
 import AssetSerch from "@/components/admin/asset/asset-serch";
-import AssetMap from "@/components/asset-map";
-import { LoaderCircle } from "lucide-react";
+import AssetMap from "@/components/home/asset-map";
+import { Globe, List, LoaderCircle } from "lucide-react";
 import Image from "next/image";
 import { Suspense } from "react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import AssetListHome from "@/components/home/asset-list-home";
 
 export default function Home() {
   return (
@@ -34,8 +36,24 @@ export default function Home() {
           }
         >
           <AssetSerch />
+
+          <Tabs defaultValue="list" className="mt-3">
+            <TabsList className="w-full justify-end">
+              <TabsTrigger value="list">
+                <List />
+              </TabsTrigger>
+              <TabsTrigger value="map">
+                <Globe />
+              </TabsTrigger>
+            </TabsList>
+            <TabsContent value="list">
+              <AssetListHome />
+            </TabsContent>
+            <TabsContent value="map">
+              <AssetMap />
+            </TabsContent>
+          </Tabs>
         </Suspense>
-        <AssetMap />
       </div>
     </div>
   );
