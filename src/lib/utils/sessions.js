@@ -47,24 +47,27 @@ export async function deleteSession() {
 export async function updateSession(request) {
   try {
     const token = request.cookies.get(authTokenKey)?.value;
-    const session = await decrypt(token)
-    const currentTime = new Date();
-    const expTime = new Date(session.exp * 1000)
+    if (token) {
 
-    if (!token) return
-    const res = NextResponse.next()
-    if (expTime < currentTime) {
-      const newToken = await refreshToken()
-      const expires = new Date(Date.now() + oneDay * 2)
-      res.cookies.set({
-        name: authTokenKey,
-        value: newToken.token,
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        expires
-      })
+      const session = await decrypt(token)
+      const currentTime = new Date();
+      const expTime = new Date(session.exp * 1000)
+
+      if (!token) return
+      const res = NextResponse.next()
+      if (expTime < currentTime) {
+        const newToken = await refreshToken()
+        const expires = new Date(Date.now() + oneDay * 2)
+        res.cookies.set({
+          name: authTokenKey,
+          value: newToken.token,
+          httpOnly: true,
+          secure: process.env.NODE_ENV === 'production',
+          expires
+        })
+      }
+      return res
     }
-    return res
   } catch (err) {
     console.error(err);
   }

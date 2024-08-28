@@ -115,13 +115,14 @@ export const downloadAssets = async (_filter) => {
             if (!key.hiddenDownload) asset[key.name] = value;
         }
 
-        for (const info of Object.keys(asset.destinationInfo)) {
-            const value = asset.destinationInfo[info];
-            asset[`destino-${info}`] = value;
-        }
+        asset[`destino-informacion`] = JSON.stringify(asset.destinationInfo);
+
+        if (asset.thirdParties) asset['terceros-involucrados'] = JSON.stringify(asset.third)
 
         asset.category = category;
         asset.subCategory = subCategory;
+        delete asset.thirdParties
+        delete asset.third
         delete asset.destinationInfo
         delete asset.extras
         delete asset.updatedAt
