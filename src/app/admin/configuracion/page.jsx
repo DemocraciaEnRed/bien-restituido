@@ -1,17 +1,11 @@
 import React from "react";
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+
 import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 import { getCategories } from "@/lib/server-actions/admin/asset-actions/category";
 import CategoryList from "@/components/admin/category/category-list";
+
+export const dynamic = "force-dynamic";
 
 const Asset = async () => {
   const Categories = await getCategories();
