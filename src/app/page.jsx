@@ -6,6 +6,8 @@ import { Suspense } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import AssetListHome from "@/components/home/asset-list-home";
 
+export const dynamic = "force-dynamic";
+
 export default function Home() {
   return (
     <div>

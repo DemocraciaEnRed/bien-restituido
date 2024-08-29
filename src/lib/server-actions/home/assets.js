@@ -1,6 +1,8 @@
+"use server"
 import dbConnect from "@/lib/db/dbConnect";
 import { Asset, ExtraField } from "@/lib/models";
 import { showCardOptions } from "@/lib/utils/constants";
+
 
 export async function getAssets(_filter) {
   await dbConnect()
@@ -41,4 +43,3 @@ export async function getAssets(_filter) {
 
   return JSON.parse(JSON.stringify(assets))
 }
-
