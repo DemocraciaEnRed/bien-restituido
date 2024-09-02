@@ -35,7 +35,7 @@ const AssetCard = ({ asset }) => {
           información del bien
         </h6>
         <div>
-          <apan className="underline uppercase font-semibold">Ubicación:</apan>
+          <span className="underline uppercase font-semibold">Ubicación:</span>
           <span>
             {asset.location}, {asset.province}
           </span>
