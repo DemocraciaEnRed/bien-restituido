@@ -19,6 +19,8 @@ const Asset = ({ searchParams }) => {
           filter={{
             archivedAt: true,
             search: searchParams.search,
+            page: searchParams.page || 1,
+            limit: 20,
           }}
         />
       </Suspense>

@@ -31,7 +31,14 @@ const Asset = ({ searchParams }) => {
         }
       >
         <AssetSerch />
-        <AssetList filter={{ archivedAt: null, search: searchParams.search }} />
+        <AssetList
+          filter={{
+            archivedAt: null,
+            search: searchParams.search,
+            page: searchParams.page || 1,
+            limit: 20,
+          }}
+        />
       </Suspense>
     </div>
   );

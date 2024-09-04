@@ -22,6 +22,8 @@ const Asset = ({ searchParams }) => {
             destination: "reuse",
             archivedAt: null,
             search: searchParams.search,
+            page: searchParams.page || 1,
+            limit: 20,
           }}
         />
       </Suspense>

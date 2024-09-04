@@ -345,7 +345,7 @@ const populateDB = async () => {
                     causeNumber: 123456 + i,
                 thirdParties: false,
                     causeCoverSheet: 'Cover sheet information ' + i,
-                archivedAt: null,
+                    archivedAt: !(i % 10) ? new Date().toISOString().split('T')[0] : null,
                 }
             )
         }
