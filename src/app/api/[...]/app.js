@@ -4,6 +4,7 @@ import dbConnect from "@/lib/db/dbConnect";
 import authRoutes from '@/app/api/[...]/auth'
 import userRoutes from '@/app/api/[...]/user'
 import adminRoutes from '@/app/api/[...]/admin'
+import assetRoutes from '@/app/api/[...]/asset'
 
 
 import authenticate from "@/app/api/_lib/middlewares/authenticate";
@@ -29,6 +30,7 @@ app.use(authenticate)
 app.use("/auth", authRoutes);
 app.use("/admin", adminRoutes)
 app.use("/user", userRoutes)
+app.use("/asset", assetRoutes)
 app.get("/hello", (req, res, next) => {
     res.send("world")
 })

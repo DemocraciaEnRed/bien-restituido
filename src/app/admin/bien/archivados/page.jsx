@@ -3,7 +3,7 @@ import React, { Suspense } from "react";
 import AssetSerch from "@/components/admin/asset/asset-serch";
 import AssetList from "@/components/admin/asset/asset-list";
 import { LoaderCircle } from "lucide-react";
-const Asset = () => {
+const Asset = ({ searchParams }) => {
   return (
     <div>
       <h1 className="text-3xl font-bold mr-5 mb-5">Bienes archivados</h1>
@@ -15,7 +15,12 @@ const Asset = () => {
         }
       >
         <AssetSerch />
-        <AssetList filter={{ archivedAt: { $ne: null } }} />
+        <AssetList
+          filter={{
+            archivedAt: true,
+            search: searchParams.search,
+          }}
+        />
       </Suspense>
     </div>
   );

@@ -1,14 +1,27 @@
 import { getAssets } from "@/lib/server-actions/home/assets";
 import React from "react";
 import AssetCard from "./asset-card";
+import AssetPagination from "../asset-pagination";
 
-const AssetListHome = async ({ searchParams }) => {
-  const assets = await getAssets({ search: searchParams });
+const AssetListHome = async ({ filter }) => {
+  const { assets, page, total, pages, nextPage, prevPage } = await getAssets(
+    filter
+  );
 
   return (
     <div>
-      {assets &&
-        assets.map((asset) => <AssetCard asset={asset} key={asset._id} />)}
+      {assets.length ? (
+        assets.map((asset) => <AssetCard asset={asset} key={asset._id} />)
+      ) : (
+        <p>Todavía no hay bienes en esta sección</p>
+      )}
+      <AssetPagination
+        page={page}
+        total={total}
+        pages={pages}
+        nextPage={nextPage}
+        prevPage={prevPage}
+      />
     </div>
   );
 };

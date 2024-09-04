@@ -42,6 +42,7 @@ const AssetSerch = () => {
       params.delete("search");
     } else {
       params.set("search", value);
+      params.delete("page");
     }
     const search = params.toString();
     const query = search ? `?${search}` : "";

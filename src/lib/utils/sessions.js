@@ -72,3 +72,9 @@ export async function updateSession(request) {
     console.error(err);
   }
 }
+
+export async function rejectUser(request) {
+  const response = NextResponse.redirect(new URL(`/autenticacion/inicio?next=${request.nextUrl.pathname}`, request.url));
+  response.cookies.delete(authTokenKey);
+  return response
+}

@@ -8,7 +8,7 @@ import BannerHome from "@/components/home/banner";
 
 export const dynamic = "force-dynamic";
 
-export default function Home() {
+export default function Home({ searchParams }) {
   return (
     <div>
       <BannerHome />
@@ -33,7 +33,13 @@ export default function Home() {
               </TabsTrigger>
             </TabsList>
             <TabsContent value="list">
-              <AssetListHome />
+              <AssetListHome
+                filter={{
+                  search: searchParams.search,
+                  page: searchParams.page || 1,
+                  limit: 20,
+                }}
+              />
             </TabsContent>
             <TabsContent value="map">
               <AssetMap />

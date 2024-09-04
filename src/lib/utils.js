@@ -8,13 +8,11 @@ export function cn(...inputs) {
   return twMerge(clsx(inputs))
 }
 
-
-
-
-export async function rejectUser(request) {
-  const response = NextResponse.redirect(new URL(`/autenticacion/inicio?next=${request.nextUrl.pathname}`, request.url));
-  response.cookies.delete(authTokenKey);
-  return response
+export function objectToQueryString(obj) {
+  return Object.entries(obj)
+    .filter(([key, value]) => value !== null && value !== undefined) // Filtrar null y undefined
+    .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
+    .join('&');
 }
 
 export function createSlug(text) {

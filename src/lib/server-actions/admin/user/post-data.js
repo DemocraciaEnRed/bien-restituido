@@ -1,4 +1,5 @@
 "use server"
+import axiosServices from "@/lib/utils/axios";
 import { authTokenKey } from "@/lib/utils/constants";
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
@@ -7,25 +8,15 @@ const baseUrl = process.env.NEXT_PUBLIC_URL_APP
 
 export const editUser = async (_currentState, formData) => {
     revalidatePath(`/admin/usuarios/[id]`)
-
-    const token = cookies().get(authTokenKey)
     try {
-
         let username = formData.get('username');
         let bio = formData.get('bio');
         let userId = formData.get('userId');
-        let res = await fetch(`${baseUrl}/api/admin/users/${userId}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-                'Authorization': `Bearer ${token.value}`
-            },
-            body: JSON.stringify({
+        let res = await axiosServices.put(`/api/admin/users/${userId}`, JSON.stringify({
                 username,
                 bio,
-            }),
-        });
-        const data = await res.json();
+        }));
+        const { data } = res;
         if (res.status !== 200) {
             const error = new Error(data.message);
             error.status = res.status
@@ -42,17 +33,9 @@ export const editUser = async (_currentState, formData) => {
 };
 
 export async function verifiedUser(userId) {
-    const token = cookies().get(authTokenKey)
     try {
-        let res = await fetch(`${baseUrl}/api/admin/users/${userId}/force-verify`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                'Authorization': `Bearer ${token.value}`
-            },
-
-        });
-        const data = await res.json();
+        let res = await axiosServices.post(`/api/admin/users/${userId}/force-verify`);
+        const { data } = res;
         if (res.status !== 200) {
             const error = new Error(data.message);
             error.status = res.status
@@ -66,30 +49,19 @@ export async function verifiedUser(userId) {
             message: error.message
         })
     }
-
 };
 
 
 
 export const changeRoleUser = async (_currentState, formData) => {
     revalidatePath(`/admin/usuarios/[id]`)
-
-    const token = cookies().get(authTokenKey)
     try {
         let role = formData.get('role');
         let userId = formData.get('userId');
-        let res = await fetch(`${baseUrl}/api/admin/users/${userId}/role`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-                'Authorization': `Bearer ${token.value}`
-            },
-            body: JSON.stringify({
+        let res = await axiosServices.put(`/api/admin/users/${userId}/role`, JSON.stringify({
                 role
-            })
-
-        });
-        const data = await res.json();
+        }));
+        const { data } = res;
         if (res.status !== 200) {
             const error = new Error(data.message);
             error.status = res.status
@@ -104,30 +76,19 @@ export const changeRoleUser = async (_currentState, formData) => {
             message: error.message
         })
     }
-
 };
 
 export const changeEmailUser = async (_currentState, formData) => {
     revalidatePath(`/admin/usuarios`, 'page')
-
-    const token = cookies().get(authTokenKey)
     try {
         let userId = formData.get('userId');
         let email = formData.get('email');
         let forceVerified = formData.get('forceVerified') == 'on'
-        let res = await fetch(`${baseUrl}/api/admin/users/${userId}/email`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-                'Authorization': `Bearer ${token.value}`
-            },
-            body: JSON.stringify({
+        let res = await axiosServices.put(`/api/admin/users/${userId}/email`, JSON.stringify({
                 email,
                 forceVerified,
-            })
-
-        });
-        const data = await res.json();
+        }));
+        const { data } = res;
         if (res.status !== 200) {
             const error = new Error(data.message);
             error.status = res.status
@@ -142,30 +103,19 @@ export const changeEmailUser = async (_currentState, formData) => {
             message: error.message
         })
     }
-
 };
 
 export const changePasswordUser = async (_currentState, formData) => {
     revalidatePath(`/admin/usuarios`, 'page')
-
-    const token = cookies().get(authTokenKey)
     try {
         let userId = formData.get('userId');
         let password = formData.get('password');
         let forceVerified = formData.get('forceVerified') == 'on'
-        let res = await fetch(`${baseUrl}/api/admin/users/${userId}/password`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-                'Authorization': `Bearer ${token.value}`
-            },
-            body: JSON.stringify({
+        let res = await axiosServices.put(`/api/admin/users/${userId}/password`, JSON.stringify({
                 password,
                 forceVerified,
-            })
-
-        });
-        const data = await res.json();
+        }));
+        const { data } = res;
         if (res.status !== 200) {
             const error = new Error(data.message);
             error.status = res.status
@@ -180,5 +130,4 @@ export const changePasswordUser = async (_currentState, formData) => {
             message: error.message
         })
     }
-
 };

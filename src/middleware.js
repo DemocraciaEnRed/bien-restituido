@@ -1,6 +1,5 @@
 import { authTokenKey, userRoles } from './lib/utils/constants';
-import { rejectUser } from './lib/utils';
-import { decrypt, updateSession } from './lib/utils/sessions';
+import { decrypt, rejectUser, updateSession } from './lib/utils/sessions';
 
 const baseUrl = process.env.NEXT_PUBLIC_URL_APP;
 
