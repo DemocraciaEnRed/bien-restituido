@@ -29,7 +29,6 @@ export const login = async (_currentState, formData) => {
         await createSession(data.token)
         success = true
     } catch (error) {
-        console.log(error);
         return {
             status: error.status,
             errors: error.message

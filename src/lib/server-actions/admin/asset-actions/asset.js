@@ -105,14 +105,4 @@ export const archiveAsset = async (id) => {
     return JSON.parse(JSON.stringify(assets))
 }
 
-export const getAssetById = async (id) => {
-    await dbConnect()
-    await isAuthotized()
-    try {
-        const asset = await Asset.findOne({ _id: id });
-        return JSON.parse(JSON.stringify(asset))
 
-    } catch (err) {
-        console.error(err);
-    }
-}

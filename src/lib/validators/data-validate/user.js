@@ -1,18 +1,12 @@
 import { z } from "zod";
-import { messages } from "../../../app/api/_lib/utils/messages";
-import { UserSchema } from "@/app/api/_lib/models/User";
-import constants from "@/app/api/_lib/services/constants";
+import { messages } from "@/lib/utils/messages";
+import { UserSchema } from "@/lib/models/User";
 import { userRoles } from "@/lib/utils/constants";
-
-
 
 export const updateUserSchema = z.object({
     username: z.string().min(1, { message: messages.validationError.name }),
     bio: z.string({ message: messages.validationError.string })
 });
-
-
-
 
 export const changePasswordSchema = z.object({
     currentPassword: z.string().min(6, {
@@ -25,8 +19,6 @@ export const changePasswordSchema = z.object({
     message: "Passwords don't match",
     path: ["confirmPassword"], // path of error
 });;
-
-
 
 
 export const userIdSchema = z.object({

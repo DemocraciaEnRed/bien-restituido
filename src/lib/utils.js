@@ -1,7 +1,6 @@
 import { clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
-import { authTokenKey, oneDay } from "./utils/constants";
-import { NextResponse } from "next/server";
+import mongoose from "mongoose";
 
 //shadcdn
 export function cn(...inputs) {
@@ -76,4 +75,8 @@ export function jsonToCsv(jsonData) {
   }).join('\n');
   const csvContent = csvHeader + csvRows;
   return csvContent;
+}
+
+export const isObjectId = (value) => {
+  return mongoose.Types.ObjectId.isValid(value);
 }

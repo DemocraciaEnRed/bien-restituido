@@ -1,5 +1,6 @@
 import { z } from "zod";
-import { messages } from "../../../app/api/_lib/utils/messages";
+import { messages } from "@/lib/utils/messages";
+import { isObjectId } from "@/lib/utils";
 
 
 export const queryAssetListSchema = z.object({
@@ -8,4 +9,9 @@ export const queryAssetListSchema = z.object({
   destination: z.string({ message: messages.validationError.destination }).optional(),
   search: z.string({ message: messages.validationError.search }).optional(),
   archivedAt: z.boolean().optional()
+})
+
+
+export const assetIdSchema = z.object({
+  assetId: z.string().refine(value => isObjectId(value))
 })

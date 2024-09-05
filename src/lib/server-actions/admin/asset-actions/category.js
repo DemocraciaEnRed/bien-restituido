@@ -51,58 +51,12 @@ export const deleteCategoryById = async (categoryId) => {
         await ExtraField.deleteMany({ category: categoryId })
 
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
     revalidatePath(`/admin/configuracion`)
 
 }
 
-export const getCategories = async () => {
-    await dbConnect()
-    await isAuthotized()
-    try {
-        const categories = await Category.find({});
-        return JSON.parse(JSON.stringify(categories))
-    } catch (error) {
-        console.error(error);
-    }
-}
 
 
-export const getCategoryBySlug = async (slug) => {
-    await dbConnect()
-    await isAuthotized()
-    try {
-        const category = await Category.findOne({ slug });
-        return JSON.parse(JSON.stringify(category))
-
-    } catch (err) {
-        console.error(err);
-    }
-
-}
-
-export const getCategoryById = async (id) => {
-    await dbConnect()
-    await isAuthotized()
-    try {
-        const category = await Category.findOne({ _id: id });
-        return JSON.parse(JSON.stringify(category))
-
-    } catch (err) {
-        console.error(err);
-    }
-}
-
-export const getCategoryByName = async (name) => {
-    await dbConnect()
-    await isAuthotized()
-    try {
-        const category = await Category.findOne({ name });
-        return JSON.parse(JSON.stringify(category))
-
-    } catch (err) {
-        console.error(err);
-    }
-}
 

@@ -7,7 +7,6 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
-import { getExtraFieldsByCategory } from "@/lib/server-actions/admin/asset-actions/extra-fields";
 import { fontAwesomeIcons, showCardOptions } from "@/lib/utils/constants";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Pencil, Archive } from "lucide-react";

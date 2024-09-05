@@ -1,5 +1,5 @@
+import { User } from "@/lib/models";
 import { verify } from "jsonwebtoken";
-import User from "../models/User";
 
 
 const authorize = async (req, res, next) => {

@@ -1,7 +1,7 @@
 import React from "react";
 
 import FormAsset from "@/components/admin/asset/assetForm";
-import { getAssetById } from "@/lib/server-actions/admin/asset-actions/asset";
+import { getAssetById } from "@/lib/server-actions/home/fetch-data";
 
 const EditAsset = async ({ params: { id } }) => {
   const asset = await getAssetById(id);

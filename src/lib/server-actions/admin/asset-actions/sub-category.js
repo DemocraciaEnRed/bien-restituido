@@ -1,7 +1,6 @@
 "use server"
 import { SubCategory } from "@/lib/models";
 import { createSlug } from "@/lib/utils";
-import { isAuthotized } from "@/lib/utils/session-role";
 
 
 export const saveSubCategories = async (subCategories, category) => {
@@ -58,23 +57,4 @@ export const saveSubCategory = async (subCategory) => {
   }
 };
 
-export const getSubCategoriesByCategory = async (category) => {
-  await isAuthotized()
-  try {
-    const subCategories = await SubCategory.find({ category });
-    return JSON.parse(JSON.stringify(subCategories))
-  } catch (error) {
-    console.error(error);
-  }
 
-}
-
-export const getSubCategories = async () => {
-  await isAuthotized()
-  try {
-    const subCategories = await SubCategory.find({});
-    return JSON.parse(JSON.stringify(subCategories))
-  } catch (error) {
-    console.error(error);
-  }
-}

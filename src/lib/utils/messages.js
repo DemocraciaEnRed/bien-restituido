@@ -43,6 +43,34 @@ export const messages = {
       "emailChanged": "Email cambiado correctamente. Un email de verificación ha sido enviado a su nueva dirección de correo {0}"
     }
   },
+  "assets": {
+    "error": {
+      "notFound": "Bien no encontrado",
+      "notAvailable": "El bien no se encuentra disponible",
+      "notAllowed": "No tienes permiso para ver este bien",
+    },
+  },
+  "category": {
+    "error": {
+      "notFound": "Categoría no encontrada",
+      "notAvailable": "La categoría no se encuentra disponible",
+      "notAllowed": "No tienes permiso para ver esta categoría",
+    },
+  },
+  "subCategory": {
+    "error": {
+      "notFound": "SubCategoría no encontrada",
+      "notAvailable": "La subcategoría no se encuentra disponible",
+      "notAllowed": "No tienes permiso para ver esta subcategoría",
+    },
+  },
+  "extraField": {
+    "error": {
+      "notFound": "Campo no encontrada",
+      "notAvailable": "El campo no se encuentra disponible",
+      "notAllowed": "No tienes permiso para ver este campo",
+    },
+  },
   "validationError": {
     "Invalid value": "Valor inválido",
     "mongoId": "El id no es válido",

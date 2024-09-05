@@ -1,8 +1,8 @@
-import User from "@/app/api/_lib/models/User"
 import { cookies } from "next/headers";
 import { authTokenKey, userRoles } from "./constants";
 import { decrypt } from "./sessions";
 import { redirect } from "next/navigation";
+import { User } from "@/lib/models";
 
 export async function isAuthotized() {
   const session = cookies().get(authTokenKey)?.value;

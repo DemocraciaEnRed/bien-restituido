@@ -1,29 +1,29 @@
 import { paramsValidate, queryValidate } from "@/lib/validators/data-validate";
-import { assetIdSchema, queryAssetListSchema } from "@/lib/validators/data-validate/assets";
 import NextApiRouter from "@billyen2012/next-api-router";
-import { get, list } from "../_lib/controllers/assetsController";
 import validate from "@/lib/validators/validate";
+import { get, list } from "../_lib/controllers/extraFields";
+import { extraFieldIdSchema } from "@/lib/validators/data-validate/extraField";
 
 // initialize router
 const router = NextApiRouter()
 
 // -----------------------------------------------
-// BASE     /asset/
+// BASE     /extrafield
 // -----------------------------------------------
-// GET 		/asset/
-// GET 		/asset/:assetId
+// GET 		/extrafield/
+// GET 		/extrafield/:extraFieldId
 // -----------------------------------------------
 
-// GET /asset/
+// GET /extrafield/
 router.get('/',
-  queryValidate(queryAssetListSchema),
+  // queryValidate(queryAssetListSchema),
   validate,
   list
 )
 
-// GET 		/asset/:assetId
-router.get('/:assetId',
-  paramsValidate(assetIdSchema),
+// GET 		/extrafield/:extraFieldId
+router.get('/:extraFieldId',
+  paramsValidate(extraFieldIdSchema),
   validate,
   get
 )

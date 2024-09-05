@@ -2,8 +2,8 @@ import React from "react";
 
 import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
-import { getCategories } from "@/lib/server-actions/admin/asset-actions/category";
 import CategoryList from "@/components/admin/category/category-list";
+import { getCategories } from "@/lib/server-actions/home/fetch-data";
 
 export const dynamic = "force-dynamic";
 

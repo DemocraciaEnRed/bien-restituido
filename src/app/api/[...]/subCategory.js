@@ -1,29 +1,30 @@
 import { paramsValidate, queryValidate } from "@/lib/validators/data-validate";
 import { assetIdSchema, queryAssetListSchema } from "@/lib/validators/data-validate/assets";
 import NextApiRouter from "@billyen2012/next-api-router";
-import { get, list } from "../_lib/controllers/assetsController";
 import validate from "@/lib/validators/validate";
+import { get, list } from "../_lib/controllers/subCategoryController";
+import { subCategoryIdSchema } from "@/lib/validators/data-validate/subcatergory";
 
 // initialize router
 const router = NextApiRouter()
 
 // -----------------------------------------------
-// BASE     /asset/
+// BASE     /subCategory
 // -----------------------------------------------
-// GET 		/asset/
-// GET 		/asset/:assetId
+// GET 		/subCategory/
+// GET 		/subCategory/:subCategoryId
 // -----------------------------------------------
 
-// GET /asset/
+// GET /subCategory/
 router.get('/',
-  queryValidate(queryAssetListSchema),
+  // queryValidate(queryAssetListSchema),
   validate,
   list
 )
 
-// GET 		/asset/:assetId
-router.get('/:assetId',
-  paramsValidate(assetIdSchema),
+// GET 		/subCategory/:subCategoryId
+router.get('/:subCategoryId',
+  paramsValidate(subCategoryIdSchema),
   validate,
   get
 )

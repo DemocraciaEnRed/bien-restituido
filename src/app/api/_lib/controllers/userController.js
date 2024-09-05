@@ -1,9 +1,9 @@
 import { userRoles } from "@/lib/utils/constants";
 import { listUsers } from "../helpers/userHelper";
-import User from "../models/User";
 import { renderHtml, sendNow } from "../services/mailer";
-import { messages } from "../utils/messages";
+import { messages } from "@/lib/utils/messages";
 import verifyTemplate from "@/app/api/_lib/services/templates/verify";
+import { User } from "@/lib/models";
 
 
 export const me = async function (req, res) {

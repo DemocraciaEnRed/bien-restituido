@@ -2,19 +2,13 @@ import React, { useEffect, useState } from "react";
 
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { getExtraFieldsByCategory } from "@/lib/server-actions/admin/asset-actions/extra-fields";
-import { getSubCategoriesByCategory } from "@/lib/server-actions/admin/asset-actions/sub-category";
-import { fontAwesomeIcons } from "@/lib/utils/constants";
-import { getCategories } from "@/lib/server-actions/admin/asset-actions/category";
+
 import SelectCustom from "@/components/ui/select-custom";
-import { assert } from "react-resizable-panels";
+import {
+  getCategories,
+  getExtraFieldsByCategory,
+  getSubCategoriesByCategory,
+} from "@/lib/server-actions/home/fetch-data";
 
 const AssetInfo = ({ assetEdit }) => {
   const [categories, setCategories] = useState(null);

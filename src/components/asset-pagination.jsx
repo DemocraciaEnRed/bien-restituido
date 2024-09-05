@@ -23,59 +23,60 @@ const AssetPagination = ({ page, total, pages, nextPage, prevPage }) => {
     router.push(`${pathname}${query}`);
   };
 
-  return (
-    <Pagination>
-      <PaginationContent>
-        <PaginationItem>
-          <PaginationPrevious
-            disabled={!prevPage}
-            onClick={() => handlePage(prevPage)}
-          />
-        </PaginationItem>
-        {prevPage && (
-          <>
-            <PaginationItem>
-              <PaginationEllipsis
-                className="cursor-pointer"
-                onClick={() => handlePage(1)}
-              />
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink onClick={() => handlePage(prevPage)}>
-                {prevPage}
-              </PaginationLink>
-            </PaginationItem>
-          </>
-        )}
-        <PaginationItem>
-          <PaginationLink href="#" isActive={true}>
-            {page}
-          </PaginationLink>
-        </PaginationItem>
-        {nextPage && (
-          <>
-            <PaginationItem>
-              <PaginationLink onClick={() => handlePage(nextPage)}>
-                {nextPage}
-              </PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationEllipsis
-                className="cursor-pointer"
-                onClick={() => handlePage(pages)}
-              />
-            </PaginationItem>
-          </>
-        )}
-        <PaginationItem>
-          <PaginationNext
-            disabled={!nextPage}
-            onClick={() => handlePage(nextPage)}
-          />
-        </PaginationItem>
-      </PaginationContent>
-    </Pagination>
-  );
+  if (pages > 1)
+    return (
+      <Pagination>
+        <PaginationContent>
+          <PaginationItem>
+            <PaginationPrevious
+              disabled={!prevPage}
+              onClick={() => handlePage(prevPage)}
+            />
+          </PaginationItem>
+          {prevPage && (
+            <>
+              <PaginationItem>
+                <PaginationEllipsis
+                  className="cursor-pointer"
+                  onClick={() => handlePage(1)}
+                />
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationLink onClick={() => handlePage(prevPage)}>
+                  {prevPage}
+                </PaginationLink>
+              </PaginationItem>
+            </>
+          )}
+          <PaginationItem>
+            <PaginationLink href="#" isActive={true}>
+              {page}
+            </PaginationLink>
+          </PaginationItem>
+          {nextPage && (
+            <>
+              <PaginationItem>
+                <PaginationLink onClick={() => handlePage(nextPage)}>
+                  {nextPage}
+                </PaginationLink>
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationEllipsis
+                  className="cursor-pointer"
+                  onClick={() => handlePage(pages)}
+                />
+              </PaginationItem>
+            </>
+          )}
+          <PaginationItem>
+            <PaginationNext
+              disabled={!nextPage}
+              onClick={() => handlePage(nextPage)}
+            />
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>
+    );
 };
 
 export default AssetPagination;
