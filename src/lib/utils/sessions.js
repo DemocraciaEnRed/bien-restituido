@@ -55,7 +55,7 @@ export async function updateSession(request) {
 
       if (!token) return
       const res = NextResponse.next()
-      if (expTime < currentTime) {
+      // if (expTime < currentTime) {
         const newToken = await refreshToken()
         const expires = new Date(Date.now() + oneDay * 2)
         res.cookies.set({
@@ -65,7 +65,7 @@ export async function updateSession(request) {
           secure: process.env.NODE_ENV === 'production',
           expires
         })
-      }
+      // }
       return res
     }
   } catch (err) {
