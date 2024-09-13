@@ -57,7 +57,7 @@ const AssetSerch = () => {
           name="search"
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
-          placeholder="Buscar bien por (#ID, Juzgado, autos, nº de serie)"
+          placeholder="Buscar bien por (#ID, Juzgado, autos)"
           className="shadow-md rounded-lg"
         />
       </div>

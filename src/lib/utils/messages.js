@@ -107,7 +107,7 @@ export const messages = {
     "articles": "El valor debe ser un Array de objetos y que no sea vacio",
     "position": "El orden debe ser un numero entero mayor o igual a 1",
     "destination": "El parámetro destination debe ser un string",
-    "search": "El parámetro search debe ser un string"
+    "search": "El parámetro search debe ser un texto"
   }
 }
 
