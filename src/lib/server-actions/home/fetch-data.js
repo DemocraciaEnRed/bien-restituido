@@ -1,26 +1,6 @@
 "use server"
 import { objectToQueryString } from "@/lib/utils";
-import axiosServices from "@/lib/utils/axios";
-
-const fetchData = async (url) => {
-  try {
-    let res = await axiosServices.get(url)
-    const { data } = res
-    if (res.status !== 200) {
-      const error = new Error(data.message);
-      error.status = res.status
-      throw error
-    }
-    return data
-  } catch (error) {
-
-    return {
-      status: error.status,
-      message: error.message
-    }
-  }
-}
-
+import fetchData from "@/lib/utils/get-data";
 
 export const getAssets = async (_filter) => {
   return await fetchData(`/api/asset?${objectToQueryString(_filter)}`)

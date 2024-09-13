@@ -68,3 +68,42 @@ export const get = async function (req, res) {
     return res.status(500).json({ message: messages.error.default });
   }
 };
+
+export const create = async function (req, res) {
+  try {
+
+    const data = req.data
+    const asset = await Asset.create(data);
+
+    return res.status(200).json(asset);
+  } catch (error) {
+    console.error(error)
+    return res.status(500).json({ message: messages.error.default })
+  }
+}
+
+export const update = async function (req, res) {
+  try {
+    const assetId = req.params.assetId;
+    const data = req.data
+    const asset = await Asset.findById(assetId);
+    asset.overwrite(data)
+    asset.save()
+    return res.status(200).json(asset);
+  } catch (error) {
+    console.error(error)
+    return res.status(500).json({ message: messages.error.default })
+  }
+}
+
+export const archive = async function (req, res) {
+  try {
+    const assetId = req.params.assetId;
+    const now = new Date()
+    const asset = await Asset.findByIdAndUpdate(assetId, { archivedAt: now })
+    return res.status(200).json(asset);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: messages.error.default });
+  }
+}

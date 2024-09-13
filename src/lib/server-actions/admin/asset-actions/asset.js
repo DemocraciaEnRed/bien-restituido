@@ -6,37 +6,48 @@ import mongoose from "mongoose";
 import { showCardOptions } from "@/lib/utils/constants";
 import dbConnect from "@/lib/db/dbConnect";
 import { isAuthotized } from "@/lib/utils/session-role";
+import fetchData from "@/lib/utils/get-data";
+import axiosServices from "@/lib/utils/axios";
 
 export const saveAsset = async (formData) => {
-    await dbConnect()
-    await isAuthotized()
     try {
-        const asset = await Asset.create(formData);
-        revalidatePath(`/admin/bien`)
-        const message = {
-            asset,
-            status: 'ok'
+        let res = await axiosServices.post(`/api/asset`, formData);
+
+        const { data } = res;
+        if (res.status !== 200) {
+            const error = new Error(data.message);
+            error.status = res.status
+            throw error
         }
-        return JSON.parse(JSON.stringify(message))
+        data.status = res.status
+        return data
     } catch (error) {
-        throw error
+        console.log(error);
+
+        return JSON.stringify({
+            status: error.status,
+            message: error.message
+        })
     }
 }
 
 export const editAsset = async (id, formData) => {
-    await isAuthotized()
     try {
-        const asset = await Asset.findById(id);
-        asset.overwrite(formData)
-        asset.save()
-        revalidatePath(`/admin/bien`)
-        const message = {
-            asset,
-            status: 'ok'
+        let res = await axiosServices.put(`/api/asset/${id}`, formData);
+        const { data } = res;
+        if (res.status !== 200) {
+            const error = new Error(data.message);
+            error.status = res.status
+            throw error
         }
-        return JSON.parse(JSON.stringify(message))
+        data.status = res.status
+        return data
     } catch (error) {
-        throw error
+        console.log(error);
+        return JSON.stringify({
+            status: error.status,
+            message: error.message
+        })
     }
 
 }
@@ -96,13 +107,9 @@ export const downloadAssets = async (_filter) => {
 
 
 export const archiveAsset = async (id) => {
-    await dbConnect()
-    await isAuthotized()
-    const now = new Date()
-    const assets = await Asset.findByIdAndUpdate(id, { archivedAt: now })
     revalidatePath(`/admin/bien`)
+    return await fetchData(`/api/asset/archive/${id}`)
 
-    return JSON.parse(JSON.stringify(assets))
 }
 
 
