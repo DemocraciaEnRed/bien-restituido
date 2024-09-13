@@ -1,9 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import {
-  downloadAssets,
-  getAssets,
-} from "@/lib/server-actions/admin/asset-actions/asset";
+import { downloadAssets } from "@/lib/server-actions/home/fetch-data";
 import { formatDate, jsonToCsv } from "@/lib/utils";
 import { Download } from "lucide-react";
 import React from "react";

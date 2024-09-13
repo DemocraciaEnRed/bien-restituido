@@ -1,7 +1,7 @@
 import { paramsValidate, queryValidate } from "@/lib/validators/data-validate";
 import { assetIdSchema, queryAssetListSchema } from "@/lib/validators/data-validate/assets";
 import NextApiRouter from "@billyen2012/next-api-router";
-import { archive, create, get, list, update } from "../_lib/controllers/assetsController";
+import { archive, create, download, get, list, update } from "../_lib/controllers/assetsController";
 import validate from "@/lib/validators/validate";
 import { authorize } from "../_lib/middlewares/authorize";
 import { userRoles } from "@/lib/utils/constants";
@@ -26,7 +26,6 @@ router.get('/',
 // POST 		/asset
 router.post('/',
   authorize(userRoles.ADMIN),
-  // paramsValidate(assetIdSchema),
   validate,
   create
 )
@@ -34,7 +33,6 @@ router.post('/',
 // PUT 		/asset
 router.put('/:assetId',
   authorize(userRoles.ADMIN),
-  // paramsValidate(assetIdSchema),
   validate,
   update
 )
@@ -52,6 +50,12 @@ router.get('/archive/:assetId',
   paramsValidate(assetIdSchema),
   validate,
   archive
+)
+
+router.get('/download',
+  queryValidate(queryAssetListSchema),
+  validate,
+  download
 )
 
 export default router

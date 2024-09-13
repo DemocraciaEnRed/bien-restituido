@@ -1,4 +1,4 @@
-import { Asset } from "@/lib/models";
+import { Asset, ExtraField } from "@/lib/models";
 import { listAssets } from "../helpers/assetHelpers";
 import { messages } from "@/lib/utils/messages";
 
@@ -102,6 +102,63 @@ export const archive = async function (req, res) {
     const now = new Date()
     const asset = await Asset.findByIdAndUpdate(assetId, { archivedAt: now })
     return res.status(200).json(asset);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: messages.error.default });
+  }
+}
+
+export const download = async function (req, res) {
+  try {
+
+    let query = req.query
+
+    if (req.query.search) {
+      query = {
+        ...query,
+        $or: [
+          { juzgado: { "$regex": req.query.search, "$options": "i" } },
+          { causeCoverSheet: { "$regex": req.query.search, "$options": "i" } }
+        ]
+      };
+      if (mongoose.Types.ObjectId.isValid(req.query.search)) {
+        query.$or.push({ _id: req.query.search });
+      }
+    }
+    query.archivedAt = req.query.archivedAt ? { $ne: null } : null
+    delete query.search
+    const assets = await Asset.find(query)
+      .populate('category', 'name -_id')
+      .populate('subCategory', 'name -_id').lean()
+
+    for (const asset of assets) {
+      let extras = {};
+      const category = asset.category.name;
+      const subCategory = asset.subCategory.name
+      for (const extraKey of Object.keys(asset.extras)) {
+        const key = await ExtraField.findById(extraKey);
+        const value = asset.extras[extraKey];
+        if (!key.hiddenDownload) asset[key.name] = value;
+      }
+
+      asset[`destino-informacion`] = JSON.stringify(asset.destinationInfo);
+
+      if (asset.thirdParties) asset['terceros-involucrados'] = JSON.stringify(asset.third)
+
+      asset.category = category;
+      asset.subCategory = subCategory;
+      delete asset.thirdParties
+      delete asset.third
+      delete asset.destinationInfo
+      delete asset.extras
+      delete asset.updatedAt
+      delete asset.createdAt
+      delete asset.deletedAt
+      delete asset.__v
+    }
+
+    return res.status(200).json(assets);
+
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: messages.error.default });

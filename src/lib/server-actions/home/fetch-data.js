@@ -33,3 +33,7 @@ export const getExtraFieldsByCategory = async (categoryId) => {
 export const getExtraFields = async () => {
   return await fetchData(`/api/extrafield`)
 }
+
+export const downloadAssets = async (_filter) => {
+  return fetchData(`/api/asset/download?${objectToQueryString(_filter)}`)
+}
