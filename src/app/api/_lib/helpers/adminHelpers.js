@@ -1,5 +1,5 @@
+import { User } from "@/lib/models";
 import { userRoles } from "@/lib/utils/constants";
-import User from "../models/User";
 
 
 export const listAllUsers = async () => {

@@ -1,4 +1,4 @@
-import User from "../models/User";
+import { User } from "@/lib/models";
 
 const publicSelect = {
     __v: false,

@@ -35,6 +35,7 @@ export const queryValidate = (schema) => (
 ) => {
     const data = req.query;
     const validation = schema.safeParse(data);
+
     if (!validation.success) {
         const error = formatErrors(validation.error)
         return res.status(400).send({ message: error });

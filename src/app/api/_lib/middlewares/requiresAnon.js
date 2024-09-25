@@ -4,7 +4,7 @@
  * This middleware is used in routes that should only be accessed by anonymous users.
 */
 
-import { messages } from "../utils/messages";
+import { messages } from "@/lib/utils/messages";
 
 const requireAnon = (req, res, next) => {
   if (req.user) {

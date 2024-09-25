@@ -4,6 +4,12 @@ import dbConnect from "@/lib/db/dbConnect";
 import authRoutes from '@/app/api/[...]/auth'
 import userRoutes from '@/app/api/[...]/user'
 import adminRoutes from '@/app/api/[...]/admin'
+import assetRoutes from '@/app/api/[...]/asset'
+import categoryRoutes from '@/app/api/[...]/category'
+import subCategoryRoutes from '@/app/api/[...]/subCategory'
+import extraFieldRoutes from '@/app/api/[...]/extraFields'
+
+
 
 
 import authenticate from "@/app/api/_lib/middlewares/authenticate";
@@ -29,6 +35,10 @@ app.use(authenticate)
 app.use("/auth", authRoutes);
 app.use("/admin", adminRoutes)
 app.use("/user", userRoutes)
+app.use("/asset", assetRoutes)
+app.use("/category", categoryRoutes)
+app.use("/subcategory", subCategoryRoutes)
+app.use("/extrafield", extraFieldRoutes)
 app.get("/hello", (req, res, next) => {
     res.send("world")
 })

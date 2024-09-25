@@ -1,8 +1,10 @@
 import React from "react";
 import CategoryForm from "@/components/admin/category/category-form";
-import { getCategoryBySlug } from "@/lib/server-actions/admin/asset-actions/category";
-import { getSubCategoriesByCategory } from "@/lib/server-actions/admin/asset-actions/sub-category";
-import { getExtraFieldsByCategory } from "@/lib/server-actions/admin/asset-actions/extra-fields";
+import {
+  getCategoryBySlug,
+  getExtraFieldsByCategory,
+  getSubCategoriesByCategory,
+} from "@/lib/server-actions/home/fetch-data";
 
 const EditCategory = async ({ params: { slug } }) => {
   const category = await getCategoryBySlug(slug);

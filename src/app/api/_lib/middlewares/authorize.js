@@ -1,4 +1,4 @@
-import { messages } from "../utils/messages";
+import { messages } from "@/lib/utils/messages";
 
 export const authorize = (roles) => (req, res, next) => {
     // optionalAuthenticate runs first, so it will set req.user if there is a token

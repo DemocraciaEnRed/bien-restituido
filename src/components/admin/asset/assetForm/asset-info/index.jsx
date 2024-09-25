@@ -2,19 +2,13 @@ import React, { useEffect, useState } from "react";
 
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { getExtraFieldsByCategory } from "@/lib/server-actions/admin/asset-actions/extra-fields";
-import { getSubCategoriesByCategory } from "@/lib/server-actions/admin/asset-actions/sub-category";
-import { fontAwesomeIcons } from "@/lib/utils/constants";
-import { getCategories } from "@/lib/server-actions/admin/asset-actions/category";
+
 import SelectCustom from "@/components/ui/select-custom";
-import { assert } from "react-resizable-panels";
+import {
+  getCategories,
+  getExtraFieldsByCategory,
+  getSubCategoriesByCategory,
+} from "@/lib/server-actions/home/fetch-data";
 
 const AssetInfo = ({ assetEdit }) => {
   const [categories, setCategories] = useState(null);
@@ -112,19 +106,19 @@ const AssetInfo = ({ assetEdit }) => {
           <h2>Atributos</h2>
           {extraFields.map((input) => (
             <div
-              key={input.slug}
+              key={input._id}
               className="grid w-full  items-center gap-1.5 my-2 pt-2"
-              id={`extras.${input.slug}`}
+              id={`extras.${input._id}`}
             >
-              <Label htmlFor={`extras.${input.slug}`}>
+              <Label htmlFor={`extras.${input._id}`}>
                 {input.name}
                 {input.required && <span className="text-red-600">*</span>}
               </Label>
               <Input
                 type={input.type}
-                name={`extras.${input.slug}`}
+                name={`extras.${input._id}`}
                 onChange={handleChangeInput}
-                defaultValue={assetEdit && assetEdit.extras[input.slug]}
+                defaultValue={assetEdit && assetEdit.extras[input._id]}
                 placeholder={input.name}
                 required={input.required}
               />

@@ -6,7 +6,7 @@ import app from "@/app/api/[...]/app";
 import { makeHttpRequest } from "../makeHttpRequest";
 import mongoose from "mongoose";
 import { generateRandomUsers } from "../utils";
-import User from "@/app/api/_lib/models/User";
+import User from "@/lib/models/User";
 import dbConnect from "@/lib/db/dbConnect";
 
 const baseUrl = process.env.NEXT_PUBLIC_URL_APP

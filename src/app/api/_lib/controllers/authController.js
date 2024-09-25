@@ -1,11 +1,10 @@
-import { messages } from "../utils/messages";
-import Token from "../models/Token";
-import User from "../models/User";
-import { formatString } from "../utils/format-string";
+import { messages } from "@/lib/utils/messages";
+import { formatString } from "@/lib/utils/format-string";
 import { renderHtml, sendNow } from "../services/mailer";
 import verifyTemplate from "@/app/api/_lib/services/templates/verify";
 import reset from "../services/templates/reset";
 import singUp from "../services/templates/singUp";
+import { Token, User } from "@/lib/models";
 
 
 

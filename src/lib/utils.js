@@ -1,20 +1,17 @@
 import { clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
-import { authTokenKey, oneDay } from "./utils/constants";
-import { NextResponse } from "next/server";
+import mongoose from "mongoose";
 
 //shadcdn
 export function cn(...inputs) {
   return twMerge(clsx(inputs))
 }
 
-
-
-
-export async function rejectUser(request) {
-  const response = NextResponse.redirect(new URL(`/autenticacion/inicio?next=${request.nextUrl.pathname}`, request.url));
-  response.cookies.delete(authTokenKey);
-  return response
+export function objectToQueryString(obj) {
+  return Object.entries(obj)
+    .filter(([key, value]) => value !== null && value !== undefined) // Filtrar null y undefined
+    .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
+    .join('&');
 }
 
 export function createSlug(text) {
@@ -60,4 +57,26 @@ export function formatKeyObject(objeto, prefix) {
     objectFormated[prefix + "." + key] = objeto[key];
   });
   return objectFormated;
+}
+
+
+export function jsonToCsv(jsonData) {
+  const data = typeof jsonData === 'string' ? JSON.parse(jsonData) : jsonData;
+  let keys = []
+  data.forEach(element => {
+    Object.keys(element).forEach(key => { if (!keys.includes(key)) keys.push(key) })
+  })
+  const csvHeader = keys.join(',') + '\n';
+  const csvRows = data.map(row => {
+    return keys.map(key => {
+      const value = String(row[key]).replace(/"/g, '""');
+      return `"${value}"`;
+    }).join(',');
+  }).join('\n');
+  const csvContent = csvHeader + csvRows;
+  return csvContent;
+}
+
+export const isObjectId = (value) => {
+  return mongoose.Types.ObjectId.isValid(value);
 }

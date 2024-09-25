@@ -1,8 +1,7 @@
 "use server"
-import User from "@/app/api/_lib/models/User";
 import { verifySession } from "./sessions";
 import { userRoles } from "./constants";
-import { redirect } from "next/navigation";
+import { User } from "@/lib/models";
 
 export async function isAdmin(userId) {
   const session = await verifySession()

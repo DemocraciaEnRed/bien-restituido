@@ -7,6 +7,7 @@ import {
 } from "react-icons/fa6";
 
 export const authTokenKey = process.env.NEXT_PUBLIC_AUTH_TOKENS_KEY
+export const baseUrl = process.env.NEXT_PUBLIC_URL_APP
 
 export const oneDay = 24 * 60 * 60 * 1000
 

@@ -10,10 +10,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
-import {
-  getLocation,
-  getProvinces,
-} from "@/lib/server-actions/admin/asset-actions/location";
+import { getLocation, getProvinces } from "@/lib/server-actions/admin/location";
 
 import { ChevronDown } from "lucide-react";
 import SelectCustom from "@/components/ui/select-custom";
@@ -50,6 +47,7 @@ const GeneralInfo = ({ assetEdit }) => {
     fetchProvinces();
     if (assetEdit) handleProvince(assetEdit.province);
   }, []);
+
   return (
     <div className="grid items-center gap-1.5 px-1">
       <h2 className="text-xl">Titular</h2>
@@ -125,58 +123,60 @@ const GeneralInfo = ({ assetEdit }) => {
       </div>
       <Separator className="w-1/2 my-3 h-1 mx-auto" />
       <h2 className="text-xl">Localización del bien</h2>
-      <div className="relative">
-        <label
-          htmlFor="province"
-          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-        >
-          Provincia<span className="text-red-600">*</span>
-        </label>
-        <SelectCustom
-          id="province"
-          name="province"
-          disabled={!provinces}
-          onChange={handleChangeInput}
-          required
-          defaultValue={(assetEdit && assetEdit.province) || ""}
-        >
-          <option value="" disabled>
-            Seleccionar localidad
-          </option>
-          {provinces &&
-            provinces.map((province) => (
-              <option key={province.id} value={province.nombre}>
-                {province.nombre}
-              </option>
-            ))}
-        </SelectCustom>
-      </div>
-      <div className="relative">
-        <label
-          htmlFor="location"
-          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-        >
-          Localidad<span className="text-red-600 ">*</span>
-        </label>
-        <SelectCustom
-          id="location"
-          name="location"
-          disabled={!locations}
-          onChange={handleChangeInput}
-          required
-          defaultValue={(assetEdit && assetEdit.location) || ""}
-        >
-          <option value="" disabled>
-            Seleccionar localidad
-          </option>
-          {locations &&
-            locations.map((location) => (
-              <option key={location.id} value={location.nombre}>
-                {location.nombre}
-              </option>
-            ))}
-        </SelectCustom>
-      </div>
+      {provinces && (
+        <div className="relative">
+          <label
+            htmlFor="province"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >
+            Provincia<span className="text-red-600"> *</span>
+          </label>
+          <SelectCustom
+            id="province"
+            name="province"
+            onChange={handleChangeInput}
+            required
+            defaultValue={(assetEdit && assetEdit.province) || ""}
+          >
+            <option value="" disabled>
+              Seleccionar localidad
+            </option>
+            {provinces &&
+              provinces.map((province) => (
+                <option key={province.id} value={province.nombre}>
+                  {province.nombre}
+                </option>
+              ))}
+          </SelectCustom>
+        </div>
+      )}
+      {locations && (
+        <div className="relative">
+          <label
+            htmlFor="location"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >
+            Localidad<span className="text-red-600 "> *</span>
+          </label>
+          <SelectCustom
+            id="location"
+            name="location"
+            onChange={handleChangeInput}
+            required
+            defaultValue={(assetEdit && assetEdit.location) || ""}
+          >
+            <option value="" disabled>
+              Seleccionar localidad
+            </option>
+            {locations &&
+              locations.map((location) => (
+                <option key={location.id} value={location.nombre}>
+                  {location.nombre}
+                </option>
+              ))}
+          </SelectCustom>
+        </div>
+      )}
       <div>
         <Label className="pt-3" htmlFor="address">
           Dirección

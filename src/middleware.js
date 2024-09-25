@@ -1,6 +1,5 @@
 import { authTokenKey, userRoles } from './lib/utils/constants';
-import { rejectUser } from './lib/utils';
-import { decrypt, updateSession } from './lib/utils/sessions';
+import { decrypt, rejectUser, updateSession } from './lib/utils/sessions';
 
 const baseUrl = process.env.NEXT_PUBLIC_URL_APP;
 
@@ -23,19 +22,11 @@ export async function middleware(request) {
 		} catch (error) {
 			return await rejectUser(request)
 		}
+		return await updateSession(request)
 	}
-	return await updateSession(request)
 }
 
 
 export const config = {
-	matcher: [/*
-		* Match all request paths except for the ones starting with:
-		* - api (API routes)
-		* - _next/static (static files)
-		* - _next/image (image optimization files)
-		* - favicon.ico (favicon file)
-		*/
-		'/((?!api|_next/static|_next/image|favicon.ico).*)',
-	],
+	matcher: "/((?!api|static|.*\\..*|_next).*)",
 };

@@ -4,7 +4,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
 
-import Token from "@/app/api/_lib/models/Token";
+import { Token } from "@/lib/models";
 import { userRoles } from "@/lib/utils/constants";
 
 
@@ -134,4 +134,6 @@ UserSchema.methods.generateVerificationToken = function () {
 // Add secondary index for email
 UserSchema.index({ email: 1 });
 
-export default mongoose.models.User || mongoose.model("User", UserSchema);
+const User = mongoose.models.User || mongoose.model("User", UserSchema);
+
+export default User

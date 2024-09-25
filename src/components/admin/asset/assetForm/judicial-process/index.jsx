@@ -135,10 +135,11 @@ const JudicialInfo = ({ assetEdit }) => {
 
       <Separator className="w-1/2 my-3 h-1 mx-auto" />
       <h2 className="text-xl">Proceso judicial</h2>
-      <div className="flex">
+      <h3 className="text-lg">Juzgado</h3>
+      <div className="flex gap-1">
         <div className="w-2/4">
           <Label className="pt-3" htmlFor="juzgadoJurisdiccion">
-            Juzgado <span className="text-red-600">*</span>
+            Jurisdicción <span className="text-red-600">*</span>
           </Label>
           <SelectCustom
             name="juzgadoJurisdiccion"
@@ -148,7 +149,7 @@ const JudicialInfo = ({ assetEdit }) => {
             onChange={handleChangeInput}
           >
             <option value="" disabled>
-              Seleccioná juzgado
+              Seleccioná jurisdicción
             </option>
             {juzgados &&
               juzgados.map((juzgado, idx) => (
@@ -188,10 +189,12 @@ const JudicialInfo = ({ assetEdit }) => {
           </div>
         )}
       </div>
-      <div className="flex">
+
+      <h3 className="text-lg">Fiscalía</h3>
+      <div className="flex gap-1">
         <div className="w-2/4">
           <Label className="pt-3" htmlFor="fiscaliaJurisdiccion">
-            Fiscalia <span className="text-red-600">*</span>
+            Jurisdicción <span className="text-red-600">*</span>
           </Label>
           <SelectCustom
             name="fiscaliaJurisdiccion"
@@ -201,7 +204,7 @@ const JudicialInfo = ({ assetEdit }) => {
             onChange={handleChangeInput}
           >
             <option value="" disabled>
-              Seleccioná fiscalia
+              Seleccioná jurisdicción
             </option>
             {fiscalias &&
               fiscalias.map((fiscalia, idx) => (
@@ -303,7 +306,7 @@ const JudicialInfo = ({ assetEdit }) => {
         <Checkbox
           name="thirdParties"
           id="thirdParties"
-          checked={assetEdit && assetEdit.thirdParties}
+          checked={data?.thirdParties}
           onCheckedChange={(value) =>
             handleChangeInput({ target: { name: "thirdParties", value } })
           }
