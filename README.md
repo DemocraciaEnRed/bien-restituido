@@ -1,52 +1,56 @@
-markdown
-Copiar código
+![Header](./docs/der-logo.png)
+
 # Bien Restituido
 
-Bien Restituido es un proyecto desarrollado por DemocraciaEnRed utilizando Next.js.
+![Node Version](https://img.shields.io/badge/node-v18-red)
+![License](https://img.shields.io/github/license/DemocraciaEnRed/bien-restituido)
+![Docker](https://img.shields.io/badge/docker-ready-blue)
+![Version](https://img.shields.io/github/v/release/DemocraciaEnRed/bien-restituido)
 
-## Tabla de Contenidos
+Bien Restituido es un proyecto desarrollado para el desmantelamiento patrimonial del crimen organizado y el fortalecimiento de la sociedad civil.
 
-- [Instalación](#instalación)
-- [Uso](#uso)
-- [Estructura del Proyecto](#estructura-del-proyecto)
-- [Recursos](#recursos)
-- [Contribuciones](#contribuciones)
-- [Licencia](#licencia)
+## ⚒️ Guía de instalación y ejecución
 
-## Instalación
+Hay 2 maneras de preparar el entorno para desarrollo. A través de Docker, o configurando el entorno de Node
 
-Para comenzar, clona este repositorio y navega hasta el directorio del proyecto:
+### Docker
 
-```bash
-git clone https://github.com/DemocraciaEnRed/bien-restituido.git
-cd bien-restituido
-```
-Instala las dependencias utilizando npm, yarn, pnpm, o bun:
+> #### ⚠️ Prerequisito
+>
+> Este entorno virtual requiere de tener [Docker](https://docs.docker.com/) instalado
 
-```bash
-npm install
-# o
-yarn install
-# o
-pnpm install
-# o
-bun install
-```
+#### Instalación
 
-## Uso
-Para iniciar el servidor de desarrollo:
+Abrí una terminal del sistema en el directorio raiz del proyecto y construí la imagen de docker
 
 ```bash
-Copiar código
-npm run dev
-# o
-yarn dev
-# o
-pnpm dev
-# o
-bun dev
+$ docker compose build
 ```
-Abre http://localhost:3000 en tu navegador para ver la aplicación en funcionamiento.
+
+#### Ejecución
+
+Abrí una terminal del sistema en el directorio raiz del proyecto y ejecutá la imagen en un contenedor
+
+```bash
+$ docker compose up
+```
+
+### Entorno de Node
+
+> #### ⚠️ Prerequisitos
+>
+> Este entorno virtual requiere de:
+>
+> - [Node.js v18.0.0](https://nodejs.org/en/blog/release/v18.0.0/).
+
+#### Instalación y Ejecución
+
+Abrí una terminal del sistema en el directorio raiz del proyecto y ejecutá el proyecto.
+
+```bash
+$ npm install
+$ npm run dev
+```
 
 ## Estructura del Proyecto
 
@@ -67,17 +71,19 @@ bien-restituido/
 ├── README.md           # Documentación del proyecto
 └── tailwind.config.js  # Configuración de Tailwind CSS
 ```
-## Recursos
-Documentación de Next.js
-Tutorial Interactivo de Next.js
-Repositorio de Next.js en GitHub
 
-## Contribuciones
-Las contribuciones son bienvenidas. Por favor, abre un issue o envía un pull request para contribuir al proyecto.
+## 👷‍♀️ Cómo colaborar
 
-## Licencia
-Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo LICENSE para más detalles.
+Las contribuciones siempre son bienvenidas. Si te interesa contribuir a este proyecto y no estás seguro de por dónde empezar, preparamos esta [guía de colaboración](https://github.com/DemocraciaEnRed/.github/blob/main/docs/CONTRIBUTING.md).
 
-```bash
-Puedes personalizar y agregar más detalles específicos al proyecto según sea necesario.
-```
+## 📖 Documentación
+
+Consulta la [documentación y estado del software](./docs) para obtener información detallada sobre el proyecto, estructura de archivos, y otros aspectos importantes.
+
+## ⚖️ Licencia
+
+El software se encuentra licensiado bajo [GPL-v3](./LICENSE). Creemos en la importancia del código abierto para la transformación social y fomentamos que la comunidad aporte de manera activa.
+
+---
+
+⌨️ con ❤️ por [DER](https://github.com/DemocraciaEnRed/)
