@@ -55,7 +55,7 @@ export const uploadFileS3 = async (file) => {
   const Body = Buffer.from(await new Blob([file]).arrayBuffer())
 
   const params = {
-    Bucket: 'bucket-name',
+    Bucket: process.env.S3_UPLOAD_BUCKET,
     Key: file.name,
     Body,
     ContentType: file.type
