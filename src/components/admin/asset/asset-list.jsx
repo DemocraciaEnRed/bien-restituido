@@ -1,6 +1,6 @@
 import React from "react";
 import AssetCard from "./asset-card";
-import { getAssets } from "@/lib/server-actions/home/fetch-data";
+import { getAssets } from "@/lib/actions/home/fetch-data";
 import AssetPagination from "@/components/asset-pagination";
 
 async function AssetList({ filter = {} }) {

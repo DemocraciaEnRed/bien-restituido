@@ -10,7 +10,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { verifiedUser } from "@/lib/server-actions/admin/user/post-data";
+import { verifiedUser } from "@/lib/actions/admin/user/post-data";
 import { Check, Pen, Trash, X } from "lucide-react";
 import Link from "next/link";
 

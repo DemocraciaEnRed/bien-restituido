@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 
-import { changeEmailUser } from "@/lib/server-actions/admin/user/post-data";
+import { changeEmailUser } from "@/lib/actions/admin/user/post-data";
 import { SubmitButton } from "@/components/ui/submit-button";
 import { Checkbox } from "@/components/ui/checkbox";
 

@@ -4,12 +4,12 @@ import {
   getCategoryBySlug,
   getExtraFieldsByCategory,
   getSubCategoriesByCategory,
-} from "@/lib/server-actions/home/fetch-data";
+} from "@/lib/actions/home/fetch-data";
 
 const EditCategory = async ({ params: { slug } }) => {
   const category = await getCategoryBySlug(slug);
-  const subCategories = await getSubCategoriesByCategory(category);
-  const extraFields = await getExtraFieldsByCategory(category);
+  const subCategories = await getSubCategoriesByCategory(category._id);
+  const extraFields = await getExtraFieldsByCategory(category._id);
   return (
     <div>
       <h1 className="text-xl font-semibold uppercase">Nuevo tipo de bien</h1>

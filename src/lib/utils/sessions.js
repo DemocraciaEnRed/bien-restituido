@@ -2,7 +2,7 @@
 import { SignJWT, jwtVerify } from "jose";
 import { authTokenKey, oneDay, userRoles } from "./constants";
 import { cookies } from "next/headers";
-import { refreshToken } from "../server-actions/authentication/auth-actions";
+import { refreshToken } from "../actions/authentication/auth-actions";
 import { NextResponse } from "next/server";
 
 const secret = process.env.JWT_SECRET
@@ -10,7 +10,6 @@ const secret = process.env.JWT_SECRET
 const cookie = {
   name: authTokenKey,
   options: {
-    httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
     sameSite: 'lax',
     path: '/'
@@ -61,7 +60,6 @@ export async function updateSession(request) {
         res.cookies.set({
           name: authTokenKey,
           value: newToken.token,
-          httpOnly: true,
           secure: process.env.NODE_ENV === 'production',
           expires
         })

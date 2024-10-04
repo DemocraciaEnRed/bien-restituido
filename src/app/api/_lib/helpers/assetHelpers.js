@@ -1,11 +1,13 @@
 import { Asset, ExtraField } from "@/lib/models";
 import { showCardOptions } from "@/lib/utils/constants";
+import { s3Client } from "@/lib/utils/s3-client";
+import { PutObjectCommand } from "@aws-sdk/client-s3";
 
 
-export const listAssets = async (page = 1, limit = 10, query = null) => {
+export const listAssets = async (page = 1, limit = 10, query = null, sort = '-createdAt') => {
   try {
     // get the assets by page
-    const assets = await Asset.find(query).populate('category').populate('subCategory').skip((page - 1) * limit).limit(limit)
+    const assets = await Asset.find(query).sort(sort).populate('category').populate('subCategory').skip((page - 1) * limit).limit(limit)
     for (const asset of assets) {
       let extras = {
         [showCardOptions.EXPANDED.value]: {},
@@ -15,8 +17,11 @@ export const listAssets = async (page = 1, limit = 10, query = null) => {
       for (const extraKey of Object.keys(asset.extras)) {
 
         const key = await ExtraField.findById(extraKey);
-        const value = asset.extras[extraKey];
         if (key) {
+          const value = {
+            type: key.type,
+            value: asset.extras[extraKey]
+          }
           if (key.showCard === showCardOptions.EXPANDED.value) extras[showCardOptions.EXPANDED.value][key.name] = value;
           else extras[showCardOptions.ALLWAYS.value][key.name] = value;
         }
@@ -43,4 +48,18 @@ export const listAssets = async (page = 1, limit = 10, query = null) => {
     console.error(error);
     throw error;
   }
+}
+
+
+export const uploadFileS3 = async (file) => {
+  const Body = Buffer.from(await new Blob([file]).arrayBuffer())
+
+  const params = {
+    Bucket: 'bucket-name',
+    Key: file.name,
+    Body,
+    ContentType: file.type
+  }
+  const command = new PutObjectCommand(params)
+  await s3Client.send(command)
 }

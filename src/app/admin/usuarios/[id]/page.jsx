@@ -1,5 +1,5 @@
 import React from "react";
-import { fetchUserById } from "@/lib/server-actions/admin/user/fetch-data";
+import { fetchUserById } from "@/lib/actions/admin/user/fetch-data";
 import UserInfo from "../../../../components/admin/users/user-info";
 
 async function User({ params: { id } }) {

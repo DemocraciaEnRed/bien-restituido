@@ -21,7 +21,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { userRoles } from "@/lib/utils/constants";
-import { changeRoleUser } from "@/lib/server-actions/admin/user/post-data";
+import { changeRoleUser } from "@/lib/actions/admin/user/post-data";
 import { SubmitButton } from "@/components/ui/submit-button";
 
 function UserRole({ user }) {

@@ -1,4 +1,4 @@
-import { getAssets } from "@/lib/server-actions/home/fetch-data";
+import { getAssets } from "@/lib/actions/home/fetch-data";
 import React from "react";
 import AssetCard from "./asset-card";
 import AssetPagination from "../asset-pagination";

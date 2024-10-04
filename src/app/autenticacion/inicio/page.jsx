@@ -4,7 +4,7 @@ import { useFormState } from "react-dom";
 import Link from "next/link";
 
 import { LoginForm } from "@/components/auth/login-form";
-import { login } from "@/lib/server-actions/authentication/auth-actions";
+import { login } from "@/lib/actions/authentication/auth-actions";
 import { SubmitButton } from "@/components/ui/submit-button";
 
 export default function Login({ searchParams }) {

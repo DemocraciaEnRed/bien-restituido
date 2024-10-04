@@ -57,7 +57,7 @@ export const fieldsInputTypes = [
     },
     {
         type: "url",
-        friendlyName: "Dirección URL",
+        friendlyName: "Dirección URL (Imagen)",
         description: "Valida que el texto ingresado sea una URL.",
     },
     {

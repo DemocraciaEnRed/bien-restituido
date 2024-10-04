@@ -1,9 +1,9 @@
 import { Asset, ExtraField } from "@/lib/models";
-import { listAssets } from "../helpers/assetHelpers";
+import { listAssets, uploadFileS3 } from "../helpers/assetHelpers";
 import { messages } from "@/lib/utils/messages";
 
 import mongoose from "mongoose";
-// import { userRoles } from "@/lib/utils/constants";
+import { userRoles } from "@/lib/utils/constants";
 
 export const list = async function (req, res) {
   try {
@@ -71,11 +71,19 @@ export const get = async function (req, res) {
 
 export const create = async function (req, res) {
   try {
-
     const data = req.data
+
+    Object.keys(data).forEach(async (key) => {
+
+      if (data[key] instanceof File) {
+        uploadFileS3(data[key])
+        data[key] = data[key].name
+      }
+    })
+
     const asset = await Asset.create(data);
 
-    return res.status(200).json(asset);
+    return res.status(200).json({ message: 'ok' });
   } catch (error) {
     console.error(error)
     return res.status(500).json({ message: messages.error.default })
@@ -112,6 +120,7 @@ export const download = async function (req, res) {
   try {
 
     let query = req.query
+    const userLogged = req.user;
 
     if (req.query.search) {
       query = {
@@ -127,9 +136,27 @@ export const download = async function (req, res) {
     }
     query.archivedAt = req.query.archivedAt ? { $ne: null } : null
     delete query.search
-    const assets = await Asset.find(query)
+
+    let querySelect = {
+      __v: false,
+      thirdParties: false,
+      causeNumber: false,
+      third: false
+    }
+
+    const querySelectForAdmins = {
+      __v: false
+    }
+
+    let queryProjection = querySelect;
+
+    if (userLogged && userLogged.role == userRoles.ADMIN) {
+      queryProjection = querySelectForAdmins;
+    }
+    const assets = await Asset.find(query, queryProjection)
       .populate('category', 'name -_id')
       .populate('subCategory', 'name -_id').lean()
+
 
     for (const asset of assets) {
       let extras = {};
@@ -138,7 +165,9 @@ export const download = async function (req, res) {
       for (const extraKey of Object.keys(asset.extras)) {
         const key = await ExtraField.findById(extraKey);
         const value = asset.extras[extraKey];
-        if (!key.hiddenDownload) asset[key.name] = value;
+        if (!req.user || (req.user && req.user.role !== userRoles.ADMIN)) {
+          if (!key.hiddenDownload) asset[key.name] = value;
+        }
       }
 
       asset[`destino-informacion`] = JSON.stringify(asset.destinationInfo);
@@ -160,7 +189,9 @@ export const download = async function (req, res) {
     return res.status(200).json(assets);
 
   } catch (error) {
-    console.error(error);
+    console.log(error);
+
+    // console.error(error);
     return res.status(500).json({ message: messages.error.default });
   }
 }

@@ -17,7 +17,7 @@ import {
 
 import SubCategoryForm from "./sub-category-form";
 import CategoryFieldForm from "./category-field-form";
-import { saveCompleteCategory } from "@/lib/server-actions/admin/asset-actions/category";
+import { saveCompleteCategory } from "@/lib/actions/admin/asset-actions/category";
 import { useToast } from "@/components/ui/use-toast";
 
 const requiredFields = {

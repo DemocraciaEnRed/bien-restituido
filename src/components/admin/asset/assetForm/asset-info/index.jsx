@@ -8,7 +8,7 @@ import {
   getCategories,
   getExtraFieldsByCategory,
   getSubCategoriesByCategory,
-} from "@/lib/server-actions/home/fetch-data";
+} from "@/lib/actions/home/fetch-data";
 
 const AssetInfo = ({ assetEdit }) => {
   const [categories, setCategories] = useState(null);
@@ -21,9 +21,10 @@ const AssetInfo = ({ assetEdit }) => {
     setCategories(categoriesFetch);
   };
 
-  const handleCategory = async (category) => {
-    const extraFields = await getExtraFieldsByCategory(category);
-    const subCategories = await getSubCategoriesByCategory(category);
+  const handleCategory = async (categoryId) => {
+    const extraFields = await getExtraFieldsByCategory(categoryId);
+    const subCategories = await getSubCategoriesByCategory(categoryId);
+
     setExtraFields(extraFields);
     setSubCategories(subCategories);
   };
@@ -56,7 +57,7 @@ const AssetInfo = ({ assetEdit }) => {
     <div className="px-1">
       <div className="flex flex-col w-full space-y-4 bg-gray-50">
         {categories && (
-          <div className="pt-3">
+          <div>
             <Label htmlFor="category">
               Tipo de Activo <span className="text-red-600">*</span>
             </Label>

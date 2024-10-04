@@ -11,6 +11,13 @@ export const queryAssetListSchema = z.object({
   archivedAt: z.boolean().optional()
 })
 
+export const queryAssetDownloadSchema = z.object({
+  page: z.number({ required_error: messages.validationError.page }).optional(),
+  limit: z.number({ required_error: messages.validationError.limit }).optional(),
+  destination: z.string({ message: messages.validationError.destination }).optional(),
+  search: z.string({ message: messages.validationError.search }).optional(),
+  archivedAt: z.boolean().optional()
+})
 
 export const assetIdSchema = z.object({
   assetId: z.string().refine(value => isObjectId(value))

@@ -11,10 +11,11 @@ import { fontAwesomeIcons, showCardOptions } from "@/lib/utils/constants";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Pencil, Archive } from "lucide-react";
 import Link from "next/link";
-import { archiveAsset } from "@/lib/server-actions/admin/asset-actions/asset";
+import { archiveAsset } from "@/lib/actions/admin/asset-actions/asset";
 import { useToast } from "@/components/ui/use-toast";
 import { ToastAction } from "@/components/ui/toast";
 import { usePathname } from "next/navigation";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 const AssetCard = ({ asset }) => {
   const pathname = usePathname();
@@ -25,13 +26,40 @@ const AssetCard = ({ asset }) => {
     return (
       <span>
         {Object.keys(fields).map((key) => {
-          return (
-            <span key={key} className={`mx-2 ${ordering}`}>
-              <span className="font-bold">{key}</span>:{fields[key]}
-            </span>
-          );
+          if (fields[key].type === "url") return null;
+          else
+            return (
+              <span key={key} className={`mx-2 ${ordering}`}>
+                <span className="font-bold">{key}</span>:{fields[key].value}
+              </span>
+            );
         })}
       </span>
+    );
+  };
+
+  const renderImages = (fields) => {
+    return (
+      <div className="p-1 md:p-3">
+        {Object.keys(fields).map((key) => {
+          if (fields[key].type === "url")
+            return (
+              <Dialog key={key}>
+                <DialogTrigger>
+                  <div className="w-20 h-24 overflow-hidden text-center rounded-xl">
+                    <img
+                      src={fields[key].value}
+                      className="object-cover w-full h-full"
+                    />
+                  </div>
+                </DialogTrigger>
+                <DialogContent>
+                  <img src={fields[key].value} className="w-full" />
+                </DialogContent>
+              </Dialog>
+            );
+        })}
+      </div>
     );
   };
 
@@ -126,15 +154,21 @@ const AssetCard = ({ asset }) => {
       </CardHeader>
       <CardContent className={`${!showMore && "hidden"} w-full`}>
         <hr className="mb-5" />
-        <p className="uppercase underline font-bold">Información del bien</p>
-        {renderFieldShowCard(
-          asset.extras[showCardOptions.EXPANDED.value],
-          "flex"
-        )}
-        <p className="uppercase underline font-bold mt-5">
+        <div className="flex">
+          {renderImages(asset.extras[showCardOptions.EXPANDED.value])}
+          <div>
+            <p className="uppercase underline font-bold">
+              Información del bien
+            </p>
+            {renderFieldShowCard(
+              asset.extras[showCardOptions.EXPANDED.value],
+              "flex"
+            )}
+            {/* <p className="uppercase underline font-bold mt-5">
           Información del destino
-        </p>
-        {/* {renderFieldShowCard(extraFields.filter((field) => field.showCard === showCardOptions.EXPANDED.value), 'flex')} */}
+        </p> */}
+          </div>
+        </div>
       </CardContent>
       <CardFooter className="w-full">
         <Button onClick={() => setShowMore(!showMore)} variant="link">

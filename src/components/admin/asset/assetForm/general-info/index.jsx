@@ -10,7 +10,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
-import { getLocation, getProvinces } from "@/lib/server-actions/admin/location";
+import { getLocation, getProvinces } from "@/lib/actions/admin/location";
 
 import { ChevronDown } from "lucide-react";
 import SelectCustom from "@/components/ui/select-custom";

@@ -18,7 +18,7 @@ import SelectCustom from "@/components/ui/select-custom";
 import {
   getFiscalias,
   getJuzgados,
-} from "@/lib/server-actions/admin/juzgados-y-fiscalias";
+} from "@/lib/actions/admin/juzgados-y-fiscalias";
 
 const JudicialInfo = ({ assetEdit }) => {
   const [data, setData] = useState(assetEdit || null);

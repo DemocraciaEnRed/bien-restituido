@@ -4,27 +4,20 @@ import { useRouter } from "next/navigation";
 
 import { useToast } from "@/components/ui/use-toast";
 
-import {
-  editAsset,
-  saveAsset,
-} from "@/lib/server-actions/admin/asset-actions/asset";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 import GeneralInfo from "./general-info";
 import AssetInfo from "./asset-info";
 import JudicialProcess from "./judicial-process";
 import DestinationInfo from "./destination-info";
 import { Button } from "@/components/ui/button";
-
-// import { useS3Upload } from "next-s3-upload";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { FaCircleCheck, FaCircleMinus, FaCircleXmark } from "react-icons/fa6";
+import {
+  editAsset,
+  saveAsset,
+} from "@/lib/actions/admin/asset-actions/asset-client";
 
 const FormAsset = ({ assetEdit }) => {
   const router = useRouter();
-  // let { uploadToS3 } = useS3Upload();
   const { toast } = useToast();
 
   const assetFormSteps = [
@@ -51,13 +44,10 @@ const FormAsset = ({ assetEdit }) => {
   ];
 
   const [tab, setActiveTab] = useState([assetFormSteps[0].slug]);
+  const [incompleteTab, setIncompleteTab] = useState(null);
 
   const handleTab = (value) => {
-    let newTabs = Array.from(tab);
-    if (newTabs.includes(value))
-      newTabs = newTabs.filter((tab) => tab !== value);
-    else newTabs.push(value);
-    setActiveTab(newTabs);
+    setActiveTab(value);
   };
 
   const submit = async (event) => {
@@ -79,7 +69,7 @@ const FormAsset = ({ assetEdit }) => {
       const input = item.parentNode.getElementsByTagName("button")[0] || item;
 
       if (!item.checkValidity()) {
-        tabs.push(item.closest(".accordionItem").dataset.slug);
+        tabs.push(item.closest(".tabContent").dataset.slug);
         label?.classList.add("!text-red-600");
         input.classList.add("!border-red-600");
         input.classList.add("!text-red-600");
@@ -91,24 +81,27 @@ const FormAsset = ({ assetEdit }) => {
         if (item.type === "radio") label?.classList.remove("!border-red-600");
       }
     });
-    setActiveTab([...new Set(tabs)]);
+    setIncompleteTab([...new Set(tabs)]);
     const data = new FormData(form);
 
     const formData = Object.fromEntries(data.entries());
 
+    const realFormData = new FormData();
+
     Object.keys(formData).forEach((key) => {
       if (formData[key] instanceof File) {
-        // const { url } = uploadToS3(formData[key]);
-        formData[key] = formData[key].name;
+        realFormData.append(key, formData[key], formData[key].name);
+      } else {
+        if (formData[key] === "on") formData[key] = true;
+        realFormData.append(key, formData[key]);
       }
-      if (formData[key] === "on") formData[key] = true;
     });
 
     if (form.checkValidity()) {
       try {
         let asset;
-        if (assetEdit) asset = await editAsset(assetEdit._id, formData);
-        else asset = await saveAsset(formData);
+        if (assetEdit) asset = await editAsset(assetEdit._id, realFormData);
+        else asset = await saveAsset(realFormData);
 
         if (asset.status === 200) router.push("/admin/bien");
       } catch (err) {
@@ -120,36 +113,64 @@ const FormAsset = ({ assetEdit }) => {
     }
   };
 
+  const renderTabTrigger = (step, idx) => {
+    if (incompleteTab)
+      return (
+        <TabsTrigger
+          key={step.slug}
+          value={step.slug}
+          onClick={() => handleTab(step.slug)}
+          className={
+            "text-base whitespace-pre-line text-start h-full bg-white p-2 rounded-2xl border-2 w-full justify-between gap-2 " +
+            (incompleteTab.includes(step.slug)
+              ? "border-red-600 text-red-500"
+              : "border-green-600 text-green-500")
+          }
+        >
+          {idx + 1}. {step.title}
+          {incompleteTab.includes(step.slug) ? (
+            <FaCircleXmark size={25} className="text-red-500" />
+          ) : (
+            <FaCircleCheck size={25} className="text-green-500" />
+          )}
+        </TabsTrigger>
+      );
+
+    return (
+      <TabsTrigger
+        key={step.slug}
+        value={step.slug}
+        onClick={() => handleTab(step.slug)}
+        className="text-base whitespace-pre-line text-start h-full bg-white p-2 rounded-2xl border-2 w-full justify-between gap-2 "
+      >
+        {idx + 1}. {step.title}
+        <FaCircleMinus size={25} />
+      </TabsTrigger>
+    );
+  };
+
   return (
     <div className="flex">
       <div className="w-3/4 p-3">
         <form id="assetForm">
-          <Accordion value={tab}>
+          <Tabs value={tab} className="mb-4">
+            <TabsList className={`h-auto w-full grid grid-cols-4 gap-4`}>
+              {assetFormSteps.map((step, idx) => renderTabTrigger(step, idx))}
+            </TabsList>
             {assetFormSteps.map((step, idx) => (
-              <AccordionItem
+              <TabsContent
+                className="bg-white p-5 rounded-2xl border-2 tabContent"
+                forceMount={true}
                 key={step.slug}
                 value={step.slug}
-                className="border-b-0 my-2 accordionItem"
+                hidden={!tab.includes(step.slug)}
                 data-slug={step.slug}
               >
-                <div className="rounded-2xl w-full bg-gray-50 border border-gray-100  px-3">
-                  <AccordionTrigger
-                    onClick={() => handleTab(step.slug)}
-                    className="py-2 omittedButton"
-                  >
-                    {step.title}
-                  </AccordionTrigger>
-                  <AccordionContent
-                    forceMount={true}
-                    hidden={!tab.includes(step.slug)}
-                    className="border-t-2 pt-3"
-                  >
-                    {step.component}
-                  </AccordionContent>
-                </div>
-              </AccordionItem>
+                {step.component}
+              </TabsContent>
             ))}
-          </Accordion>
+          </Tabs>
+
           <Button onClick={submit} className="submitButton">
             Enviar
           </Button>

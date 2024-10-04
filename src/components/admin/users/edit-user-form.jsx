@@ -5,7 +5,7 @@ import { useFormState } from "react-dom";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { SubmitButton } from "@/components/ui/submit-button";
-import { editUser } from "@/lib/server-actions/admin/user/post-data";
+import { editUser } from "@/lib/actions/admin/user/post-data";
 import {
   Dialog,
   DialogContent,

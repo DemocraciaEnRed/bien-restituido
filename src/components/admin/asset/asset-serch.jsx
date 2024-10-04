@@ -65,7 +65,7 @@ const AssetSerch = () => {
         <DropdownMenu>
           <DropdownMenuTrigger className="w-full flex justify-center text-start">
             <span className="p-2 pl-4 w-full bg-white flex flex-row gap-3 shadow-md rounded-lg">
-              <FilterIcon color="blue" /> Filtrar
+              <FilterIcon className="text-orange-500" /> Filtrar
             </span>
           </DropdownMenuTrigger>
           <DropdownMenuContent>

@@ -22,7 +22,7 @@ import { useToast } from "@/components/ui/use-toast";
 import {
   deleteCategory,
   deleteCategoryById,
-} from "@/lib/server-actions/admin/asset-actions/category";
+} from "@/lib/actions/admin/asset-actions/category";
 import { Eye, Pencil, Trash } from "lucide-react";
 import Link from "next/link";
 

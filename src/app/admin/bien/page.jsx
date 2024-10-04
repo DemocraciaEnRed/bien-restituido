@@ -5,7 +5,7 @@ import AssetSerch from "@/components/admin/asset/asset-serch";
 import AssetList from "@/components/admin/asset/asset-list";
 import DownloadButton from "@/components/admin/asset/download-button";
 import { LoaderCircle } from "lucide-react";
-import { userMe } from "@/lib/server-actions/authentication/auth-actions";
+import { userMe } from "@/lib/actions/authentication/auth-actions";
 const Asset = ({ searchParams }) => {
   return (
     <div>

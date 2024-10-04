@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Switch } from "@/components/ui/switch";
-import { verifiedUser } from "@/lib/server-actions/admin/user/post-data";
+import { verifiedUser } from "@/lib/actions/admin/user/post-data";
 
 function SwitchVerified({ user }) {
   return (
