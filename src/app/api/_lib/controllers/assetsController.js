@@ -1,5 +1,5 @@
 import { Asset, ExtraField } from "@/lib/models";
-import { listAssets, uploadFileS3 } from "../helpers/assetHelpers";
+import { getFileS3, listAssets, uploadFileS3 } from "../helpers/assetHelpers";
 import { messages } from "@/lib/utils/messages";
 
 import mongoose from "mongoose";
@@ -58,7 +58,9 @@ export const get = async function (req, res) {
     //   queryProjection = querySelectForAdmins;
     // }
 
-    const asset = await Asset.findById(assetId)
+    let asset = await Asset.findById(assetId)
+    asset = asset.toObject()
+    asset.cautelaResolutionURL = await getFileS3(asset.cautelaResolution)
 
     if (!asset) return res.status(401).json({ message: messages.assets.error.notFound });
 

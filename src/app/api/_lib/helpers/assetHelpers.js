@@ -1,10 +1,11 @@
 import { Asset, ExtraField } from "@/lib/models";
 import { showCardOptions } from "@/lib/utils/constants";
 import { s3Client } from "@/lib/utils/s3-client";
-import { PutObjectCommand } from "@aws-sdk/client-s3";
+import { GetObjectCommand, PutObjectCommand } from "@aws-sdk/client-s3";
+import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 
 
-export const listAssets = async (page = 1, limit = 10, query = null, sort = '-createdAt') => {
+export const listAssets = async (page = 1, limit = 10, query = null, sort = 'createdAt') => {
   try {
     // get the assets by page
     const assets = await Asset.find(query).sort(sort).populate('category').populate('subCategory').skip((page - 1) * limit).limit(limit)
@@ -26,6 +27,9 @@ export const listAssets = async (page = 1, limit = 10, query = null, sort = '-cr
           else extras[showCardOptions.ALLWAYS.value][key.name] = value;
         }
       }
+
+      asset.cautelaResolution = await getFileS3(asset.cautelaResolution)
+
       asset.extras = extras;
     }
 
@@ -62,4 +66,15 @@ export const uploadFileS3 = async (file) => {
   }
   const command = new PutObjectCommand(params)
   await s3Client.send(command)
+}
+
+export const getFileS3 = async (fileName) => {
+  const params = {
+    Bucket: process.env.S3_UPLOAD_BUCKET,
+    Key: fileName,
+  }
+  const file = new GetObjectCommand(params)
+  const url = await getSignedUrl(s3Client, file)
+  return url
+
 }

@@ -176,17 +176,6 @@ const FormAsset = ({ assetEdit }) => {
           </Button>
         </form>
       </div>
-      {/* <div className="w-1/4 border-l-2 border-l-slate-500 p-3">
-        {assetFormSteps.map((step, idx) => (
-          <div key={idx}>
-            <p>{step.title}</p>
-            {step.data &&
-              Object.keys(step.data).map((key) => (
-                <p key={idx + key}>{step.data[key]}</p>
-              ))}
-          </div>
-        ))}
-      </div> */}
     </div>
   );
 };

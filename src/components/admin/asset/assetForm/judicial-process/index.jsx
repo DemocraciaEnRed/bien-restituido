@@ -19,6 +19,7 @@ import {
   getFiscalias,
   getJuzgados,
 } from "@/lib/actions/admin/juzgados-y-fiscalias";
+import { Button, buttonVariants } from "@/components/ui/button";
 
 const JudicialInfo = ({ assetEdit }) => {
   const [data, setData] = useState(assetEdit || null);
@@ -76,13 +77,26 @@ const JudicialInfo = ({ assetEdit }) => {
         <Label className="pt-3" htmlFor="cautelaResolution">
           Resolución de cautela<span className="text-red-600">*</span>
         </Label>
-        <Input
-          id="cautelaResolution"
-          name="cautelaResolution"
-          type="file"
-          required
-          onChange={handleChangeInput}
-        />
+        {assetEdit ? (
+          <div className="flex justify-between">
+            <a
+              className={buttonVariants({ variant: "link" })}
+              target="_blank"
+              href={assetEdit.cautelaResolutionURL}
+            >
+              {assetEdit.cautelaResolution}
+            </a>
+            <Button>Cambiar</Button>
+          </div>
+        ) : (
+          <Input
+            id="cautelaResolution"
+            name="cautelaResolution"
+            type="file"
+            required
+            onChange={handleChangeInput}
+          />
+        )}
       </div>
       <Separator className="w-1/2 my-3 h-1 mx-auto" />
 
