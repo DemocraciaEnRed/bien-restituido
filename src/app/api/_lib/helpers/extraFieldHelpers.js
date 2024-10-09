@@ -1,31 +1,25 @@
-"use server"
 import { ExtraField } from "@/lib/models";
 import { createSlug } from "@/lib/utils";
+import { uploadFileS3 } from "./assetHelpers";
 
 
-export const saveExtraFields = async (fields, category) => {
+export async function createOrEdit(fields, category) {
+  for (const field of fields) {
+    try {
+      field.category = category;
+      if (field._id) {
+        await edit(field)
+      } else {
+        await save(field)
 
-  try {
-    for (const field of fields) {
-      try {
-        field.category = category;
-        if (field._id) {
-          await editExtraField(field)
-        } else {
-          await saveExtraField(field)
-
-        }
-      } catch (err) {
-        throw err;
       }
+    } catch (err) {
+      throw err;
     }
-    await deleteExtraFields(fields, category)
-  } catch (err) {
-    throw err
   }
 }
 
-export const deleteExtraFields = async (fields, category) => {
+export const deleteOnEdit = async (fields, category) => {
   const currentsExtraFields = await ExtraField.find({ category }).distinct('slug');
   const stayExtrafield = fields.map(field => {
     return createSlug(field.category.name + " " + field.name)
@@ -34,7 +28,7 @@ export const deleteExtraFields = async (fields, category) => {
   await ExtraField.deleteMany({ slug: { $in: slugToDelete } })
 }
 
-export const editExtraField = async (field) => {
+export const edit = async (field) => {
   try {
     let extraField = await ExtraField.findById(field._id)
     const { name, type, description, required, showCard, hiddenDownload, category } = field
@@ -51,12 +45,18 @@ export const editExtraField = async (field) => {
   }
 }
 
-export const saveExtraField = async (field) => {
+export const save = async (field) => {
   try {
-    return await ExtraField.create(field)
+    if (field.selectablesOptions && field.selectablesOptions instanceof File) {
+      uploadFileS3(field.selectablesOptions)
+      field.selectablesOptions = field.selectablesOptions.name
+    }
+    await ExtraField.create(field)
   } catch (err) {
     throw err.message
   }
 }
 
-
+export const deleteManyByCategory = async (categoryId) => {
+  await ExtraField.deleteMany({ category: categoryId })
+}

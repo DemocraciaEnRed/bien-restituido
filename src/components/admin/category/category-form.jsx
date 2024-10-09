@@ -17,12 +17,13 @@ import {
 
 import SubCategoryForm from "./sub-category-form";
 import CategoryFieldForm from "./category-field-form";
-import { saveCompleteCategory } from "@/lib/actions/admin/asset-actions/category";
 import { useToast } from "@/components/ui/use-toast";
+import { saveCompleteCategory } from "@/lib/actions/admin/asset-actions/category-client";
+import { useRouter } from "next/navigation";
 
 const requiredFields = {
   category: ["name"],
-  extras: ["type", "name", "showCard"],
+  extras: ["type", "name", "showCard", "selectablesOptions"],
   subCategories: ["name", "icon", "color"],
 };
 
@@ -44,6 +45,7 @@ const CategoryForm = ({ categoryEdit, subCategoriesEdit, extraFields }) => {
   const [subCategories, setSubCategories] = useState(subCategoriesEdit || []);
   const [errorsState, setErrorsState] = useState(null);
   const { toast } = useToast();
+  const router = useRouter();
 
   const hasError = () => {
     const state = {
@@ -84,9 +86,38 @@ const CategoryForm = ({ categoryEdit, subCategoriesEdit, extraFields }) => {
 
   const handleSubmit = async () => {
     try {
-      if (!hasError())
-        await saveCompleteCategory(category, subCategories, extras);
+      if (!hasError()) {
+        const data = { ...category };
+
+        subCategories.forEach((subcategory, idx) => {
+          Object.keys(subcategory).forEach((key) => {
+            data[`subcategory-${idx}-${key}`] = subcategory[key];
+          });
+        });
+        extras.forEach((extra, idx) => {
+          Object.keys(extra).forEach((key) => {
+            data[`extra-${idx}-${key}`] = extra[key];
+          });
+        });
+
+        const formData = new FormData();
+
+        Object.keys(data).forEach((key) => {
+          if (data[key] instanceof File) {
+            formData.append(key, data[key], data[key].name);
+          } else {
+            if (data[key] === "on") data[key] = true;
+            formData.append(key, data[key]);
+          }
+        });
+
+        const response = await saveCompleteCategory(formData);
+        router.push("/admin/configuracion");
+        router.refresh();
+      }
     } catch (error) {
+      console.error(error);
+
       toast({
         description: error.message,
         variant: "destructive",

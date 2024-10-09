@@ -24,6 +24,7 @@ const CategoryFieldForm = ({ setExtras, extraFieldsEdit, errors }) => {
         showCard: "",
         hiddenDownload: false,
         slug: "",
+        selectablesOptions: null,
       },
     ]
   );
@@ -184,7 +185,31 @@ const CategoryFieldForm = ({ setExtras, extraFieldsEdit, errors }) => {
                 </SelectContent>
               </Select>
             </div>
-            <div className="flex items-center pt-4">
+            {attrs[idx].type === "select" && (
+              <div className="w-3/12 pr-1">
+                <Label
+                  htmlFor={`selectablesOptions-${idx}`}
+                  className={
+                    errors?.extras[idx]?.includes("name") && "text-red-500"
+                  }
+                >
+                  Archivo con opciones
+                </Label>
+                <Input
+                  type="file"
+                  name={`selectablesOptions-${idx}`}
+                  placeholder="selectablesOptions"
+                  className={
+                    errors?.extras[idx]?.includes("selectablesOptions") &&
+                    "border-red-500"
+                  }
+                  onChange={(e) =>
+                    setAttr("selectablesOptions", idx, e.target.files[0])
+                  }
+                />
+              </div>
+            )}
+            <div className="flex items-center pt-4 ">
               <Label htmlFor={`hiddenDownload-${idx}`}>
                 ¿Ocultar en descargable usuario?
               </Label>

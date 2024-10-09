@@ -19,15 +19,19 @@ import {
 } from "@/components/ui/table";
 import { ToastAction } from "@/components/ui/toast";
 import { useToast } from "@/components/ui/use-toast";
-import {
-  deleteCategory,
-  deleteCategoryById,
-} from "@/lib/actions/admin/asset-actions/category";
+import { deleteCategory } from "@/lib/actions/admin/asset-actions/category-client";
 import { Eye, Pencil, Trash } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const CategoryList = ({ categories }) => {
   const { toast } = useToast();
+  const router = useRouter();
+
+  const removeCategory = (categoryId) => {
+    deleteCategory(categoryId);
+    router.refresh();
+  };
 
   return (
     <Card>
@@ -69,7 +73,7 @@ const CategoryList = ({ categories }) => {
                           action: (
                             <ToastAction
                               onClick={() => {
-                                deleteCategoryById(category._id);
+                                removeCategory(category._id);
                               }}
                               altText="Confirmar"
                             >

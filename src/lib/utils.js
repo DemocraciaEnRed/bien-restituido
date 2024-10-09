@@ -80,3 +80,31 @@ export function jsonToCsv(jsonData) {
 export const isObjectId = (value) => {
   return mongoose.Types.ObjectId.isValid(value);
 }
+
+export function parseCategoryForm(data) {
+  const parsedData = {
+    category: {},
+    subCategories: [],
+    extras: []
+  };
+
+  // Group subCategories
+  Object.keys(data).forEach(key => {
+    if (key.startsWith('subcategory-')) {
+      const [, index, property] = key.split('-');
+      parsedData.subCategories[index] = parsedData.subCategories[index] || {};
+      parsedData.subCategories[index][property] = data[key];
+    } else if (key.startsWith('extra-')) {
+      // Group extras
+      const [, index, property] = key.split('-');
+      parsedData.extras[index] = parsedData.extras[index] || {};
+      parsedData.extras[index][property] = data[key];
+    } else {
+      parsedData.category[key] = data[key];
+    }
+
+
+  });
+
+  return parsedData;
+}

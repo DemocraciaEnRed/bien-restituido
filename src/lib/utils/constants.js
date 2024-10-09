@@ -65,6 +65,11 @@ export const fieldsInputTypes = [
         friendlyName: "Fecha",
         description: "Proporciona un selector de fecha.",
     },
+    {
+        type: "select",
+        friendlyName: "seleccionable",
+        description: "Proporciona un selector.",
+    },
 
 ];
 

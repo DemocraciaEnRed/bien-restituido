@@ -4,15 +4,24 @@ import { messages } from "@/lib/utils/messages";
 // import { userRoles } from "@/lib/utils/constants";
 import { ExtraField } from "@/lib/models";
 import { isObjectId } from "@/lib/utils";
+import { getFileS3 } from "../helpers/assetHelpers";
 
 export const list = async function (req, res) {
   try {
     let query = req.query
     // let { page, limit } = req.query
 
-    const output = await ExtraField.find(query)
+    let fields = await ExtraField.find(query)
+    fields = await Promise.all(fields.map(async (field) => {
+      const customField = field.toObject()
+      if (customField.selectablesOptions) {
+        customField.optionsURL = await getFileS3(customField.selectablesOptions);
+      }
 
-    return res.status(200).json(output);
+      return customField;
+    }));
+
+    return res.status(200).json(fields);
   } catch (error) {
     console.error(error)
     return res.status(500).json({ message: messages.error.default })

@@ -35,6 +35,9 @@ export const ExtraFieldSchema = new mongoose.Schema(
       type: String,
       unique: true,
     },
+    selectablesOptions: {
+      type: String
+    },
     category: { type: mongoose.Types.ObjectId, ref: 'Category' },
     deletedAt: {
       type: Date,

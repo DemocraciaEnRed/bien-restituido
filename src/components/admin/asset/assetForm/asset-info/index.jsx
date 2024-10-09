@@ -9,6 +9,7 @@ import {
   getExtraFieldsByCategory,
   getSubCategoriesByCategory,
 } from "@/lib/actions/home/fetch-data";
+import RenderField from "./field";
 
 const AssetInfo = ({ assetEdit }) => {
   const [categories, setCategories] = useState(null);
@@ -105,25 +106,14 @@ const AssetInfo = ({ assetEdit }) => {
       {extraFields && (
         <div className="pt-3">
           <h2>Atributos</h2>
+
           {extraFields.map((input) => (
-            <div
+            <RenderField
               key={input._id}
-              className="grid w-full  items-center gap-1.5 my-2 pt-2"
-              id={`extras.${input._id}`}
-            >
-              <Label htmlFor={`extras.${input._id}`}>
-                {input.name}
-                {input.required && <span className="text-red-600">*</span>}
-              </Label>
-              <Input
-                type={input.type}
-                name={`extras.${input._id}`}
-                onChange={handleChangeInput}
-                defaultValue={assetEdit && assetEdit.extras[input._id]}
-                placeholder={input.name}
-                required={input.required}
-              />
-            </div>
+              input={input}
+              handleChangeInput={handleChangeInput}
+              assetEdit={assetEdit}
+            />
           ))}
         </div>
       )}

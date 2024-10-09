@@ -1,25 +1,15 @@
-"use server"
 import { SubCategory } from "@/lib/models";
 import { createSlug } from "@/lib/utils";
 
 
-export const saveSubCategories = async (subCategories, category) => {
-  try {
-    await createOrEdit(subCategories, category)
-    await deleteSubCategorys(subCategories, category);
-  } catch (err) {
-    throw err;
-  }
-};
-
-async function createOrEdit(subCategories, category) {
+export async function createOrEdit(subCategories, category) {
   for await (const subCategory of subCategories) {
     try {
       subCategory.category = category;
       if (subCategory._id) {
-        await editSubCategory(subCategory);
+        await edit(subCategory);
       } else {
-        await saveSubCategory(subCategory);
+        await save(subCategory);
       }
     } catch (err) {
       throw err;
@@ -27,7 +17,7 @@ async function createOrEdit(subCategories, category) {
   }
 }
 
-export const deleteSubCategorys = async (subCategories, category) => { 
+export const deleteOnEdit = async (subCategories, category) => {
   const currentsSubCategories = await SubCategory.find({ category }).distinct('slug');
   const staySubCategory = subCategories.map(subCategory => {
     return createSlug(subCategory.category.name + " " + subCategory.name)
@@ -36,7 +26,7 @@ export const deleteSubCategorys = async (subCategories, category) => {
   await SubCategory.deleteMany({ slug: { $in: slugToDelete } });
 };
 
-export const editSubCategory = async (subCategory) => {
+export const edit = async (subCategory) => {
   try {
     const subCategoryUpdate = await SubCategory.findById(subCategory._id);
     subCategoryUpdate.category = subCategory.category;
@@ -49,7 +39,7 @@ export const editSubCategory = async (subCategory) => {
   }
 };
 
-export const saveSubCategory = async (subCategory) => {
+export const save = async (subCategory) => {
   try {
     return await SubCategory.create(subCategory);
   } catch (err) {
@@ -58,3 +48,7 @@ export const saveSubCategory = async (subCategory) => {
 };
 
 
+export const deleteManyByCategory = async (categoryId) => {
+  await SubCategory.deleteMany({ category: categoryId })
+
+}
