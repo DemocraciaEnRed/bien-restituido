@@ -152,29 +152,33 @@ const AssetCard = ({ asset }) => {
           </Button>
         </div>
       </CardHeader>
-      <CardContent className={`${!showMore && "hidden"} w-full`}>
-        <hr className="mb-5" />
-        <div className="flex">
-          {renderImages(asset.extras[showCardOptions.EXPANDED.value])}
-          <div>
-            <p className="uppercase underline font-bold">
-              Información del bien
-            </p>
-            {renderFieldShowCard(
-              asset.extras[showCardOptions.EXPANDED.value],
-              "flex"
-            )}
-            {/* <p className="uppercase underline font-bold mt-5">
+      {asset.extras[showCardOptions.EXPANDED.value] && (
+        <CardContent className={`${!showMore && "hidden"} w-full`}>
+          <hr className="mb-5" />
+          <div className="flex">
+            {renderImages(asset.extras[showCardOptions.EXPANDED.value])}
+            <div>
+              <p className="uppercase underline font-bold">
+                Información del bien
+              </p>
+              {renderFieldShowCard(
+                asset.extras[showCardOptions.EXPANDED.value],
+                "flex"
+              )}
+              {/* <p className="uppercase underline font-bold mt-5">
           Información del destino
         </p> */}
+            </div>
           </div>
-        </div>
-      </CardContent>
-      <CardFooter className="w-full">
-        <Button onClick={() => setShowMore(!showMore)} variant="link">
-          {showMore ? "Ver menos" : "Ver más"}
-        </Button>
-      </CardFooter>
+        </CardContent>
+      )}
+      {asset.extras[showCardOptions.EXPANDED.value] && (
+        <CardFooter className="w-full">
+          <Button onClick={() => setShowMore(!showMore)} variant="link">
+            {showMore ? "Ver menos" : "Ver más"}
+          </Button>
+        </CardFooter>
+      )}
     </Card>
   );
 };

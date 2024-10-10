@@ -31,6 +31,7 @@ const RenderField = ({ input, handleChangeInput, assetEdit }) => {
           options={inputOptions}
           onChange={handleChangeInput}
           name={`extras.${input._id}`}
+          defaultValue={assetEdit && assetEdit.extras[input._id]}
           required={input.required}
         />
       </>

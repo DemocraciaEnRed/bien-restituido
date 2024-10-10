@@ -1,14 +1,19 @@
 import React, { useState } from "react";
 
-const SearchableSelect = ({ options, onChange, ...props }) => {
+const SearchableSelect = ({ options, onChange, defaultValue, ...props }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedOption, setSelectedOption] = useState(defaultValue || null);
 
   // Filtra y limita las opciones a las primeras 20
   const filteredOptions = options
     .filter((option) => option.toLowerCase().includes(searchTerm.toLowerCase()))
     .slice(0, 20);
+
+  const handleSearchTerm = (e) => {
+    setSelectedOption("");
+    setSearchTerm(e.target.value);
+  };
 
   const handleOptionClick = (option) => {
     setSelectedOption(option.value);
@@ -22,7 +27,7 @@ const SearchableSelect = ({ options, onChange, ...props }) => {
       <input
         type="text"
         value={selectedOption || searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
+        onChange={handleSearchTerm}
         onFocus={() => setIsOpen(true)}
         placeholder="Selecciona una opción"
         className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
