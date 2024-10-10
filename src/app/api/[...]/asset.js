@@ -35,6 +35,7 @@ router.post('/',
 router.put('/:assetId',
   authorize(userRoles.ADMIN),
   validate,
+  router.bodyParser.form(),
   update
 )
 

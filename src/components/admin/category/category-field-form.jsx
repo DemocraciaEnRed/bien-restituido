@@ -10,7 +10,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { fieldsInputTypes, showCardOptions } from "@/lib/utils/constants";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Trash } from "lucide-react";
 
 const CategoryFieldForm = ({ setExtras, extraFieldsEdit, errors }) => {
@@ -24,10 +24,11 @@ const CategoryFieldForm = ({ setExtras, extraFieldsEdit, errors }) => {
         showCard: "",
         hiddenDownload: false,
         slug: "",
-        selectablesOptions: null,
       },
     ]
   );
+
+  const [editFile, setEditFile] = useState([]);
 
   const setAttr = (type, idx, value) => {
     const attr = attrs[idx];
@@ -57,6 +58,10 @@ const CategoryFieldForm = ({ setExtras, extraFieldsEdit, errors }) => {
     attrs.splice(idx, 1);
     setAttrs([...attrs]);
     setExtras(attrs);
+  };
+
+  const addInputToEditFile = (inputName) => {
+    if (!editFile.includes(inputName)) setEditFile([...editFile, inputName]);
   };
 
   const renderFields = () => {
@@ -195,18 +200,43 @@ const CategoryFieldForm = ({ setExtras, extraFieldsEdit, errors }) => {
                 >
                   Archivo con opciones
                 </Label>
-                <Input
-                  type="file"
-                  name={`selectablesOptions-${idx}`}
-                  placeholder="selectablesOptions"
-                  className={
-                    errors?.extras[idx]?.includes("selectablesOptions") &&
-                    "border-red-500"
-                  }
-                  onChange={(e) =>
-                    setAttr("selectablesOptions", idx, e.target.files[0])
-                  }
-                />
+                {attrs[idx].optionsURL &&
+                !editFile.includes(`selectablesOptions-${idx}`) ? (
+                  <div className="flex justify-between">
+                    <a
+                      className={buttonVariants({ variant: "link" })}
+                      target="_blank"
+                      href={attrs[idx].optionsURL}
+                    >
+                      {attrs[idx].selectablesOptions}
+                    </a>
+                    <input
+                      type="hidden"
+                      name={`selectablesOptions-${idx}`}
+                      value={attrs[idx].selectablesOptions}
+                    />
+                    <Button
+                      onClick={() =>
+                        addInputToEditFile(`selectablesOptions-${idx}`)
+                      }
+                    >
+                      Cambiar
+                    </Button>
+                  </div>
+                ) : (
+                  <Input
+                    type="file"
+                    name={`selectablesOptions-${idx}`}
+                    placeholder="selectablesOptions"
+                    className={
+                      errors?.extras[idx]?.includes("selectablesOptions") &&
+                      "border-red-500"
+                    }
+                    onChange={(e) =>
+                      setAttr("selectablesOptions", idx, e.target.files[0])
+                    }
+                  />
+                )}
               </div>
             )}
             <div className="flex items-center pt-4 ">

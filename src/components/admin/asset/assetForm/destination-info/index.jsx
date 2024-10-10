@@ -5,9 +5,15 @@ import { assetDestination } from "@/lib/utils/constants";
 import { Input } from "@/components/ui/input";
 import Auction from "./auction";
 import Reuse from "./reuse";
+import { Button, buttonVariants } from "@/components/ui/button";
 
 function DestinationInfo({ assetEdit }) {
   const [data, setData] = useState(assetEdit || null);
+  const [editFile, setEditFile] = useState([]);
+
+  const addInputToEditFile = (inputName) => {
+    if (!editFile.includes(inputName)) setEditFile([...editFile, inputName]);
+  };
 
   const handleChangeInput = (event) => {
     if (data) {
@@ -63,14 +69,38 @@ function DestinationInfo({ assetEdit }) {
             <Label className="pt-3 mb-2" htmlFor="destinationResolution">
               Resolución de decomiso<span className="text-red-600">*</span>
             </Label>
-            <Input
-              id="destinationResolution"
-              type="file"
-              required
-              className="mt-2"
-              name="destinationResolution"
-              onChange={handleChangeInput}
-            />
+            {assetEdit &&
+            assetEdit.destinationResolutionURL &&
+            !editFile.includes("destinationResolution") ? (
+              <div className="flex justify-between">
+                <a
+                  className={buttonVariants({ variant: "link" })}
+                  target="_blank"
+                  href={assetEdit.destinationResolutionURL}
+                >
+                  {assetEdit.destinationResolution}
+                </a>
+                <input
+                  type="hidden"
+                  name="destinationResolution"
+                  value={assetEdit.destinationResolution}
+                />
+                <Button
+                  onClick={() => addInputToEditFile("destinationResolution")}
+                >
+                  Cambiar
+                </Button>
+              </div>
+            ) : (
+              <Input
+                id="destinationResolution"
+                type="file"
+                required
+                className="mt-2"
+                name="destinationResolution"
+                onChange={handleChangeInput}
+              />
+            )}
           </div>
           {formDestinationType[data.destination]}
         </div>

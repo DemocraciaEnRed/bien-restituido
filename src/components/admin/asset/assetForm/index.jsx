@@ -103,7 +103,10 @@ const FormAsset = ({ assetEdit }) => {
         if (assetEdit) asset = await editAsset(assetEdit._id, realFormData);
         else asset = await saveAsset(realFormData);
 
-        if (asset.status === 200) router.push("/admin/bien");
+        if (asset.status === 200) {
+          router.push("/admin/bien");
+          router.refresh();
+        }
       } catch (err) {
         toast({
           description: err.message,

@@ -66,6 +66,9 @@ export const AssetSchema = new mongoose.Schema(
             max: 255
         },
         destinationInfo: Schema.Types.Mixed,
+        destinationResolution: {
+            type: String
+        },
         category: { type: mongoose.Types.ObjectId, ref: 'Category' },
         subCategory: { type: mongoose.Types.ObjectId, ref: 'SubCategory' },
         extras: Schema.Types.Mixed,

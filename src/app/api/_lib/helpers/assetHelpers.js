@@ -28,7 +28,6 @@ export const listAssets = async (page = 1, limit = 10, query = null, sort = 'cre
         }
       }
 
-      asset.cautelaResolution = await getFileS3(asset.cautelaResolution)
 
       asset.extras = extras;
     }

@@ -23,7 +23,7 @@ import { useRouter } from "next/navigation";
 
 const requiredFields = {
   category: ["name"],
-  extras: ["type", "name", "showCard", "selectablesOptions"],
+  extras: ["type", "name", "showCard"],
   subCategories: ["name", "icon", "color"],
 };
 

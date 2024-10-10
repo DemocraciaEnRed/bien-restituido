@@ -60,7 +60,10 @@ export const get = async function (req, res) {
 
     let asset = await Asset.findById(assetId)
     asset = asset.toObject()
-    asset.cautelaResolutionURL = await getFileS3(asset.cautelaResolution)
+    if (asset.cautelaResolution) asset.cautelaResolutionURL = await getFileS3(asset.cautelaResolution)
+    if (asset.confiscatedResolution) asset.confiscatedResolutionURL = await getFileS3(asset.confiscatedResolution)
+    if (asset.destinationResolution) asset.destinationResolutionURL = await getFileS3(asset.destinationResolution)
+
 
     if (!asset) return res.status(401).json({ message: messages.assets.error.notFound });
 
@@ -76,7 +79,6 @@ export const create = async function (req, res) {
     const data = req.data
 
     Object.keys(data).forEach(async (key) => {
-
       if (data[key] instanceof File) {
         uploadFileS3(data[key])
         data[key] = data[key].name
@@ -96,6 +98,14 @@ export const update = async function (req, res) {
   try {
     const assetId = req.params.assetId;
     const data = req.data
+
+    Object.keys(data).forEach(async (key) => {
+      if (data[key] instanceof File) {
+        uploadFileS3(data[key])
+        data[key] = data[key].name
+      }
+    })
+
     const asset = await Asset.findById(assetId);
     asset.overwrite(data)
     asset.save()

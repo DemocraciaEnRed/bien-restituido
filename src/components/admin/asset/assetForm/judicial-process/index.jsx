@@ -25,6 +25,7 @@ const JudicialInfo = ({ assetEdit }) => {
   const [data, setData] = useState(assetEdit || null);
   const [juzgados, setJuzgados] = useState(null);
   const [fiscalias, setFiscalias] = useState(null);
+  const [editFile, setEditFile] = useState([]);
 
   const fetchJuzgadosYFiscalias = async () => {
     const juzgadosFetch = await getJuzgados();
@@ -56,6 +57,10 @@ const JudicialInfo = ({ assetEdit }) => {
     }
   };
 
+  const addInputToEditFile = (inputName) => {
+    if (!editFile.includes(inputName)) setEditFile([...editFile, inputName]);
+  };
+
   return (
     <div className="grid items-center gap-1.5 px-1">
       <h2 className="text-xl">Cautela</h2>
@@ -77,7 +82,9 @@ const JudicialInfo = ({ assetEdit }) => {
         <Label className="pt-3" htmlFor="cautelaResolution">
           Resolución de cautela<span className="text-red-600">*</span>
         </Label>
-        {assetEdit ? (
+        {assetEdit &&
+        assetEdit.cautelaResolutionURL &&
+        !editFile.includes("cautelaResolution") ? (
           <div className="flex justify-between">
             <a
               className={buttonVariants({ variant: "link" })}
@@ -86,7 +93,14 @@ const JudicialInfo = ({ assetEdit }) => {
             >
               {assetEdit.cautelaResolution}
             </a>
-            <Button>Cambiar</Button>
+            <input
+              type="hidden"
+              name="cautelaResolution"
+              value={assetEdit.cautelaResolution}
+            />
+            <Button onClick={() => addInputToEditFile("cautelaResolution")}>
+              Cambiar
+            </Button>
           </div>
         ) : (
           <Input
@@ -136,13 +150,37 @@ const JudicialInfo = ({ assetEdit }) => {
             <Label className="pt-3" htmlFor="confiscatedResolution">
               Resolución de decomiso<span className="text-red-600">*</span>
             </Label>
-            <Input
-              id="confiscatedResolution"
-              type="file"
-              required
-              name="confiscatedResolution"
-              onChange={handleChangeInput}
-            />
+            {assetEdit &&
+            assetEdit.confiscatedResolutionURL &&
+            !editFile.includes("confiscatedResolution") ? (
+              <div className="flex justify-between">
+                <a
+                  className={buttonVariants({ variant: "link" })}
+                  target="_blank"
+                  href={assetEdit.confiscatedResolutionURL}
+                >
+                  {assetEdit.confiscatedResolution}
+                </a>
+                <input
+                  type="hidden"
+                  name="confiscatedResolution"
+                  value={assetEdit.confiscatedResolution}
+                />
+                <Button
+                  onClick={() => addInputToEditFile("confiscatedResolution")}
+                >
+                  Cambiar
+                </Button>
+              </div>
+            ) : (
+              <Input
+                id="confiscatedResolution"
+                type="file"
+                required
+                name="confiscatedResolution"
+                onChange={handleChangeInput}
+              />
+            )}
           </div>
         </>
       )}

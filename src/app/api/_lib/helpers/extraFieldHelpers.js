@@ -31,7 +31,16 @@ export const deleteOnEdit = async (fields, category) => {
 export const edit = async (field) => {
   try {
     let extraField = await ExtraField.findById(field._id)
-    const { name, type, description, required, showCard, hiddenDownload, category } = field
+    const { name, type, description, required, showCard, hiddenDownload, category, selectablesOptions } = field
+
+    if (selectablesOptions) {
+      if (selectablesOptions instanceof File) {
+        await uploadFileS3(field.selectablesOptions)
+        extraField.selectablesOptions = selectablesOptions.name
+      } else {
+        extraField.selectablesOptions = selectablesOptions
+      }
+    }
     extraField.category = category
     extraField.name = name
     extraField.type = type
@@ -48,7 +57,7 @@ export const edit = async (field) => {
 export const save = async (field) => {
   try {
     if (field.selectablesOptions && field.selectablesOptions instanceof File) {
-      uploadFileS3(field.selectablesOptions)
+      await uploadFileS3(field.selectablesOptions)
       field.selectablesOptions = field.selectablesOptions.name
     }
     await ExtraField.create(field)
