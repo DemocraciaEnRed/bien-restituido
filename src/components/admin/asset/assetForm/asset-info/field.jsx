@@ -7,10 +7,10 @@ import SelectCustom from "@/components/ui/select-custom";
 import SearchableSelect from "@/components/ui/select-searchable";
 
 const RenderField = ({ input, handleChangeInput, assetEdit }) => {
-  if (input.type === "select") {
-    const [inputOptions, setInputOptions] = useState([]);
+  const [inputOptions, setInputOptions] = useState([]);
 
-    useEffect(() => {
+  useEffect(() => {
+    if (input.optionsURL) {
       fetch(input.optionsURL)
         .then((response) => response.text())
         .then((csvData) => {
@@ -19,8 +19,10 @@ const RenderField = ({ input, handleChangeInput, assetEdit }) => {
         .catch((error) => {
           console.error("Error fetching CSV:", error);
         });
-    }, []);
+    }
+  }, []);
 
+  if (input.type === "select") {
     return (
       <>
         <Label className="pt-3" htmlFor={`extras.${input._id}`}>
