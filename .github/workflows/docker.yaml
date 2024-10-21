@@ -3,7 +3,7 @@ name: Build and push
 on:
   push:
     tags:
-      - '*'
+      - "*"
 
 jobs:
   work:
@@ -17,6 +17,9 @@ jobs:
         uses: ASzc/change-string-case-action@v1
         with:
           string: ${{ github.repository }}
+      - name: Agregar envs
+        run: |
+          echo "${{ secrets.ENV_LOCAL }}" > .env.local
       - name: Build & Push docker image
         uses: mr-smithers-excellent/docker-build-push@v4
         with:
