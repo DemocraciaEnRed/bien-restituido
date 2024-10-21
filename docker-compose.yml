@@ -15,6 +15,7 @@ services:
     volumes:
       - .:/usr/src/app    
       - /usr/src/app/.next    
+      - /usr/src/app/node_modules
     env_file:
       - .env.local
     links:

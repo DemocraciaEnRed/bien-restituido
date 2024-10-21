@@ -11,6 +11,11 @@ Bien Restituido es un proyecto desarrollado para el desmantelamiento patrimonial
 
 ## ⚒️ Guía de instalación y ejecución
 
+> Configuración inicial:
+>
+> - Copiá el archivo `.env.example` en uno nuevo `.env.local`
+> - Completá los valores de las variables
+
 Hay 2 maneras de preparar el entorno para desarrollo. A través de Docker, o configurando el entorno de Node
 
 ### Docker
@@ -54,7 +59,7 @@ $ npm run dev
 
 ## Estructura del Proyecto
 
-```ruby
+```bash
 bien-restituido/
 │
 ├── public/             # Archivos estáticos
