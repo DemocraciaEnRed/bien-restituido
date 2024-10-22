@@ -59,21 +59,23 @@ export const uploadFileS3 = async (file) => {
 
   const params = {
     Bucket: process.env.S3_UPLOAD_BUCKET,
-    Key: file.name,
+    Key: `${process.env.S3_UPLOAD_LOCATION}/${file.name}`,
     Body,
     ContentType: file.type
   }
+
   const command = new PutObjectCommand(params)
-  await s3Client.send(command)
+  return await s3Client.send(command)
+
 }
 
 export const getFileS3 = async (fileName) => {
   const params = {
     Bucket: process.env.S3_UPLOAD_BUCKET,
-    Key: fileName,
+    Key: `${process.env.S3_UPLOAD_LOCATION}/${fileName}`,
   }
+
   const file = new GetObjectCommand(params)
-  const url = await getSignedUrl(s3Client, file)
-  return url
+  return await getSignedUrl(s3Client, file)
 
 }

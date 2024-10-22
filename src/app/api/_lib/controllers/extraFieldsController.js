@@ -11,15 +11,18 @@ export const list = async function (req, res) {
     let query = req.query
     // let { page, limit } = req.query
 
-    let fields = await ExtraField.find(query)
-    fields = await Promise.all(fields.map(async (field) => {
-      const customField = field.toObject()
+    let queryFields = await ExtraField.find(query)
+
+    const fields = []
+    for (const field in queryFields) {
+      const customField = queryFields[field].toObject()
       if (customField.selectablesOptions) {
         customField.optionsURL = await getFileS3(customField.selectablesOptions);
       }
+      fields.push(customField)
+    }
 
-      return customField;
-    }));
+
 
     return res.status(200).json(fields);
   } catch (error) {
