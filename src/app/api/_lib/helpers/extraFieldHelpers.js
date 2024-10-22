@@ -32,9 +32,8 @@ export const edit = async (field) => {
   try {
     let extraField = await ExtraField.findById(field._id)
     const { name, type, description, required, showCard, hiddenDownload, category, selectablesOptions } = field
-
     if (selectablesOptions) {
-      if (selectablesOptions instanceof File) {
+      if (selectablesOptions.type === "text/csv") {
         await uploadFileS3(field.selectablesOptions)
         extraField.selectablesOptions = selectablesOptions.name
       } else {
@@ -56,7 +55,7 @@ export const edit = async (field) => {
 
 export const save = async (field) => {
   try {
-    if (field.selectablesOptions && field.selectablesOptions instanceof File) {
+    if (field.selectablesOptions && field.selectablesOptions.type === "text/csv") {
       await uploadFileS3(field.selectablesOptions)
       field.selectablesOptions = field.selectablesOptions.name
     }
