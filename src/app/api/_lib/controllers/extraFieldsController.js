@@ -4,7 +4,7 @@ import { messages } from "@/lib/utils/messages";
 // import { userRoles } from "@/lib/utils/constants";
 import { ExtraField } from "@/lib/models";
 import { isObjectId } from "@/lib/utils";
-import { getFileS3 } from "../helpers/assetHelpers";
+import { getFileS3 } from "@/lib/utils/s3-client";
 
 export const list = async function (req, res) {
   try {

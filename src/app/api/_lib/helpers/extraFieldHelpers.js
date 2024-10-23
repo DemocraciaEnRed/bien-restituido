@@ -1,6 +1,6 @@
 import { ExtraField } from "@/lib/models";
 import { createSlug } from "@/lib/utils";
-import { uploadFileS3 } from "./assetHelpers";
+import { uploadFileS3 } from "@/lib/utils/s3-client";
 
 
 export async function createOrEdit(fields, category) {

@@ -54,28 +54,3 @@ export const listAssets = async (page = 1, limit = 10, query = null, sort = 'cre
 }
 
 
-export const uploadFileS3 = async (file) => {
-  const Body = Buffer.from(await new Blob([file]).arrayBuffer())
-
-  const params = {
-    Bucket: process.env.S3_UPLOAD_BUCKET,
-    Key: `${process.env.S3_UPLOAD_LOCATION}/${file.name}`,
-    Body,
-    ContentType: file.type
-  }
-
-  const command = new PutObjectCommand(params)
-  return await s3Client.send(command)
-
-}
-
-export const getFileS3 = async (fileName) => {
-  const params = {
-    Bucket: process.env.S3_UPLOAD_BUCKET,
-    Key: `${process.env.S3_UPLOAD_LOCATION}/${fileName}`,
-  }
-
-  const file = new GetObjectCommand(params)
-  return await getSignedUrl(s3Client, file)
-
-}

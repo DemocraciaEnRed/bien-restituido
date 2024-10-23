@@ -1,9 +1,10 @@
 import { Asset, ExtraField } from "@/lib/models";
-import { getFileS3, listAssets, uploadFileS3 } from "../helpers/assetHelpers";
+import { listAssets } from "../helpers/assetHelpers";
 import { messages } from "@/lib/utils/messages";
 
 import mongoose from "mongoose";
 import { userRoles } from "@/lib/utils/constants";
+import { getFileS3, uploadFileS3 } from "@/lib/utils/s3-client";
 
 export const list = async function (req, res) {
   try {
