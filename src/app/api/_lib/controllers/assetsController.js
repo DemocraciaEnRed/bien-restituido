@@ -79,7 +79,7 @@ export const create = async function (req, res) {
     const data = req.data
 
     Object.keys(data).forEach(async (key) => {
-      if (data[key] instanceof File) {
+      if (data[key] && data[key].size && data[key].type) {
         uploadFileS3(data[key])
         data[key] = data[key].name
       }
@@ -100,7 +100,7 @@ export const update = async function (req, res) {
     const data = req.data
 
     Object.keys(data).forEach(async (key) => {
-      if (data[key] instanceof File) {
+      if (data[key] && data[key].size && data[key].type) {
         uploadFileS3(data[key])
         data[key] = data[key].name
       }
