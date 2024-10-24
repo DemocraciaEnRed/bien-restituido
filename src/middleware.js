@@ -1,3 +1,4 @@
+import { NextResponse } from 'next/server';
 import { authTokenKey, userRoles } from './lib/utils/constants';
 import { decrypt, rejectUser, updateSession } from './lib/utils/sessions';
 
@@ -15,10 +16,24 @@ export async function middleware(request) {
 					if (request.nextUrl.pathname.startsWith('/autenticacion')) {
 						return Response.redirect(new URL('/', request.url));
 					}
-			if (user.role !== userRoles.ADMIN && request.nextUrl.pathname.startsWith('/admin')) {
-				return await rejectUser(request)
-			}
+			// if (![userRoles.ADMIN, userRoles.GESTOR].includes(user.role) && request.nextUrl.pathname.startsWith('/admin')) {
+			// 	return await rejectUser(request)
+			// }
 
+			switch (user.role) {
+				case userRoles.ADMIN:
+					return NextResponse.next()
+				case userRoles.GESTOR:
+					if (
+						request.nextUrl.pathname.startsWith('/admin/configuracion') ||
+						request.nextUrl.pathname.startsWith('/admin/usuarios'))
+						return Response.redirect(new URL('/admin/bien', request.url))
+					break
+				default:
+					if (request.nextUrl.pathname.startsWith('/admin')) {
+						return await rejectUser(request)
+					}
+			}
 		} catch (error) {
 			return await rejectUser(request)
 		}

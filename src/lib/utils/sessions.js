@@ -1,6 +1,6 @@
 "use server"
 import { SignJWT, jwtVerify } from "jose";
-import { authTokenKey, oneDay, userRoles } from "./constants";
+import { authTokenKey, oneDay } from "./constants";
 import { cookies } from "next/headers";
 import { refreshToken } from "../actions/authentication/auth-actions";
 import { NextResponse } from "next/server";

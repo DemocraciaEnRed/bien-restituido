@@ -13,7 +13,7 @@ export const oneDay = 24 * 60 * 60 * 1000
 
 export const userRoles = {
     USER: "user",
-    MODERATOR: "moderator",
+    GESTOR: "gestor",
     ADMIN: "admin"
 }
 

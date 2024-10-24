@@ -9,12 +9,13 @@ import {
 import { UserInfo } from "./userInfo";
 import BienesDrawerItem from "./bienesDrawerItem";
 
-import { deleteSession } from "@/lib/utils/sessions";
+import { deleteSession, verifySession } from "@/lib/utils/sessions";
 import { Button } from "@/components/ui/button";
 import { redirect } from "next/navigation";
-
+import { userRoles } from "@/lib/utils/constants";
 
 async function Drawer() {
+  const user = await verifySession();
 
   const logout = async () => {
     "use server";
@@ -26,30 +27,47 @@ async function Drawer() {
     <aside className="flex flex-col w-64 min-h-full overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l ">
       <div className="flex flex-col flex-1 pt-6 gap-8 h-[calc(100vh_-_theme(height.nav))] fixed ">
         <ul className="flex flex-col gap-4">
-          <UserInfo />
+          <UserInfo user={user} />
         </ul>
         <ul className="flex flex-col gap-4">
           <BienesDrawerItem />
         </ul>
-        <hr />
-        <ul className="flex flex-col gap-4">
-          {[
-            {
-              url: "/configuracion",
-              icon: <Settings />,
-              text: "Configuración",
-            },
-            { url: "/perfil", icon: <User />, text: "Perfil" },
-            { url: "/usuarios", icon: <Users />, text: "Usuarios" },
-          ].map((item) => (
-            <DrawerItem
-              key={item.url}
-              url={item.url}
-              text={item.text}
-              icon={item.icon}
-            />
-          ))}
-        </ul>
+
+        <>
+          <hr />
+          <ul className="flex flex-col gap-4">
+            {[
+              {
+                url: "/configuracion",
+                icon: <Settings />,
+                text: "Configuración",
+                role: [userRoles.ADMIN],
+              },
+              {
+                url: "/perfil",
+                icon: <User />,
+                text: "Perfil",
+                role: [userRoles.ADMIN, userRoles.GESTOR],
+              },
+              {
+                url: "/usuarios",
+                icon: <Users />,
+                text: "Usuarios",
+                role: [userRoles.ADMIN],
+              },
+            ].map(
+              (item) =>
+                item.role.includes(user.role) && (
+                  <DrawerItem
+                    key={item.url}
+                    url={item.url}
+                    text={item.text}
+                    icon={item.icon}
+                  />
+                )
+            )}
+          </ul>
+        </>
         <ul className="flex flex-col justify-end h-full pb-3">
           <form action={logout}>
             <Button
