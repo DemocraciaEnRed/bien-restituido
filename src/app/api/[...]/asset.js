@@ -25,7 +25,7 @@ router.get('/',
 
 // POST 		/asset
 router.post('/',
-  authorize(userRoles.ADMIN),
+  authorize([userRoles.ADMIN, userRoles.GESTOR]),
   validate,
   router.bodyParser.form(),
   create
@@ -33,7 +33,7 @@ router.post('/',
 
 // PUT 		/asset
 router.put('/:assetId',
-  authorize(userRoles.ADMIN),
+  authorize([userRoles.ADMIN, userRoles.GESTOR]),
   validate,
   router.bodyParser.form(),
   update
@@ -48,7 +48,7 @@ router.get('/:assetId',
 
 // GET 		/asset/archive/:assetId
 router.get('/archive/:assetId',
-  authorize(userRoles.ADMIN),
+  authorize([userRoles.ADMIN, userRoles.GESTOR]),
   paramsValidate(assetIdSchema),
   validate,
   archive
