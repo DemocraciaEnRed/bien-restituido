@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/card";
 import { fontAwesomeIcons, showCardOptions } from "@/lib/utils/constants";
 import { Button, buttonVariants } from "@/components/ui/button";
-import { Pencil, Archive } from "lucide-react";
+import { Pencil, Archive, ArchiveX } from "lucide-react";
 import Link from "next/link";
 import { archiveAsset } from "@/lib/actions/admin/asset-actions/asset";
 import { useToast } from "@/components/ui/use-toast";
@@ -135,7 +135,9 @@ const AssetCard = ({ asset }) => {
           <Button
             onClick={() =>
               toast({
-                description: "Confirmar para archivar el bien",
+                description: `Confirmar para ${
+                  pathname.includes("archivados") ? "des" : ""
+                }archivar el bien`,
                 action: (
                   <ToastAction
                     onClick={() => archiveAsset(asset._id)}
@@ -148,7 +150,7 @@ const AssetCard = ({ asset }) => {
             }
             variant="ghost"
           >
-            <Archive />
+            {pathname.includes("archivados") ? <ArchiveX /> : <Archive />}
           </Button>
         </div>
       </CardHeader>

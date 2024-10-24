@@ -121,7 +121,14 @@ export const archive = async function (req, res) {
   try {
     const assetId = req.params.assetId;
     const now = new Date()
-    const asset = await Asset.findByIdAndUpdate(assetId, { archivedAt: now })
+    const asset = await Asset.findById(assetId)
+    if (asset.archivedAt) {
+      asset.set({ archivedAt: null })
+    } else {
+      asset.set({ archivedAt: now })
+    }
+    await asset.save()
+
     return res.status(200).json(asset);
   } catch (error) {
     console.error(error);
