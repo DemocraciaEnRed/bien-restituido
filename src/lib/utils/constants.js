@@ -74,9 +74,9 @@ export const fieldsInputTypes = [
 ];
 
 export const assetDestination = [
-    { value: 'auction', name: 'Subasta' },
-    { value: 'reuse', name: 'Reutilización' },
-    { value: 'Testing', name: 'Objeto de prueba' }
+    { value: 'auction', name: 'Subasta', slug: 'subasta' },
+    { value: 'reuse', name: 'Reutilización', slug: 'reutilizacion' },
+    { value: 'Testing', name: 'Objeto de prueba', slug: 'objeto-de-prueba' }
 ]
 
 export const actorType = [

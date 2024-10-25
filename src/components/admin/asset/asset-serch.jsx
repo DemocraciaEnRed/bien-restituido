@@ -18,7 +18,7 @@ const AssetSerch = () => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const [filter, setFilter] = useState("todos");
+  const [filter, setFilter] = useState(searchParams.get("estado") || "todos");
   const [searchValue, setSearchValue] = useState(
     searchParams.get("search") || ""
   );
@@ -54,6 +54,7 @@ const AssetSerch = () => {
   };
 
   const handleFilter = (value) => {
+    setFilter(value);
     const params = new URLSearchParams(searchParams.entries());
 
     if (!value) {
@@ -66,7 +67,6 @@ const AssetSerch = () => {
     const query = estado ? `?${estado}` : "";
 
     router.push(`${pathname}${query}`);
-    setFilter(value);
   };
 
   return (

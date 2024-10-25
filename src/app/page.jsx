@@ -6,11 +6,15 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import AssetListHome from "@/components/home/asset-list-home";
 import BannerHome from "@/components/home/banner";
 import DownloadButton from "@/components/admin/asset/download-button";
+import { assetDestination } from "@/lib/utils/constants";
 
 export const dynamic = "force-dynamic";
 
 export default function Home({ searchParams: { estado, search, page } }) {
-  const destination = estado;
+  const destination = estado
+    ? assetDestination.find((destination) => destination.slug === estado).value
+    : null;
+
   return (
     <div>
       <BannerHome />
