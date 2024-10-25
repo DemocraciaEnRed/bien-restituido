@@ -98,7 +98,10 @@ const JudicialInfo = ({ assetEdit }) => {
               name="cautelaResolution"
               value={assetEdit.cautelaResolution}
             />
-            <Button onClick={() => addInputToEditFile("cautelaResolution")}>
+            <Button
+              onClick={() => addInputToEditFile("cautelaResolution")}
+              variant="link"
+            >
               Cambiar
             </Button>
           </div>
@@ -168,6 +171,7 @@ const JudicialInfo = ({ assetEdit }) => {
                 />
                 <Button
                   onClick={() => addInputToEditFile("confiscatedResolution")}
+                  variant="link"
                 >
                   Cambiar
                 </Button>

@@ -15,6 +15,7 @@ import {
   editAsset,
   saveAsset,
 } from "@/lib/actions/admin/asset-actions/asset-client";
+import { togglePublish } from "@/lib/actions/admin/asset-actions/asset";
 
 const FormAsset = ({ assetEdit }) => {
   const router = useRouter();
@@ -43,11 +44,17 @@ const FormAsset = ({ assetEdit }) => {
     },
   ];
 
-  const [tab, setActiveTab] = useState([assetFormSteps[0].slug]);
+  const [tab, setActiveTab] = useState(assetFormSteps[0].slug);
   const [incompleteTab, setIncompleteTab] = useState(null);
 
   const handleTab = (value) => {
     setActiveTab(value);
+  };
+  const handleNextStep = (value) => {
+    const currentStep = assetFormSteps.find((step) => step.slug === tab);
+    const index = assetFormSteps.indexOf(currentStep);
+    const step = value === "next" ? index + 1 : index - 1;
+    setActiveTab(assetFormSteps[step].slug);
   };
 
   const submit = async (event) => {
@@ -99,12 +106,12 @@ const FormAsset = ({ assetEdit }) => {
 
     if (form.checkValidity()) {
       try {
-        let asset;
-        if (assetEdit) asset = await editAsset(assetEdit._id, realFormData);
-        else asset = await saveAsset(realFormData);
+        let resp;
+        if (assetEdit) resp = await editAsset(assetEdit._id, realFormData);
+        else resp = await saveAsset(realFormData);
 
-        if (asset.status === 200) {
-          router.push("/admin/bien");
+        if (resp.status === 200) {
+          router.push(`/admin/bien/editar/${resp.asset._id}`);
           router.refresh();
         }
       } catch (err) {
@@ -153,9 +160,9 @@ const FormAsset = ({ assetEdit }) => {
   };
 
   return (
-    <div className="flex">
-      <div className="w-3/4 p-3">
-        <form id="assetForm">
+    <div>
+      <form id="assetForm" className="flex">
+        <div className="w-3/4 p-3">
           <Tabs value={tab} className="mb-4">
             <TabsList className={`h-auto w-full grid grid-cols-4 gap-4`}>
               {assetFormSteps.map((step, idx) => renderTabTrigger(step, idx))}
@@ -173,12 +180,47 @@ const FormAsset = ({ assetEdit }) => {
               </TabsContent>
             ))}
           </Tabs>
-
-          <Button onClick={submit} className="submitButton">
-            Enviar
-          </Button>
-        </form>
-      </div>
+          <div className="text-right">
+            {assetFormSteps[0].slug !== tab && (
+              <Button
+                type="button"
+                className="mx-2"
+                onClick={() => handleNextStep("back")}
+              >
+                Anterior
+              </Button>
+            )}
+            {assetFormSteps.slice(-1)[0].slug !== tab && (
+              <Button
+                type="button"
+                className="mx-2"
+                onClick={() => handleNextStep("next")}
+              >
+                Siguiente
+              </Button>
+            )}
+          </div>
+        </div>
+        <div className="w-1/4 p-3 pt-24">
+          {(assetFormSteps.slice(-1)[0].slug === tab || assetEdit) && (
+            <Button onClick={submit} className="submitButton w-full my-2">
+              Guardar
+            </Button>
+          )}
+          {assetEdit && (
+            <Button
+              variant="outline"
+              type="button"
+              onClick={() => {
+                togglePublish(assetEdit._id);
+              }}
+              className="submitButton w-full my-2"
+            >
+              {assetEdit.publish ? "Despublicar" : "Publicar"}
+            </Button>
+          )}
+        </div>
+      </form>
     </div>
   );
 };

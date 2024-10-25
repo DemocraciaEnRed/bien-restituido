@@ -87,6 +87,7 @@ function DestinationInfo({ assetEdit }) {
                 />
                 <Button
                   onClick={() => addInputToEditFile("destinationResolution")}
+                  variant="link"
                 >
                   Cambiar
                 </Button>

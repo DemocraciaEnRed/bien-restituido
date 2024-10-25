@@ -219,6 +219,7 @@ const CategoryFieldForm = ({ setExtras, extraFieldsEdit, errors }) => {
                       onClick={() =>
                         addInputToEditFile(`selectablesOptions-${idx}`)
                       }
+                      variant="link"
                     >
                       Cambiar
                     </Button>

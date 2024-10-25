@@ -9,16 +9,15 @@ import DownloadButton from "@/components/admin/asset/download-button";
 
 export const dynamic = "force-dynamic";
 
-export default function Home({ searchParams }) {
+export default function Home({ searchParams: { estado, search, page } }) {
+  const destination = estado;
   return (
     <div>
       <BannerHome />
       <div className="container">
         <div className="mt-3 flex justify-between items-center">
           <h2 className="text-2xl font-bold mr-5 my-5">Buscador de bienes</h2>
-          <DownloadButton
-            filter={{ archivedAt: null, search: searchParams.search }}
-          />
+          <DownloadButton filter={{ archivedAt: null, search: search }} />
         </div>
         <Suspense
           fallback={
@@ -41,9 +40,11 @@ export default function Home({ searchParams }) {
             <TabsContent value="list">
               <AssetListHome
                 filter={{
-                  search: searchParams.search,
-                  page: searchParams.page || 1,
+                  destination,
+                  search,
+                  page: page || 1,
                   limit: 20,
+                  publish: true,
                 }}
               />
             </TabsContent>
