@@ -19,7 +19,12 @@ jobs:
           string: ${{ github.repository }}
       - name: Agregar envs
         run: |
-          echo "${{ secrets.ENV_LOCAL }}" > .env.local
+          if [[ "${GITHUB_REF#refs/tags/}" == *"beta"* ]]; then
+            echo "${{ secrets.ENV_STAGING }}" > .env.local
+          else
+            echo "${{ secrets.ENV_PRODUCTION }}" > .env.local
+          fi
+
       - name: Build & Push docker image
         uses: mr-smithers-excellent/docker-build-push@v4
         with:
