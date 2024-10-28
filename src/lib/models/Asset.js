@@ -110,6 +110,10 @@ export const AssetSchema = new mongoose.Schema(
             default: undefined
         },
         causeCoverSheet: { type: String },
+        publish: {
+            type: Boolean,
+            default: false,
+        },
         archivedAt: {
             type: Date,
             required: false,

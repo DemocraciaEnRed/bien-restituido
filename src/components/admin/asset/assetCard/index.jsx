@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React, { useEffect, useState } from "react";
 import {
   Card,
@@ -9,18 +9,20 @@ import {
 } from "@/components/ui/card";
 import { fontAwesomeIcons, showCardOptions } from "@/lib/utils/constants";
 import { Button, buttonVariants } from "@/components/ui/button";
-import { Pencil, Archive, ArchiveX } from "lucide-react";
+import { Pencil, Archive, ArchiveX, BookX, BookUp } from "lucide-react";
 import Link from "next/link";
-import { archiveAsset } from "@/lib/actions/admin/asset-actions/asset";
-import { useToast } from "@/components/ui/use-toast";
-import { ToastAction } from "@/components/ui/toast";
+import {
+  archiveAsset,
+  togglePublish,
+} from "@/lib/actions/admin/asset-actions/asset";
 import { usePathname } from "next/navigation";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+
+import CardActions from "./card-actions";
 
 const AssetCard = ({ asset }) => {
   const pathname = usePathname();
   const [showMore, setShowMore] = useState(false);
-  const { toast } = useToast();
 
   const renderFieldShowCard = (fields, ordering) => {
     return (
@@ -125,34 +127,7 @@ const AssetCard = ({ asset }) => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col">
-          <Link
-            href={`/admin/bien/editar/${asset._id}`}
-            className={buttonVariants({ variant: "ghost" })}
-          >
-            <Pencil />
-          </Link>
-          <Button
-            onClick={() =>
-              toast({
-                description: `Confirmar para ${
-                  pathname.includes("archivados") ? "des" : ""
-                }archivar el bien`,
-                action: (
-                  <ToastAction
-                    onClick={() => archiveAsset(asset._id)}
-                    altText="Confirmar"
-                  >
-                    Confirmar
-                  </ToastAction>
-                ),
-              })
-            }
-            variant="ghost"
-          >
-            {pathname.includes("archivados") ? <ArchiveX /> : <Archive />}
-          </Button>
-        </div>
+        <CardActions asset={asset} pathname={pathname} />
       </CardHeader>
       {asset.extras[showCardOptions.EXPANDED.value] && (
         <CardContent className={`${!showMore && "hidden"} w-full`}>

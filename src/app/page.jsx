@@ -6,19 +6,22 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import AssetListHome from "@/components/home/asset-list-home";
 import BannerHome from "@/components/home/banner";
 import DownloadButton from "@/components/admin/asset/download-button";
+import { assetDestination } from "@/lib/utils/constants";
 
 export const dynamic = "force-dynamic";
 
-export default function Home({ searchParams }) {
+export default function Home({ searchParams: { estado, search, page } }) {
+  const destination = estado
+    ? assetDestination.find((destination) => destination.slug === estado).value
+    : null;
+
   return (
     <div>
       <BannerHome />
       <div className="container">
         <div className="mt-3 flex justify-between items-center">
           <h2 className="text-2xl font-bold mr-5 my-5">Buscador de bienes</h2>
-          <DownloadButton
-            filter={{ archivedAt: null, search: searchParams.search }}
-          />
+          <DownloadButton filter={{ archivedAt: null, search: search }} />
         </div>
         <Suspense
           fallback={
@@ -41,9 +44,11 @@ export default function Home({ searchParams }) {
             <TabsContent value="list">
               <AssetListHome
                 filter={{
-                  search: searchParams.search,
-                  page: searchParams.page || 1,
+                  destination,
+                  search,
+                  page: page || 1,
                   limit: 20,
+                  publish: true,
                 }}
               />
             </TabsContent>

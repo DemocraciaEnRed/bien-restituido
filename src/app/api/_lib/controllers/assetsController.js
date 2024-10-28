@@ -88,7 +88,7 @@ export const create = async function (req, res) {
 
     const asset = await Asset.create(data);
 
-    return res.status(200).json({ message: 'ok' });
+    return res.status(200).json({ asset });
   } catch (error) {
     console.error(error)
     return res.status(500).json({ message: messages.error.default })
@@ -126,6 +126,25 @@ export const archive = async function (req, res) {
       asset.set({ archivedAt: null })
     } else {
       asset.set({ archivedAt: now })
+    }
+    await asset.save()
+
+    return res.status(200).json(asset);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: messages.error.default });
+  }
+}
+
+export const publish = async function (req, res) {
+  try {
+    const assetId = req.params.assetId;
+    const now = new Date()
+    const asset = await Asset.findById(assetId)
+    if (asset.publish) {
+      asset.set({ publish: false })
+    } else {
+      asset.set({ publish: true })
     }
     await asset.save()
 

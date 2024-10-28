@@ -8,6 +8,8 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { FilterIcon } from "lucide-react";
@@ -16,6 +18,7 @@ const AssetSerch = () => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const [filter, setFilter] = useState(searchParams.get("estado") || "todos");
   const [searchValue, setSearchValue] = useState(
     searchParams.get("search") || ""
   );
@@ -49,6 +52,23 @@ const AssetSerch = () => {
 
     router.push(`${pathname}${query}`);
   };
+
+  const handleFilter = (value) => {
+    setFilter(value);
+    const params = new URLSearchParams(searchParams.entries());
+
+    if (!value) {
+      params.delete("estado");
+    } else {
+      params.set("estado", value);
+      params.delete("page");
+    }
+    const estado = params.toString();
+    const query = estado ? `?${estado}` : "";
+
+    router.push(`${pathname}${query}`);
+  };
+
   return (
     <div className="flex flex-row w-full gap-3">
       <div className="w-4/5">
@@ -61,20 +81,31 @@ const AssetSerch = () => {
           className="shadow-md rounded-lg"
         />
       </div>
-      <div className="w-1/5">
-        <DropdownMenu>
-          <DropdownMenuTrigger className="w-full flex justify-center text-start">
-            <span className="p-2 pl-4 w-full bg-white flex flex-row gap-3 shadow-md rounded-lg">
-              <FilterIcon className="text-orange-500" /> Filtrar
-            </span>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent>
-            <DropdownMenuItem>Supiti</DropdownMenuItem>
-            <DropdownMenuItem>Upiti</DropdownMenuItem>
-            <DropdownMenuItem>Uapiti</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      </div>
+      {!pathname.startsWith("/admin") && (
+        <div className="w-1/5">
+          <DropdownMenu>
+            <DropdownMenuTrigger className="w-full flex justify-center text-start">
+              <span className="p-2 pl-4 w-full bg-white flex flex-row gap-3 shadow-md rounded-lg">
+                <FilterIcon className="text-orange-500" /> Filtrar
+              </span>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuRadioGroup
+                value={filter}
+                onValueChange={handleFilter}
+              >
+                <DropdownMenuRadioItem value="">Todos</DropdownMenuRadioItem>
+                <DropdownMenuRadioItem value="subasta">
+                  Subasta
+                </DropdownMenuRadioItem>
+                <DropdownMenuRadioItem value="reutilizacion">
+                  Reutilizacion
+                </DropdownMenuRadioItem>
+              </DropdownMenuRadioGroup>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
+      )}
     </div>
   );
 };
