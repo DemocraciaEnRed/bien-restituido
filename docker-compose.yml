@@ -9,6 +9,7 @@ services:
       - ./tmp/db:/data/db
 
   app:
+    network_mode: host
     build:
       context: .
     image: ghcr.io/democraciaenred/bien-restituido:latest
