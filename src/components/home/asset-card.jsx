@@ -22,8 +22,8 @@ const AssetCard = ({ asset }) => {
         {Object.keys(fields).map((key) => {
           if (fields[key].type === "url") return null;
           return (
-            <span key={key} className={` uppercase  ${ordering}`}>
-              <span className="underline font-bold">{key}</span>:
+            <span key={key} className={` ${ordering}`}>
+              <span className="underline font-bold uppercase">{key}</span>:
               {fields[key].value}
             </span>
           );
@@ -59,18 +59,23 @@ const AssetCard = ({ asset }) => {
     >
       <CollapsibleTrigger className="w-full text-left">
         <div className="flex items-center justify-between ">
-          <div className="bg-slate-200 p-4 rounded-lg">
+          <div
+            className="bg-slate-200 p-4 rounded-lg"
+            style={{
+              color: asset.subCategory?.color,
+            }}
+          >
             {
               fontAwesomeIcons.find(
                 (icon) => icon.name === asset.subCategory?.icon
               )?.icon
             }
           </div>
-          <div className="ml-2 font-bold flex-1 text-left flex  gap-2">
-            <h6 className="text-xl">{asset.category.name}</h6>
+          <div className="ml-2  flex-1 text-left flex  gap-2">
+            <h6 className="text-xl font-bold">{asset.category.name}</h6>
             {renderFieldShowCard(
               asset.extras[showCardOptions.ALLWAYS.value],
-              " flex"
+              ""
             )}
           </div>
           <ChevronDownCircle className="h-4 w-4" />

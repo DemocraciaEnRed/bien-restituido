@@ -69,7 +69,12 @@ const AssetCard = ({ asset }) => {
     >
       <CardHeader className="flex flex-row w-full justify-between">
         <div className="flex items-center">
-          <div className="bg-slate-100 p-4">
+          <div
+            className="bg-slate-100 p-4"
+            style={{
+              color: asset.subCategory?.color,
+            }}
+          >
             {
               fontAwesomeIcons.find(
                 (icon) => icon.name === asset.subCategory?.icon
