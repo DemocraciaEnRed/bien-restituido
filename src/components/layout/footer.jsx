@@ -58,7 +58,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className=" containet flex justify-center items-center flex-col mt-10">
+        <div className=" containet flex justify-center items-center flex-col my-10">
           <div className="flex justify-evenly w-3/4">
             <Image
               src={`/logos_orgs/libera.jpg`}
