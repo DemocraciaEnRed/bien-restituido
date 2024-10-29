@@ -1,9 +1,13 @@
 import {
     FaCar,
     FaGears,
+    FaGem,
     FaMotorcycle,
+    FaSackDollar,
+    FaSailboat,
     FaShop,
     FaTractor,
+    FaTv,
 } from "react-icons/fa6";
 
 export const authTokenKey = process.env.NEXT_PUBLIC_AUTH_TOKENS_KEY
@@ -29,6 +33,11 @@ export const fontAwesomeIcons = [
     { name: "gear", icon: <FaGears className="inline-block" size={20} /> },
     { name: "motorcycle", icon: <FaMotorcycle className="inline-block" size={20} /> },
     { name: "shop", icon: <FaShop className="inline-block" size={20} /> },
+    { name: "technology", icon: <FaTv className="inline-block" size={20} /> },
+    { name: "boat", icon: <FaSailboat className="inline-block" size={20} /> },
+    { name: "jewelry", icon: <FaGem className="inline-block" size={20} /> },
+    { name: "money", icon: <FaSackDollar className="inline-block" size={20} /> },
+
 ];
 
 export const fieldsInputTypes = [
