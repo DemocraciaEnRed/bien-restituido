@@ -1,15 +1,16 @@
 import { Asset, ExtraField } from "@/lib/models";
 import { showCardOptions } from "@/lib/utils/constants";
-import { s3Client } from "@/lib/utils/s3-client";
-import { GetObjectCommand, PutObjectCommand } from "@aws-sdk/client-s3";
-import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
+import { getFileS3 } from "@/lib/utils/s3-client";
 
 
 export const listAssets = async (page = 1, limit = 10, query = null, sort = 'createdAt') => {
   try {
     // get the assets by page
     const assets = await Asset.find(query).sort(sort).populate('category').populate('subCategory').skip((page - 1) * limit).limit(limit)
+    let assetList = []
     for (const asset of assets) {
+      const assetPopulate = asset.toObject()
+
       let extras = {
         [showCardOptions.EXPANDED.value]: {},
         [showCardOptions.ALLWAYS.value]: {}
@@ -27,10 +28,15 @@ export const listAssets = async (page = 1, limit = 10, query = null, sort = 'cre
           else extras[showCardOptions.ALLWAYS.value][key.name] = value;
         }
       }
+      assetPopulate.extras = extras;
 
+      let assetImageURL
 
-      asset.extras = extras;
+      if (asset.assetImage) assetImageURL = await getFileS3(asset.assetImage)
+      assetPopulate.assetImageURL = assetImageURL
+      assetList.push(assetPopulate)
     }
+
 
     // get pagination metadata
     const total = await Asset.countDocuments(query);
@@ -40,7 +46,7 @@ export const listAssets = async (page = 1, limit = 10, query = null, sort = 'cre
 
     // return the users with pagination metadata
     return {
-      assets,
+      assets: assetList,
       page,
       total,
       pages,

@@ -71,6 +71,9 @@ export const AssetSchema = new mongoose.Schema(
         },
         category: { type: mongoose.Types.ObjectId, ref: 'Category' },
         subCategory: { type: mongoose.Types.ObjectId, ref: 'SubCategory' },
+        assetImage: {
+            type: String
+        },
         extras: Schema.Types.Mixed,
         cautelaDate: {
             type: Date,

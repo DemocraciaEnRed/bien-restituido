@@ -40,29 +40,22 @@ const AssetCard = ({ asset }) => {
     );
   };
 
-  const renderImages = (fields) => {
-    return (
-      <div className="p-1 md:p-3">
-        {Object.keys(fields).map((key) => {
-          if (fields[key].type === "url")
-            return (
-              <Dialog key={key}>
-                <DialogTrigger>
-                  <div className="w-20 h-24 overflow-hidden text-center rounded-xl">
-                    <img
-                      src={fields[key].value}
-                      className="object-cover w-full h-full"
-                    />
-                  </div>
-                </DialogTrigger>
-                <DialogContent>
-                  <img src={fields[key].value} className="w-full" />
-                </DialogContent>
-              </Dialog>
-            );
-        })}
-      </div>
-    );
+  const renderImages = (image) => {
+    if (image)
+      return (
+        <div className="p-1 md:p-3">
+          <Dialog>
+            <DialogTrigger>
+              <div className="w-20 h-24 overflow-hidden text-center rounded-xl">
+                <img src={image} className="object-cover w-full h-full" />
+              </div>
+            </DialogTrigger>
+            <DialogContent>
+              <img src={image} className="w-full" />
+            </DialogContent>
+          </Dialog>
+        </div>
+      );
   };
 
   return (
@@ -133,7 +126,7 @@ const AssetCard = ({ asset }) => {
         <CardContent className={`${!showMore && "hidden"} w-full`}>
           <hr className="mb-5" />
           <div className="flex">
-            {renderImages(asset.extras[showCardOptions.EXPANDED.value])}
+            {renderImages(asset.assetImageURL)}
             <div>
               <p className="uppercase underline font-bold">
                 Información del bien

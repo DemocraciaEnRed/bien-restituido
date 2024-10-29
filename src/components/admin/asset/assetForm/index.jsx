@@ -201,6 +201,16 @@ const FormAsset = ({ assetEdit }) => {
             )}
           </div>
         </div>
+        {assetEdit && (
+          <input
+            type="checkbox"
+            name="publish"
+            hidden
+            readOnly
+            checked={assetEdit.publish}
+            id=""
+          />
+        )}
         <div className="w-1/4 p-3 pt-24">
           {(assetFormSteps.slice(-1)[0].slug === tab || assetEdit) && (
             <Button onClick={submit} className="submitButton w-full my-2">

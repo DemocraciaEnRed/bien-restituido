@@ -10,12 +10,23 @@ import {
   getSubCategoriesByCategory,
 } from "@/lib/actions/home/fetch-data";
 import RenderField from "./field";
+import { Separator } from "@/components/ui/separator";
+import { Button, buttonVariants } from "@/components/ui/button";
 
 const AssetInfo = ({ assetEdit }) => {
   const [categories, setCategories] = useState(null);
   const [data, setData] = useState(assetEdit || {});
   const [subCategories, setSubCategories] = useState(null);
   const [extraFields, setExtraFields] = useState(null);
+  const [editFile, setEditFile] = useState([]);
+
+  useEffect(() => {
+    fetchCategories();
+    if (assetEdit)
+      handleChangeInput({
+        target: { name: "category", value: assetEdit.category },
+      });
+  }, []);
 
   const fetchCategories = async () => {
     const categoriesFetch = await getCategories();
@@ -46,13 +57,9 @@ const AssetInfo = ({ assetEdit }) => {
     }
   };
 
-  useEffect(() => {
-    fetchCategories();
-    if (assetEdit)
-      handleChangeInput({
-        target: { name: "category", value: assetEdit.category },
-      });
-  }, []);
+  const addInputToEditFile = (inputName) => {
+    if (!editFile.includes(inputName)) setEditFile([...editFile, inputName]);
+  };
 
   return (
     <div className="px-1">
@@ -102,19 +109,60 @@ const AssetInfo = ({ assetEdit }) => {
           </SelectCustom>
         </div>
       )}
+      <div className="pt-3">
+        <Label htmlFor="assetImage">Imagen</Label>
+        {assetEdit &&
+        assetEdit.assetImageURL &&
+        !editFile.includes("assetImage") ? (
+          <div className="flex justify-between">
+            <a
+              className={buttonVariants({ variant: "link" })}
+              target="_blank"
+              href={assetEdit.assetImageURL}
+            >
+              {assetEdit.assetImage}
+            </a>
+            <input
+              type="hidden"
+              name="assetImage"
+              value={assetEdit.assetImage}
+            />
+            <Button
+              onClick={() => addInputToEditFile("assetImage")}
+              variant="link"
+            >
+              Cambiar
+            </Button>
+          </div>
+        ) : (
+          <>
+            <Input
+              id="assetImage"
+              type="file"
+              name="assetImage"
+              accept="image/*"
+              onChange={handleChangeInput}
+            />
+          </>
+        )}
+      </div>
 
       {extraFields && (
-        <div className="pt-3">
-          <h2>Atributos</h2>
+        <div className="mt-3">
+          <Separator className="w-1/2 my-3 h-1 mx-auto" />
 
-          {extraFields.map((input) => (
-            <RenderField
-              key={input._id}
-              input={input}
-              handleChangeInput={handleChangeInput}
-              assetEdit={assetEdit}
-            />
-          ))}
+          <div className="pt-3">
+            <h2>Atributos</h2>
+
+            {extraFields.map((input) => (
+              <RenderField
+                key={input._id}
+                input={input}
+                handleChangeInput={handleChangeInput}
+                assetEdit={assetEdit}
+              />
+            ))}
+          </div>
         </div>
       )}
     </div>

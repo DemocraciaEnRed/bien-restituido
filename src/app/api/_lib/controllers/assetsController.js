@@ -64,6 +64,8 @@ export const get = async function (req, res) {
     if (asset.cautelaResolution) asset.cautelaResolutionURL = await getFileS3(asset.cautelaResolution)
     if (asset.confiscatedResolution) asset.confiscatedResolutionURL = await getFileS3(asset.confiscatedResolution)
     if (asset.destinationResolution) asset.destinationResolutionURL = await getFileS3(asset.destinationResolution)
+    if (asset.assetImage) asset.assetImageURL = await getFileS3(asset.assetImage)
+
 
 
     if (!asset) return res.status(401).json({ message: messages.assets.error.notFound });
@@ -80,9 +82,15 @@ export const create = async function (req, res) {
     const data = req.data
 
     Object.keys(data).forEach(async (key) => {
-      if (data[key] && data[key].size && data[key].type) {
-        uploadFileS3(data[key])
-        data[key] = data[key].name
+      if (typeof data[key] === 'object') {
+        if ('size' in data[key] && 'type' in data[key]) {
+          if (data[key].size > 0) {
+            uploadFileS3(data[key])
+            data[key] = data[key].name
+          } else {
+            data[key] = null
+          }
+        }
       }
     })
 
@@ -101,16 +109,23 @@ export const update = async function (req, res) {
     const data = req.data
 
     Object.keys(data).forEach(async (key) => {
-      if (data[key] && data[key].size && data[key].type) {
-        uploadFileS3(data[key])
-        data[key] = data[key].name
+      if (typeof data[key] === 'object') {
+        if ('size' in data[key] && 'type' in data[key]) {
+          if (data[key].size > 0) {
+            uploadFileS3(data[key])
+            data[key] = data[key].name
+          } else {
+            data[key] = null
+          }
+        }
       }
     })
+
 
     const asset = await Asset.findById(assetId);
     asset.overwrite(data)
     asset.save()
-    return res.status(200).json(asset);
+    return res.status(200).json({ asset });
   } catch (error) {
     console.error(error)
     return res.status(500).json({ message: messages.error.default })
