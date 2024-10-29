@@ -21,42 +21,44 @@ const Footer = () => {
   if (!noFooter)
     return (
       <footer className=" bg-white ">
-        <div className="flex flex-row  bg-orange-500 min-h-20 py-3 px-20">
-          <div className="py-16  w-7/12 relative z-10 bg-orange-500 bg-opacity-60">
-            <h1 className="text-2xl ">
-              Proyecto Bien Restituido. Para el desmantelamiento patrimonial del
-              crimen organizado y el fortalecimiento de la sociedad civil.
-            </h1>
-            <br />
-            <p className="text-lg font-light pt-3 ">
-              Proyecto Bien Restituido. Para el desmantelamiento patrimonial del
-              crimen organizado y el fortalecimiento de la sociedad civil.
+        <div className=" bg-orange-500">
+          <div className="container flex flex-row  min-h-20 py-3 ">
+            <div className="py-16  w-7/12 relative z-10 bg-orange-500 bg-opacity-60">
+              <h1 className="text-2xl ">
+                Proyecto Bien Restituido. Para el desmantelamiento patrimonial
+                del crimen organizado y el fortalecimiento de la sociedad civil.
+              </h1>
               <br />
-              Nuestro objetivo es lograr un nuevo marco normativo para recuperar
-              los bienes provenientes del delito y que su destino sea el
-              fortalecimiento de las organizaciones sociales y comunitarias que
-              se dedican a atender las necesidades de los grupos más
-              vulnerabilizados de nuestro país.
-              <br />
-              <br />
-              Para conocer más del proyecto ingresá a{" "}
-              <Link href="https://bienrestituido.org.ar/" target="_blank">
-                https://bienrestituido.org.ar/
-              </Link>
-            </p>
-          </div>
-          <div className="w-5/12 flex justify-center items-center">
-            <Image
-              src="/escudo.png"
-              width={0}
-              height={0}
-              sizes="100vw"
-              alt="escudo"
-              className="w-2/3 opacity-35"
-            />
+              <p className="text-lg font-light pt-3 ">
+                Proyecto Bien Restituido. Para el desmantelamiento patrimonial
+                del crimen organizado y el fortalecimiento de la sociedad civil.
+                <br />
+                Nuestro objetivo es lograr un nuevo marco normativo para
+                recuperar los bienes provenientes del delito y que su destino
+                sea el fortalecimiento de las organizaciones sociales y
+                comunitarias que se dedican a atender las necesidades de los
+                grupos más vulnerabilizados de nuestro país.
+                <br />
+                <br />
+                Para conocer más del proyecto ingresá a{" "}
+                <Link href="https://bienrestituido.org.ar/" target="_blank">
+                  https://bienrestituido.org.ar/
+                </Link>
+              </p>
+            </div>
+            <div className="w-5/12 flex justify-center items-center">
+              <Image
+                src="/escudo.png"
+                width={0}
+                height={0}
+                sizes="100vw"
+                alt="escudo"
+                className="w-2/3 opacity-35"
+              />
+            </div>
           </div>
         </div>
-        <div className="flex justify-center items-center flex-col mt-10">
+        <div className=" containet flex justify-center items-center flex-col mt-10">
           <div className="flex justify-evenly w-3/4">
             <Image
               src={`/logos_orgs/libera.jpg`}
