@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/layout/navbar";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@radix-ui/react-tooltip";
+import Footer from "@/components/layout/footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,6 +20,7 @@ export default function RootLayout({ children }) {
           <Navbar />
           {children}
           <Toaster />
+          <Footer />
         </TooltipProvider>
       </body>
     </html>
