@@ -66,8 +66,12 @@ const AssetCard = ({ asset }) => {
               )?.icon
             }
           </div>
-          <div className="ml-2 font-bold flex-1 text-left ">
+          <div className="ml-2 font-bold flex-1 text-left flex  gap-2">
             <h6 className="text-xl">{asset.category.name}</h6>
+            {renderFieldShowCard(
+              asset.extras[showCardOptions.ALLWAYS.value],
+              " flex"
+            )}
           </div>
           <ChevronDownCircle className="h-4 w-4" />
         </div>
