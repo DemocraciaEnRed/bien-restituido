@@ -22,7 +22,7 @@ const AssetCard = ({ asset }) => {
         {Object.keys(fields).map((key) => {
           if (fields[key].type === "url") return null;
           return (
-            <span key={key} className={` ${ordering}`}>
+            <span key={key} className={`ml-2 ${ordering}`}>
               <span className="underline font-bold uppercase">{key}</span>:
               {fields[key].value}
             </span>
