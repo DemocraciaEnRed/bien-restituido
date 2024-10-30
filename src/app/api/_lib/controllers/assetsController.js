@@ -195,7 +195,13 @@ export const download = async function (req, res) {
       __v: false,
       thirdParties: false,
       causeNumber: false,
-      third: false
+      third: false,
+      ownerName: false,
+      ownerLastName: false,
+      ownerIdType: false,
+      ownerNumberId: false,
+      ownerAddress: false,
+
     }
 
     const querySelectForAdmins = {
