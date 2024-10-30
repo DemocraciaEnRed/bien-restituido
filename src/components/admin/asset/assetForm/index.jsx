@@ -16,10 +16,12 @@ import {
   saveAsset,
 } from "@/lib/actions/admin/asset-actions/asset-client";
 import { togglePublish } from "@/lib/actions/admin/asset-actions/asset";
+import { Loader2 } from "lucide-react";
 
 const FormAsset = ({ assetEdit }) => {
   const router = useRouter();
   const { toast } = useToast();
+  const [submitLoader, setSubmitLoader] = useState(false);
 
   const assetFormSteps = [
     {
@@ -59,6 +61,7 @@ const FormAsset = ({ assetEdit }) => {
 
   const submit = async (event) => {
     event.preventDefault();
+    setSubmitLoader(true);
     let tabs = [];
     let form = document.getElementById("assetForm");
     Object.keys(form.elements).forEach((key) => {
@@ -110,6 +113,10 @@ const FormAsset = ({ assetEdit }) => {
         if (assetEdit) resp = await editAsset(assetEdit._id, realFormData);
         else resp = await saveAsset(realFormData);
 
+        toast({
+          description: "Bien guardado correctamente",
+          variant: "success",
+        });
         if (resp.status === 200) {
           router.push(`/admin/bien/editar/${resp.asset._id}`);
           router.refresh();
@@ -121,6 +128,7 @@ const FormAsset = ({ assetEdit }) => {
         });
       }
     }
+    setSubmitLoader(false);
   };
 
   const renderTabTrigger = (step, idx) => {
@@ -213,7 +221,14 @@ const FormAsset = ({ assetEdit }) => {
         )}
         <div className="w-1/4 p-3 pt-24">
           {(assetFormSteps.slice(-1)[0].slug === tab || assetEdit) && (
-            <Button onClick={submit} className="submitButton w-full my-2">
+            <Button
+              disabled={submitLoader}
+              onClick={submit}
+              className="submitButton w-full my-2"
+            >
+              {submitLoader && (
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              )}
               Guardar
             </Button>
           )}
