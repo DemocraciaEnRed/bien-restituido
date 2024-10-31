@@ -34,7 +34,7 @@ export const edit = async (field) => {
     const { name, type, description, required, showCard, hiddenDownload, category, selectablesOptions } = field
     if (selectablesOptions) {
       if (selectablesOptions.type === "text/csv") {
-        await uploadFileS3(field.selectablesOptions)
+        await uploadFileS3(field.selectablesOptions, 'assetSelectableOptions')
         extraField.selectablesOptions = selectablesOptions.name
       } else {
         extraField.selectablesOptions = selectablesOptions
@@ -56,7 +56,7 @@ export const edit = async (field) => {
 export const save = async (field) => {
   try {
     if (field.selectablesOptions && field.selectablesOptions.type === "text/csv") {
-      await uploadFileS3(field.selectablesOptions)
+      await uploadFileS3(field.selectablesOptions, 'assetSelectableOptions')
       field.selectablesOptions = field.selectablesOptions.name
     }
     await ExtraField.create(field)
