@@ -20,6 +20,7 @@ import CategoryFieldForm from "./category-field-form";
 import { useToast } from "@/components/ui/use-toast";
 import { saveCompleteCategory } from "@/lib/actions/admin/asset-actions/category-client";
 import { useRouter } from "next/navigation";
+import { Loader2 } from "lucide-react";
 
 const requiredFields = {
   category: ["name"],
@@ -44,6 +45,7 @@ const CategoryForm = ({ categoryEdit, subCategoriesEdit, extraFields }) => {
   );
   const [subCategories, setSubCategories] = useState(subCategoriesEdit || []);
   const [errorsState, setErrorsState] = useState(null);
+  const [submitLoader, setSubmitLoader] = useState(false);
   const { toast } = useToast();
   const router = useRouter();
 
@@ -85,6 +87,7 @@ const CategoryForm = ({ categoryEdit, subCategoriesEdit, extraFields }) => {
   };
 
   const handleSubmit = async () => {
+    setSubmitLoader(true);
     try {
       if (!hasError()) {
         const data = { ...category };
@@ -111,18 +114,22 @@ const CategoryForm = ({ categoryEdit, subCategoriesEdit, extraFields }) => {
           }
         });
 
+        toast({
+          description: "Categoria creada correctamente",
+          variant: "success",
+        });
         const response = await saveCompleteCategory(formData);
         router.push("/admin/configuracion");
         router.refresh();
       }
     } catch (error) {
       console.error(error);
-
       toast({
         description: error.message,
         variant: "destructive",
       });
     }
+    setSubmitLoader(false);
   };
 
   return (
@@ -170,7 +177,10 @@ const CategoryForm = ({ categoryEdit, subCategoriesEdit, extraFields }) => {
         </div>
       </CardContent>
       <CardFooter>
-        <Button onClick={handleSubmit}>Guardar</Button>
+        <Button disabled={submitLoader} onClick={handleSubmit}>
+          {submitLoader && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+          Guardar
+        </Button>
       </CardFooter>
     </Card>
   );

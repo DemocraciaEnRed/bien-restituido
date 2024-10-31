@@ -32,7 +32,7 @@ const AssetCard = ({ asset }) => {
           else
             return (
               <span key={key} className={`ml-2 ${ordering}`}>
-                <span className="font-bold">{key}</span>:{fields[key].value}
+                <span className="font-bold">{key}</span>: {fields[key].value}
               </span>
             );
         })}

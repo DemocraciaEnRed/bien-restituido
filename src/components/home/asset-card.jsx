@@ -23,7 +23,7 @@ const AssetCard = ({ asset }) => {
           if (fields[key].type === "url") return null;
           return (
             <span key={key} className={`ml-2 ${ordering}`}>
-              <span className="underline font-bold uppercase">{key}</span>:
+              <span className="underline font-bold uppercase">{key}</span>:{" "}
               {fields[key].value}
             </span>
           );
