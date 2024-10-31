@@ -4,6 +4,7 @@ import { downloadAssets } from "@/lib/actions/home/fetch-data";
 import { formatDate, jsonToCsv } from "@/lib/utils";
 import { Download } from "lucide-react";
 import React from "react";
+import { FaFileCsv } from "react-icons/fa6";
 
 const DownloadButton = ({ filter = {} }) => {
   const handleDownload = async () => {
@@ -23,8 +24,9 @@ const DownloadButton = ({ filter = {} }) => {
   };
 
   return (
-    <Button onClick={handleDownload}>
-      Descargar <Download />
+    <Button onClick={handleDownload} className="bg-stone-950">
+      <span className="mr-2">Descargar base de datos</span>
+      <FaFileCsv />
     </Button>
   );
 };

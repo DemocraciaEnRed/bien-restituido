@@ -8,6 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Separator } from "@/components/ui/separator";
 import { fontAwesomeIcons } from "@/lib/utils/constants";
 import { Trash } from "lucide-react";
 import React, { useState } from "react";
@@ -43,93 +44,98 @@ const SubCategoryForm = ({ setSubType, subCategoriesEdit, errors }) => {
 
   const renderSubCategories = () => {
     return subCategories.map((el, idx) => (
-      <div key={idx} className="flex  justify-between items-center">
-        <div className="flex gap-4 items-center w-11/12">
-          <p>{idx + 1}.</p>
-          <div className="grid w-full max-w-sm items-center gap-1.5 my-3">
-            <Label
-              htmlFor="name"
-              className={
-                errors?.subCategories[idx]?.includes("name") && "text-red-500"
-              }
-            >
-              Nombre del subtipo
-            </Label>
-            <Input
-              type="text"
-              placeholder="Nombre del subtipo ej: Motovehiculo"
-              className={
-                errors?.subCategories[idx]?.includes("name") && "border-red-500"
-              }
-              onChange={(e) => handleSubType("name", idx, e.target.value)}
-              value={el.name}
-              required
-            />
-          </div>
-          <div className="grid w-full max-w-sm items-center gap-1.5 my-3">
-            <Label
-              htmlFor=""
-              className={
-                errors?.subCategories[idx]?.includes("icon") && "text-red-500"
-              }
-            >
-              icono del subtipo
-            </Label>
-            <Select
-              onValueChange={(value) => handleSubType("icon", idx, value)}
-            >
-              <SelectTrigger
-                className={`w-full ${
-                  errors?.subCategories[idx]?.includes("icon") &&
-                  "border-red-500"
-                }`}
+      <div className="my-2">
+        <div key={idx} className="flex  justify-between items-center">
+          <div className="flex gap-4 items-center w-11/12 border-r-2">
+            <p>{idx + 1}.</p>
+            <div className="grid w-full max-w-sm items-center gap-1.5 my-3">
+              <Label
+                htmlFor="name"
+                className={
+                  errors?.subCategories[idx]?.includes("name") && "text-red-500"
+                }
               >
-                {el.icon ? (
-                  fontAwesomeIcons.find((icon) => icon.name === el.icon)?.icon
-                ) : (
-                  <SelectValue placeholder="Icono" />
-                )}
-              </SelectTrigger>
-              <SelectContent>
-                {fontAwesomeIcons.map((icon) => (
-                  <SelectItem key={icon.name} value={icon.name}>
-                    {icon.icon}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+                Nombre del subtipo
+              </Label>
+              <Input
+                type="text"
+                placeholder="Nombre del subtipo ej: Motovehiculo"
+                className={
+                  errors?.subCategories[idx]?.includes("name") &&
+                  "border-red-500"
+                }
+                onChange={(e) => handleSubType("name", idx, e.target.value)}
+                value={el.name}
+                required
+              />
+            </div>
+            <div className="grid max-w-sm items-center gap-1.5 my-3">
+              <Label
+                htmlFor=""
+                className={
+                  errors?.subCategories[idx]?.includes("icon") && "text-red-500"
+                }
+              >
+                icono del subtipo
+              </Label>
+              <Select
+                onValueChange={(value) => handleSubType("icon", idx, value)}
+              >
+                <SelectTrigger
+                  className={` ${
+                    errors?.subCategories[idx]?.includes("icon") &&
+                    "border-red-500"
+                  }`}
+                >
+                  {el.icon ? (
+                    fontAwesomeIcons.find((icon) => icon.name === el.icon)?.icon
+                  ) : (
+                    <SelectValue placeholder="Icono" />
+                  )}
+                </SelectTrigger>
+                <SelectContent>
+                  {fontAwesomeIcons.map((icon) => (
+                    <SelectItem key={icon.name} value={icon.name}>
+                      {icon.icon}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="grid  max-w-sm items-center gap-1.5 my-3">
+              <Label
+                htmlFor="color"
+                className={
+                  errors?.subCategories[idx]?.includes("color") &&
+                  "text-red-500"
+                }
+              >
+                color del subtipo
+              </Label>
+              <Input
+                type="color"
+                className={
+                  errors?.subCategories[idx]?.includes("color") &&
+                  "border-red-500"
+                }
+                onChange={(e) => handleSubType("color", idx, e.target.value)}
+                value={el.color}
+                required
+              />
+            </div>
           </div>
-          <div className="grid w-full max-w-sm items-center gap-1.5 my-3">
-            <Label
-              htmlFor="color"
-              className={
-                errors?.subCategories[idx]?.includes("color") && "text-red-500"
-              }
+          <div className="w-1/12">
+            <Button
+              type="button"
+              variant="ghost"
+              className="rounded-full"
+              onClick={() => handleRemove(idx)}
             >
-              color del subtipo
-            </Label>
-            <Input
-              type="color"
-              className={
-                errors?.subCategories[idx]?.includes("color") &&
-                "border-red-500"
-              }
-              onChange={(e) => handleSubType("color", idx, e.target.value)}
-              value={el.color}
-              required
-            />
+              <Trash color="red" />
+            </Button>
           </div>
         </div>
-        <div className="w-1/12">
-          <Button
-            type="button"
-            variant="ghost"
-            className="rounded-full"
-            onClick={() => handleRemove(idx)}
-          >
-            <Trash color="red" />
-          </Button>
-        </div>
+        <Separator className="w-9/12 mx-auto mt-4" />
       </div>
     ));
   };

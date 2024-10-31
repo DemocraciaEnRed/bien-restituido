@@ -16,7 +16,7 @@ export default function Home({ searchParams: { estado, search, page } }) {
     : null;
 
   return (
-    <div>
+    <div className="mt-[theme(height.nav)]">
       <BannerHome />
       <div className="container">
         <div className="mt-3 flex justify-between items-center">
@@ -30,29 +30,32 @@ export default function Home({ searchParams: { estado, search, page } }) {
             </div>
           }
         >
-          <AssetSerch />
-          <div className="my-8 text-xl font-light">
-            La herramienta cuenta con los datos de los bienes decomisados y
-            cautelados en una serie de causas judiciales tramitadas por ante la
-            Justicia Federal. No es posible brindar información sobre la
-            totalidad de los bienes en el país por el Poder Judicial de la
-            Nación debido a que Argentina no cuenta con un registro unificado.
-            <br />
-            Desde el Proyecto Bien Restituido buscamos transparentar esta
-            información para que las organizaciones sociales y la ciudadanía
-            puedan monitorear e impulsar una política efectiva de reutilización
-            social de los bienes.
-          </div>
           <Tabs defaultValue="list">
             <TabsList className="w-full justify-end">
-              <TabsTrigger value="list">
-                <List />
-              </TabsTrigger>
-              <TabsTrigger value="map">
-                <Globe />
-              </TabsTrigger>
+              <AssetSerch />
+              <div className="p-1 ml-3 bg-stone-950 rounded-lg flex">
+                <TabsTrigger value="list">
+                  <List />
+                </TabsTrigger>
+                <TabsTrigger value="map">
+                  <Globe />
+                </TabsTrigger>
+              </div>
             </TabsList>
             <TabsContent value="list">
+              <div className="my-8 text-xl font-light">
+                La herramienta cuenta con los datos de los bienes decomisados y
+                cautelados en una serie de causas judiciales tramitadas por ante
+                la Justicia Federal. No es posible brindar información sobre la
+                totalidad de los bienes en el país por el Poder Judicial de la
+                Nación debido a que Argentina no cuenta con un registro
+                unificado.
+                <br />
+                Desde el Proyecto Bien Restituido buscamos transparentar esta
+                información para que las organizaciones sociales y la ciudadanía
+                puedan monitorear e impulsar una política efectiva de
+                reutilización social de los bienes.
+              </div>
               <AssetListHome
                 filter={{
                   destination,

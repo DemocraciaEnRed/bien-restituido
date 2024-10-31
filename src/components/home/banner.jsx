@@ -5,7 +5,7 @@ import React from "react";
 const BannerHome = () => {
   return (
     <header className=" bg-orange-500 ">
-      <div className="container flex flex-row min-h-20 relative overflow-hidden">
+      <div className="container flex flex-row min-h-20 relative overflow-hidden ">
         <Image
           src="/escudo.png"
           width={0}
@@ -14,7 +14,7 @@ const BannerHome = () => {
           alt="escudo"
           className="absolute h-full w-auto -bottom-1/4 -right-1/2 md:-right-1/4 lg:right-[10%] opacity-35"
         />
-        <div className="py-16 w-8/12 relative z-10 ">
+        <div className="py-16 w-8/12 relative">
           <h1 className="text-4xl font-bold">
             Registro de los bienes cautelados y decomisados del crimen
             organizado en Argentina
