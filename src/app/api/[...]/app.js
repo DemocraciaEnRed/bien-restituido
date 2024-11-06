@@ -8,6 +8,8 @@ import assetRoutes from '@/app/api/[...]/asset'
 import categoryRoutes from '@/app/api/[...]/category'
 import subCategoryRoutes from '@/app/api/[...]/subCategory'
 import extraFieldRoutes from '@/app/api/[...]/extraFields'
+import fileRoutes from '@/app/api/[...]/file'
+
 
 
 
@@ -34,11 +36,12 @@ app.use(async (req, res, next) => {
 app.use(authenticate)
 app.use("/auth", authRoutes);
 app.use("/admin", adminRoutes)
-app.use("/user", userRoutes)
+app.use("/users", userRoutes)
 app.use("/asset", assetRoutes)
 app.use("/category", categoryRoutes)
 app.use("/subcategory", subCategoryRoutes)
 app.use("/extrafield", extraFieldRoutes)
+app.use('/file', fileRoutes)
 app.get("/hello", (req, res, next) => {
     res.send("world")
 })

@@ -5,7 +5,21 @@ import { userRoles } from "@/lib/utils/constants";
 
 export const updateUserSchema = z.object({
     username: z.string().min(1, { message: messages.validationError.name }),
-    bio: z.string({ message: messages.validationError.string })
+    email: z.string({ message: messages.validationError.string }).email({ message: messages.validationError.email }),
+    currentPassword: z.string().min(6, {
+        message: messages.validationError.password,
+    }).optional(),
+    newPassword: z.string().min(6, {
+        message: messages.validationError.password,
+    }).optional(),
+    confirmPassword: z.string().min(6, {
+        message: messages.validationError.password,
+    }).optional(),
+}).refine((data) => {
+    return !data.newPassword || !data.confirmPassword || data.newPassword === data.confirmPassword;
+}, {
+    message: "Passwords must match",
+    path: ["confirmPassword"],
 });
 
 export const changePasswordSchema = z.object({
@@ -17,7 +31,7 @@ export const changePasswordSchema = z.object({
     }),
 }).refine((data) => data.password === data.confirmPassword, {
     message: "Passwords don't match",
-    path: ["confirmPassword"], // path of error
+    path: ["confirmPassword"],
 });;
 
 

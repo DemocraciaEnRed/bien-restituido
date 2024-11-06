@@ -141,7 +141,7 @@ export const userMe = async () => {
     const token = cookies().get(authTokenKey)
     try {
         if (token) {
-            let res = await axiosServices.get(`/api/user/me`,);
+            let res = await axiosServices.get(`/api/users/me`,);
             const { data } = res;
             if (res.status !== 200) {
                 const error = new Error(data.message);

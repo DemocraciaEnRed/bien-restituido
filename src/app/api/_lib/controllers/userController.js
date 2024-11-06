@@ -78,17 +78,24 @@ export const update = async function (req, res) {
         const userId = req.params.userId || req.user.id;
         const loggedUser = req.user;
 
-        if (loggedUser.role != userRoles.ADMIN) {
-            // Make sure the passed id is that of the logged in user
-            if (userId !== loggedUser._id.toString()) {
-                return res.status(401).json({ message: messages.auth.error.forbidden });
+
+        const user = await User.findById(userId)
+
+        if ('currentPassword' in update) {
+            if (!loggedUser.comparePassword(update.currentPassword)) {
+                return res.status(401).json({ message: messages.auth.error.invalidCredentials });
             }
+            user.password = update.newPassword
         }
 
-        const user = await User.findByIdAndUpdate(userId, { $set: update }, { select: '-password -deletedAt -resetPasswordExpires -lastLogin -updatedAt -deletedAt -__v -createdAt -isVerified', new: true })
+        user.username = update.username
+        user.email = update.email
+        await user.save()
+
         if (!user) return res.status(404).json({ message: messages.user.error.notFound });
 
         return res.status(200).json({ user, message: messages.user.success.updated });
+        // return res.status(200).json({ message: messages.user.success.updated });
 
     } catch (error) {
         console.error(error);

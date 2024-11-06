@@ -131,3 +131,42 @@ export const changePasswordUser = async (_currentState, formData) => {
         })
     }
 };
+
+export const changeUserMeData = async (_currentState, formData) => {
+    try {
+        let userId = formData.get('userId');
+        let currentPassword = formData.get('currentPassword');
+        let newPassword = formData.get('newPassword');
+        let confirmPassword = formData.get('confirmPassword');
+        let username = formData.get('username')
+        let email = formData.get('email')
+
+        const body = {
+            username,
+            email
+        }
+
+        if (currentPassword && newPassword && confirmPassword) {
+            body.currentPassword = currentPassword
+            body.newPassword = newPassword
+            body.confirmPassword = confirmPassword
+        }
+
+        let res = await axiosServices.put(`/api/users/me`, JSON.stringify(body));
+        const { data } = res;
+        if (res.status !== 200) {
+            const error = new Error(data.message);
+            error.status = res.status
+            throw error
+        }
+        data.status = res.status
+        return data
+    } catch (error) {
+        console.error(error);
+        return JSON.stringify({
+            status: error.status,
+            message: error.message
+        })
+    }
+
+};
