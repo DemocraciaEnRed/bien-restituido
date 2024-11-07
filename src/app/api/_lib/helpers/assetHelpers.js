@@ -32,7 +32,7 @@ export const listAssets = async (page = 1, limit = 10, query = null, sort = 'cre
 
       let assetImageURL
 
-      if (asset.assetImage) assetImageURL = await getFileS3(asset.assetImage)
+      if (asset.assetImage) assetImageURL = await getFileS3(asset.assetImage, 'assetImage')
       assetPopulate.assetImageURL = assetImageURL
       assetList.push(assetPopulate)
     }

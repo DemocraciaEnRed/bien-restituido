@@ -61,10 +61,10 @@ export const get = async function (req, res) {
 
     let asset = await Asset.findById(assetId)
     asset = asset.toObject()
-    if (asset.cautelaResolution) asset.cautelaResolutionURL = await getFileS3(asset.cautelaResolution)
-    if (asset.confiscatedResolution) asset.confiscatedResolutionURL = await getFileS3(asset.confiscatedResolution)
-    if (asset.destinationResolution) asset.destinationResolutionURL = await getFileS3(asset.destinationResolution)
-    if (asset.assetImage) asset.assetImageURL = await getFileS3(asset.assetImage)
+    if (asset.cautelaResolution) asset.cautelaResolutionURL = await getFileS3(asset.cautelaResolution, 'cautelaResolution')
+    if (asset.confiscatedResolution) asset.confiscatedResolutionURL = await getFileS3(asset.confiscatedResolution, 'confiscatedResolution')
+    if (asset.destinationResolution) asset.destinationResolutionURL = await getFileS3(asset.destinationResolution, 'destinationResolution')
+    if (asset.assetImage) asset.assetImageURL = await getFileS3(asset.assetImage, 'assetImage')
 
 
 
@@ -85,7 +85,7 @@ export const create = async function (req, res) {
       if (typeof data[key] === 'object') {
         if ('size' in data[key] && 'type' in data[key]) {
           if (data[key].size > 0) {
-            uploadFileS3(data[key])
+            uploadFileS3(data[key], key)
             data[key] = data[key].name
           } else {
             data[key] = null
@@ -112,7 +112,7 @@ export const update = async function (req, res) {
       if (typeof data[key] === 'object') {
         if ('size' in data[key] && 'type' in data[key]) {
           if (data[key].size > 0) {
-            uploadFileS3(data[key])
+            uploadFileS3(data[key], key)
             data[key] = data[key].name
           } else {
             data[key] = null

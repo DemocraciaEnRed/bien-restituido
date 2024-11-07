@@ -16,8 +16,9 @@ const s3Client = new S3({
 
 export { s3Client };
 
-export const uploadFileS3 = async (file) => {
+export const uploadFileS3 = async (file, folder) => {
   const Body = Buffer.from(await new Blob([file]).arrayBuffer())
+
 
   if (!process.env.S3_UPLOAD_ENDPOINT) {
     fs.mkdir(process.cwd() + "/upload/", { recursive: true }, (err) => {
@@ -28,10 +29,16 @@ export const uploadFileS3 = async (file) => {
       Buffer.from(await new Blob([file]).arrayBuffer())
     );
   } else {
+    let location = `${process.env.S3_UPLOAD_LOCATION}/`
+
+    if (folder) {
+      location += `${folder}/`
+    }
+    location += file.name
 
     const params = {
       Bucket: process.env.S3_UPLOAD_BUCKET,
-      Key: `${process.env.S3_UPLOAD_LOCATION}/${file.name}`,
+      Key: location,
       Body,
       ContentType: file.type
     }
@@ -43,16 +50,23 @@ export const uploadFileS3 = async (file) => {
 
 }
 
-export const getFileS3 = async (fileName) => {
+export const getFileS3 = async (fileName,folder) => {
   if (!process.env.S3_UPLOAD_ENDPOINT) {
     return `/api/file/${fileName}`
   } else {
-  const params = {
-    Bucket: process.env.S3_UPLOAD_BUCKET,
-    Key: `${process.env.S3_UPLOAD_LOCATION}/${fileName}`,
-  }
+    let location = `${process.env.S3_UPLOAD_LOCATION}/`
 
-  const file = new GetObjectCommand(params)
-  return await getSignedUrl(s3Client, file)
+    if (folder) {
+      location += `${folder}/`
+    }
+
+    location += fileName
+    const params = {
+      Bucket: process.env.S3_UPLOAD_BUCKET,
+      Key: location
+    }
+
+    const file = new GetObjectCommand(params)
+    return await getSignedUrl(s3Client, file)
   }
 }

@@ -17,7 +17,7 @@ export const list = async function (req, res) {
     for (const field in queryFields) {
       const customField = queryFields[field].toObject()
       if (customField.selectablesOptions) {
-        customField.optionsURL = await getFileS3(customField.selectablesOptions);
+        customField.optionsURL = await getFileS3(customField.selectablesOptions, 'assetSelectableOptions');
       }
       fields.push(customField)
     }
