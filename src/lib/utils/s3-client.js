@@ -1,3 +1,4 @@
+import fs from "fs";
 
 import { GetObjectCommand, PutObjectCommand, S3 } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
@@ -19,6 +20,9 @@ export const uploadFileS3 = async (file) => {
   const Body = Buffer.from(await new Blob([file]).arrayBuffer())
 
   if (!process.env.S3_UPLOAD_ENDPOINT) {
+    fs.mkdir(process.cwd() + "/upload/", { recursive: true }, (err) => {
+      if (err) throw err;
+    });
     fs.writeFileSync(
       process.cwd() + "/upload/" + file.name,
       Buffer.from(await new Blob([file]).arrayBuffer())
