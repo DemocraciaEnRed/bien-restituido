@@ -18,7 +18,7 @@ const Navbar = () => {
               className="w-48"
               sizes="100vw"
               src="/logo.png"
-              alt="logo resurgentes"
+              alt="logo bien restituido"
             />
           </Link>
         </div>

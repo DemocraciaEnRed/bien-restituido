@@ -39,11 +39,15 @@ const AssetCard = ({ asset }) => {
           <Dialog>
             <DialogTrigger>
               <div className="w-20 h-24 overflow-hidden text-center rounded-xl">
-                <img src={image} className="object-cover w-full h-full" />
+                <img
+                  src={image}
+                  className="object-cover w-full h-full"
+                  alt="imagen del bien"
+                />
               </div>
             </DialogTrigger>
             <DialogContent>
-              <img src={image} className="w-full" />
+              <img src={image} className="w-full" alt="imagen del bien" />
             </DialogContent>
           </Dialog>
         </div>

@@ -66,6 +66,7 @@ const Footer = () => {
               height={0}
               sizes="100vw"
               className="w-auto h-24"
+              alt="logo libera"
             />
             <Image
               src={`/logos_orgs/multipolar.jpg`}
@@ -73,6 +74,7 @@ const Footer = () => {
               height={0}
               sizes="100vw"
               className="w-auto h-24"
+              alt="logo multipolar"
             />
             <Image
               src={`/logos_orgs/acij.jpg`}
@@ -80,6 +82,7 @@ const Footer = () => {
               height={0}
               sizes="100vw"
               className="w-auto h-24"
+              alt="logo acij"
             />
             <Image
               src={`/logos_orgs/circolo.jpg`}
@@ -87,6 +90,7 @@ const Footer = () => {
               height={0}
               sizes="100vw"
               className="w-auto h-24"
+              alt="logo circolo"
             />
           </div>
           <div className="flex mt-10 justify-center w-3/4">
@@ -96,6 +100,7 @@ const Footer = () => {
               height={0}
               sizes="100vw"
               className="w-auto h-24"
+              alt="logo union europea"
             />
             <Image
               src={`/logos_orgs/der.jpg`}
@@ -103,6 +108,7 @@ const Footer = () => {
               height={0}
               sizes="100vw"
               className="w-auto h-24"
+              alt="logo der"
             />
           </div>
         </div>
