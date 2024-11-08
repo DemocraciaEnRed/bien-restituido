@@ -4,6 +4,7 @@ import { messages } from "@/lib/utils/messages";
 // import { userRoles } from "@/lib/utils/constants";
 import { SubCategory } from "@/lib/models";
 import { isObjectId } from "@/lib/utils";
+import logger from "@/lib/utils/debugger";
 
 export const list = async function (req, res) {
   try {
@@ -12,6 +13,7 @@ export const list = async function (req, res) {
 
     const output = await SubCategory.find(query)
 
+    logger('subCategory', `serving subCategories`)
     return res.status(200).json(output);
   } catch (error) {
     console.error(error)
@@ -50,7 +52,7 @@ export const get = async function (req, res) {
     const subCategory = await SubCategory.findOne(query)
 
     if (!subCategory) return res.status(401).json({ message: messages.subCategory.error.notFound });
-
+    logger('subCategory', `serving subCategory ${subCategoryId}`)
     return res.status(200).json(subCategory);
   } catch (error) {
     console.error(error);

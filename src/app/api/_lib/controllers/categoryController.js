@@ -7,6 +7,7 @@ import { isObjectId, parseCategoryForm } from "@/lib/utils";
 import * as categoryHelpers from "../helpers/categoryHelpers";
 import * as subCategoryHelpers from "../helpers/subCategoryHelpers";
 import * as extraFieldHelpers from "../helpers/extraFieldHelpers";
+import logger from "@/lib/utils/debugger";
 
 export const list = async function (req, res) {
   try {
@@ -15,6 +16,7 @@ export const list = async function (req, res) {
 
     const output = await Category.find({})
 
+    logger('category', 'serving categories')
     return res.status(200).json(output);
   } catch (error) {
     console.error(error)
@@ -53,7 +55,7 @@ export const get = async function (req, res) {
     const category = await Category.findOne(query)
 
     if (!category) return res.status(401).json({ message: messages.category.error.notFound });
-
+    logger('category', `serving category ${categoryId}`)
     return res.status(200).json(category);
   } catch (error) {
     console.error(error);
@@ -75,7 +77,7 @@ export const create = async function (req, res) {
     await extraFieldHelpers.createOrEdit(extras, categoryDoc)
     await extraFieldHelpers.deleteOnEdit(extras, categoryDoc)
 
-
+    logger('category', 'create category')
     return res.status(200).json({ message: '0k' });
   } catch (error) {
   }
@@ -87,7 +89,7 @@ export const deleteCategory = async function (req, res) {
     const categoryId = req.params.categoryId;
 
     categoryHelpers.deleteById(categoryId)
-
+    logger('category', 'delete category')
     return res.status(200).json({ message: '0k' });
   } catch (error) {
   }

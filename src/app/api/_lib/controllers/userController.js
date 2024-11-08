@@ -4,6 +4,7 @@ import { renderHtml, sendNow } from "../services/mailer";
 import { messages } from "@/lib/utils/messages";
 import verifyTemplate from "@/app/api/_lib/services/templates/verify";
 import { User } from "@/lib/models";
+import logger from "@/lib/utils/debugger";
 
 
 export const me = async function (req, res) {
@@ -29,6 +30,8 @@ export const me = async function (req, res) {
         if (refreshToken) {
             output.token = await user.generateJWT();
         }
+        logger('user', `get data user ${user._id}`)
+
         return res.status(200).json(output);
     } catch (error) {
         console.error(error);
@@ -64,7 +67,7 @@ export const get = async function (req, res) {
         const user = await User.findById(userId, queryProjection)
 
         if (!user) return res.status(401).json({ message: messages.user.error.notFound });
-
+        logger('user', `get data user ${user._id}`)
         return res.status(200).json(user);
     } catch (error) {
         console.error(error);
@@ -93,7 +96,7 @@ export const update = async function (req, res) {
         await user.save()
 
         if (!user) return res.status(404).json({ message: messages.user.error.notFound });
-
+        logger('user', `update user ${user._id}`)
         return res.status(200).json({ user, message: messages.user.success.updated });
         // return res.status(200).json({ message: messages.user.success.updated });
 
@@ -117,7 +120,7 @@ export const changePassword = async function (req, res) {
 
         user.password = newPassword;
         await user.save();
-
+        logger('user', `change password user ${user._id}`)
         return res.status(200).json({ message: messages.user.success.passwordUpdated });
     } catch (error) {
         console.error(error);
@@ -151,7 +154,7 @@ export const changeEmail = async function (req, res) {
         const url = `${process.env.APP_URL}/auth/verify/${token.token}`;
         // send email
         await sendNow(email, 'Verifica tu email', `${renderHtml(verifyTemplate, { url: url })}`);
-
+        logger('user', `change email user ${user._id}`)
         return res.status(200).json({
             message: messages.auth.success.verificationMailSent.invalidPassword
         });
@@ -196,6 +199,7 @@ export const list = async function (req, res) {
 
         // get the users
         const output = await listUsers(page, limit, extraQuery, ispublic, includeDeleted);
+        logger('user', `serving users`)
         return res.json(output);
 
     } catch (error) {
@@ -218,7 +222,7 @@ export const setRole = async (req, res) => {
         // check if the role is valid
         user.role = role;
         await user.save();
-
+        logger('user', `change role user ${user._id}`)
         return res.status(200).send({ message: `User role has been modified to ${role}` })
     } catch (error) {
         console.error(error);
@@ -234,7 +238,7 @@ export const forceVerifyByAdmin = async (req, res) => {
 
         user.isVerified = !user.isVerified;
         await user.save();
-
+        logger('user', `force verify user ${user._id}`)
         return res.status(200).json({ message: 'User has been verified' });
     } catch (error) {
         console.error(error)
@@ -252,7 +256,7 @@ export const changePasswordByAdmin = async (req, res) => {
 
         user.password = password;
         await user.save();
-
+        logger('user', `change password user ${user._id} from admin`)
         return res.status(200).json({ message: messages.user.success.passwordUpdated });
     } catch (error) {
         console.error(error)
@@ -288,7 +292,7 @@ export const changeEmailByAdmin = async (req, res) => {
         const url = `${process.env.APP_URL}/auth/verify/${token.token}`;
         // send email
         await sendNow(email, 'Verifica tu email', `${renderHtml(verifyTemplate, { url: url })}`);
-
+        logger('user', `change email user ${user._id} from admin`)
         return res.status(200).json({
             message: messages.user.success.emailChanged
         });

@@ -1,6 +1,7 @@
 import { AsyncParser } from '@json2csv/node';
 import { listAllUsers } from '../helpers/adminHelpers'
 import { messages } from '@/lib/utils/messages';
+import logger from '@/lib/utils/debugger';
 
 export const exportUsers = async (req, res) => {
     try {
@@ -35,6 +36,7 @@ export const exportUsers = async (req, res) => {
 
         res.setHeader('Content-Type', 'text/csv');
         res.setHeader('Content-Disposition', `attachment; filename=${filename}`);
+        logger('admin', 'serving csv of users')
         return res.send(csv);
 
     } catch (error) {
@@ -46,6 +48,7 @@ export const exportUsers = async (req, res) => {
 export const getAppStats = async (req, res) => {
     try {
         const stats = await AdminHelper.getAppStats();
+        logger('admin', 'serving asset stats')
         return res.json(stats);
     } catch (error) {
         console.error(error)

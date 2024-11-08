@@ -5,6 +5,7 @@ import { messages } from "@/lib/utils/messages";
 import mongoose from "mongoose";
 import { userRoles } from "@/lib/utils/constants";
 import { getFileS3, uploadFileS3 } from "@/lib/utils/s3-client";
+import logger from "@/lib/utils/debugger";
 
 export const list = async function (req, res) {
   try {
@@ -32,7 +33,7 @@ export const list = async function (req, res) {
 
     const output = await listAssets(page, limit, query)
 
-
+    logger('asset', 'serving assets')
     return res.status(200).json(output);
   } catch (error) {
     console.error(error)
@@ -69,7 +70,7 @@ export const get = async function (req, res) {
 
 
     if (!asset) return res.status(401).json({ message: messages.assets.error.notFound });
-
+    logger('asset', `serving asset ${assetId}`)
     return res.status(200).json(asset);
   } catch (error) {
     console.error(error);
@@ -95,7 +96,7 @@ export const create = async function (req, res) {
     })
 
     const asset = await Asset.create(data);
-
+    logger('asset', `create asset ${asset._id}`)
     return res.status(200).json({ asset });
   } catch (error) {
     console.error(error)
@@ -125,6 +126,7 @@ export const update = async function (req, res) {
     const asset = await Asset.findById(assetId);
     asset.overwrite(data)
     asset.save()
+    logger('asset', `update asset ${assetId}`)
     return res.status(200).json({ asset });
   } catch (error) {
     console.error(error)
@@ -143,7 +145,7 @@ export const archive = async function (req, res) {
       asset.set({ archivedAt: now })
     }
     await asset.save()
-
+    logger('asset', `toggle archive asset ${assetId}`)
     return res.status(200).json(asset);
   } catch (error) {
     console.error(error);
@@ -163,6 +165,7 @@ export const publish = async function (req, res) {
     }
     await asset.save()
 
+    logger('asset', `toggle publish asset ${assetId}`)
     return res.status(200).json(asset);
   } catch (error) {
     console.error(error);
@@ -245,6 +248,9 @@ export const download = async function (req, res) {
       delete asset.deletedAt
       delete asset.__v
     }
+
+
+    logger('asset', `download database assets`)
 
     return res.status(200).json(assets);
 

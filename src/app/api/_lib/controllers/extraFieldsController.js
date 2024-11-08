@@ -5,6 +5,7 @@ import { messages } from "@/lib/utils/messages";
 import { ExtraField } from "@/lib/models";
 import { isObjectId } from "@/lib/utils";
 import { getFileS3 } from "@/lib/utils/s3-client";
+import logger from "@/lib/utils/debugger";
 
 export const list = async function (req, res) {
   try {
@@ -23,7 +24,7 @@ export const list = async function (req, res) {
     }
 
 
-
+    logger('extraField', `serving extrafields`)
     return res.status(200).json(fields);
   } catch (error) {
     console.error(error)
@@ -63,6 +64,7 @@ export const get = async function (req, res) {
 
     if (!extraField) return res.status(401).json({ message: messages.extraField.error.notFound });
 
+    logger('extraField', `serving extrafields ${extraFieldId}`)
     return res.status(200).json(extraField);
   } catch (error) {
     console.error(error);

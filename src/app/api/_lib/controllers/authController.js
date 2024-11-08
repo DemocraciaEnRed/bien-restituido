@@ -5,6 +5,7 @@ import verifyTemplate from "@/app/api/_lib/services/templates/verify";
 import reset from "../services/templates/reset";
 import singUp from "../services/templates/singUp";
 import { Token, User } from "@/lib/models";
+import logger from "@/lib/utils/debugger";
 
 
 
@@ -24,7 +25,7 @@ export const register = async (req, res) => {
             username: username,
         });
 
-        await newUser.save();
+        const userSave = await newUser.save();
 
         // generate and set password reset token
         const token = newUser.generateVerificationToken();
@@ -35,7 +36,7 @@ export const register = async (req, res) => {
 
         // send email
         await sendNow(email, 'Confirmá tu registro', `${renderHtml(singUp, { url: url })}`);
-
+        logger('auth', `registering user ${userSave._id}`)
         return res.status(201).json({ message: formatString(messages.auth.success.verificationMailSent, newUser.email) });
     } catch (error) {
         console.error(error)
@@ -70,6 +71,7 @@ export const login = async (req, res) => {
             role: user.role,
         }
         // Login successful, write token, and send back user
+        logger('auth', `loggin user ${user._id}`)
         return res.status(200).json({ token: await user.generateJWT(), user: outputUser });
     } catch (error) {
         console.error(error)
@@ -82,6 +84,7 @@ export const refreshToken = async (req, res) => {
         // authenticate middleware already checked if the user is logged
         const user = req.user;
         // Login successful, write token, and send back user
+        logger('auth', `refresh token user ${user._id}`)
         return res.status(200).json({ token: await user.generateJWT() });
 
     } catch (error) {
@@ -113,6 +116,7 @@ export const verify = async (req, res) => {
         // save it
         await user.save();
         // return success
+        logger('auth', `verified user ${user._id}`)
         return res.status(200).json({ message: messages.auth.success.verification });
     } catch (error) {
         console.error(error)
@@ -143,7 +147,7 @@ export const resendToken = async (req, res) => {
 
         await sendNow(email, 'Verifica tu email', `${renderHtml(verifyTemplate, { url: url })}`);
 
-
+        logger('auth', `resend token verification user ${user._id}`)
         return res.status(200).json({ message: formatString(messages.auth.success.verificationMailResent, user.email) });
     } catch (error) {
         console.error(error)
@@ -171,7 +175,7 @@ export const forgot = async (req, res) => {
         const url = `${process.env.NEXT_PUBLIC_URL_APP}/autenticacion/restaurar/${user.resetPasswordToken}`;
 
         await sendNow(email, 'Restablecer tu contraseña', `${renderHtml(reset, { url: url })}`);;
-
+        logger('auth', `send password change email to user ${user._id}`)
         res.status(200).json({ message: formatString(messages.auth.success.resetMailSent, email) });
     } catch (error) {
         console.error(error)
@@ -203,7 +207,7 @@ export const resetPassword = async (req, res) => {
         //             <p>This is a confirmation that the password for your account ${user.email} has just been changed.</p>`
 
         // await sendEmail({to, from, subject, html});
-
+        logger('auth', `resset password user ${user._id}`)
         return res.status(200).json({ message: messages.auth.success.passwordUpdated });
 
     } catch (error) {

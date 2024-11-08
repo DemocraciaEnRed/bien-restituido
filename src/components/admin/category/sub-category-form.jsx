@@ -44,8 +44,8 @@ const SubCategoryForm = ({ setSubType, subCategoriesEdit, errors }) => {
 
   const renderSubCategories = () => {
     return subCategories.map((el, idx) => (
-      <div className="my-2">
-        <div key={idx} className="flex  justify-between items-center">
+      <div className="my-2" key={idx}>
+        <div className="flex  justify-between items-center">
           <div className="flex gap-4 items-center w-11/12 border-r-2">
             <p>{idx + 1}.</p>
             <div className="grid w-full max-w-sm items-center gap-1.5 my-3">
