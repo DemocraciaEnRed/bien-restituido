@@ -9,12 +9,22 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
+import { useToast } from "@/components/ui/use-toast";
 import { fontAwesomeIcons } from "@/lib/utils/constants";
 import { Trash } from "lucide-react";
 import React, { useState } from "react";
 
 const SubCategoryForm = ({ setSubType, subCategoriesEdit, errors }) => {
-  const [subCategories, setSubCategories] = useState(subCategoriesEdit || []);
+  const [subCategories, setSubCategories] = useState(
+    subCategoriesEdit || [
+      {
+        name: "",
+        icon: "",
+        color: "",
+      },
+    ]
+  );
+  const { toast } = useToast();
 
   const addNewSubtypeField = () => {
     const subCategoriesList = [
@@ -37,9 +47,16 @@ const SubCategoryForm = ({ setSubType, subCategoriesEdit, errors }) => {
   };
 
   const handleRemove = (idx) => {
-    subCategories.splice(idx, 1);
-    setSubCategories([...subCategories]);
-    setSubType(subCategories);
+    if (subCategories.length > 1) {
+      subCategories.splice(idx, 1);
+      setSubCategories([...subCategories]);
+      setSubType(subCategories);
+    } else {
+      toast({
+        description: "Al menos un subtipo es necesario",
+        variant: "destructive",
+      });
+    }
   };
 
   const renderSubCategories = () => {

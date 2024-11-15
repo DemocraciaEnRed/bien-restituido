@@ -12,6 +12,7 @@ import {
 import { fieldsInputTypes, showCardOptions } from "@/lib/utils/constants";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Trash } from "lucide-react";
+import { useToast } from "@/components/ui/use-toast";
 
 const CategoryFieldForm = ({ setExtras, extraFieldsEdit, errors }) => {
   const [attrs, setAttrs] = useState(
@@ -29,7 +30,7 @@ const CategoryFieldForm = ({ setExtras, extraFieldsEdit, errors }) => {
   );
 
   const [editFile, setEditFile] = useState([]);
-
+  const { toast } = useToast();
   const setAttr = (type, idx, value) => {
     const attr = attrs[idx];
     attr[type] = value;
@@ -55,9 +56,16 @@ const CategoryFieldForm = ({ setExtras, extraFieldsEdit, errors }) => {
   };
 
   const handleRemove = (idx) => {
-    attrs.splice(idx, 1);
-    setAttrs([...attrs]);
-    setExtras(attrs);
+    if (attrs.length > 1) {
+      attrs.splice(idx, 1);
+      setAttrs([...attrs]);
+      setExtras(attrs);
+    } else {
+      toast({
+        description: "Al menos un campo es necesario",
+        variant: "destructive",
+      });
+    }
   };
 
   const addInputToEditFile = (inputName) => {

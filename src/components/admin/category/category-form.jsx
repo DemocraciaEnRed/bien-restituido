@@ -114,13 +114,15 @@ const CategoryForm = ({ categoryEdit, subCategoriesEdit, extraFields }) => {
           }
         });
 
-        toast({
-          description: "Categoria creada correctamente",
-          variant: "success",
-        });
         const response = await saveCompleteCategory(formData);
-        router.push("/admin/configuracion");
-        router.refresh();
+        if (response.status === 200) {
+          toast({
+            description: "Categoria creada correctamente",
+            variant: "success",
+          });
+          router.push("/admin/configuracion");
+          router.refresh();
+        }
       }
     } catch (error) {
       console.error(error);
