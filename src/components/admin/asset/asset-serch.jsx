@@ -13,8 +13,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { FilterIcon } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
 
-const AssetSerch = () => {
+const AssetSerch = ({ categories }) => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -53,21 +54,31 @@ const AssetSerch = () => {
     router.push(`${pathname}${query}`);
   };
 
-  const handleFilter = (value) => {
+  function handleFilter(value) {
     setFilter(value);
     const params = new URLSearchParams(searchParams.entries());
 
     if (!value) {
       params.delete("estado");
+      params.delete("categoria");
     } else {
-      params.set("estado", value);
+      const typeFilter = categories.some((category) => category.slug === value)
+        ? "categoria"
+        : "estado";
+      const deleteFilter = !categories.some(
+        (category) => category.slug === value
+      )
+        ? "categoria"
+        : "estado";
+      params.set(typeFilter, value);
       params.delete("page");
+      params.delete(deleteFilter);
     }
     const estado = params.toString();
     const query = estado ? `?${estado}` : "";
 
     router.push(`${pathname}${query}`);
-  };
+  }
 
   return (
     <div className="flex flex-row w-full gap-3">
@@ -81,31 +92,41 @@ const AssetSerch = () => {
           className="shadow-md rounded-lg"
         />
       </div>
-      {!pathname.startsWith("/admin") && (
-        <div className="w-1/5">
-          <DropdownMenu>
-            <DropdownMenuTrigger className="w-full flex justify-center text-start">
-              <span className="p-2 pl-4 w-full bg-white flex flex-row gap-3 shadow-md rounded-lg">
-                <FilterIcon className="text-orange-500" /> Filtrar
-              </span>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuRadioGroup
-                value={filter}
-                onValueChange={handleFilter}
-              >
-                <DropdownMenuRadioItem value="">Todos</DropdownMenuRadioItem>
-                <DropdownMenuRadioItem value="subasta">
-                  Subasta
-                </DropdownMenuRadioItem>
-                <DropdownMenuRadioItem value="reutilizacion">
-                  Reutilizacion
-                </DropdownMenuRadioItem>
-              </DropdownMenuRadioGroup>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
-      )}
+
+      <div className="w-1/5">
+        <DropdownMenu>
+          <DropdownMenuTrigger className="w-full flex justify-center text-start">
+            <span className="p-2 pl-4 w-full bg-white flex flex-row gap-3 shadow-md rounded-lg">
+              <FilterIcon className="text-orange-500" /> Filtrar
+            </span>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuRadioGroup value={filter} onValueChange={handleFilter}>
+              <DropdownMenuRadioItem value="">Todos</DropdownMenuRadioItem>
+              {!pathname.startsWith("/admin") && (
+                <>
+                  <DropdownMenuRadioItem value="subasta">
+                    Subasta
+                  </DropdownMenuRadioItem>
+                  <DropdownMenuRadioItem value="reutilizacion">
+                    Reutilizacion
+                  </DropdownMenuRadioItem>
+                  <Separator />
+                </>
+              )}
+              {categories &&
+                categories.map((category) => (
+                  <DropdownMenuRadioItem
+                    key={category._id}
+                    value={category.slug}
+                  >
+                    {category.name}
+                  </DropdownMenuRadioItem>
+                ))}
+            </DropdownMenuRadioGroup>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
     </div>
   );
 };

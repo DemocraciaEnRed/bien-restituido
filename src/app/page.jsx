@@ -7,12 +7,19 @@ import AssetListHome from "@/components/home/asset-list-home";
 import BannerHome from "@/components/home/banner";
 import DownloadButton from "@/components/admin/asset/download-button";
 import { assetDestination } from "@/lib/utils/constants";
+import { getCategories } from "@/lib/actions/home/fetch-data";
 
 export const dynamic = "force-dynamic";
 
-export default function Home({ searchParams: { estado, search, page } }) {
+export default async function Home({
+  searchParams: { estado, search, page, categoria },
+}) {
   const destination = estado
     ? assetDestination.find((destination) => destination.slug === estado).value
+    : null;
+  const Categories = await getCategories();
+  const category = categoria
+    ? Categories.find((category) => category.slug === categoria)._id
     : null;
 
   return (
@@ -32,7 +39,7 @@ export default function Home({ searchParams: { estado, search, page } }) {
         >
           <Tabs defaultValue="list">
             <TabsList className="w-full justify-end">
-              <AssetSerch />
+              <AssetSerch categories={Categories} />
               <div className="p-1 ml-3 bg-stone-950 rounded-lg flex">
                 <TabsTrigger value="list">
                   <List />
@@ -63,6 +70,7 @@ export default function Home({ searchParams: { estado, search, page } }) {
                   page: page || 1,
                   limit: 20,
                   publish: true,
+                  category,
                 }}
               />
             </TabsContent>

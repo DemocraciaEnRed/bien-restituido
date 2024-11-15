@@ -6,7 +6,12 @@ import AssetList from "@/components/admin/asset/asset-list";
 import DownloadButton from "@/components/admin/asset/download-button";
 import { LoaderCircle } from "lucide-react";
 import { userMe } from "@/lib/actions/authentication/auth-actions";
-const Asset = ({ searchParams }) => {
+import { getCategories } from "@/lib/actions/home/fetch-data";
+const Asset = async ({ searchParams: { search, page, categoria } }) => {
+  const Categories = await getCategories();
+  const category = categoria
+    ? Categories.find((category) => category.slug === categoria)._id
+    : null;
   return (
     <div>
       <div className="flex flex-row mb-5 justify-between">
@@ -18,9 +23,7 @@ const Asset = ({ searchParams }) => {
           >
             Nuevo bien +
           </Link>
-          <DownloadButton
-            filter={{ archivedAt: null, search: searchParams.search }}
-          />
+          <DownloadButton filter={{ archivedAt: null, search: search }} />
         </div>
       </div>
       <Suspense
@@ -30,13 +33,14 @@ const Asset = ({ searchParams }) => {
           </div>
         }
       >
-        <AssetSerch />
+        <AssetSerch categories={Categories} />
         <AssetList
           filter={{
             archivedAt: null,
-            search: searchParams.search,
-            page: searchParams.page || 1,
+            search: search,
+            page: page || 1,
             limit: 20,
+            category,
           }}
         />
       </Suspense>
