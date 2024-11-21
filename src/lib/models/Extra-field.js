@@ -39,6 +39,7 @@ export const ExtraFieldSchema = new mongoose.Schema(
       type: String
     },
     category: { type: mongoose.Types.ObjectId, ref: 'Category' },
+    subTypes: [{ type: mongoose.Types.ObjectId, ref: 'SubCategory' }],
     deletedAt: {
       type: Date,
       required: false,

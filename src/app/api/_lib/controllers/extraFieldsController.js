@@ -12,7 +12,7 @@ export const list = async function (req, res) {
     let query = req.query
     // let { page, limit } = req.query
 
-    let queryFields = await ExtraField.find(query)
+    let queryFields = await ExtraField.find(query).populate('subTypes')
 
     const fields = []
     for (const field in queryFields) {
@@ -20,6 +20,7 @@ export const list = async function (req, res) {
       if (customField.selectablesOptions) {
         customField.optionsURL = await getFileS3(customField.selectablesOptions, 'assetSelectableOptions');
       }
+      customField.subTypes = customField.subTypes.map(subType => subType.slug)
       fields.push(customField)
     }
 

@@ -1,4 +1,4 @@
-import { ExtraField } from "@/lib/models";
+import { ExtraField, SubCategory } from "@/lib/models";
 import { createSlug } from "@/lib/utils";
 import { uploadFileS3 } from "@/lib/utils/s3-client";
 
@@ -7,6 +7,13 @@ export async function createOrEdit(fields, category) {
   for (const field of fields) {
     try {
       field.category = category;
+      console.log(field.subTypes);
+
+      const subTypes = await SubCategory.find({
+        slug: { $in: field.subTypes.split(',') },
+      }, '_id');
+      field.subTypes = subTypes
+
       if (field._id) {
         await edit(field)
       } else {
@@ -31,7 +38,7 @@ export const deleteOnEdit = async (fields, category) => {
 export const edit = async (field) => {
   try {
     let extraField = await ExtraField.findById(field._id)
-    const { name, type, description, required, showCard, hiddenDownload, category, selectablesOptions } = field
+    const { name, type, description, required, showCard, hiddenDownload, category, selectablesOptions, subTypes } = field
     if (selectablesOptions) {
       if (selectablesOptions.type === "text/csv") {
         await uploadFileS3(field.selectablesOptions, 'assetSelectableOptions')
@@ -47,6 +54,7 @@ export const edit = async (field) => {
     extraField.required = required
     extraField.showCard = showCard
     extraField.hiddenDownload = hiddenDownload
+    extraField.subTypes = subTypes
     await extraField.save()
   } catch (err) {
     throw err.message
@@ -59,6 +67,7 @@ export const save = async (field) => {
       await uploadFileS3(field.selectablesOptions, 'assetSelectableOptions')
       field.selectablesOptions = field.selectablesOptions.name
     }
+
     await ExtraField.create(field)
   } catch (err) {
     throw err.message

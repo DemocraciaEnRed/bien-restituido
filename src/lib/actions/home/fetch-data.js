@@ -30,6 +30,10 @@ export const getExtraFieldsByCategory = async (categoryId) => {
   return fetchData(`/api/extrafield?category=${categoryId}`)
 }
 
+export const getExtraFieldsBySubCategory = async (categoryId) => {
+  return fetchData(`/api/extrafield?subTypes=${categoryId}`)
+}
+
 export const getExtraFields = async () => {
   return await fetchData(`/api/extrafield`)
 }

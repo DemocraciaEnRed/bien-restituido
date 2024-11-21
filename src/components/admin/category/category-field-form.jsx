@@ -3,7 +3,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
-  Select,
+  Select as ShadcnSelect,
   SelectContent,
   SelectItem,
   SelectTrigger,
@@ -13,8 +13,22 @@ import { fieldsInputTypes, showCardOptions } from "@/lib/utils/constants";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Trash } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
+import { createSlug } from "@/lib/utils";
+import Select from "react-select";
 
-const CategoryFieldForm = ({ setExtras, extraFieldsEdit, errors }) => {
+const options = [
+  { value: "chocolate", label: "Chocolate" },
+  { value: "strawberry", label: "Strawberry" },
+  { value: "vanilla", label: "Vanilla" },
+];
+
+const CategoryFieldForm = ({
+  setExtras,
+  extraFieldsEdit,
+  errors,
+  subCategories,
+  category,
+}) => {
   const [attrs, setAttrs] = useState(
     extraFieldsEdit || [
       {
@@ -24,7 +38,7 @@ const CategoryFieldForm = ({ setExtras, extraFieldsEdit, errors }) => {
         required: false,
         showCard: "",
         hiddenDownload: false,
-        slug: "",
+        subType: "",
       },
     ]
   );
@@ -48,7 +62,7 @@ const CategoryFieldForm = ({ setExtras, extraFieldsEdit, errors }) => {
         required: false,
         showCard: "",
         hiddenDownload: false,
-        slug: "",
+        subType: "",
       },
     ];
     setAttrs(attrsList);
@@ -89,7 +103,7 @@ const CategoryFieldForm = ({ setExtras, extraFieldsEdit, errors }) => {
               >
                 Tipo de campo
               </Label>
-              <Select
+              <ShadcnSelect
                 name={`typeAttr-${idx}`}
                 className="w-full"
                 onValueChange={(value) => setAttr("type", idx, value)}
@@ -111,7 +125,7 @@ const CategoryFieldForm = ({ setExtras, extraFieldsEdit, errors }) => {
                     </SelectItem>
                   ))}
                 </SelectContent>
-              </Select>
+              </ShadcnSelect>
             </div>
             <div className="w-3/12 pr-1">
               <Label
@@ -174,7 +188,7 @@ const CategoryFieldForm = ({ setExtras, extraFieldsEdit, errors }) => {
               >
                 ¿Mostrar en el card?
               </Label>
-              <Select
+              <ShadcnSelect
                 name={`showCard-${idx}`}
                 className="w-full"
                 onValueChange={(value) => setAttr("showCard", idx, value)}
@@ -196,8 +210,47 @@ const CategoryFieldForm = ({ setExtras, extraFieldsEdit, errors }) => {
                     </SelectItem>
                   ))}
                 </SelectContent>
-              </Select>
+              </ShadcnSelect>
             </div>
+            {subCategories && subCategories.length > 0 && (
+              <div className="w-3/12 pr-1">
+                <Label
+                  htmlFor={`subTypes-${idx}`}
+                  className={
+                    errors?.extras[idx]?.includes("subTypes") && "text-red-500"
+                  }
+                >
+                  Subtipo
+                </Label>
+                <Select
+                  className="  rounded-md border border-input bg-background text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>div]:border-none"
+                  placeholder="Elegir tipo/s"
+                  defaultValue={subCategories.map(
+                    (subType) =>
+                      attrs[idx].subTypes.includes(
+                        createSlug(category.name + " " + subType.name)
+                      ) && {
+                        value: createSlug(category.name + " " + subType.name),
+                        label: subType.name,
+                      }
+                  )}
+                  isMulti
+                  options={subCategories
+                    .filter((subType) => subType.name)
+                    .map((subType) => ({
+                      value: createSlug(category.name + " " + subType.name),
+                      label: subType.name,
+                    }))}
+                  onChange={(e) =>
+                    setAttr(
+                      "subTypes",
+                      idx,
+                      e.map((value) => value.value)
+                    )
+                  }
+                />
+              </div>
+            )}
             {attrs[idx].type === "select" && (
               <div className="w-3/12 pr-1">
                 <Label

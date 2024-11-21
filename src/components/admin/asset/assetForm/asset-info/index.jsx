@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import SelectCustom from "@/components/ui/select-custom";
 import {
   getCategories,
-  getExtraFieldsByCategory,
+  getExtraFieldsBySubCategory,
   getSubCategoriesByCategory,
 } from "@/lib/actions/home/fetch-data";
 import RenderField from "./field";
@@ -21,7 +21,6 @@ const AssetInfo = ({ assetEdit }) => {
   const [extraFields, setExtraFields] = useState(null);
   const [editFile, setEditFile] = useState([]);
   const [loading, setLoading] = useState(true);
-
 
   const LoadStep = async () => {
     setLoading(true);
@@ -43,11 +42,15 @@ const AssetInfo = ({ assetEdit }) => {
   };
 
   const handleCategory = async (categoryId) => {
-    const extraFields = await getExtraFieldsByCategory(categoryId);
     const subCategories = await getSubCategoriesByCategory(categoryId);
 
-    setExtraFields(extraFields);
     setSubCategories(subCategories);
+  };
+
+  const handleSubCategory = async (subCategoryId) => {
+    const extraFields = await getExtraFieldsBySubCategory(subCategoryId);
+
+    setExtraFields(extraFields);
   };
 
   const handleChangeInput = (event) => {
@@ -63,6 +66,10 @@ const AssetInfo = ({ assetEdit }) => {
     if (event.target.name === "category") {
       handleCategory(event.target.value);
       setData({ category: event.target.value });
+    }
+    if (event.target.name === "subCategory") {
+      handleSubCategory(event.target.value);
+      setData({ subCategory: event.target.value });
     }
   };
 

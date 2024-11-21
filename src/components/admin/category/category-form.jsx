@@ -175,6 +175,8 @@ const CategoryForm = ({ categoryEdit, subCategoriesEdit, extraFields }) => {
             setExtras={setExtras}
             extraFieldsEdit={extraFields}
             errors={errorsState}
+            subCategories={subCategories}
+            category={category}
           />
         </div>
       </CardContent>
