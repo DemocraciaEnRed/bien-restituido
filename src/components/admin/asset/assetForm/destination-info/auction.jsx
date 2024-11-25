@@ -64,22 +64,38 @@ const Auction = ({ assetEdit }) => {
         </div>
       </div>
       {data && data["destinationInfo.status"] === "completed" && (
-        <div>
-          <Label className="pt-3" htmlFor="destinationInfo.amount">
-            Monto de subasta<span className="text-red-600">*</span>
-          </Label>
-          <Input
-            id="destinationInfo.amount"
-            name="destinationInfo.amount"
-            type="number"
-            disabled={
-              !data || (data && data["destinationInfo.status"] === "pending")
-            }
-            defaultValue={assetEdit?.destinationInfo.amount}
-            required
-            onChange={handleChangeInput}
-          />
-        </div>
+        <>
+          <div>
+            <Label className="pt-3" htmlFor="destinationInfo.amount">
+              Monto de subasta<span className="text-red-600">*</span>
+            </Label>
+            <Input
+              id="destinationInfo.amount"
+              name="destinationInfo.amount"
+              type="number"
+              disabled={
+                !data || (data && data["destinationInfo.status"] === "pending")
+              }
+              defaultValue={assetEdit?.destinationInfo.amount}
+              required
+              onChange={handleChangeInput}
+            />
+          </div>
+          <div className="mt-2">
+            <Label className="pt-3" htmlFor="destinationInfo.buyer">
+              Nombre y apellido del comprador
+              <span className="text-red-600">*</span>
+            </Label>
+            <Input
+              id="destinationInfo.buyer"
+              name="destinationInfo.buyer"
+              type="text"
+              required
+              defaultValue={assetEdit?.destinationInfo.buyer}
+              onChange={handleChangeInput}
+            />
+          </div>
+        </>
       )}
     </div>
   );

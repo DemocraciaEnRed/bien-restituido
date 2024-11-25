@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import { actorType } from "../utils/constants";
 const Schema = mongoose.Schema
 
-const thirdSchema = new mongoose.Schema(
+const thirdSchema = new Schema(
     {
         type: {
             type: String,
@@ -23,27 +23,35 @@ const thirdSchema = new mongoose.Schema(
     }
 )
 
-export const AssetSchema = new mongoose.Schema(
+const ownerSchema = new Schema(
     {
-        ownerName: {
+        Name: {
             type: String,
             max: 255,
         },
-        ownerLastName: {
+        LastName: {
             type: String,
             max: 255,
         },
-        ownerIdType: {
+        IdType: {
             type: String,
             max: 255,
         },
-        ownerNumberId: {
+        NumberId: {
             type: String,
             max: 255,
         },
-        ownerAddress: {
+        Address: {
             type: String,
             max: 255,
+        },
+    }
+)
+
+export const AssetSchema = new Schema(
+    {
+        owner: {
+            type: [ownerSchema]
         },
         province: {
             type: String,

@@ -204,11 +204,14 @@ export const download = async function (req, res) {
       ownerIdType: false,
       ownerNumberId: false,
       ownerAddress: false,
-
+      'owner._id': false,
+      'third._id': false
     }
 
     const querySelectForAdmins = {
-      __v: false
+      __v: false,
+      'owner._id': false,
+      'third._id': false  
     }
 
     let queryProjection = querySelect;
@@ -233,6 +236,9 @@ export const download = async function (req, res) {
         }
       }
 
+      if (asset.owner) asset['titulares'] = JSON.stringify(asset.owner)
+
+
       asset[`destino-informacion`] = JSON.stringify(asset.destinationInfo);
 
       if (asset.thirdParties) asset['terceros-involucrados'] = JSON.stringify(asset.third)
@@ -241,6 +247,7 @@ export const download = async function (req, res) {
       asset.subCategory = subCategory;
       delete asset.thirdParties
       delete asset.third
+      delete asset.owner
       delete asset.destinationInfo
       delete asset.extras
       delete asset.updatedAt
