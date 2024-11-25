@@ -118,7 +118,6 @@ const Reuse = ({ assetEdit }) => {
               name="destinationInfo.assignmentNumber"
               type="text"
               placeholder="Numero del proyecto"
-              required
               defaultValue={assetEdit?.destinationInfo.assignmentNumber}
               onChange={handleChangeInput}
             />
@@ -164,7 +163,6 @@ const Reuse = ({ assetEdit }) => {
               id="destinationInfo.followManager"
               name="destinationInfo.followManager"
               type="text"
-              required
               placeholder="Nombre y apellido del responsable"
               defaultValue={assetEdit?.destinationInfo.followManager}
               onChange={handleChangeInput}
@@ -180,7 +178,6 @@ const Reuse = ({ assetEdit }) => {
               type="text"
               placeholder="Numero de teléfono"
               className="mb-2"
-              required
               defaultValue={assetEdit?.destinationInfo.followContactPhone}
               onChange={handleChangeInput}
             />
