@@ -67,7 +67,13 @@ function DestinationInfo({ assetEdit }) {
           <h2 className="text-xl">Información de destino</h2>
           <div className="my-3">
             <Label className="pt-3 mb-2" htmlFor="destinationResolution">
-              Resolución de decomiso<span className="text-red-600">*</span>
+              Resolución de{" "}
+              {data.destination === "auction"
+                ? "subasta"
+                : data.destination === "reuse"
+                ? "reutilización"
+                : "decomiso"}
+              <span className="text-red-600">*</span>
             </Label>
             {assetEdit &&
             assetEdit.destinationResolutionURL &&

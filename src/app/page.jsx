@@ -40,23 +40,23 @@ export default async function Home({
           <Tabs defaultValue="list">
             <TabsList className="w-full justify-end">
               <AssetSerch categories={Categories} />
-              <div className="p-1 ml-3 bg-stone-950 rounded-lg flex">
+              {/* <div className="p-1 ml-3 bg-stone-950 rounded-lg flex">
                 <TabsTrigger value="list">
                   <List />
                 </TabsTrigger>
                 <TabsTrigger value="map">
                   <Globe />
                 </TabsTrigger>
-              </div>
+              </div> */}
             </TabsList>
             <TabsContent value="list">
               <div className="my-8 text-xl font-light">
                 La herramienta cuenta con los datos de los bienes decomisados y
                 cautelados en una serie de causas judiciales tramitadas por ante
                 la Justicia Federal. No es posible brindar información sobre la
-                totalidad de los bienes en el país por el Poder Judicial de la
+                totalidad de los bienes secuestrados por el Poder Judicial de la
                 Nación debido a que Argentina no cuenta con un registro
-                unificado.
+                unificado en la materia.
                 <br />
                 Desde el Proyecto Bien Restituido buscamos transparentar esta
                 información para que las organizaciones sociales y la ciudadanía
@@ -74,9 +74,9 @@ export default async function Home({
                 }}
               />
             </TabsContent>
-            <TabsContent value="map">
+            {/* <TabsContent value="map">
               <AssetMap />
-            </TabsContent>
+            </TabsContent> */}
           </Tabs>
         </Suspense>
       </div>
