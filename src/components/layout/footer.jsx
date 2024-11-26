@@ -20,16 +20,20 @@ const Footer = () => {
     pathname.startsWith("/admin") || pathname.startsWith("/autenticacion");
   if (!noFooter)
     return (
-      <footer className=" bg-white ">
+      <footer className=" bg-orange-600 pb-10">
         <div className=" bg-orange-500">
-          <div className="container flex flex-row  min-h-20 py-3 ">
-            <div className="py-16  w-7/12 relative z-10 bg-orange-500 bg-opacity-60">
-              <h1 className="text-2xl ">
-                Proyecto Bien Restituido. Para el desmantelamiento patrimonial
-                del crimen organizado y el fortalecimiento de la sociedad civil.
+          <div className="container min-h-20 py-3  px-4">
+            <div className="py-4 relative z-10 bg-orange-500 bg-opacity-60">
+              <h1 className="text-2xl text-white font-bold">
+                Proyecto Bien Restituido
               </h1>
               <br />
-              <p className="text-lg font-light pt-3 ">
+              <p className="text-xl font-light">
+                Para el desmantelamiento patrimonial del crimen organizado y el
+                fortalecimiento de la sociedad civil.
+              </p>
+              <p className="text-base font-light pt-3 ">
+                <br />
                 Proyecto Bien Restituido. Para el desmantelamiento patrimonial
                 del crimen organizado y el fortalecimiento de la sociedad civil.
                 <br />
@@ -46,20 +50,10 @@ const Footer = () => {
                 </Link>
               </p>
             </div>
-            <div className="w-5/12 flex justify-center items-center">
-              <Image
-                src="/escudo.png"
-                width={0}
-                height={0}
-                sizes="100vw"
-                alt="escudo"
-                className="w-2/3 opacity-35"
-              />
-            </div>
           </div>
         </div>
-        <div className=" containet flex justify-center items-center flex-col my-10">
-          <div className="flex justify-evenly w-3/4">
+        <div className="flex justify-center items-center flex-col py-8 bg-white">
+          <div className="flex justify-evenly w-full">
             <Image
               src={`/logos_orgs/libera.jpg`}
               width={0}
@@ -93,7 +87,7 @@ const Footer = () => {
               alt="logo circolo"
             />
           </div>
-          <div className="flex mt-10 justify-center w-3/4">
+          <div className="flex mt-10 justify-center w-full">
             <Image
               src={`/logos_orgs/union_europea.jpg`}
               width={0}
