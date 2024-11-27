@@ -24,7 +24,7 @@ const Footer = () => {
         <div className=" bg-orange-500">
           <div className="container min-h-20 py-3  px-4">
             <div className="py-4 relative z-10 bg-orange-500 bg-opacity-60">
-              <h1 className="text-2xl text-white font-bold">
+              <h1 className="text-3xl text-white font-bold">
                 Proyecto Bien Restituido
               </h1>
               <br />
