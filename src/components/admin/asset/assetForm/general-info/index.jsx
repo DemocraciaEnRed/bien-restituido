@@ -3,7 +3,11 @@ import React, { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
-import { getLocation, getProvinces } from "@/lib/actions/admin/location";
+import {
+  getCountries,
+  getLocation,
+  getProvinces,
+} from "@/lib/actions/admin/location";
 
 import SelectCustom from "@/components/ui/select-custom";
 import BigSkeleton from "../big-skeleton";
@@ -12,8 +16,15 @@ import Titular from "./titular";
 const GeneralInfo = ({ assetEdit }) => {
   const [data, setData] = useState(assetEdit || {});
   const [provinces, setProvinces] = useState(null);
+  const [countries, setCountries] = useState(null);
+  const [country, setCountry] = useState(assetEdit.country || null);
   const [locations, setLocations] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  const handleCountry = (value) => {
+    setCountry(value);
+    if (value === "Argentina") fetchProvinces();
+  };
 
   const fetchProvinces = async () => {
     let provincesFetch = await getProvinces();
@@ -35,13 +46,18 @@ const GeneralInfo = ({ assetEdit }) => {
       };
       setData(inputData);
     }
+    if (event.target.name === "country") handleCountry(event.target.value);
     if (event.target.name === "province") handleProvince(event.target.value);
   };
 
   const LoadStep = async () => {
     setLoading(true);
-    await fetchProvinces();
-    if (assetEdit) await handleProvince(assetEdit.province);
+    const countries = await getCountries();
+    setCountries(countries);
+    if (assetEdit) {
+      handleCountry(assetEdit.country);
+      await handleProvince(assetEdit.province);
+    }
     setLoading(false);
   };
 
@@ -55,7 +71,37 @@ const GeneralInfo = ({ assetEdit }) => {
         <Titular assetEdit={assetEdit} />
         <Separator className="w-1/2 my-3 h-1 mx-auto" />
         <h2 className="text-xl">Localización del bien</h2>
-        {provinces && (
+        {countries && (
+          <div className="relative">
+            <label
+              htmlFor="country"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >
+              Pais<span className="text-red-600"> *</span>
+            </label>
+            <SelectCustom
+              id="country"
+              name="country"
+              onChange={handleChangeInput}
+              required
+              defaultValue={(assetEdit && assetEdit.country) || ""}
+            >
+              <option value="" disabled>
+                Seleccionar pais
+              </option>
+              {countries &&
+                countries.map((country) => (
+                  <option
+                    key={country.cca3}
+                    value={country.translations.spa.common}
+                  >
+                    {country.translations.spa.common}
+                  </option>
+                ))}
+            </SelectCustom>
+          </div>
+        )}
+        {country === "Argentina" && provinces && (
           <div className="relative">
             <label
               htmlFor="province"
@@ -82,7 +128,7 @@ const GeneralInfo = ({ assetEdit }) => {
             </SelectCustom>
           </div>
         )}
-        {locations && (
+        {country === "Argentina" && locations && (
           <div className="relative">
             <label
               htmlFor="location"
@@ -109,18 +155,21 @@ const GeneralInfo = ({ assetEdit }) => {
             </SelectCustom>
           </div>
         )}
-        <div>
-          <Label className="pt-3" htmlFor="address">
-            Dirección
-          </Label>
-          <Input
-            id="address"
-            name="address"
-            type="text"
-            defaultValue={assetEdit && assetEdit.address}
-            onChange={handleChangeInput}
-          />
-        </div>
+        {country && (
+          <div>
+            <Label className="pt-3" htmlFor="address">
+              Dirección
+            </Label>
+            <Input
+              id="address"
+              name="address"
+              type="text"
+              required={country !== "Argentina"}
+              defaultValue={assetEdit && assetEdit.address}
+              onChange={handleChangeInput}
+            />
+          </div>
+        )}
       </div>
     );
   else return <BigSkeleton />;

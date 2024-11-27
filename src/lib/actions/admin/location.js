@@ -27,3 +27,27 @@ export const getLocation = async (idProvince) => {
     console.error(error);
   }
 }
+
+export const getCountries = async (idProvince) => {
+
+  try {
+
+    let res = await fetch(`https://restcountries.com/v3.1/all?fields=cca3,translations`, {
+      method: "GET",
+    });
+
+    let countries = await res.json()
+    countries.sort((a, b) => {
+      if (a.translations.spa.common > b.translations.spa.common) {
+        return 1;
+      }
+      if (a.translations.spa.common < b.translations.spa.common) {
+        return -1;
+      }
+    })
+    return countries
+  } catch (error) {
+
+    console.error(error);
+  }
+}

@@ -112,6 +112,18 @@ function DestinationInfo({ assetEdit }) {
           {formDestinationType[data.destination]}
         </div>
       )}
+      <div>
+        <Label className="pt-3" htmlFor="destinationComment">
+          Observaciones
+        </Label>
+        <Input
+          id="destinationComment"
+          name="destinationComment"
+          type="text"
+          defaultValue={assetEdit && assetEdit.destinationComment}
+          onChange={handleChangeInput}
+        />
+      </div>
     </div>
   );
 }

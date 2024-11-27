@@ -53,6 +53,10 @@ export const AssetSchema = new Schema(
         owner: {
             type: [ownerSchema]
         },
+        country: {
+            type: String,
+            max: 255
+        },
         province: {
             type: String,
             max: 255
@@ -75,6 +79,9 @@ export const AssetSchema = new Schema(
         },
         destinationInfo: Schema.Types.Mixed,
         destinationResolution: {
+            type: String
+        },
+        destinationComment: {
             type: String
         },
         category: { type: mongoose.Types.ObjectId, ref: 'Category' },
