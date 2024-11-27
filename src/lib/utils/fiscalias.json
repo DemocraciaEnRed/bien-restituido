@@ -86,36 +86,6 @@
     ]
   },
   {
-    "jurisdiccion": "Cámara Nacional de Apelaciones en lo Comercial",
-    "fiscalias": [
-      "Fiscalía General ante la Cámara Nacional de Apelaciones en lo Comercial"
-    ]
-  },
-  {
-    "jurisdiccion": "Cámara Nacional de Apelaciones del Trabajo",
-    "fiscalias": [
-      "Fiscalía General ante la Cámara Nacional de Apelaciones del Trabajo",
-      "Fiscalía General Adjunta ante la Cámara Nacional de Apelaciones del Trabajo",
-      "Fiscalía Nº 1 ante los Juzgados Nacionales de Primera Instancia del Trabajo",
-      "Fiscalía Nº 2 ante los Juzgados Nacionales de Primera Instancia del Trabajo",
-      "Fiscalía Nº 3 ante los Juzgados Nacionales de Primera Instancia del Trabajo",
-      "Fiscalía Nº 4 ante los Juzgados Nacionales de Primera Instancia del Trabajo",
-      "Fiscalía Nº 5 ante los Juzgados Nacionales de Primera Instancia del Trabajo",
-      "Fiscalía Nº 6 ante los Juzgados Nacionales de Primera Instancia del Trabajo",
-      "Fiscalía Nº 7 ante los Juzgados Nacionales de Primera Instancia del Trabajo",
-      "Fiscalía Nº 8 ante los Juzgados Nacionales de Primera Instancia del Trabajo"
-    ]
-  },
-  {
-    "jurisdiccion": "Cámara Nacional de Apelaciones en las Relaciones de Consumo",
-    "fiscalias": [
-      "Fiscalía General ante la Cámara Nacional de Apelaciones en las Relaciones de Consumo",
-      "Fiscalía Nº 1 ante los Juzgados Nacionales de Primera Instancia en las Relaciones de Consumo",
-      "Fiscalía Nº 2 ante los Juzgados Nacionales de Primera Instancia en las Relaciones de Consumo",
-      "Fiscalía Nº 3 ante los Juzgados Nacionales de Primera Instancia en las Relaciones de Consumo"
-    ]
-  },
-  {
     "jurisdiccion": "Cámara Federal de Apelaciones de Bahía Blanca",
     "fiscalias": [
       "Fiscalía General ante la Cámara Federal de Apelaciones de Bahía Blanca",
