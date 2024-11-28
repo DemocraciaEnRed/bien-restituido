@@ -17,7 +17,7 @@ const GeneralInfo = ({ assetEdit }) => {
   const [data, setData] = useState(assetEdit || {});
   const [provinces, setProvinces] = useState(null);
   const [countries, setCountries] = useState(null);
-  const [country, setCountry] = useState(assetEdit.country || null);
+  const [country, setCountry] = useState(null);
   const [locations, setLocations] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -57,6 +57,7 @@ const GeneralInfo = ({ assetEdit }) => {
     if (assetEdit) {
       handleCountry(assetEdit.country);
       await handleProvince(assetEdit.province);
+      setCountry(assetEdit.country);
     }
     setLoading(false);
   };

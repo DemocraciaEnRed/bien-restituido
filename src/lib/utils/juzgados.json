@@ -10,6 +10,10 @@
       "Cámara Federal de Apelaciones de Bahía Blanca Sala II",
       "Tribunal Oral en lo Criminal Federal de Bahía Blanca",
       "Tribunal Oral en lo Criminal Federal de La Pampa"
+    ],
+    "tribunales": [
+      "Tribunal Oral en lo Criminal Federal de Bahía Blanca",
+      "Tribunal Oral en lo Criminal Federal de La Pampa"
     ]
   },
   {
@@ -25,6 +29,11 @@
       "Juzgado Federal de Primera Instancia N° 1 de Rawson",
       "Juzgado Federal de Primera Instancia N° 2 de Rawson",
       "Cámara Federal de Apelaciones de Comodoro Rivadavia Sala Única",
+      "Tribunal Oral en lo Criminal Federal de Comodoro Rivadavia",
+      "Tribunal Oral en lo Criminal Federal de Santa Cruz",
+      "Tribunal Oral en lo Criminal Federal de Tierra del Fuego, Antártida e Islas del Atlántico Sur"
+    ],
+    "tribunales": [
       "Tribunal Oral en lo Criminal Federal de Comodoro Rivadavia",
       "Tribunal Oral en lo Criminal Federal de Santa Cruz",
       "Tribunal Oral en lo Criminal Federal de Tierra del Fuego, Antártida e Islas del Atlántico Sur"
@@ -47,6 +56,12 @@
       "Tribunal Oral en lo Criminal Federal Nº 1 de Córdoba",
       "Tribunal Oral en lo Criminal Federal Nº 2 de Córdoba",
       "Tribunal Oral en lo Criminal Federal Nº 3 de Córdoba"
+    ],
+    "tribunales": [
+      "Tribunal Oral en lo Criminal Federal de La Rioja",
+      "Tribunal Oral en lo Criminal Federal Nº 1 de Córdoba",
+      "Tribunal Oral en lo Criminal Federal Nº 2 de Córdoba",
+      "Tribunal Oral en lo Criminal Federal Nº 3 de Córdoba"
     ]
   },
   {
@@ -58,7 +73,8 @@
       "Juzgado Federal de Primera Instancia N° 2 de Corrientes",
       "Cámara Federal de Apelaciones de Corrientes Sala Única",
       "Tribunal Oral en lo Criminal Federal de Corrientes"
-    ]
+    ],
+    "tribunales": ["Tribunal Oral en lo Criminal Federal de Corrientes"]
   },
   {
     "jurisdiccion": "Cámara Federal de Apelaciones de General Roca",
@@ -70,6 +86,10 @@
       "Juzgado Federal de Primera Instancia N° 1 de Neuquen",
       "Juzgado Federal de Primera Instancia N° 2 de Neuquen",
       "Cámara Federal de Apelaciones de General Roca Sala Única",
+      "Tribunal Oral en lo Criminal Federal de General Roca",
+      "Tribunal Oral en lo Criminal Federal de Neuquen"
+    ],
+    "tribunales": [
       "Tribunal Oral en lo Criminal Federal de General Roca",
       "Tribunal Oral en lo Criminal Federal de Neuquen"
     ]
@@ -93,6 +113,11 @@
       "Tribunal Oral en lo Criminal Federal Nº 1 de La Plata",
       "Tribunal Oral en lo Criminal Federal Nº 2 de La Plata",
       "Tribunal Oral en lo Criminal Federal Nº 3 de La Plata"
+    ],
+    "tribunales": [
+      "Tribunal Oral en lo Criminal Federal Nº 1 de La Plata",
+      "Tribunal Oral en lo Criminal Federal Nº 2 de La Plata",
+      "Tribunal Oral en lo Criminal Federal Nº 3 de La Plata"
     ]
   },
   {
@@ -108,7 +133,8 @@
       "Juzgado Federal de Primera Instancia Nº 4 de Mar del Plata",
       "Cámara Federal de Apelaciones de Mar del Plata Sala Única",
       "Tribunal Oral en lo Criminal Federal de Mar del Plata"
-    ]
+    ],
+    "tribunales": ["Tribunal Oral en lo Criminal Federal de Mar del Plata"]
   },
 
   {
@@ -129,6 +155,12 @@
       "Tribunal Oral en lo Criminal Federal de San Luis",
       "Tribunal Oral en lo Criminal Federal Nº 1 de Mendoza",
       "Tribunal Oral en lo Criminal Federal Nº 2 de Mendoza"
+    ],
+    "tribunales": [
+      "Tribunal Oral en lo Criminal Federal de San Juan",
+      "Tribunal Oral en lo Criminal Federal de San Luis",
+      "Tribunal Oral en lo Criminal Federal Nº 1 de Mendoza",
+      "Tribunal Oral en lo Criminal Federal Nº 2 de Mendoza"
     ]
   },
   {
@@ -144,6 +176,10 @@
       "Cámara Federal de Apelaciones de Paraná Sala Única",
       "Tribunal Oral en lo Criminal Federal de Concepción del Uruguay",
       "Tribunal Oral en lo Criminal Federal de Paraná"
+    ],
+    "tribunales": [
+      "      Tribunal Oral en lo Criminal Federal de Concepción del Uruguay",
+      "Tribunal Oral en lo Criminal Federal de Paraná"
     ]
   },
   {
@@ -156,7 +192,8 @@
       "Juzgado Federal de Primera Instancia en lo Criminal y Correccional de Posadas",
       "Sala Federal de Apelaciones de Posadas Sala Única",
       "Tribunal Oral en lo Criminal Federal de Posadas"
-    ]
+    ],
+    "tribunales": ["Tribunal Oral en lo Criminal Federal de Posadas"]
   },
 
   {
@@ -170,6 +207,10 @@
       "Juzgado Federal de Primera Instancia Nº 2 de Formosa",
       "Juzgado Federal de Primera Instancia Nº 2 de Resistencia",
       "Cámara Federal de Apelaciones de Resistencia Sala Única",
+      "Tribunal Oral en lo Criminal Federal de Formosa",
+      "Tribunal Oral en lo Criminal Federal de Resistencia"
+    ],
+    "tribunales": [
       "Tribunal Oral en lo Criminal Federal de Formosa",
       "Tribunal Oral en lo Criminal Federal de Resistencia"
     ]
@@ -200,6 +241,12 @@
       "Tribunal Oral en lo Criminal Federal Nº 1 de Rosario",
       "Tribunal Oral en lo Criminal Federal Nº 2 de Rosario",
       "Tribunal Oral en lo Criminal Federal Nº 3 de Rosario"
+    ],
+    "tribunales": [
+      "      Tribunal Oral en lo Criminal Federal de Santa Fe",
+      "Tribunal Oral en lo Criminal Federal Nº 1 de Rosario",
+      "Tribunal Oral en lo Criminal Federal Nº 2 de Rosario",
+      "Tribunal Oral en lo Criminal Federal Nº 3 de Rosario"
     ]
   },
 
@@ -218,6 +265,11 @@
       "Tribunal Oral en lo Criminal Federal de Jujuy",
       "Tribunal Oral en lo Criminal Federal N° 1 de Salta",
       "Tribunal Oral en lo Criminal Federal N° 2 de Salta"
+    ],
+    "tribunales": [
+      "Tribunal Oral en lo Criminal Federal de Jujuy",
+      "Tribunal Oral en lo Criminal Federal N° 1 de Salta",
+      "Tribunal Oral en lo Criminal Federal N° 2 de Salta"
     ]
   },
 
@@ -227,7 +279,8 @@
       "Juzgado Federal de Primera Instancia en lo Civil, Comercial y Contencioso Administrativo Nº 1 de San Justo",
       "Juzgado Federal de Primera Instancia en lo Civil, Comercial y Contencioso Administrativo Nº 2 de San Justo",
       "Cámara de Apelaciones de San Justo Sala Única"
-    ]
+    ],
+    "tribunales": []
   },
 
   {
@@ -254,6 +307,13 @@
       "Tribunal Oral en lo Criminal Federal Nº 3 de San Martín",
       "Tribunal Oral en lo Criminal Federal Nº 4 de San Martín",
       "Tribunal Oral en lo Criminal Federal Nº 5 de San Martín"
+    ],
+    "tribunales": [
+      "Tribunal Oral en lo Criminal Federal Nº 1 de San Martín",
+      "Tribunal Oral en lo Criminal Federal Nº 2 de San Martín",
+      "Tribunal Oral en lo Criminal Federal Nº 3 de San Martín",
+      "Tribunal Oral en lo Criminal Federal Nº 4 de San Martín",
+      "Tribunal Oral en lo Criminal Federal Nº 5 de San Martín"
     ]
   },
 
@@ -271,6 +331,11 @@
       "Tribunal Oral en lo Criminal Federal de Catamarca",
       "Tribunal Oral en lo Criminal Federal de Santiago del Estero",
       "Tribunal Oral en lo Criminal Federal de Tucumán"
+    ],
+    "tribunales": [
+      "Tribunal Oral en lo Criminal Federal de Catamarca",
+      "Tribunal Oral en lo Criminal Federal de Santiago del Estero",
+      "Tribunal Oral en lo Criminal Federal de Tucumán"
     ]
   },
 
@@ -281,90 +346,10 @@
       "Cámara Federal de Casación Penal Sala II",
       "Cámara Federal de Casación Penal Sala III",
       "Cámara Federal de Casación Penal Sala IV"
-    ]
+    ],
+    "tribunales": []
   },
-  {
-    "jurisdiccion": "Cámara Nacional de Apelaciones en lo Criminal y Correccional",
-    "juzgados": [
-      "Juzgado Nacional de Menores N° 1",
-      "Juzgado Nacional de Menores N° 2",
-      "Juzgado Nacional de Menores N° 3",
-      "Juzgado Nacional de Menores N° 4",
-      "Juzgado Nacional de Menores N° 5",
-      "Juzgado Nacional de Menores N° 6",
-      "Juzgado Nacional de Menores N° 7",
-      "Juzgado Nacional de Primera Instancia en lo Criminal de Rogatorias",
-      "Juzgado Nacional en lo Criminal  y Correccional N° 38",
-      "Juzgado Nacional en lo Criminal  y Correccional N° 39",
-      "Juzgado Nacional en lo Criminal  y Correccional N° 42",
-      "Juzgado Nacional en lo Criminal  y Correccional N° 47",
-      "Juzgado Nacional en lo Criminal y Correccional N° 1",
-      "Juzgado Nacional en lo Criminal y Correccional N° 10",
-      "Juzgado Nacional en lo Criminal y Correccional N° 11",
-      "Juzgado Nacional en lo Criminal y Correccional N° 12",
-      "Juzgado Nacional en lo Criminal y Correccional N° 13",
-      "Juzgado Nacional en lo Criminal y Correccional N° 14",
-      "Juzgado Nacional en lo Criminal y Correccional N° 15",
-      "Juzgado Nacional en lo Criminal y Correccional N° 16",
-      "Juzgado Nacional en lo Criminal y Correccional N° 17",
-      "Juzgado Nacional en lo Criminal y Correccional N° 18",
-      "Juzgado Nacional en lo Criminal y Correccional N° 19",
-      "Juzgado Nacional en lo Criminal y Correccional N° 2",
-      "Juzgado Nacional en lo Criminal y Correccional N° 20",
-      "Juzgado Nacional en lo Criminal y Correccional N° 21",
-      "Juzgado Nacional en lo Criminal y Correccional N° 22",
-      "Juzgado Nacional en lo Criminal y Correccional N° 23",
-      "Juzgado Nacional en lo Criminal y Correccional N° 24",
-      "Juzgado Nacional en lo Criminal y Correccional N° 25",
-      "Juzgado Nacional en lo Criminal y Correccional N° 26",
-      "Juzgado Nacional en lo Criminal y Correccional N° 27",
-      "Juzgado Nacional en lo Criminal y Correccional N° 28",
-      "Juzgado Nacional en lo Criminal y Correccional N° 29",
-      "Juzgado Nacional en lo Criminal y Correccional N° 3",
-      "Juzgado Nacional en lo Criminal y Correccional N° 30",
-      "Juzgado Nacional en lo Criminal y Correccional N° 31",
-      "Juzgado Nacional en lo Criminal y Correccional N° 32",
-      "Juzgado Nacional en lo Criminal y Correccional N° 33",
-      "Juzgado Nacional en lo Criminal y Correccional N° 34",
-      "Juzgado Nacional en lo Criminal y Correccional N° 35",
-      "Juzgado Nacional en lo Criminal y Correccional N° 36",
-      "Juzgado Nacional en lo Criminal y Correccional N° 37",
-      "Juzgado Nacional en lo Criminal y Correccional N° 4",
-      "Juzgado Nacional en lo Criminal y Correccional N° 40",
-      "Juzgado Nacional en lo Criminal y Correccional N° 41",
-      "Juzgado Nacional en lo Criminal y Correccional N° 43",
-      "Juzgado Nacional en lo Criminal y Correccional N° 44",
-      "Juzgado Nacional en lo Criminal y Correccional N° 45",
-      "Juzgado Nacional en lo Criminal y Correccional N° 46",
-      "Juzgado Nacional en lo Criminal y Correccional N° 48",
-      "Juzgado Nacional en lo Criminal y Correccional N° 49",
-      "Juzgado Nacional en lo Criminal y Correccional N° 5",
-      "Juzgado Nacional en lo Criminal y Correccional N° 50",
-      "Juzgado Nacional en lo Criminal y Correccional N° 51",
-      "Juzgado Nacional en lo Criminal y Correccional N° 52",
-      "Juzgado Nacional en lo Criminal y Correccional N° 53",
-      "Juzgado Nacional en lo Criminal y Correccional N° 54",
-      "Juzgado Nacional en lo Criminal y Correccional N° 55",
-      "Juzgado Nacional en lo Criminal y Correccional N° 56",
-      "Juzgado Nacional en lo Criminal y Correccional N° 57",
-      "Juzgado Nacional en lo Criminal y Correccional N° 58",
-      "Juzgado Nacional en lo Criminal y Correccional N° 59",
-      "Juzgado Nacional en lo Criminal y Correccional N° 6",
-      "Juzgado Nacional en lo Criminal y Correccional N° 60",
-      "Juzgado Nacional en lo Criminal y Correccional N° 61",
-      "Juzgado Nacional en lo Criminal y Correccional N° 62",
-      "Juzgado Nacional en lo Criminal y Correccional N° 63",
-      "Juzgado Nacional en lo Criminal y Correccional N° 7",
-      "Juzgado Nacional en lo Criminal y Correccional N° 8",
-      "Juzgado Nacional en lo Criminal y Correccional N° 9",
-      "Cámara Nacional de Apelaciones en lo Criminal y Correccional Sala I",
-      "Cámara Nacional de Apelaciones en lo Criminal y Correccional Sala I AMIA",
-      "Cámara Nacional de Apelaciones en lo Criminal y Correccional Sala IV",
-      "Cámara Nacional de Apelaciones en lo Criminal y Correccional Sala V",
-      "Cámara Nacional de Apelaciones en lo Criminal y Correccional Sala VI",
-      "Cámara Nacional de Apelaciones en lo Criminal y Correccional Sala VII"
-    ]
-  },
+
   {
     "jurisdiccion": "Cámara Nacional de Apelaciones en lo Criminal y Correccional Federal",
     "juzgados": [
@@ -382,6 +367,16 @@
       "Juzgado Nacional de Primera Instancia en lo Criminal y Correccional Federal N° 9",
       "Cámara Nacional de Apelaciones en lo Criminal y Correccional Federal Sala I",
       "Cámara Nacional de Apelaciones en lo Criminal y Correccional Federal Sala II",
+      "Tribunal Oral en lo Criminal Federal N° 1",
+      "Tribunal Oral en lo Criminal Federal N° 2",
+      "Tribunal Oral en lo Criminal Federal N° 3",
+      "Tribunal Oral en lo Criminal Federal N° 4",
+      "Tribunal Oral en lo Criminal Federal N° 5",
+      "Tribunal Oral en lo Criminal Federal N° 6",
+      "Tribunal Oral en lo Criminal Federal N° 7",
+      "Tribunal Oral en lo Criminal Federal N° 8"
+    ],
+    "tribunales": [
       "Tribunal Oral en lo Criminal Federal N° 1",
       "Tribunal Oral en lo Criminal Federal N° 2",
       "Tribunal Oral en lo Criminal Federal N° 3",
@@ -411,6 +406,11 @@
       "Tribunal Oral en lo Penal Económico N° 1",
       "Tribunal Oral en lo Penal Económico N° 2",
       "Tribunal Oral en lo Penal Económico N° 3"
+    ],
+    "tribunales": [
+      "Tribunal Oral en lo Penal Económico N° 1",
+      "Tribunal Oral en lo Penal Económico N° 2",
+      "Tribunal Oral en lo Penal Económico N° 3"
     ]
   },
   {
@@ -427,6 +427,36 @@
       "Tribunal Oral de Menores N° 1",
       "Tribunal Oral de Menores N° 2",
       "Tribunal Oral de Menores N° 3",
+      "Tribunal Oral en lo Criminal  y Correccional N° 1",
+      "Tribunal Oral en lo Criminal  y Correccional N° 15",
+      "Tribunal Oral en lo Criminal y Correccional  N° 9",
+      "Tribunal Oral en lo Criminal y Correccional N° 10",
+      "Tribunal Oral en lo Criminal y Correccional N° 11",
+      "Tribunal Oral en lo Criminal y Correccional N° 12",
+      "Tribunal Oral en lo Criminal y Correccional N° 13",
+      "Tribunal Oral en lo Criminal y Correccional N° 14",
+      "Tribunal Oral en lo Criminal y Correccional N° 16",
+      "Tribunal Oral en lo Criminal y Correccional N° 17",
+      "Tribunal Oral en lo Criminal y Correccional N° 18",
+      "Tribunal Oral en lo Criminal y Correccional N° 19",
+      "Tribunal Oral en lo Criminal y Correccional N° 2",
+      "Tribunal Oral en lo Criminal y Correccional N° 20",
+      "Tribunal Oral en lo Criminal y Correccional N° 21",
+      "Tribunal Oral en lo Criminal y Correccional N° 22",
+      "Tribunal Oral en lo Criminal y Correccional N° 24",
+      "Tribunal Oral en lo Criminal y Correccional N° 25",
+      "Tribunal Oral en lo Criminal y Correccional N° 26",
+      "Tribunal Oral en lo Criminal y Correccional N° 27",
+      "Tribunal Oral en lo Criminal y Correccional N° 28",
+      "Tribunal Oral en lo Criminal y Correccional N° 29",
+      "Tribunal Oral en lo Criminal y Correccional N° 3",
+      "Tribunal Oral en lo Criminal y Correccional N° 30",
+      "Tribunal Oral en lo Criminal y Correccional N° 4",
+      "Tribunal Oral en lo Criminal y Correccional N° 5",
+      "Tribunal Oral en lo Criminal y Correccional N° 7",
+      "Tribunal Oral en lo Criminal y Correccional N° 8"
+    ],
+    "tribunales": [
       "Tribunal Oral en lo Criminal  y Correccional N° 1",
       "Tribunal Oral en lo Criminal  y Correccional N° 15",
       "Tribunal Oral en lo Criminal y Correccional  N° 9",

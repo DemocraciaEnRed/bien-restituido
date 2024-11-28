@@ -82,6 +82,9 @@ export const fieldsInputTypes = [
 
 ];
 
+export const causePrefixs = ['CFP ', 'CPF', 'CPE', 'CCC', 'CPN', 'FBB', 'FCR', 'FCB', 'FCT', 'FGR', 'FLP', 'FMP', 'FMZ', 'FPO', 'FPA', 'FRE', 'FSA', 'FRO', 'FSM', 'FTU']
+
+
 export const assetDestination = [
     { value: 'auction', name: 'Subasta', slug: 'subasta' },
     { value: 'reuse', name: 'Reutilización', slug: 'reutilizacion' },

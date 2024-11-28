@@ -21,6 +21,7 @@ import {
 } from "@/lib/actions/admin/juzgados-y-fiscalias";
 import { Button, buttonVariants } from "@/components/ui/button";
 import BigSkeleton from "../big-skeleton";
+import { causePrefixs } from "@/lib/utils/constants";
 
 const JudicialInfo = ({ assetEdit }) => {
   const [data, setData] = useState(assetEdit || null);
@@ -31,7 +32,6 @@ const JudicialInfo = ({ assetEdit }) => {
   const fetchJuzgadosYFiscalias = async () => {
     const juzgadosFetch = await getJuzgados();
     const fiscaliasFetch = await getFiscalias();
-
     setFiscalias(JSON.parse(fiscaliasFetch));
     setJuzgados(JSON.parse(juzgadosFetch));
   };
@@ -73,6 +73,205 @@ const JudicialInfo = ({ assetEdit }) => {
   if (!loading)
     return (
       <div className="grid items-center gap-1.5 px-1">
+        <h2 className="text-xl">Proceso judicial</h2>
+        <h3 className="text-lg">Juzgado</h3>
+        <div className="flex gap-1">
+          <div className="w-2/4">
+            <Label className="pt-3" htmlFor="juzgadoJurisdiccion">
+              Jurisdicción <span className="text-red-600">*</span>
+            </Label>
+            <SelectCustom
+              name="juzgadoJurisdiccion"
+              id="juzgadoJurisdiccion"
+              required
+              defaultValue={(assetEdit && assetEdit.juzgado) || ""}
+              onChange={handleChangeInput}
+            >
+              <option value="" disabled>
+                Seleccioná jurisdicción
+              </option>
+              {juzgados &&
+                juzgados.map((juzgado, idx) => (
+                  <option value={juzgado.jurisdiccion} key={idx}>
+                    {juzgado.jurisdiccion}
+                  </option>
+                ))}
+            </SelectCustom>
+          </div>
+          {data && data["juzgadoJurisdiccion"] && (
+            <div className="w-2/4">
+              <Label className="pt-3" htmlFor="juzgado">
+                Juzgado <span className="text-red-600">*</span>
+              </Label>
+              <SelectCustom
+                name="juzgado"
+                id="juzgado"
+                required
+                defaultValue={(assetEdit && assetEdit.juzgado) || ""}
+                onChange={handleChangeInput}
+              >
+                <option value="" disabled>
+                  Seleccioná juzgado
+                </option>
+                {juzgados &&
+                  juzgados
+                    .find(
+                      (juzgado) =>
+                        juzgado.jurisdiccion === data["juzgadoJurisdiccion"]
+                    )
+                    .juzgados.map((juzgado, idx) => (
+                      <option value={juzgado} key={idx}>
+                        {juzgado}
+                      </option>
+                    ))}
+              </SelectCustom>
+            </div>
+          )}
+        </div>
+
+        <h3 className="text-lg">Fiscalía</h3>
+        <div className="flex gap-1">
+          <div className="w-2/4">
+            <Label className="pt-3" htmlFor="fiscaliaJurisdiccion">
+              Jurisdicción <span className="text-red-600">*</span>
+            </Label>
+            <SelectCustom
+              name="fiscaliaJurisdiccion"
+              id="fiscaliaJurisdiccion"
+              required
+              defaultValue={(assetEdit && assetEdit.fiscalia) || ""}
+              onChange={handleChangeInput}
+            >
+              <option value="" disabled>
+                Seleccioná jurisdicción
+              </option>
+              {fiscalias &&
+                fiscalias.map((fiscalia, idx) => (
+                  <option value={fiscalia.jurisdiccion} key={idx}>
+                    {fiscalia.jurisdiccion}
+                  </option>
+                ))}
+            </SelectCustom>
+          </div>
+          {data && data["fiscaliaJurisdiccion"] && (
+            <div className="w-2/4">
+              <Label className="pt-3" htmlFor="fiscalia">
+                Fiscalia <span className="text-red-600">*</span>
+              </Label>
+              <SelectCustom
+                name="fiscalia"
+                id="fiscalia"
+                required
+                defaultValue={(assetEdit && assetEdit.fiscalia) || ""}
+                onChange={handleChangeInput}
+              >
+                <option value="" disabled>
+                  Seleccioná fiscalia
+                </option>
+                {fiscalias &&
+                  fiscalias
+                    .find(
+                      (fiscalia) =>
+                        fiscalia.jurisdiccion === data["fiscaliaJurisdiccion"]
+                    )
+                    .fiscalias.map((fiscalia, idx) => (
+                      <option value={fiscalia} key={idx}>
+                        {fiscalia}
+                      </option>
+                    ))}
+              </SelectCustom>
+            </div>
+          )}
+        </div>
+        <div>
+          <Label className="pt-3" htmlFor="tribunal">
+            Tribunal<span className="text-red-600">*</span>
+          </Label>
+          {/* <Input
+            name="tribunal"
+            id="tribunal"
+            required
+            type="text"
+            defaultValue={assetEdit && assetEdit.tribunal}
+            onChange={handleChangeInput}
+          /> */}
+
+          <SelectCustom
+            name="tribunal"
+            id="tribunal"
+            defaultValue={(assetEdit && assetEdit.tribunal) || ""}
+            onChange={handleChangeInput}
+          >
+            <option value="" disabled>
+              Seleccioná tribunal
+            </option>
+            {data &&
+              juzgados &&
+              Object.hasOwn(data, "juzgadoJurisdiccion") &&
+              juzgados
+                .find(
+                  (juzgado) =>
+                    juzgado.jurisdiccion === data["juzgadoJurisdiccion"]
+                )
+                .tribunales.map((tribunal, idx) => (
+                  <option value={tribunal} key={idx}>
+                    {tribunal}
+                  </option>
+                ))}
+          </SelectCustom>
+        </div>
+        <div className="flex gap-2 pt-3">
+          <div className="w-3/12">
+            <Label className="pt-3" htmlFor="prefixCauseNumber">
+              Prefijo <span className="text-red-600">*</span>
+            </Label>
+            <SelectCustom
+              name="prefixCauseNumber"
+              id="prefixCauseNumber"
+              required
+              defaultValue={(assetEdit && assetEdit.prefixCauseNumber) || ""}
+              onChange={handleChangeInput}
+            >
+              <option value="" disabled>
+                Seleccioná prefijo
+              </option>
+              {causePrefixs.map((prefix) => (
+                <option value={prefix} key={prefix}>
+                  {prefix}
+                </option>
+              ))}
+            </SelectCustom>
+          </div>
+          <div className="w-9/12">
+            <Label className="pt-3" htmlFor="causeNumber">
+              Numero de la causa<span className="text-red-600">*</span>
+            </Label>
+            <Input
+              id="causeNumber"
+              name="causeNumber"
+              type="text"
+              required
+              defaultValue={assetEdit && assetEdit.causeNumber}
+              onChange={handleChangeInput}
+            />
+          </div>
+        </div>
+        <div>
+          <Label className="pt-3" htmlFor="causeCoverSheet">
+            Autos de la causa<span className="text-red-600">*</span>
+          </Label>
+          <Input
+            id="causeCoverSheet"
+            name="causeCoverSheet"
+            type="text"
+            required
+            defaultValue={assetEdit && assetEdit.causeCoverSheet}
+            onChange={handleChangeInput}
+          />
+        </div>
+
+        <Separator className="w-1/2 my-3 h-1 mx-auto" />
+
         <h2 className="text-xl">Cautela</h2>
         <div>
           <Label className="pt-3" htmlFor="cautelaDate">
@@ -202,174 +401,6 @@ const JudicialInfo = ({ assetEdit }) => {
         )}
 
         <Separator className="w-1/2 my-3 h-1 mx-auto" />
-        <h2 className="text-xl">Proceso judicial</h2>
-        <h3 className="text-lg">Juzgado</h3>
-        <div className="flex gap-1">
-          <div className="w-2/4">
-            <Label className="pt-3" htmlFor="juzgadoJurisdiccion">
-              Jurisdicción <span className="text-red-600">*</span>
-            </Label>
-            <SelectCustom
-              name="juzgadoJurisdiccion"
-              id="juzgadoJurisdiccion"
-              required
-              defaultValue={(assetEdit && assetEdit.juzgado) || ""}
-              onChange={handleChangeInput}
-            >
-              <option value="" disabled>
-                Seleccioná jurisdicción
-              </option>
-              {juzgados &&
-                juzgados.map((juzgado, idx) => (
-                  <option value={juzgado.jurisdiccion} key={idx}>
-                    {juzgado.jurisdiccion}
-                  </option>
-                ))}
-            </SelectCustom>
-          </div>
-          {data && data["juzgadoJurisdiccion"] && (
-            <div className="w-2/4">
-              <Label className="pt-3" htmlFor="juzgado">
-                Juzgado <span className="text-red-600">*</span>
-              </Label>
-              <SelectCustom
-                name="juzgado"
-                id="juzgado"
-                required
-                defaultValue={(assetEdit && assetEdit.juzgado) || ""}
-                onChange={handleChangeInput}
-              >
-                <option value="" disabled>
-                  Seleccioná juzgado
-                </option>
-                {juzgados &&
-                  juzgados
-                    .find(
-                      (juzgado) =>
-                        juzgado.jurisdiccion === data["juzgadoJurisdiccion"]
-                    )
-                    .juzgados.map((juzgado, idx) => (
-                      <option value={juzgado} key={idx}>
-                        {juzgado}
-                      </option>
-                    ))}
-              </SelectCustom>
-            </div>
-          )}
-        </div>
-
-        <h3 className="text-lg">Fiscalía</h3>
-        <div className="flex gap-1">
-          <div className="w-2/4">
-            <Label className="pt-3" htmlFor="fiscaliaJurisdiccion">
-              Jurisdicción <span className="text-red-600">*</span>
-            </Label>
-            <SelectCustom
-              name="fiscaliaJurisdiccion"
-              id="fiscaliaJurisdiccion"
-              required
-              defaultValue={(assetEdit && assetEdit.fiscalia) || ""}
-              onChange={handleChangeInput}
-            >
-              <option value="" disabled>
-                Seleccioná jurisdicción
-              </option>
-              {fiscalias &&
-                fiscalias.map((fiscalia, idx) => (
-                  <option value={fiscalia.jurisdiccion} key={idx}>
-                    {fiscalia.jurisdiccion}
-                  </option>
-                ))}
-            </SelectCustom>
-          </div>
-          {data && data["fiscaliaJurisdiccion"] && (
-            <div className="w-2/4">
-              <Label className="pt-3" htmlFor="fiscalia">
-                Fiscalia <span className="text-red-600">*</span>
-              </Label>
-              <SelectCustom
-                name="fiscalia"
-                id="fiscalia"
-                required
-                defaultValue={(assetEdit && assetEdit.fiscalia) || ""}
-                onChange={handleChangeInput}
-              >
-                <option value="" disabled>
-                  Seleccioná fiscalia
-                </option>
-                {fiscalias &&
-                  fiscalias
-                    .find(
-                      (fiscalia) =>
-                        fiscalia.jurisdiccion === data["fiscaliaJurisdiccion"]
-                    )
-                    .fiscalias.map((fiscalia, idx) => (
-                      <option value={fiscalia} key={idx}>
-                        {fiscalia}
-                      </option>
-                    ))}
-              </SelectCustom>
-            </div>
-          )}
-        </div>
-        <div>
-          <Label className="pt-3" htmlFor="tribunal">
-            Tribunal<span className="text-red-600">*</span>
-          </Label>
-          <Input
-            name="tribunal"
-            id="tribunal"
-            required
-            type="text"
-            defaultValue={assetEdit && assetEdit.tribunal}
-            onChange={handleChangeInput}
-          />
-        </div>
-        {/* <div>
-        <Label className="pt-3" htmlFor="tribunal">
-          Tribunal<span className="text-red-600">*</span>
-        </Label>
-        <SelectCustom
-          name="tribunal"
-          id="tribunal"
-          required
-          defaultValue={(assetEdit && assetEdit.tribunal) || ""}
-          onChange={handleChangeInput}
-        >
-          <option value="" disabled>
-            Seleccioná tribunal
-          </option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-        </SelectCustom>
-      </div> */}
-        <div>
-          <Label className="pt-3" htmlFor="causeNumber">
-            Numero de la causa<span className="text-red-600">*</span>
-          </Label>
-          <Input
-            id="causeNumber"
-            name="causeNumber"
-            type="text"
-            required
-            defaultValue={assetEdit && assetEdit.causeNumber}
-            onChange={handleChangeInput}
-          />
-        </div>
-        <div>
-          <Label className="pt-3" htmlFor="causeCoverSheet">
-            Autos de la causa<span className="text-red-600">*</span>
-          </Label>
-          <Input
-            id="causeCoverSheet"
-            name="causeCoverSheet"
-            type="text"
-            required
-            defaultValue={assetEdit && assetEdit.causeCoverSheet}
-            onChange={handleChangeInput}
-          />
-        </div>
         <div className="flex items-center space-x-2 pt-3">
           <Checkbox
             name="thirdParties"

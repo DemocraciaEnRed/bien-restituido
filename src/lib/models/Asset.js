@@ -117,6 +117,10 @@ export const AssetSchema = new Schema(
         tribunal: {
             type: String
         },
+        prefixCauseNumber: {
+            type: String,
+            max: 4
+        },
         causeNumber: {
             type: String
         },
