@@ -324,7 +324,7 @@ const JudicialInfo = ({ assetEdit }) => {
             />
           )}
         </div>
-        <Separator className="w-1/2 my-3 h-1 mx-auto" />
+        {/* <Separator className="w-1/2 my-3 h-1 mx-auto" /> */}
 
         <h2 className="text-xl">Decomiso</h2>
         <div className="flex items-center space-x-2 pt-3 ">
