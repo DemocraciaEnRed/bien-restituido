@@ -225,7 +225,7 @@ const CategoryFieldForm = ({
                 <Select
                   className="  rounded-md border border-input bg-background text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>div]:border-none"
                   placeholder="Elegir tipo/s"
-                  defaultValue={subCategories.map(
+                  defaultValue={attrs[idx].subTypes && subCategories.map(
                     (subType) =>
                       attrs[idx].subTypes.includes(
                         createSlug(category.name + " " + subType.name)
