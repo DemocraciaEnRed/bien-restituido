@@ -7,7 +7,6 @@ export async function createOrEdit(fields, category) {
   for (const field of fields) {
     try {
       field.category = category;
-      console.log(field.subTypes);
 
       const subTypes = await SubCategory.find({
         slug: { $in: field.subTypes.split(',') },

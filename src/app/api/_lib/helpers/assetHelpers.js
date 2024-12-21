@@ -16,7 +16,8 @@ export const listAssets = async (page = 1, limit = 10, query = null, sort = 'cre
         [showCardOptions.ALLWAYS.value]: {}
       };
 
-      for (const extraKey of Object.keys(asset.extras)) {
+      if (asset.extras) {
+        for (const extraKey of Object.keys(asset.extras)) {
 
         const key = await ExtraField.findById(extraKey);
         if (key) {
@@ -27,7 +28,8 @@ export const listAssets = async (page = 1, limit = 10, query = null, sort = 'cre
           if (key.showCard === showCardOptions.EXPANDED.value) extras[showCardOptions.EXPANDED.value][key.name] = value;
           else extras[showCardOptions.ALLWAYS.value][key.name] = value;
         }
-      }
+     }
+     }
       assetPopulate.extras = extras;
 
       let assetImageURL
