@@ -8,7 +8,7 @@ const Navbar = () => {
   const pathname = usePathname();
   const adminPath = pathname.startsWith("/admin");
   return (
-    <nav className={`block bg-stone-950 fixed w-full z-10 top-0`}>
+    <nav className={`block bg-stone-950 fixed w-full z-50 top-0`}>
       <div className="flex h-full max-h-screen flex-col gap-2">
         <div className="flex items-center  px-5 justify-between md:h-nav h-navMobile">
           <Link href="/" className="is-flex is-align-items-center">

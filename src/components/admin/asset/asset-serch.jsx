@@ -81,8 +81,8 @@ const AssetSerch = ({ categories }) => {
   }
 
   return (
-    <div className="flex flex-row w-full gap-3">
-      <div className="w-4/5">
+    <div className="flex w-full gap-3 md:items-center flex-col md:flex-row">
+      <div className="md:w-4/5">
         <Input
           type="search"
           name="search"
@@ -93,7 +93,7 @@ const AssetSerch = ({ categories }) => {
         />
       </div>
 
-      <div className="w-1/5">
+      <div className="md:w-1/5">
         <DropdownMenu>
           <DropdownMenuTrigger className="w-full flex justify-center text-start">
             <span className="p-2 pl-4 w-full bg-white flex flex-row gap-3 shadow-md rounded-lg">

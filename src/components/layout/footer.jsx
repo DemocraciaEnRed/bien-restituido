@@ -53,7 +53,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="flex justify-center items-center flex-col py-8 bg-white">
-          <div className="flex justify-evenly w-full">
+          <div className="flex justify-evenly w-full flex-wrap">
             <Image
               src={`/logos_orgs/libera.jpg`}
               width={0}
@@ -87,7 +87,7 @@ const Footer = () => {
               alt="logo circolo"
             />
           </div>
-          <div className="flex mt-10 justify-center w-full">
+          <div className="flex mt-10 justify-center w-full flex-wrap">
             <Image
               src={`/logos_orgs/union_europea.jpg`}
               width={0}

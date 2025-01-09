@@ -26,7 +26,7 @@ export default async function Home({
     <div className="mt-[theme(height.nav)]">
       <BannerHome />
       <div className="container">
-        <div className="mt-3 flex justify-between items-center">
+        <div className="mt-3 flex justify-between md:items-center flex-col md:flex-row mb-3">
           <h2 className="text-2xl font-bold mr-5 my-5">Buscador de bienes</h2>
           <DownloadButton filter={{ archivedAt: null, search: search }} />
         </div>

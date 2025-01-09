@@ -12,9 +12,9 @@ const BannerHome = () => {
           height={0}
           sizes="100vw"
           alt="escudo"
-          className="absolute h-full w-auto -bottom-1/4 -right-1/2 md:-right-1/4 lg:right-[10%] opacity-35"
+          className="absolute h-full w-auto md:max-w-full max-w-none md:-bottom-1/4 md:-right-1/4 lg:right-[10%] opacity-35"
         />
-        <div className="py-16 w-8/12 relative">
+        <div className="py-16 md:w-8/12 w-12/12 relative">
           <h1 className="text-4xl font-bold">
             Registro de los bienes cautelados y decomisados del crimen
             organizado en Argentina
