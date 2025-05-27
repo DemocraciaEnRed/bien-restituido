@@ -34,9 +34,6 @@ const Footer = () => {
               </p>
               <p className="text-base font-light pt-3 ">
                 <br />
-                Proyecto Bien Restituido. Para el desmantelamiento patrimonial
-                del crimen organizado y el fortalecimiento de la sociedad civil.
-                <br />
                 Nuestro objetivo es lograr un nuevo marco normativo para
                 recuperar los bienes provenientes del delito y que su destino
                 sea el fortalecimiento de las organizaciones sociales y
