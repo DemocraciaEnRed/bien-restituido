@@ -20,8 +20,7 @@ const BannerHome = () => {
             organizado en Argentina
           </h1>
           <p className="text-2xl font-extralight pt-3  w-full">
-            Herramienta de visualización y monitoreo elaborada por el Proyecto
-            Bien Restituido
+            Herramienta de visualización y monitoreo de los bienes en el país. 
           </p>
         </div>
       </div>
