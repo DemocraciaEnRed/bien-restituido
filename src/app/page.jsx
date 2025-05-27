@@ -52,7 +52,7 @@ export default async function Home({
             <TabsContent value="list">
               <div className="my-8 text-xl font-light">
                 La herramienta cuenta con los datos de los bienes decomisados y
-                cautelados en una serie de causas judiciales tramitadas por ante
+                cautelados en una serie de causas judiciales tramitadas ante
                 la Justicia Federal. No es posible brindar información sobre la
                 totalidad de los bienes secuestrados por el Poder Judicial de la
                 Nación debido a que Argentina no cuenta con un registro
